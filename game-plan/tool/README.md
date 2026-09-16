@@ -22,7 +22,7 @@ Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bit
 
 Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y** přepne na předchozí a **X** nebo **C** na další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
 
-Náhled vždy využije celou volnou šířku. Plátno se interně vykresluje v rozlišení odpovídajícím skutečné šířce a hustotě pixelů displeje, takže se pevný logický prostor 512 × 560 při zvětšení nerozpixeluje. Proměnná výška pouze ořezává spodní část; její minimum je 294 logických bodů, tedy o 25 % méně než dříve. Tažením pravého dolního rohu lze výšku měnit, dvojklik vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
+Náhled vždy využije celou volnou šířku. Plátno se interně vykresluje v rozlišení odpovídajícím skutečné šířce a hustotě pixelů displeje, takže se pevný logický prostor 512 × 560 při zvětšení nerozpixeluje. Výchozí výška končí těsně pod čárou podlahy a ukazuje jen 12 logických bodů její zelené plochy. Při ručním tažení není stanovená uživatelská minimální výška; technické minimum je jediný CSS pixel. Dvojklik na pravý dolní úchyt vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
 
 Režimy **Kostra** a **Bitmapa** jsou výlučné. Kliknutí na postavu může vybrat odpovídající díl nebo kloub, ale režim nikdy nepřepne; to dělá pouze přepínač Upravuji.
 

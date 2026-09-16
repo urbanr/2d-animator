@@ -1,9 +1,9 @@
 (function(root){
   const api={stageSize:(height,availableWidth)=>{
-      const width=Math.max(1,availableWidth),scale=width/512,min=294*scale,max=560*scale;
-      // Keep the whole canvas at full width and crop only the lower floor area.
-      // Default: retain half of the 168 logical pixels below the ground line.
-      const h=Math.max(min,Math.min(max,height??476*scale));return {width,height:h,canvasHeight:max};
+      const width=Math.max(1,availableWidth),scale=width/512,max=560*scale;
+      // Default: ground line plus a narrow 12-unit strip. Manual resizing has no
+      // product minimum; one CSS pixel only keeps the resize box well-defined.
+      const h=Math.max(1,Math.min(max,height??404*scale));return {width,height:h,canvasHeight:max};
     },backingSize:(cssWidth,dpr=1)=>{
       const width=Math.max(512,Math.round(Math.max(1,cssWidth)*Math.max(1,dpr||1)));
       return {width,height:Math.round(width*560/512),scale:width/512};
