@@ -26,7 +26,7 @@
 </section></div>
 <section class="screen-section"><div class="screen-controls"><h2>Poměr k obrazovce na šířku</h2><label><select id="screenSize" aria-label="Referenční rozměry obrazovky"><option value="874,402">iPhone 17 · 874 × 402 pt</option><option value="912,420">iPhone Air · 912 × 420 pt</option><option value="667,375">Menší displej · 667 × 375 pt</option></select></label></div><div class="phone" id="phone"><canvas id="screen" role="img" aria-label="Schéma velikosti bosse na telefonu a kontrola odvalování kol">Referenční schéma měřítka na iPhonu.</canvas></div><p class="screen-note">Stejných osm snímků v herní velikosti na telefonu.</p></section>
 <div class="notes"><div><strong>Původní kresba a pohyb</strong><p>Bába, profesor a stroje vycházejí z první verze.</p></div><div><strong>Jen osm snímků</strong><p>Brusle a animace kol. Bez dopočítávaných mezifází.</p></div><div><strong>Stíny přímo v kresbě</strong><p>Přehrávač nepřidává osvětlení ani stínovací vrstvu.</p></div></div>
-<div class="footer"><span>Finální podklady + nezapsaný barevný pokus</span><span><a href="gallery.html">Přehled všech verzí</a> · <a id="assetLink" href="../graphics/chuchvalec/cadmium-final/chuchvalec-line-00.png">První obrys</a> · <a href="../graphics/chuchvalec/cadmium-final/chuchvalec-color-reference_00.png">Barevný vzor</a> · <a href="../graphics/chuchvalec/coloring-attempt/frames/">8 barevných pokusů</a></span></div>
+<div class="footer"><span>Finální podklady + nezapsaný barevný pokus</span><span><a href="gallery.html">Přehled všech verzí</a> · <a id="assetLink" href="../graphics/bitmapove-sekvence/chuchvalec/cadmium-final/chuchvalec-line-00.png">První obrys</a> · <a href="../graphics/bitmapove-sekvence/chuchvalec/cadmium-final/chuchvalec-color-reference_00.png">Barevný vzor</a> · <a href="../graphics/bitmapove-sekvence/chuchvalec/coloring-attempt/frames/">8 barevných pokusů</a></span></div>
 </main>
 <script>
 (() => {
@@ -64,8 +64,8 @@
  async function loadVersion(){
   const id=++loadId,version=versions[byId('animationVersion').value],resume=playing;
   frames=[];lineFrames=[];colorFrames=[];current=0;setPlay(false);byId('strip').replaceChildren();byId('colorStrip').replaceChildren();byId('status').textContent='Načítám dvě řady snímků…';byId('status').className='';
-  const url=i=>'../graphics/chuchvalec/'+version.folder+version.prefix+String(i).padStart(2,'0')+version.suffix;
-  const colorUrl=i=>'../graphics/chuchvalec/coloring-attempt/frames/chuchvalec-color-'+String(i).padStart(2,'0')+'.png';
+  const url=i=>'../graphics/bitmapove-sekvence/chuchvalec/'+version.folder+version.prefix+String(i).padStart(2,'0')+version.suffix;
+  const colorUrl=i=>'../graphics/bitmapove-sekvence/chuchvalec/coloring-attempt/frames/chuchvalec-color-'+String(i).padStart(2,'0')+'.png';
   try{
    const load=url=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error('Snímek se nepodařilo načíst.'));img.src=url;});
    [lineFrames,colorFrames]=await Promise.all([Promise.all(Array.from({length:8},(_,i)=>load(url(i)))),Promise.all(Array.from({length:8},(_,i)=>load(colorUrl(i))))]);if(id!==loadId)return;frames=colorFrames;byId('detailTitle').textContent='Barevný pokus';

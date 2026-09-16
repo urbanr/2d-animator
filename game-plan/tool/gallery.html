@@ -37,7 +37,7 @@ header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
 <script src="sprite-frame-editing.js"></script>
 <script>
 (() => {
- const root='../graphics/chuchvalec/';
+ const root='../graphics/bitmapove-sekvence/chuchvalec/';
  const eight=(folder,prefix='chuchvalec-idle-',suffix='@3x.png')=>Array.from({length:8},(_,i)=>root+folder+prefix+String(i).padStart(2,'0')+suffix);
  const versions=[...(window.SPRITE_VARIANTS||[]),
   {title:'Kopáč — tmavší vnější obrys',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +30, kontrast 1,40, Ztmavit 100 % a zesílený vnější obrys 0,60. Filtr ztmavuje jen hranu u průhlednosti; vnitřní barvy, alfa a kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/'},
