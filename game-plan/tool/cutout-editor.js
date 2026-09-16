@@ -103,6 +103,8 @@
       const change=old=>({...old,
         strength:R.clamp(old.strength+wanted.strength-effective.strength,0,1),
         radius:R.clamp(old.radius+wanted.radius-effective.radius,1,2000),
+        offset:[0,1].map(i=>R.clamp((old.offset?.[i]||0)+wanted.offset[i]-effective.offset[i],-2000,2000)),
+        angle:wrap((old.angle||0)+wrap(wanted.angle-effective.angle)),
         direction:values.direction??old.direction});
       s.parts[key].joint_fade??={};s.parts[key].joint_fade[end]=change(C.fadeFor(skin.parts[key],end));
       for(const edit of Object.values(out.frame_edits||{}))if(edit.parts?.[key]?.joint_fade?.[end]){

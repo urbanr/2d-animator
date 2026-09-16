@@ -12,6 +12,7 @@
   function remember() { history.push({frames:clone(current.frames),frame_edits:clone(current.frame_edits||{}),index,fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current)}); if(history.length>80)history.shift(); }
   function mark() {dirty=true;$('dirty').textContent='Neuložené změny animace';}
   function draw() {
+    $('updateClip').disabled=saving||!data.clips[current.id];$('deleteClip').disabled=saving||!data.clips[current.id];
     $('stage').innerHTML=R.svg(current.frames[index],{editable:!playing,side:$('dragSide')?.value||'',offsetX:$('travel').checked?M.offset(distance):0,lengths:R.lengthsFor(current,index),zoom});
     $('zoomLabel').textContent=Math.round(zoom*100)+' %';
     $('frameLabel').textContent=`Snímek ${index+1} / ${current.frames.length}${playing?' · přehrávání':''}`;
@@ -58,10 +59,11 @@
   function clipOptions(selected) {
     $('clip').replaceChildren();
     for(const clip of Object.values(data.clips)) {const option=document.createElement('option');option.value=clip.id;option.textContent=clip.name;$('clip').append(option);}
+    if(!selected){const option=document.createElement('option');option.value='';option.textContent='Nová / rozpracovaná animace';$('clip').append(option);}
     $('clip').value=selected;
   }
   function selectClip(id) {
-    stop();current=clone(data.clips[id]);baseline=clone(current.frames);index=0;history=[];dirty=false;
+    stop();current=clone(data.clips[id]||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});baseline=clone(current.frames);index=0;history=[];dirty=false;
     $('dirty').textContent='';$('fps').value=current.fps;$('clipName').value=current.name+' · moje verze';
     $('moveSpeed').value=M.speed(current);
     frameStrip();draw();
@@ -74,11 +76,34 @@
       const picture=document.createElement('div');picture.innerHTML=R.svg(pose.frame);
       const name=document.createElement('span');name.textContent=pose.name;button.append(picture,name);
       button.onclick=()=>{stop();remember();current.frames[index]=clone(pose.frame);mark();frameStrip();draw();status(`Póza „${pose.name}“ vložena do snímku ${index+1}.`);};
-      $('library').append(button);
+      const card=document.createElement('div'),remove=document.createElement('button');remove.textContent='Smazat pózu…';remove.setAttribute('aria-label','Smazat pózu '+pose.name);remove.onclick=()=>trashAction('poses',pose.id);card.append(button,remove);$('library').append(card);
     }
+    trashOptions();
   }
+  function trashOptions(){
+    $('trash').replaceChildren();for(const [id,item] of Object.entries(data.trash||{})){
+      const o=document.createElement('option');o.value=id;o.textContent=(item.collection==='clips'?'Animace: ':'Póza: ')+item.record.name;$('trash').append(o);
+    }
+    $('trash').value=$('trash').children[0]?.value||'';$('restoreDeleted').disabled=saving||!$('trash').children.length;
+  }
+  async function trashAction(collection,id,restore=false){
+    if(saving)return;const record=restore?data.trash?.[id]?.record:data[collection]?.[id];if(!record)return;
+    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='clips'?'animaci':'pózu'} „${record.name}“? Kopie v postavách a jiných animacích zůstanou. ${restore?'':'Položku lze obnovit z koše.'}`))return;
+    stop();saving=true;draw();
+    try{
+      const response=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:clone(record)})});
+      const result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Operace koše selhala.');
+      data.trash=result.trash;
+      if(restore)data[collection][result.id]=result.record;
+      else{delete data[collection][id];if(collection==='clips'&&current.id===id){current.id='';mark();}}
+      clipOptions(current.id);drawLibrary();status(restore?'Položka obnovena.':'Položka je v koši. Rozpracovaný snímek / animace zůstává v editoru.');
+    }catch(error){status(error.message,true);}finally{saving=false;draw();trashOptions();}
+  }
+  $('deleteClip').onclick=()=>trashAction('clips',current.id);
+  $('restoreDeleted').onclick=()=>{const id=$('trash').value,item=data.trash?.[id];if(item)return trashAction(item.collection,id,true);};
   async function save(kind,overwrite=false) {
     if(saving)return;
+    if(overwrite&&!data.clips[current.id]){status('Nejdřív ulož novou animaci.',true);return;}
     stop();
     const name=overwrite?current.name:$(kind==='pose'?'poseName':'clipName').value.trim();
     if(!name){status('Nejdřív napiš název.',true);return;}
@@ -103,7 +128,7 @@
         status(changed?'Verze uložena; novější úpravy ještě nejsou uložené.':overwrite?`Změny uložené do „${result.record.name}“. Předchozí stav je v záloze.`:'Celá animace uložená jako nová varianta.');
       } else {drawLibrary();status('Nová póza uložená v knihovně. Změny celé smyčky uložíš zvlášť.');}
     } catch(error) {status(`Neuloženo: ${error.message} Použij místní editor na http://127.0.0.1:8765.`,true);}
-    finally {saving=false;for(const id of ['savePose','saveClip','updateClip'])$(id).disabled=false;}
+    finally {saving=false;for(const id of ['savePose','saveClip'])$(id).disabled=false;draw();}
   }
   function download(text,name) {
     const url=URL.createObjectURL(new Blob([text],{type:'image/svg+xml'}));
@@ -112,7 +137,7 @@
   try {
     const response=await fetch('../graphics/poses/poses.json');if(!response.ok)throw Error('Knihovna není dostupná.');
     data=await response.json();
-    const initial=Object.values(data.clips).find(clip=>clip.name==='Zombie · šouravá chůze v1')?.id||Object.values(data.clips).find(clip=>clip.name==='Chůze · přirozený krok v4')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · jemnější ramena v3')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · ramena a pánev v2')?.id||'sprint-v1';
+    const initial=Object.values(data.clips).find(clip=>clip.name==='Zombie · šouravá chůze v1')?.id||Object.values(data.clips).find(clip=>clip.name==='Chůze · přirozený krok v4')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · jemnější ramena v3')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · ramena a pánev v2')?.id||(data.clips['sprint-v1']?'sprint-v1':Object.keys(data.clips)[0]||'');
     controls();clipOptions(initial);selectClip(initial);drawLibrary();status('Připraveno. Úpravy se ukládají až příslušným tlačítkem.');
   } catch(error){status(error.message,true);return;}
   $('clip').onchange=()=>{

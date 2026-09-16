@@ -19,7 +19,7 @@
 <p class="hint">Bílé úchyty ramen a pánve můžeš přetáhnout i přes střed: červený a zelený konec si vymění levou/pravou polohu, spolu s končetinami. Střed zůstává pevný. Rozestup vpravo: +100 % původní strany → 0 % u sebe → −100 % prohozené strany. Náklon zůstává samostatně omezený na ±20°.</p>
 <p class="hint">Táhni za kloub: směr se mění v tomto snímku, natažení příslušné kosti ve všech snímcích animace. Ctrl + tah za konec ramen nebo pánve posouvá pouze tento konec. Barvy označují stále stejnou stranu. Jeden tah vrátíš tlačítkem Zpět.</p>
 <div class="actions"><input id="poseName" type="text" maxlength="100" placeholder="Název nové pózy" aria-label="Název nové pózy"><button class="primary" id="savePose">Uložit snímek jako novou pózu</button></div>
-<div class="actions"><button class="primary" id="updateClip">Uložit změny do vybrané animace</button></div>
+<div class="actions"><button class="primary" id="updateClip">Uložit změny do vybrané animace</button><button id="deleteClip">Smazat vybranou animaci…</button></div>
 <p class="hint">Přepíše pouze animaci vybranou nahoře, pod stejným názvem. Předchozí stav se zazálohuje. Pro samostatnou alternativu použij následující tlačítko.</p>
 <div class="actions"><input id="clipName" type="text" maxlength="100" placeholder="Název nové varianty animace" aria-label="Název nové varianty animace"><button id="saveClip">Uložit celou animaci jako novou</button></div>
 <div class="actions"><button id="exportFrame">Stáhnout pózu SVG</button><button id="exportSheet">Stáhnout tabuli póz SVG</button></div>
@@ -28,4 +28,5 @@
 <div class="list-head"><h2>Knihovna jednotlivých póz</h2><label>Hledat <input id="search" type="text" placeholder="Chůze, sprint, vlastní…"></label></div>
 <p>Kliknutím na uloženou pózu ji vložíš do právě vybraného snímku. Uložení vždy vytvoří nový záznam; původní pózy se nepřepisují.</p>
 <div id="library" class="saved"></div>
+<details><summary>Koš póz a animací</summary><div class="actions"><select id="trash" aria-label="Smazané pózy a animace"></select><button id="restoreDeleted">Obnovit z koše</button></div><p>Smazání pouze přesune položku do koše. Kopie vložené do jiných animací nebo postav zůstávají.</p></details>
 </main><script src="pose-rig.js"></script><script src="motion-preview.js"></script><script src="editor-view.js"></script><script src="poses.js"></script></body></html>

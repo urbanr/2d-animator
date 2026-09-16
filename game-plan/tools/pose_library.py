@@ -30,10 +30,16 @@ def validate_joint_fade(value):
         raise ValueError('Neplatný přechod spoje.')
     out = {}
     for end, fade in value.items():
-        if not isinstance(fade, dict) or set(fade) != {'strength', 'radius', 'direction'} or fade['direction'] not in ('outward', 'inward'):
+        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
             raise ValueError('Neplatný přechod spoje.')
         out[end] = {'strength': bounded(fade['strength'], 0, 1),
                     'radius': bounded(fade['radius'], 1, 2000), 'direction': fade['direction']}
+        if 'angle' in fade:
+            out[end]['angle'] = bounded(fade['angle'], -180, 180)
+        if 'offset' in fade:
+            if not isinstance(fade['offset'], list) or len(fade['offset']) != 2:
+                raise ValueError('Neplatný posun přechodu.')
+            out[end]['offset'] = [bounded(v, -2000, 2000) for v in fade['offset']]
     return out
 
 

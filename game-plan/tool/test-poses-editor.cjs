@@ -5,6 +5,7 @@ function element() {return {children:[],value:'',textContent:'',innerHTML:'',dis
   classList:{toggle(){}},append(...items){this.children.push(...items);},replaceChildren(){this.children=[];},setAttribute(key,value){this[key]=value;}};}
 const ids=['status','dirty','stage','frameLabel','frames','undo','controls','clip','clipName','fps','moveSpeed','travel','zoomOut','zoomIn','zoomReset','zoomLabel','library','search','play','previous','next','up','down','swapLeft','swapRight','restore','savePose','saveClip','updateClip','poseName','exportFrame','exportSheet'];
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));
+for(const id of ['deleteClip','trash','restoreDeleted'])elements[id]=element();
 const stored=rig.presets();let failure=false,sequence=0,confirmed=true;
 let raf;
 const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor-view.js'),MotionPreview:require('./motion-preview.js'),addEventListener(){}},document:{getElementById:id=>elements[id],createElement:element},requestAnimationFrame:fn=>{raf=fn;},
@@ -13,6 +14,16 @@ const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor
     if(!options)return {ok:true,json:async()=>clone(stored)};
     if(failure)return {ok:false,json:async()=>({ok:false,error:'Test failure'})};
     assert.equal(url,'/api/poses');const payload=JSON.parse(options.body);
+    if(['delete','restore'].includes(payload.mode)){
+      stored.trash??={};
+      if(payload.mode==='delete'){
+        assert.deepEqual(payload.expectedRecord,stored[payload.collection][payload.id]);
+        stored.trash['trash-'+payload.id]={collection:payload.collection,record:clone(payload.expectedRecord)};delete stored[payload.collection][payload.id];
+        return {ok:true,json:async()=>({ok:true,id:payload.id,trash:clone(stored.trash)})};
+      }
+      const entry=stored.trash[payload.id];stored[payload.collection][entry.record.id]=clone(entry.record);delete stored.trash[payload.id];
+      return {ok:true,json:async()=>({ok:true,id:entry.record.id,record:entry.record,trash:clone(stored.trash)})};
+    }
     const collection=payload.kind==='pose'?'poses':'clips';const id=payload.mode==='update'?payload.id:'saved-'+(++sequence);
     if(payload.mode==='update')assert.deepEqual(payload.expectedRecord,stored.clips[id]);
     const record=payload.kind==='pose'?{id,name:payload.name,frame:payload.frame}:{id,name:payload.name,frames:payload.frames,fps:payload.fps,move_speed_pt_s:payload.move_speed_pt_s,rig_lengths:payload.rig_lengths};
@@ -78,5 +89,11 @@ const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor
   elements.travel.checked=false;elements.travel.onchange();raf(300);
   assert.match(elements.stage.innerHTML,/translate\(0 0\)/);
   elements.play.onclick();
-  console.log('PASS: frame wrap, body shift, head clamp, swap/undo, pose save, clip save, preservation and save failure.');
+  const poseCount=Object.keys(stored.poses).length;
+  confirmed=false;await elements.library.children[0].children[1].onclick();assert.equal(Object.keys(stored.poses).length,poseCount);
+  confirmed=true;await elements.library.children[0].children[1].onclick();assert.equal(Object.keys(stored.poses).length,poseCount-1);
+  await elements.restoreDeleted.onclick();assert.equal(Object.keys(stored.poses).length,poseCount);
+  const clipSnapshot=clone(stored.clips['saved-3']);await elements.deleteClip.onclick();assert.equal(stored.clips['saved-3'],undefined);assert.equal(elements.updateClip.disabled,true);
+  await elements.restoreDeleted.onclick();assert.deepEqual(stored.clips['saved-3'],clipSnapshot);
+  console.log('PASS: pose editor, saving, deletion confirmation, pose/clip trash and restoration.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -15,8 +15,9 @@ from urllib.parse import urlparse
 from sprite_alignment import set_frame_offsets
 from level_walk_line import set_walk_line
 from build_level_gallery import build_level_data
-from pose_library import save_pose
-from cutout_characters import save_character
+from pose_library import save_pose, STORE as POSE_STORE
+from cutout_characters import save_character, ROOT as CHARACTER_ROOT
+from catalog_trash import change_trash
 from sprite_variants import (
     DEFAULT_CATALOG,
     DEFAULT_GALLERY_DATA,
@@ -71,10 +72,18 @@ class SpriteGalleryHandler(SimpleHTTPRequestHandler):
                 raise ValueError("Požadavek musí být objekt JSON.")
             with SAVE_LOCK:
                 if endpoint == "/api/game-characters":
+                    if payload.get('mode') in ('delete', 'restore'):
+                        result = change_trash(payload, CHARACTER_ROOT/'game-characters.json', {'characters'})
+                        self._json_response(200, {"ok": True, **result})
+                        return
                     record = save_character(payload)
                     self._json_response(200, {"ok": True, "record": record})
                     return
                 if endpoint == "/api/poses":
+                    if payload.get('mode') in ('delete', 'restore'):
+                        result = change_trash(payload, POSE_STORE, {'clips', 'poses'})
+                        self._json_response(200, {"ok": True, **result})
+                        return
                     result = save_pose(payload)
                     self._json_response(200, {"ok": True, **result})
                     return

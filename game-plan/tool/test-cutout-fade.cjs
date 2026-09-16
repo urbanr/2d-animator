@@ -1,10 +1,20 @@
 const assert=require('node:assert/strict');
 const C=require('./cutout-rig.js'),E=require('./cutout-editor.js'),R=require('./pose-rig.js');
 const part={size:[100,160],start:[50,40],end:[50,140],joint_fade:{start:{strength:1,radius:40,direction:'outward'}}};
-assert.equal(C.fadeAlpha(part,50,40),1,'Opaque at attachment');
+const sourceSkin=require('../graphics/characters2/bezec-zombie-v1/skin.json');
+for(const key of sourceSkin.layers.filter(C.canFade))for(const end of ['start','end']){
+  const p=sourceSkin.parts[key],configured={...p,joint_fade:{[end]:{...C.fadeFor(p,end),strength:1}}};
+  assert.equal(C.fadeAlpha(configured,...p[end==='start'?'end':'start']),1,`${key}: default fade never touches opposite joint`);
+}
+assert.equal(C.fadeAlpha(part,50,40),0,'Painted attachment must visibly fade');
+assert.equal(C.fadeAlpha(part,50,80),1,'Opaque one radius inside bitmap');
 assert.equal(C.fadeAlpha(part,50,0),0,'Transparent at outward curved edge');
-assert.ok(C.fadeAlpha(part,50,20)>0&&C.fadeAlpha(part,50,20)<1);
+assert.ok(C.fadeAlpha(part,50,60)>0&&C.fadeAlpha(part,50,60)<1);
 assert.equal(C.fadeAlpha(part,50,140),1,'Hand untouched');
+const movedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,20],angle:0}}};
+assert.equal(C.fadeAlpha(movedMask,50,60),0,'Mask offset changes painted pixels, not bone');
+const rotatedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,0],angle:90}}};
+assert.notEqual(C.fadeAlpha(rotatedMask,50,70),C.fadeAlpha(part,50,70));
 assert.equal(C.fadeAlpha(part,0,120),1,'Whole inward half untouched');
 const inverse={...part,joint_fade:{start:{...part.joint_fade.start,direction:'inward'}}};
 assert.equal(C.fadeAlpha(inverse,50,0),1);assert.equal(C.fadeAlpha(inverse,50,80),0);

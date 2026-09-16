@@ -211,21 +211,47 @@ Dosavadní snímkové výjimky se zachovávají; tlačítko není destruktivní 
 - **Konec** vybírá uchycení nebo druhý konec, ten je standardně beze změny.
   **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
   následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
-- Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny;
-  střed zůstává neprůhledný. Při nevhodném poloměru nebo chybějícím překryvu
+- Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny.
+  Od 16. 9. je střed půlkruhu posunutý o poloměr dovnitř dílu: maska zasahuje
+  skutečně namalované pixely u kloubu, ne jen prázdný přesah za ním. Střed
+  půlkruhu zůstává neprůhledný. Výchozí poloměr je nejvýše 45 % délky kosti,
+  aby např. přechod krátkého krku nezprůhlednil celý obličej.
+  Při nevhodném poloměru nebo chybějícím překryvu
   se může ukázat mezera — maska nepřikresluje chybějící materiál.
 - Změny respektují **Celá animace / snímek**, Zpět a Znovu. Nastavení celé
   postavy ulož přes **Postava → Uložit / Uložit jako**; samotná Animace
   uchovává jen snímkové výjimky, nikoli společné nastavení bitmap.
 
-Data: `skin.parts[key].joint_fade.start/end = {strength, radius, direction}`.
+Data: `skin.parts[key].joint_fade.start/end = {strength, radius, direction, offset, angle}`.
 Síla je 0–1, poloměr 1–2000, směr `outward`/`inward`. Snímkové výjimky mají
 stejný formát v `clip.frame_edits[i].parts[key].joint_fade`. Číselné hodnoty
 se interpolují včetně přechodu posledního snímku na první, směr se přepne
 v polovině. Globální úprava přičítá stejný rozdíl i k výjimkám (v mezích rozsahu).
+Volitelný `offset` je posun masky v původních pixelech bitmapy, `angle` natočení
+od osy dílu ve stupních. Starší nastavení bez nich znamená nuly. Oba konce
+jsou nezávislé; nastavení jednoho nesahá na druhý. Pravý klik u konce právě
+vybrané bitmapy vybere tento konec a pravý tah mění sílu. Pole X/Y, úhel,
+poloměr a směr umožňují masku přizpůsobit. Při zobrazené kostře mají všechny
+aktivní konce tyrkysový symbol půlkruhu (včetně přehrávání), nikoli jen vybraný díl.
 
 Renderer násobí původní alfu maskou v souřadnicích zdrojového obrázku.
 Detail, herní díly, miniatura, snímky i oba PNG exporty používají stejný postup.
 RGB a originální PNG soubory se nikdy nemění. Textury jsou omezeně cachované;
 PNG export neobsahuje tyrkysovou pomůcku. Swift prototyp tento pokus zatím
 nepoužívá; starý skript `export_cutout_poses.cjs` je jen export původní předlohy.
+
+## Přepínače a koš
+
+Panel nad plátnem má dva přepínače ve stylu iOS: vlevo Kostra / vpravo Bitmapa
+a vlevo Snímek / vpravo Animace. Zelená poloha znamená pravou volbu. Posun,
+rotace a velikost zůstávají samostatné nástroje.
+
+Postavy2 nabízí **Smazat vybranou postavu / animaci** a **Koš postav a animací**.
+Editor Pózy má **Smazat vybranou animaci** a **Smazat pózu** u každé karty.
+V obou místech lze smazané položky obnovit. Smazání vyžaduje potvrzení,
+kontroluje aktuální verzi záznamu a atomicky jej přesouvá do `trash` téhož
+JSON katalogu. Obnova odmítne přepsat už existující ID. Není tu trvalé mazání.
+Zdrojové PNG, vložené pózy ani snímkové kopie animace v uložených postavách
+se nemažou. Neuložená pracovní kopie při smazání zůstává v editoru, už ale
+nepřepisuje smazaný záznam; lze ji uložit jako novou. Prázdná knihovna dovolí
+začít novou dvousnímkovou animací nebo obnovit položku z koše.

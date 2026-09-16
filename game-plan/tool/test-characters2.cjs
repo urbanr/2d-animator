@@ -19,6 +19,7 @@ ids.push('updateCharacter','updateAnimation','animationName','importDraft','rend
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
+ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
 elements.editScope.value='frame';elements.editTarget.value='skeleton';elements.editTool.value='rotate';
 elements.edit.checked=true;elements.resizeBones.checked=true;
@@ -35,6 +36,17 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  fetch:async(url,options)=>{
   if(!options||!options.method)return {ok:true,json:async()=>copy(String(url).endsWith('manifest.json')?gameManifest:String(url).endsWith('skins.json')?{skins:{'bezec-zombie-v1':{name:'Zombie',path:'bezec-zombie-v1/skin.json'}}}:String(url).endsWith('game-characters.json')?gameStore:String(url).endsWith('skin.json')?skin:store)};
   const p=JSON.parse(options.body);
+  if(['delete','restore'].includes(p.mode)){
+    if(fail)return {ok:false,json:async()=>({ok:false,error:'Trash failed'})};
+    const catalog=url==='/api/poses'?store:gameStore;catalog.trash??={};
+    if(p.mode==='delete'){
+      assert.deepEqual(p.expectedRecord,catalog[p.collection][p.id]);
+      catalog.trash['trash-'+p.id]={collection:p.collection,record:copy(p.expectedRecord)};delete catalog[p.collection][p.id];
+      return {ok:true,json:async()=>({ok:true,id:p.id,trash:copy(catalog.trash)})};
+    }
+    const entry=catalog.trash[p.id];assert.deepEqual(p.expectedRecord,entry.record);catalog[p.collection][entry.record.id]=copy(entry.record);delete catalog.trash[p.id];
+    return {ok:true,json:async()=>({ok:true,id:entry.record.id,record:entry.record,trash:copy(catalog.trash)})};
+  }
   if(url==='/api/game-characters'){
     characterPosts.push(copy(p));
     assert.equal(p.skin_id,'bezec-zombie-v1');
@@ -53,13 +65,13 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
 (async()=>{
  await vm.runInContext(fs.readFileSync(__dirname+'/characters2.js','utf8'),context);
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
- assert.equal(elements.editScope['aria-pressed'],'false');
- elements.editScope.onclick();assert.equal(elements.editScope.value,'all');assert.equal(elements.editScope['aria-pressed'],'true');
+ assert.equal(elements.editScope['aria-checked'],'false');
+ elements.editScope.onclick();assert.equal(elements.editScope.value,'all');assert.equal(elements.editScope['aria-checked'],'true');
  elements.editScope.onclick();assert.equal(elements.editScope.value,'frame');
- elements.targetBitmap.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.targetBitmap['aria-pressed'],'true');assert.equal(elements.targetSkeleton['aria-pressed'],'false');
+ elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.editTarget['aria-checked'],'true');
  elements.toolMove.onclick();assert.equal(elements.editTool.value,'move');assert.equal(elements.toolMove['aria-pressed'],'true');
  elements.toolSize.onclick();assert.equal(elements.editTool.value,'size');assert.equal(elements.toolMove['aria-pressed'],'false');
- elements.targetSkeleton.onclick();elements.toolRotate.onclick();
+ elements.editTarget.onclick();elements.toolRotate.onclick();
  elements.previous.onclick();assert.match(elements.frameLabel.textContent,/8 \/ 8/);
  elements.next.onclick();assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  elements.edit.checked=true;elements.edit.onchange();
@@ -207,7 +219,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.redo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,wider.skin);
  await elements.gameCharacter.onchange();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,wider.skin);
  // Global translation is bone-local in every pose and immediately rendered in ALL thumbnails.
- elements.targetBitmap.onclick();elements.toolMove.onclick();
+ elements.editTarget.value='bitmap';elements.editTarget.onchange();elements.toolMove.onclick();
  if(elements.editScope.value!=='all')elements.editScope.onclick();
  const beforeMove=copy(gameStore.characters['game-1']),pose=C.sample(beforeMove.animation,0,false),hMove=require('./cutout-editor.js').partHandles(beforeMove.skin,'nearForearm',pose);
  const eMove={button:0,pointerId:89,clientX:hMove.pivot.x,clientY:hMove.pivot.y,preventDefault(){}};
@@ -263,5 +275,16 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.renderMode.value='game';elements.renderMode.onchange();elements.exportFrame.onclick();elements.exportSheet.onclick();
  elements.fadeClear.onclick();await elements.updateCharacter.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,0);
- console.log('PASS: cutout editor, scoped right-drag transparency, undo/redo, Save/Save As, draft restore, pan/pinch and both PNG export modes.');
+ elements.fadeX.value='12';elements.fadeX.onchange();elements.fadeAngle.value='45';elements.fadeAngle.onchange();await elements.updateCharacter.onclick();
+ assert.deepEqual(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.offset,[12,0]);
+ assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.angle,45);
+ const toDelete=copy(gameStore.characters['legacy-b']);
+ confirmed=false;await elements.deleteCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
+ confirmed=true;fail=true;await elements.deleteCharacter.onclick();assert.match(elements.status.textContent,/Trash failed/);assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
+ fail=false;await elements.deleteCharacter.onclick();assert.equal(gameStore.characters['legacy-b'],undefined);assert.equal(elements.updateCharacter.disabled,true);
+ assert.equal(elements.restoreDeleted.disabled,false);await elements.restoreDeleted.onclick();assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
+ elements.clip.value=zombie.id;await elements.clip.onchange();const previousClip=copy(store.clips[zombie.id]);
+ await elements.deleteAnimation.onclick();assert.equal(store.clips[zombie.id],undefined);assert.equal(elements.updateAnimation.disabled,true);
+ await elements.restoreDeleted.onclick();assert.deepEqual(store.clips[zombie.id],previousClip);assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
+ console.log('PASS: cutout editor, independent fades, iOS switches, reversible deletion/cancel/failure, saves and PNG exports.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
