@@ -1,7 +1,7 @@
 /* Existing deep links join the common preview. Embedded editors retain their state. */
 (() => {
   const compact=document.createElement('link');compact.rel='stylesheet';compact.href='compact-ui.css';document.head.append(compact);
-  const sections={'gallery.html':'postavy','characters2.html':'postavy2','levels.html':'levely','poses.html':'pozy','index.html':'animator'};
+  const sections={'gallery.html':'postavy','characters2.html':'animator','levels.html':'levely','poses.html':'pozy'};
   const query=new URLSearchParams(location.search);
   const section=sections[location.pathname.split('/').pop()];
   if(location.protocol==='file:'){

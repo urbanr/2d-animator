@@ -13,7 +13,11 @@ const switches=html.match(/<details id="switchesSection">([\s\S]*?)<\/details>/)
 for(const id of ['travel','smooth','bones','edit','resizeBones'])assert.ok(switches.includes(`id="${id}"`));
 assert.ok(!motion.includes('id="travel"'));
 const header=html.match(/<header class="page-header">([\s\S]*?)<\/header>/)[1];
-assert.match(header,/^<h1>[^<]+<\/h1>$/);
+assert.match(header,/^<h1>Animátor[^<]*<\/h1>$/);
+const selection=html.match(/<div class="selection-bar"[\s\S]*?<\/div>\s*<main>/)[0];
+for(const id of ['gameCharacter','characterAnimation','updateCharacter','saveCharacter','deleteCharacter','updateAnimation','save','deleteAnimation'])assert.ok(selection.includes(`id="${id}"`));
+assert.match(html,/\.selection-bar\{display:grid;grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/);
+assert.match(html,/id="assignAnimation"[^>]*>↳ Přiřadit k postavě/);
 assert.match(html,/width:calc\(2ch \+ 18px\)/);
 // Compact display does not narrow the accepted values or lose existing controls.
 assert.match(html,/id="moveSpeed"[^>]*max="1000"[^>]*step="0.1"/);
@@ -30,4 +34,4 @@ assert.match(html,/#fadePanel input\[type=number\]\{width:40px/);
 assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesNotMatch(html,/\.help:hover \.help-text/);
 assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
 assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
-console.log('PASS: compact speed row, single-line heading, separate controls and all panels collapsed.');
+console.log('PASS: Animator title, compact character/animation row, icon actions, speed row and collapsed panels.');

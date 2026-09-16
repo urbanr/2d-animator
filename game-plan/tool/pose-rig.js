@@ -11,9 +11,9 @@
     ['bodyY','Výška celé postavy',-100,100,'px','Tělo'],
     ['bodyLean','Předklon trupu',-180,180,'°','Tělo'],
     ['shoulders','Náklon ramen',-180,180,'°','Tělo'],
-    ['shoulderWidth','Rozestup ramen (− = prohozené strany)',-100,100,'%','Tělo'],
+    ['shoulderWidth','Rozestup ramen (− = prohozené strany)',-300,300,'%','Tělo'],
     ['pelvis','Náklon pánve',-180,180,'°','Tělo'],
-    ['pelvisWidth','Rozestup pánve (− = prohozené strany)',-100,100,'%','Tělo'],
+    ['pelvisWidth','Rozestup pánve (− = prohozené strany)',-300,300,'%','Tělo'],
     ['neck','Natočení krku',-180,180,'°','Tělo'],
     ['head','Náklon hlavy vůči krku',-180,180,'°','Tělo'],
     ['nearShoulder','Ramenní kloub',-180,180,'°','Bližší · červená'],
@@ -177,7 +177,7 @@
       const sign=x<0?-1:1;
       const angle=Math.abs(x)<0.001?(pose[key]||0):clamp(deg(Math.atan2(sign*y,sign*x)),range[0],range[1]);
       return {...pose,[key]:Math.round(angle*10)/10,
-        [width]:Math.round(clamp(x/(half*Math.cos(rad(angle)))*100,-100,100)*10)/10};
+        [width]:Math.round(clamp(x/(half*Math.cos(rad(angle)))*100,-300,300)*10)/10};
     }
     let delta=end.y-start.y;
     if(h.pivot) {

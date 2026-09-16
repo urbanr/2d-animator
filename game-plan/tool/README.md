@@ -1,12 +1,14 @@
 # Společné preview
 
-Otevři `http://127.0.0.1:8765/tool/preview.html`. Horní menu spojuje **Postavy**, **Levely**, **Pózy a kroky** a **Animátor** v jednom nástroji. Přepínání sekcí zachová jejich rozpracovaný stav; trvalé uložení změn se nadále provádí tlačítkem v příslušném editoru. Obnovení celé stránky neuložené změny nezachovává.
+Otevři `http://127.0.0.1:8765/tool/preview.html`. Horní menu spojuje **Postavy**, **Animátor**, **Levely** a **Kostry** v jednom nástroji. Animátor je editor bitmapových postav na kostře (dříve Postavy2); původní samostatný animátor už v menu není. Přepínání sekcí zachová jejich rozpracovaný stav; trvalé uložení změn se provádí tlačítkem v příslušném editoru. Obnovení celé stránky neuložené změny nezachovává.
 
-Původní odkazy (`gallery.html`, `levels.html`, `poses.html`, `index.html`) se automaticky otevřou ve společném preview a zachovají výběr postavy, filtr i odkaz na konkrétní kartu.
+Původní odkazy (`gallery.html`, `levels.html`, `poses.html`) se automaticky otevřou ve společném preview a zachovají výběr postavy, filtr i odkaz na konkrétní kartu.
 
 V **Pózách a krocích** lze táhnout kruhové úchyty myší nebo dotykem. Koleno otáčí stehno v kyčli, kotník lýtko v koleni, loket paži v rameni a ruka předloktí v lokti. Potomci se pohybují s rodičem při zachování délek kostí a limitů kloubů. Střed trupu posouvá celou postavu svisle. Výběr červených/zelených úchytů zpřístupní překryté končetiny. Jeden tah tvoří jeden krok Zpět; změny se ukládají stávajícími tlačítky pro pózu nebo celou animaci. Exportované SVG neobsahuje úchyty.
 
-## Postavy2 – ovládání náhledu
+## Animátor – ovládání náhledu
+
+Jedna uložená postava může mít více animací. Horní řádek obsahuje výběr postavy a pouze její přiřazené animace. Disketa přepisuje vybranou položku, plus vytváří další variantu a koš maže postavu nebo odebírá animaci pouze z této postavy; každá operace vyžaduje potvrzení. Globální pohybovou předlohu lze načíst ve sbalovací části **Animace postavy** a zvláštním tlačítkem ji k postavě přiřadit. Staré záznamy s jediným polem `animation` se při prvním zápisu bezpečně převedou na kolekci `animations`.
 
 Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu, **Rotace** otáčí trup kolem pánve a **Velikost** mění jeho délku. Ctrl + tah také mění délku, pokud jsou změny délek povolené. Rozsah Snímek / Animace platí i pro tyto úpravy.
 
@@ -26,7 +28,7 @@ Nápovědy s otazníkem se otevřou jen kliknutím a zavřou po odjetí ukazatel
 
 ## Přehrávač spritů – podklady
 
-Rozestup ramen a pánve má rozsah −100 až +100 % původní šířky. Bílý koncový úchyt lze táhnout plynule přes střed: +100 % původní polohy, 0 % společný střed, −100 % prohozené polohy červeného/zeleného konce vlevo/vpravo. Barvy zůstávají přiřazené stejným končetinám; nejde o změnu pořadí vrstev vůči kameře. Náklon má nadále limit ±20°. Střed ramen pod krkem ani střed pánve se neposouvá. Končetiny následují své úchyty bez změny délky kostí. Staré záznamy bez `shoulderWidth` a `pelvisWidth` se interpretují jako 100 %; nic se hromadně nepřepisuje.
+Rozestup ramen a pánve má nyní pracovní rozsah −300 až +300 % původní šířky. Bílý koncový úchyt lze táhnout plynule přes střed: +100 % původní polohy, 0 % společný střed, záporná hodnota prohozuje červený/zelený konec a až ±300 % dává trojnásobnou rezervu. Barvy zůstávají přiřazené stejným končetinám; nejde o změnu pořadí vrstev vůči kameře. Úhlové limity kostry jsou nyní maximální ±180°. Střed ramen pod krkem ani střed pánve se neposouvá. Končetiny následují své úchyty bez změny délky kostí. Staré záznamy bez `shoulderWidth` a `pelvisWidth` se interpretují jako 100 %; nic se hromadně nepřepisuje.
 
 Obnov `index.html`. Výchozí sada je `../graphics/chuchvalec/ride-eight-solid/frames/`: osm kreslených PNG v prvním stylu, s bruslí. Přehrávač pouze střídá snímky; nepřidává stínovací vrstvy, osvětlení ani mezifáze. První původní sada je dostupná pro porovnání. Verze v2 a v3 byly zamítnuty.
 

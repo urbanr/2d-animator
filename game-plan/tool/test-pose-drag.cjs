@@ -45,6 +45,8 @@ for(const [key,width,bar] of [['shoulders','shoulderWidth','shoulders'],['pelvis
   assert.deepEqual(g.hipCenter,old.hipCenter);assert.deepEqual(g.shoulderCenter,old.shoulderCenter);
   const collapsed=R.dragPose(p,key,h.point,h.pivot);assert.equal(collapsed[width],0);
   const expanded=R.dragPose(collapsed,key,h.pivot,h.point);assert.equal(expanded[width],100);
+  const triple={x:h.pivot.x+(h.point.x-h.pivot.x)*3,y:h.pivot.y+(h.point.y-h.pivot.y)*3};
+  assert.equal(R.dragPose(p,key,h.point,triple)[width],300,'Shoulder/pelvis guide may grow to triple width');
   for(const ratio of [1,0.5,0.01,0,-0.01,-0.5,-1]) {
     const end={x:h.pivot.x+(h.point.x-h.pivot.x)*ratio,y:h.pivot.y+(h.point.y-h.pivot.y)*ratio};
     const crossed=R.dragPose(p,key,h.point,end);

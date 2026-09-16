@@ -122,6 +122,40 @@ class CharacterTests(unittest.TestCase):
         self.assertEqual(first['animation']['move_speed_pt_s'], 13.5)
         self.assertEqual(first['asset_base'], 'graphics/characters2/zombie/')
 
+    def test_character_owns_multiple_independent_animations(self):
+        first = save_character(self.payload, self.root)
+        original_id = first['default_animation_id']
+        second_clip = copy.deepcopy(self.payload['animation'])
+        second_clip['name'] = 'Sprint'
+        second_clip['frames'][0]['bodyY'] = -12
+        second = save_character({'mode':'animation-create','id':first['id'],'name':'Sprint',
+            'animation':second_clip,'expectedRecord':first}, self.root)
+        self.assertEqual(len(second['animations']), 2)
+        sprint_id = second['default_animation_id']
+        self.assertNotEqual(sprint_id, original_id)
+        self.assertEqual(second['animations'][sprint_id]['frames'][0]['bodyY'], -12)
+        changed = copy.deepcopy(second_clip);changed['frames'][0]['bodyY'] = -20
+        third = save_character({'mode':'animation-update','id':first['id'],'animation_id':sprint_id,
+            'name':'Sprint','animation':changed,'expectedRecord':second}, self.root)
+        self.assertEqual(third['animations'][sprint_id]['frames'][0]['bodyY'], -20)
+        self.assertEqual(third['animations'][original_id], first['animations'][original_id])
+        removed = save_character({'mode':'animation-delete','id':first['id'],'animation_id':sprint_id,
+            'expectedRecord':third}, self.root)
+        self.assertEqual(list(removed['animations']), [original_id])
+        self.assertEqual(removed['default_animation_id'], original_id)
+        self.assertEqual(removed['animation'], removed['animations'][original_id])
+        self.assertEqual(len(list((self.root/'history').glob('*.json'))), 3)
+
+    def test_animation_action_migrates_legacy_single_animation(self):
+        first = save_character(self.payload, self.root)
+        legacy = copy.deepcopy(first);legacy.pop('animations');legacy.pop('default_animation_id')
+        path = self.root/'game-characters.json'
+        catalog = json.loads(path.read_text());catalog['characters'][legacy['id']] = legacy;path.write_text(json.dumps(catalog))
+        added = save_character({'mode':'animation-create','id':legacy['id'],'name':'Druhá',
+            'animation':self.payload['animation'],'expectedRecord':legacy}, self.root)
+        self.assertEqual(len(added['animations']), 2)
+        self.assertTrue(any(key.startswith('legacy-') for key in added['animations']))
+
     def test_invalid_input_never_changes_catalog(self):
         save_character(self.payload, self.root)
         target = self.root / 'game-characters.json'

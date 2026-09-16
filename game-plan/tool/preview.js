@@ -4,13 +4,14 @@
   if(location.protocol==='file:'){
     location.replace('http://127.0.0.1:8765/tool/preview.html'+location.search+location.hash);return;
   }
-  const pages={postavy:'gallery.html',postavy2:'characters2.html',levely:'levels.html',pozy:'poses.html',animator:'index.html'};
-  const names={postavy:'Postavy',postavy2:'Postavy2',levely:'Levely',pozy:'Kostry',animator:'Animátor'};
+  const pages={postavy:'gallery.html',levely:'levels.html',pozy:'poses.html',animator:'characters2.html'};
+  const names={postavy:'Postavy',levely:'Levely',pozy:'Kostry',animator:'Animátor'};
   const panels=new Map();
   const routes=new Map();
   const messageOrigin=location.origin==='null'?'*':location.origin;
   const nav=[...document.querySelectorAll('[data-section]')];
   function show(section, extra=new URLSearchParams(), hash='', push=false) {
+    if(section==='postavy2')section='animator';
     if(!Object.hasOwn(pages,section))section='postavy';
     const url=new URL(location.href);url.search='';url.hash=hash;
     url.searchParams.set('sekce',section);

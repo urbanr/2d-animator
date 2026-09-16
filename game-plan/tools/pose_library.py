@@ -7,7 +7,7 @@ from pathlib import Path
 
 STORE = Path(__file__).resolve().parent.parent / 'graphics' / 'poses' / 'poses.json'
 LIMITS = {'bodyX': (-200, 200), 'bodyY': (-100, 100), 'bodyLean': (-180, 180), 'shoulders': (-180, 180), 'pelvis': (-180, 180),
-          'shoulderWidth': (-100, 100), 'pelvisWidth': (-100, 100),
+          'shoulderWidth': (-300, 300), 'pelvisWidth': (-300, 300),
           'neck': (-180, 180), 'head': (-180, 180)}
 for side in ('near', 'far'):
     for joint in ('Shoulder', 'Elbow', 'Hip', 'Knee'):

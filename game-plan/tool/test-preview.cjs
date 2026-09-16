@@ -3,7 +3,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const location=new URL('http://127.0.0.1:8765/tool/preview.html?sekce=pozy');
 const events={},frames=[];
-const nav=['postavy','levely','pozy','animator','postavy2'].map(section=>({
+const nav=['postavy','animator','levely','pozy'].map(section=>({
   dataset:{section},attributes:{},
   addEventListener(type,fn){this[type]=fn;},
   setAttribute(k,v){this.attributes[k]=v;},removeAttribute(k){delete this.attributes[k];}
@@ -22,7 +22,7 @@ frames[0].unsavedDraft='keep me';
 click('levely');click('pozy');
 assert.equal(frames.length,2);assert.equal(frames[0].hidden,false);
 assert.equal(frames[0].unsavedDraft,'keep me');
-assert.equal(nav[2].attributes['aria-current'],'page');
+assert.equal(nav[3].attributes['aria-current'],'page');
 navigate('levely','?verze=composition-v2');
 assert.equal(frames.length,3);assert.match(frames[2].src,/verze=composition-v2/);
 click('pozy');click('levely');
@@ -36,7 +36,8 @@ events.message({origin:'https://untrusted.example',source:frames[0].contentWindo
 assert.equal(frames.length,3);
 events.message({origin:location.origin,source:{},data:{type:'preview-navigate',section:'animator'}});
 assert.equal(frames.length,3);
-click('postavy2');assert.equal(frames.length,4);assert.match(frames[3].src,/characters2.html/);
+click('animator');assert.equal(frames.length,4);assert.match(frames[3].src,/characters2.html/);assert.doesNotMatch(frames[3].src,/index\.html/);
 click('pozy');assert.equal(frames[0].unsavedDraft,'keep me');
-click('postavy2');assert.equal(frames.length,4);assert.equal(frames[3].hidden,false);
-console.log('PASS: common navigation including Postavy2, retained editor state, filtered deep links, back navigation and message validation.');
+click('animator');assert.equal(frames.length,4);assert.equal(frames[3].hidden,false);
+navigate('postavy2');assert.equal(frames.length,4);assert.equal(frames[3].hidden,false);assert.equal(location.searchParams.get('sekce'),'animator');
+console.log('PASS: common navigation with the new Animator, legacy Postavy2 alias, retained state and message validation.');
