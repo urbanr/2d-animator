@@ -70,6 +70,8 @@ def save_character(payload, root=ROOT):
                 bounded(base.get(axis,1)*part.get(axis,1),.1-1e-8,10+1e-8)
             for i,v in enumerate(part.get('offset',[0,0])):
                 bounded(base.get('offset',[0,0])[i]+v,-2000-1e-8,2000+1e-8)
+            for i,v in enumerate(part.get('pivot_offset',[0,0])):
+                bounded(base.get('pivot_offset',[0,0])[i]+v,-2000-1e-8,2000+1e-8)
     identifier=str(uuid.uuid4())
     record={'id':identifier,'name':name.strip(),'created_at':datetime.now(timezone.utc).isoformat(),
             'renderer':'cutout-rig-v1','skin_id':skin_id,'skin':skin,

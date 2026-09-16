@@ -8,6 +8,19 @@ from pose_library import LIMITS
 
 
 class CharacterTests(unittest.TestCase):
+    def test_rotation_pivot_roundtrip(self):
+        payload=copy.deepcopy(self.payload)
+        payload['part_transforms']={'head':{'pivot_offset':[10,-20]}}
+        payload['animation']['frame_edits']={'0':{'parts':{'head':{'pivot_offset':[4,8]}}}}
+        saved=save_character(payload,self.root)
+        self.assertEqual(saved['skin']['parts']['head']['pivot_offset'],[10,-20])
+        self.assertEqual(saved['animation']['frame_edits'],payload['animation']['frame_edits'])
+        before=(self.root/'game-characters.json').read_bytes()
+        for bad in [[True,0],[2001,0],[1],[1,float('nan')]]:
+            with self.assertRaises(ValueError):
+                save_character({**payload,'part_transforms':{'head':{'pivot_offset':bad}}},self.root)
+            self.assertEqual((self.root/'game-characters.json').read_bytes(),before)
+
     def test_joint_fade_roundtrip_and_invalid_input(self):
         fade = {'start': {'strength': .65, 'radius': 40, 'direction': 'outward'}}
         payload = copy.deepcopy(self.payload)

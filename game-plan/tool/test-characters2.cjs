@@ -286,5 +286,27 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.clip.value=zombie.id;await elements.clip.onchange();const previousClip=copy(store.clips[zombie.id]);
  await elements.deleteAnimation.onclick();assert.equal(store.clips[zombie.id],undefined);assert.equal(elements.updateAnimation.disabled,true);
  await elements.restoreDeleted.onclick();assert.deepEqual(store.clips[zombie.id],previousClip);assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
- console.log('PASS: cutout editor, independent fades, iOS switches, reversible deletion/cancel/failure, saves and PNG exports.');
+ elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();
+ elements.frames.children[0].onclick();elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';elements.zoomReset.onclick();
+ const beforePivot=copy(gameStore.characters['legacy-b']),pivotPose=C.sample(beforePivot.animation,0,false),pivotHandle=require('./cutout-editor.js').partHandles(beforePivot.skin,'nearForearm',pivotPose);
+ const shiftDrag={button:0,pointerId:106,shiftKey:true,clientX:pivotHandle.pivot.x,clientY:pivotHandle.pivot.y,preventDefault(){}};
+ elements.stage.onpointerdown(shiftDrag);elements.stage.onpointermove({...shiftDrag,clientX:shiftDrag.clientX+12,clientY:shiftDrag.clientY-9});elements.stage.onpointerup(shiftDrag);
+ await elements.updateCharacter.onclick();const pivoted=copy(gameStore.characters['legacy-b']);
+ assert.ok(pivoted.skin.parts.nearForearm.pivot_offset.some(v=>Math.abs(v)>1));
+ for(let i=0;i<8;i++){
+   const a=C.sample(beforePivot.animation,i,false),b=C.sample(pivoted.animation,i,false);
+   const ma=C.matrix(C.partFor(beforePivot.skin,'nearForearm',a),C.bones(a).nearForearm),mb=C.matrix(C.partFor(pivoted.skin,'nearForearm',b),C.bones(b).nearForearm);
+   ma.forEach((v,j)=>assert.ok(Math.abs(v-mb[j])<1e-7));
+ }
+ const key=(k,extra={})=>events.keydown({key:k,preventDefault(){},target:{tagName:'CANVAS'},...extra});
+ key('a');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('d');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('a',{target:{tagName:'INPUT'}});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('q',{target:{tagName:'TEXTAREA'}});await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ key('q');key('q',{repeat:true});events.keyup({key:'q'});await elements.updateCharacter.onclick();
+ assert.ok(Math.abs(gameStore.characters['legacy-b'].skin.parts.nearForearm.rotation-pivoted.skin.parts.nearForearm.rotation+2)<1e-8);
+ elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ key('D',{shiftKey:true});assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateCharacter.onclick();
+ assert.notDeepEqual(gameStore.characters['legacy-b'].skin.parts.nearForearm.offset,pivoted.skin.parts.nearForearm.offset);
+ elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ console.log('PASS: cutout editor, pivot drag without jumping, keyboard focus/repeat/wrap, transparency, trash, saves and PNG exports.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

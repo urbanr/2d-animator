@@ -44,9 +44,14 @@ def validate_joint_fade(value):
 
 
 def validate_part_transform(value, exception=False):
-    if not isinstance(value, dict) or set(value)-{'offset', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
+    if not isinstance(value, dict) or set(value)-{'offset', 'pivot_offset', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
         raise ValueError('Neplatná úprava bitmapového dílu.')
     out = {}
+    if 'pivot_offset' in value:
+        if not isinstance(value['pivot_offset'], list) or len(value['pivot_offset']) != 2:
+            raise ValueError('Rotační střed musí být dvojice čísel.')
+        limit = 4000 if exception else 2000
+        out['pivot_offset'] = [bounded(v, -limit, limit) for v in value['pivot_offset']]
     if 'joint_fade' in value:
         out['joint_fade'] = validate_joint_fade(value['joint_fade'])
     if 'offset' in value:

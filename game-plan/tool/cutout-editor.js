@@ -86,12 +86,31 @@
       });
     }
     if(Number.isFinite(values.rotation))target.rotation=wrap((target.rotation||0)+wrap(values.rotation-effective.rotation));
+    if(values.pivot_offset){
+      const old=target.pivot_offset||[0,0];
+      target.pivot_offset=old.map((v,axis)=>{
+        const vals=scope==='all'?[skin.parts[key].pivot_offset?.[axis]||0,...clip.frames.map((_,i)=>C.partFor(skin,key,C.sample(clip,i,false)).pivot_offset[axis])]:[effective.pivot_offset[axis]];
+        return v+R.clamp(values.pivot_offset[axis]-effective.pivot_offset[axis],Math.max(...vals.map(v=>-2000-v)),Math.min(...vals.map(v=>2000-v)));
+      });
+    }
     for(const axis of ['scale','scale_x','scale_y'])if(Number.isFinite(values[axis])){
       const vals=scope==='all'?[skin.parts[key][axis]||1,...clip.frames.map((_,i)=>C.partFor(skin,key,C.sample(clip,i,false))[axis])]:[effective[axis]];
       const ratio=R.clamp(values[axis]/effective[axis],Math.max(...vals.map(v=>.1/v)),Math.min(...vals.map(v=>10/v)));
       target[axis]=(target[axis]||1)*ratio;
     }
     return {clip:out,skin:s};
+  }
+  function pivotChange(clip,skin,index,key,pivot,scope='frame'){
+    let result=partChange(clip,skin,index,key,{pivot_offset:pivot},scope);
+    if(scope==='all')result.skin.parts[key].offset=C.repivot(skin.parts[key],result.skin.parts[key].pivot_offset).offset;
+    for(const i of scope==='all'?clip.frames.map((_,i)=>i):[index]){
+      const before=C.partFor(skin,key,C.sample(clip,i,false)),after=C.partFor(result.skin,key,C.sample(result.clip,i,false));
+      const offset=C.repivot(before,after.pivot_offset).offset;
+      if(offset.some(v=>Math.abs(v)>2000))return {clip:copy(clip),skin:copy(skin)};
+      if(offset.some((v,j)=>Math.abs(v-after.offset[j])>1e-9))result=partChange(result.clip,result.skin,i,key,{offset},'frame');
+    }
+    if((result.skin.parts[key].offset||[]).some(v=>Math.abs(v)>2000))return {clip:copy(clip),skin:copy(skin)};
+    return result;
   }
   function fadeChange(clip,skin,index,key,end,values,scope='frame'){
     const out=copy(clip),s=copy(skin);
@@ -123,7 +142,7 @@
     const bone=C.bones(pose)[key];if(!bone||!skin.parts[key])return null;
     const part=C.partFor(skin,key,pose),m=C.matrix(part,bone),at=(x,y)=>({x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]});
     const [w,h]=part.size;
-    return {pivot:at(...part.start),rotate:at(w/2,-20),size:at(w,h),corners:[[0,0],[w,0],[w,h],[0,h]].map(p=>at(...p))};
+    return {pivot:at(part.start[0]+part.pivot_offset[0],part.start[1]+part.pivot_offset[1]),attachment:at(...part.start),rotate:at(w/2,-20),size:at(w,h),corners:[[0,0],[w,0],[w,h],[0,h]].map(p=>at(...p))};
   }
   function validateEdits(clip,skin){
     const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
@@ -136,14 +155,15 @@
       for(const [k,v] of Object.entries(e.pose_base||{}))if(!fields[k]||!number(v,fields[k][2],fields[k][3]))fail();
       for(const [k,v] of Object.entries(e.lengths||{}))if(!(k in R.defaultLengths())||!number(v,.02,50)||!number(R.lengthsFor(clip)[k]*v,5,250))fail();
       for(const [k,v] of Object.entries(e.parts||{})){
-        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','scale','scale_x','scale_y','rotation','joint_fade'].includes(k)))fail();
+        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','pivot_offset','scale','scale_x','scale_y','rotation','joint_fade'].includes(k)))fail();
+        if(v.pivot_offset!==undefined&&(!Array.isArray(v.pivot_offset)||v.pivot_offset.length!==2||v.pivot_offset.some(n=>!number(n,-4000,4000))))fail();
         if(v.joint_fade!==undefined)C.validateFade(v.joint_fade);
         if(v.offset!==undefined&&(!Array.isArray(v.offset)||v.offset.length!==2||v.offset.some(n=>!number(n,-4000,4000))))fail();
         if(v.rotation!==undefined&&!number(v.rotation,-180,180))fail();
         for(const axis of ['scale','scale_x','scale_y'])if(v[axis]!==undefined&&!number(v[axis],.01,100))fail();
-        const p=C.partFor(skin,k,{part_edits:e.parts});if(['scale','scale_x','scale_y'].some(axis=>!number(p[axis],.1,10))||p.offset.some(n=>!number(n,-2000,2000)))fail();
+        const p=C.partFor(skin,k,{part_edits:e.parts});if(['scale','scale_x','scale_y'].some(axis=>!number(p[axis],.1,10))||p.offset.some(n=>!number(n,-2000,2000))||p.pivot_offset.some(n=>!number(n,-2000,2000)))fail();
       }
     }
   }
-  return {poseChange,lengthChange,boneForHandle,dragSkeleton,partChange,fadeChange,resetFrame,partHandles,validateEdits};
+  return {poseChange,lengthChange,boneForHandle,dragSkeleton,partChange,pivotChange,fadeChange,resetFrame,partHandles,validateEdits};
 });

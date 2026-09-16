@@ -242,6 +242,29 @@ nepoužívá; starý skript `export_cutout_poses.cjs` je jen export původní p�
 
 ## Přepínače a koš
 
+### Rotační střed bitmapy a klávesy
+
+V režimu Bitmapa drž **Shift** a táhni za středový kroužek nebo aktivní díl.
+Přesune se samostatný rotační střed, nikoli kloub kostry. Obrázek při změně
+středu zůstává na místě, i když je už otočený nebo nestejnoměrně zvětšený.
+Následující otáčení (myší i Q/E) používá nový střed. Rozsah Snímek / Animace,
+Zpět / Znovu, uložení, export a načtení zálohy jej respektují.
+
+Data `pivot_offset: [x,y]` jsou relativní k původnímu `part.start`, v původních
+pixelech bitmapy. Chybějící hodnota znamená `[0,0]`. Změna středu kompenzuje
+posun bitmapy; při společné změně může kvůli odlišným otočením snímků přidat
+jejich vlastní kompenzace `offset`. Kostra ani délky kostí se nemění.
+
+- **A / D**: předchozí / další snímek, včetně přechodu konec–začátek.
+- **Shift + W/A/S/D**: posun aktivní bitmapy o jednu jednotku náhledu nahoru,
+  doleva, dolů, doprava. Shift rozlišuje kolidující požadavek na A/D pro snímky.
+- **Q / E**: rotace aktivní bitmapy o −1° / +1°; se Shiftem o 10°.
+- Držení klávesy je jedna změna pro Zpět. Posun a rotace platí podle přepínače
+  Snímek / Animace. Zkratky nezasahují při psaní do polí nebo výběru v seznamu.
+
+Dlouhé vysvětlivky ovládání, průhlednosti, pohybu vpřed, rychlosti a pořadí
+vrstev jsou pod **?** (najetí nebo fokus/kliknutí, na telefonu spodní bublina).
+
 Panel nad plátnem má dva přepínače ve stylu iOS: vlevo Kostra / vpravo Bitmapa
 a vlevo Snímek / vpravo Animace. Zelená poloha znamená pravou volbu. Posun,
 rotace a velikost zůstávají samostatné nástroje.

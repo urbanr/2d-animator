@@ -72,7 +72,7 @@
       joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),direction:t<.5?a.direction:b.direction,
         offset:[0,1].map(i=>(a.offset?.[i]||0)+t*((b.offset?.[i]||0)-(a.offset?.[i]||0))),angle:wrap((a.angle||0)+t*wrap((b.angle||0)-(a.angle||0)))};
     }
-    return {...part,joint_fade:canFade(key)?joint_fade:{},offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),
+    return {...part,joint_fade:canFade(key)?joint_fade:{},pivot_offset:[0,1].map(i=>(part.pivot_offset?.[i]||0)+(edit.pivot_offset?.[i]||0)),offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),
       ...Object.fromEntries(['scale','scale_x','scale_y'].map(k=>[k,(part[k]||1)*(edit[k]||1)]))};
   }
   function sample(clip,phase,smooth=true){
@@ -91,6 +91,7 @@
     for(const key of new Set([...Object.keys(pa),...Object.keys(pb)])){
       const a=pa[key]||{},b=pb[key]||{};
       p.part_edits[key]={offset:[0,1].map(i=>(a.offset?.[i]||0)+t*((b.offset?.[i]||0)-(a.offset?.[i]||0))),
+        pivot_offset:[0,1].map(i=>(a.pivot_offset?.[i]||0)+t*((b.pivot_offset?.[i]||0)-(a.pivot_offset?.[i]||0))),
         ...(a.joint_fade||b.joint_fade?{fade_mix:{a:a.joint_fade,b:b.joint_fade,t}}:{}),
         rotation:(a.rotation||0)+t*wrap((b.rotation||0)-(a.rotation||0)),
         ...Object.fromEntries(['scale','scale_x','scale_y'].map(k=>[k,(a[k]||1)+t*((b[k]||1)-(a[k]||1))]))};
@@ -126,9 +127,20 @@
     const c=scale*(bc*Math.cos(rad)-bs*Math.sin(rad)),s=scale*(bs*Math.cos(rad)+bc*Math.sin(rad));
     const [ox,oy]=part.offset||[0,0];
     const ax=c*(part.scale_x||1),ay=s*(part.scale_x||1),bx=-s*(part.scale_y||1),by=c*(part.scale_y||1);
-    // Rotate/scale around the attachment, not the bitmap's upper-left corner.
-    // Attachment translation remains in bone-local source pixels.
-    return [ax,ay,bx,by,a.x-ax*sx-bx*sy+bc*ox-bs*oy,a.y-ay*sx-by*sy+bs*ox+bc*oy];
+    // Independent bitmap rotation center. Scaling and skeleton attachments stay unchanged.
+    const [px,py]=part.pivot_offset||[0,0],dx=scale*(part.scale_x||1)*px,dy=scale*(part.scale_y||1)*py;
+    const tx=dx-Math.cos(rad)*dx+Math.sin(rad)*dy,ty=dy-Math.sin(rad)*dx-Math.cos(rad)*dy;
+    return [ax,ay,bx,by,a.x-ax*sx-bx*sy+bc*(ox+tx)-bs*(oy+ty),a.y-ay*sx-by*sy+bs*(ox+tx)+bc*(oy+ty)];
+  }
+  function repivot(part,pivot_offset){
+    const old=part.pivot_offset||[0,0],r=(part.rotation||0)*Math.PI/180;
+    const dx=(pivot_offset[0]-old[0])*(part.scale||1)*(part.scale_x||1),dy=(pivot_offset[1]-old[1])*(part.scale||1)*(part.scale_y||1);
+    const o=part.offset||[0,0];
+    return {pivot_offset,offset:[o[0]+Math.cos(r)*dx-Math.sin(r)*dy-dx,o[1]+Math.sin(r)*dx+Math.cos(r)*dy-dy]};
+  }
+  function movePivot(part,bone,dx,dy){
+    const [a,b,c,d]=matrix(part,bone),det=a*d-b*c,old=part.pivot_offset||[0,0];
+    return [old[0]+(d*dx-c*dy)/det,old[1]+(-b*dx+a*dy)/det].map(v=>clamp(v,-2000,2000));
   }
   // Offsets live in bitmap-local pixels, following the bone in every pose.
   function moveAttachment(part,bone,dx,dy){
@@ -171,5 +183,5 @@
       ctx.restore();
     }
   }
-  return {sample,frameLengths,partFor,bones,matrix,moveAttachment,hitTest,draw,canFade,fadeFor,fadeGeometry,fadeAlpha,validateFade,fadedImage};
+  return {sample,frameLengths,partFor,bones,matrix,moveAttachment,movePivot,repivot,hitTest,draw,canFade,fadeFor,fadeGeometry,fadeAlpha,validateFade,fadedImage};
 });
