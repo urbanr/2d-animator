@@ -14,7 +14,13 @@
 #frames{display:flex!important;overflow-x:auto;gap:7px}#frames button{flex:0 0 100px}#frames button.has-edit span{color:#ffdd82}
 #layerOrder{height:180px!important;width:100%}
 #mini{width:192px;height:210px;image-rendering:auto;max-width:100%}
-.speed-row{display:grid;grid-template-columns:100px 90px minmax(110px,1fr);align-items:end;gap:8px;overflow-x:auto;padding-bottom:4px;margin:9px 0}.speed-row label{display:grid;gap:5px;font-size:12px;white-space:nowrap}.speed-row input{width:100%;min-width:0;margin:0}.speed-row input[type=range]{height:27px}main>aside{min-width:0}
+.speed-row{display:grid;grid-template-columns:repeat(3,max-content) minmax(64px,1fr);align-items:end;gap:7px;overflow-x:auto;padding-bottom:4px;margin:9px 0}
+.speed-row label{display:grid;gap:5px;font-size:10px;white-space:nowrap;min-width:0}
+.speed-row input{min-width:0;margin:0;height:27px!important;font-size:13px!important}
+.speed-row input[type=number]{width:calc(2ch + 18px)!important;padding:5px 8px!important;font-variant-numeric:tabular-nums;appearance:textfield;-moz-appearance:textfield}
+.speed-row input[type=number]::-webkit-inner-spin-button,.speed-row input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.speed-row input[type=range]{width:100%;height:27px}
+main>aside{min-width:0}.page-header{margin:0 0 10px}.page-header h1{font-size:18px;line-height:1.3;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .edit-choice button.ios-switch{display:flex;align-items:center;justify-content:space-between;gap:7px;background:transparent;border:0;padding:2px!important;outline:none;color:#ddd}.ios-switch .track{display:block;position:relative;width:36px;height:22px;border-radius:20px;background:#636366;flex-shrink:0}.ios-switch .track:after{content:'';position:absolute;width:18px;height:18px;top:2px;left:2px;border-radius:50%;background:white;box-shadow:0 1px 3px #0005;transition:transform .15s}.ios-switch[aria-checked=true] .track{background:#34c759}.ios-switch[aria-checked=true] .track:after{transform:translateX(14px)}.ios-switch:focus-visible{outline:2px solid #ffdc60!important}.danger{color:#ffa69c}
 .help{position:relative;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;min-height:23px!important;padding:0!important;border-radius:50%;font-size:12px;color:#bbc8c0;background:#26332c;vertical-align:middle;cursor:help;overflow:visible}.help .help-text{display:none;position:absolute;left:0;top:calc(100% + 7px);z-index:50;width:300px;max-width:70vw;padding:11px 13px;background:#0b1310;color:#e6eee8;border:1px solid #7c9382;border-radius:8px;box-shadow:0 4px 16px #0008;font:normal 12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:left;white-space:normal}.help:hover .help-text,.help:focus .help-text{display:block}.help:focus-visible{outline:2px solid #ffdc60}.help-label{display:inline-flex;gap:7px;align-items:center;font-size:12px;color:#b6c4bc}
 .help .help-text{top:auto;bottom:calc(100% + 7px);max-height:calc(100vh - 32px);overflow:auto}
@@ -33,13 +39,13 @@ details[open]>summary:after{content:'−'}details[open]>summary{margin-bottom:10
 .row:has(#updateCharacter),.row:has(#updateAnimation),.save-row{flex-wrap:nowrap;gap:5px}.save-row button{white-space:nowrap}
 @media(max-width:850px){main{grid-template-columns:minmax(0,1fr)}}
 </style></head><body>
-<header><div class="eyebrow">Samostatný pokus · původní Postavy zůstávají</div><h1>Postavy2 — bitmapy na kostře</h1><p>Běžec jako zombie. Bitmapové díly, pohyb z tvých uložených koster. Žádné další překreslování snímků generátorem.</p></header>
+<header class="page-header"><h1>Postavy2 · bitmapy na kostře</h1></header>
 <div class="selection-bar" style="max-width:1180px;margin:12px auto"><label>Bitmapová postava<select id="skinSelect" disabled></select></label><label>Animace<select id="clip" disabled></select></label></div>
 <main>
 <section class="panel" aria-label="Náhled postavy"><div class="stage-wrap" id="stageWrap"><canvas id="stage" width="512" height="560" aria-label="Animovaná bitmapová postava a ovladatelné klouby"></canvas>
 <div class="edit-tools" id="editTools" role="group" aria-label="Ovládání úprav">
-<header id="toolGrip"><span>⠿ Úpravy · přetáhni panel</span><button id="toolCollapse" aria-expanded="true" aria-controls="toolBody" aria-label="Sbalit ovládání">−</button></header>
-<div class="tool-body" id="toolBody">
+<header id="toolGrip"><span>⠿ Úpravy · přetáhni panel</span><button id="toolCollapse" aria-expanded="false" aria-controls="toolBody" aria-label="Rozbalit ovládání">+</button></header>
+<div class="tool-body" id="toolBody" hidden>
 <div class="edit-choice"><span id="targetLabel">Upravuji:</span><button class="ios-switch" id="editTarget" role="switch" aria-checked="false" aria-label="Upravuji bitmapu; vypnuto kostru"><span>Kostru</span><span class="track" aria-hidden="true"></span><span>Bitmapu</span></button></div>
 <div class="edit-choice"><span>Platí pro:</span><button class="ios-switch" id="editScope" role="switch" value="frame" aria-checked="false" aria-describedby="scopeNote" aria-label="Celá animace; vypnuto snímek"><span>Snímek</span><span class="track" aria-hidden="true"></span><span>Animace</span></button></div>
 <div class="edit-choice"><span id="toolLabel">Nástroj:</span><div class="segments" id="editTool" role="group" aria-labelledby="toolLabel"><button id="toolMove" type="button" aria-pressed="false">Posun</button><button id="toolRotate" type="button" aria-pressed="true">Rotace</button><button id="toolSize" type="button" aria-pressed="false">Velikost</button></div></div>
@@ -53,7 +59,7 @@ details[open]>summary:after{content:'−'}details[open]>summary{margin-bottom:10
 <div class="stage-help"><span id="gestureHint">Ctrl: délka · Option: posun bitmapy · Ctrl+Option: velikost bitmapy</span><span>Tah do prázdna: posun náhledu · kolečko / dva prsty: zoom · ⌘Z: zpět</span></div></div>
 <div class="row playback"><button id="play" class="primary" disabled>Přehrát</button><button id="previous" disabled aria-label="Předchozí snímek">←</button><span id="frameLabel">Načítání…</span><button id="next" disabled aria-label="Následující snímek">→</button><div class="zoom-tools"><button id="zoomOut">−</button><span id="zoomLabel">100 %</span><button id="zoomIn">+</button><button id="zoomReset" title="Reset pohledu" aria-label="Reset pohledu"><img src="reset-icon.png" class="reset-icon" alt=""></button></div></div>
 <label class="row">Zobrazení <select id="renderMode"><option value="detail">Detailní originály</option><option value="game">Herní pixely · 192 × 210 px</option></select></label>
-<details id="fadePanel" open><summary>Varianta: průhlednost spojů</summary>
+<details id="fadePanel"><summary>Varianta: průhlednost spojů</summary>
 <p class="small">Vyber bitmapový díl v náhledu nebo v seznamu. Přechod lze nastavit na obou koncích všech dílů, včetně těla a doplňku. Působí jen uvnitř poloelipsy.</p>
 <span id="fadePart" class="small"></span>
 <div class="row"><label>Konec <select id="fadeEnd"><option value="start">Uchycení (např. loket)</option><option value="end">Druhý konec</option></select></label>
@@ -68,27 +74,30 @@ details[open]>summary:after{content:'−'}details[open]>summary{margin-bottom:10
 <label class="stack">Předklon trupu <input id="lean" type="range" min="-45" max="45" step="1" value="22" disabled></label>
 <div id="frames" aria-label="Snímky animace"></div>
 <p class="small">Žlutá linka = pevná podlaha. ↑/↓ respektuje rozsah v panelu, Shift = 10 jednotek. ● označuje snímek s výjimkou. Reset snímku ruší jeho výjimky, ne společný základ.</p></section>
-<aside class="panel"><h2>Pohyb a kontrola</h2>
-
-<div class="row"><label>Tempo <input id="fps" type="number" min="1" max="30" value="6" disabled> sn./s</label></div>
+<aside class="panel">
+<details id="motionSection"><summary>Pohyb a rychlost</summary>
 <div class="speed-row">
+<label>Tempo (sn./s)<input id="fps" type="number" min="1" max="30" value="6" disabled></label>
 <label>Vpřed (body/s)<input id="moveSpeed" type="number" min="0" max="1000" step="0.1" value="8" disabled></label>
 <label>Rozptyl ± (%)<input id="spread" type="number" min="0" max="90" step="1" value="15"></label>
-<label>Zkouška rychlosti<input id="rateDelta" type="range" min="-15" max="15" value="0" step="1"></label>
+<label>Zkouška (%)<input id="rateDelta" type="range" min="-15" max="15" value="0" step="1" aria-label="Zkušební odchylka rychlosti v procentech"></label>
 </div>
 <div class="row"><button id="randomRate">Náhodná rychlost</button><span id="rateInfo" class="small"></span></div>
 <span class="help-label">Rychlost <button type="button" class="help" aria-label="Nápověda rychlosti" aria-describedby="helpSpeed">?<span class="help-text" id="helpSpeed" role="tooltip">Stejný násobek řídí krok i posun. Rozptyl se uloží s herní postavou; zkušební odchylka je jen náhled. 0 % = normální rychlost.</span></button></span>
+</details>
+<details id="switchesSection"><summary>Přepínače a úpravy</summary>
 <div class="row"><label><input id="travel" type="checkbox"> Pohyb vpřed</label><button type="button" class="help" aria-label="Nápověda pohybu vpřed" aria-describedby="helpTravel">?<span class="help-text" id="helpTravel" role="tooltip">Vypnuto = na místě. Zapnuto = pohyb doleva podle otočení postavy; po opuštění náhledu se vrací. Šířka plátna = 32 herních bodů. Rychlost se uloží s animací, nezávisle na tempu snímků.</span></button></div>
 <label class="stack"><span><input id="smooth" type="checkbox" checked> Plynulé přechody mezi snímky</span></label>
 <label class="stack"><span><input id="bones" type="checkbox"> Ukázat barevnou kostru</span></label>
 <label class="stack"><span><input id="edit" type="checkbox" checked> Upravit klouby myší</span></label>
 <label class="stack"><span><input id="resizeBones" type="checkbox" checked> Povolit změny délky kostí</span></label>
 <span class="help-label">Ovládání dílu <button type="button" class="help" aria-label="Nápověda ovládání a rotačního středu" aria-describedby="helpControls">?<span class="help-text" id="helpControls" role="tooltip">Bitmapa: Shift + tah za středový kroužek nebo díl mění rotační střed, obrázek zůstává na místě. Ctrl + tah mění výšku, Option šířku, Ctrl+Option obojí. Kruhový vnější úchyt otáčí, čtvercový mění velikost. Kostra se tím nemění. Rozsah určuje Snímek / Animace. Zpět vrací celý tah. Kostra: Ctrl mění délku, Option posouvá bitmapu. Tah do prázdna posouvá pohled. A/D: předchozí/další snímek (cyklicky). Shift+WASD: posun aktivní bitmapy. Q/E: rotace o 1°, Shift+Q/E o 10°. Klávesy nepůsobí při psaní do polí.</span></button></span>
-<details id="skeletonSection"><summary>Kostry</summary><label class="stack">Vybraná kostra<select id="skeletonSelect"></select></label><div class="row save-row"><button id="updateSkeleton" class="primary">Uložit</button><button id="saveSkeleton">Uložit jako…</button><button id="deleteSkeleton" class="danger">Smazat…</button></div><div class="row"><button id="reload" disabled>Načíst knihovnu koster</button><a href="poses.html">Otevřít editor koster</a></div></details><details id="characterSection" open><summary>Postavy</summary>
+</details>
+<details id="skeletonSection"><summary>Kostry</summary><label class="stack">Vybraná kostra<select id="skeletonSelect"></select></label><div class="row save-row"><button id="updateSkeleton" class="primary">Uložit</button><button id="saveSkeleton">Uložit jako…</button><button id="deleteSkeleton" class="danger">Smazat…</button></div><div class="row"><button id="reload" disabled>Načíst knihovnu koster</button><a href="poses.html">Otevřít editor koster</a></div></details><details id="characterSection"><summary>Postavy</summary>
 <label class="stack">Vybraná postava<select id="gameCharacter"><option value="">Nová postava</option></select></label>
 <div class="row"><button id="updateCharacter" class="primary" disabled>Uložit</button><button id="saveCharacter" disabled>Uložit jako…</button>
 <button id="deleteCharacter" class="danger" disabled>Smazat…</button></div></details>
-<details id="animationSection" open><summary>Animace</summary>
+<details id="animationSection"><summary>Animace</summary>
 <p id="animationName" class="small"></p>
 <div class="row"><button id="updateAnimation" class="primary" disabled>Uložit</button><button id="save" disabled>Uložit jako…</button>
 <button id="deleteAnimation" class="danger" disabled>Smazat…</button></div></details>

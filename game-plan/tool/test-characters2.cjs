@@ -23,6 +23,7 @@ ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','ske
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
+elements.toolBody.hidden=true;elements.partsBody.hidden=true;
 elements.editScope.value='frame';elements.editTarget.value='skeleton';elements.editTool.value='rotate';
 elements.edit.checked=true;elements.resizeBones.checked=true;
 let confirmed=true,fail=false,seq=0,raf,downloads=0;
@@ -189,7 +190,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const baseHeight=Number(elements.bodyY.value);elements.down.onclick({shiftKey:false});
  events.keydown({ctrlKey:true,key:'z',target:{tagName:'INPUT'},preventDefault(){throw Error('Text undo stolen');}});assert.equal(Number(elements.bodyY.value),baseHeight+1);
  events.keydown({ctrlKey:true,key:'z',target:{tagName:'CANVAS'},preventDefault(){}});assert.equal(Number(elements.bodyY.value),baseHeight);
- elements.toolCollapse.onclick();assert.equal(elements.toolBody.hidden,true);elements.toolCollapse.onclick();assert.equal(elements.toolBody.hidden,false);
+ elements.toolCollapse.onclick();assert.equal(elements.toolBody.hidden,false);assert.equal(elements.toolCollapse['aria-expanded'],'true');elements.toolCollapse.onclick();assert.equal(elements.toolBody.hidden,true);assert.equal(elements.toolCollapse['aria-expanded'],'false');
  // Local bitmap rotate/scale must persist without touching shared skin or skeleton.
  await elements.saveCharacter.onclick();const transaction=copy(gameStore.characters['game-1']);
  elements.editTarget.value='bitmap';elements.editTool.value='rotate';elements.layerOrder.value='nearForearm';
