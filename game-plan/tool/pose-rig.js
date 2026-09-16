@@ -29,7 +29,8 @@
   ];
   for(const side of ['near','far'])for(const joint of ['Shoulder','Hip'])for(const axis of ['X','Y'])
     fields.push([side+joint+'Offset'+axis,`${side==='near'?'Bližší':'Vzdálenější'} ${joint==='Hip'?'kyčel':'rameno'} · ${axis}`,-100,100,'px','Samostatné úchyty']);
-  const defaultLengths=()=>Object.fromEntries(['near','far'].flatMap(s=>Object.entries({UpperArm:46,Forearm:44,Thigh:70,Shin:74,Foot:25}).map(([k,v])=>[s+k,v])));
+  for(const joint of ['head','neck'])for(const axis of ['X','Y'])fields.push([joint+'Offset'+axis,`${joint==='head'?'Hlava':'Krk'} · ${axis}`,-100,100,'px','Tělo']);
+  const defaultLengths=()=>({head:21,neck:18,torso:94,...Object.fromEntries(['near','far'].flatMap(s=>Object.entries({UpperArm:46,Forearm:44,Thigh:70,Shin:74,Foot:25}).map(([k,v])=>[s+k,v])))});
   const lengthsFor=(clip,index)=>{
     const lengths={...defaultLengths(),...(clip?.rig_lengths||{})};
     for(const [key,ratio] of Object.entries(clip?.frame_edits?.[index]?.lengths||{}))lengths[key]*=ratio;
@@ -49,7 +50,7 @@
     const p = {...neutral(), ...pose};
     const sizes={...defaultLengths(),...(lengths||pose.rig_lengths||{})};
     const hipCenter = {x:256+p.bodyX, y:274+p.bodyY};
-    const shoulderCenter = down(hipCenter,-94,-p.bodyLean);
+    const shoulderCenter = down(hipCenter,-sizes.torso,-p.bodyLean);
     const hips = bar(hipCenter, 15*p.pelvisWidth/100, p.pelvis);
     const shoulders = bar(shoulderCenter, 22*p.shoulderWidth/100, p.shoulders);
     for(const side of ['near','far'])for(const axis of ['x','y']){
@@ -57,8 +58,10 @@
       hips[side][axis]+=p[side+'HipOffset'+axis.toUpperCase()];
     }
     const neckBase = {...shoulderCenter};
-    const headBase = down(neckBase, -18, p.neck);
-    const headCenter = down(headBase, -21, p.neck+p.head);
+    const headBase = down(neckBase, -sizes.neck, p.neck);
+    headBase.x+=p.neckOffsetX;headBase.y+=p.neckOffsetY;
+    const headCenter = down(headBase, -sizes.head, p.neck+p.head);
+    headCenter.x+=p.headOffsetX;headCenter.y+=p.headOffsetY;
     const result = {hipCenter, shoulderCenter, hips, shoulders, neckBase, headBase, headCenter, headAngle:p.neck+p.head};
     for (const side of ['near','far']) {
       const elbow = down(shoulders[side], sizes[side+'UpperArm'], p[side+'Shoulder']-p.shoulders);
@@ -130,6 +133,7 @@
     add('pelvis',g.hips.near,g.hipCenter,'Pánev: otáčet / zúžit; Ctrl: jen bližší úchyt',NEAR);
     add('farShoulderRoot',g.shoulders.far,g.shoulderCenter,'Ctrl: samostatně vzdálenější rameno',FAR);
     add('farHipRoot',g.hips.far,g.hipCenter,'Ctrl: samostatně vzdálenější kyčel',FAR);
+    add('bodyLean',g.shoulderCenter,g.hipCenter,'Otočit nebo prodloužit trup');
     add('neck',g.headBase,g.neckBase,'Otočit krk i hlavu');
     add('head',g.headCenter,g.headBase,'Naklonit hlavu');
     for(const side of ['far','near']) {
@@ -174,7 +178,7 @@
       const angle=p=>Math.atan2(p.y-h.pivot.y,p.x-h.pivot.x);
       delta=deg(Math.atan2(Math.sin(angle(end)-angle(start)),Math.cos(angle(end)-angle(start))));
       if(atCenter||Math.hypot(start.x-h.pivot.x,start.y-h.pivot.y)<2)delta=0;
-      if(!['shoulders','pelvis'].includes(key)&&!key.endsWith('Foot'))delta=-delta;
+      if(!['shoulders','pelvis'].includes(key)&&!key.endsWith('Foot')&&key!=='bodyLean')delta=-delta;
     }
     const result={...pose,[key]:Math.round(clamp((pose[key]||0)+delta,field[2],field[3])*10)/10};
     if(key.endsWith('Foot'))result[key]=Math.round(wrapAngle((pose[key]||0)+delta)*10)/10;
@@ -189,8 +193,8 @@
     const lengths=lengthsFor(clip,index),shared=lengthsFor(clip),p=clip.frames[index];
     const next=dragPose(p,key,start,end,{...options,lengths});
     const match=/^(near|far)(Shoulder|Elbow|Hip|Knee|Foot)$/.exec(key);
-    if(match&&options.resize!==false){
-      const bone=match[1]+({Shoulder:'UpperArm',Elbow:'Forearm',Hip:'Thigh',Knee:'Shin',Foot:'Foot'}[match[2]]);
+    const bone=match?match[1]+({Shoulder:'UpperArm',Elbow:'Forearm',Hip:'Thigh',Knee:'Shin',Foot:'Foot'}[match[2]]):{head:'head',neck:'neck',bodyLean:'torso'}[key];
+    if(bone&&options.resize!==false){
       const h=handles(p,lengths).find(h=>h.key===key);
       const delta=Math.hypot(end.x-h.pivot.x,end.y-h.pivot.y)-Math.hypot(start.x-h.pivot.x,start.y-h.pivot.y);
       const ratios=clip.frames.map((_,i)=>clip.frame_edits?.[i]?.lengths?.[bone]||1);

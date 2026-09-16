@@ -81,7 +81,7 @@ class SpriteGalleryHandler(SimpleHTTPRequestHandler):
                     return
                 if endpoint == "/api/poses":
                     if payload.get('mode') in ('delete', 'restore'):
-                        result = change_trash(payload, POSE_STORE, {'clips', 'poses'})
+                        result = change_trash(payload, POSE_STORE, {'clips', 'poses', 'rigs'})
                         self._json_response(200, {"ok": True, **result})
                         return
                     result = save_pose(payload)

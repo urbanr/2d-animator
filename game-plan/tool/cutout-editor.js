@@ -46,7 +46,7 @@
   }
   function boneForHandle(key){const m=/^(near|far)(Shoulder|Elbow|Hip|Knee|Foot)$/.exec(key);return m?m[1]+{Shoulder:'UpperArm',Elbow:'Forearm',Hip:'Thigh',Knee:'Shin',Foot:'Foot'}[m[2]]:null;}
   function handleForBone(key){
-    if(key==='head')return 'head';if(key==='torso'||key==='backpack')return 'bodyY';
+    if(key==='head')return 'head';if(key==='torso'||key==='backpack')return 'bodyLean';
     const m=/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.exec(key);
     return m?m[1]+{UpperArm:'Shoulder',Forearm:'Elbow',Thigh:'Hip',Shin:'Knee',Foot:'Foot'}[m[2]]:null;
   }
@@ -56,7 +56,7 @@
     return handles.filter(h=>[selected.point,selected.pivot].filter(Boolean).some(p=>Math.hypot(p.x-h.point.x,p.y-h.point.y)<1e-6)).map(h=>h.key);
   }
   function dragSkeleton(clip,index,key,start,end,{scope='frame',tool='rotate',ctrlKey=false,resize=true}={}){
-    const p=C.sample(clip,index,false),bone=boneForHandle(key);
+    const p=C.sample(clip,index,false),bone=boneForHandle(key)||({head:'head',neck:'neck',bodyLean:'torso'}[key]);
     const root={shoulders:['near','Shoulder'],farShoulderRoot:['far','Shoulder'],pelvis:['near','Hip'],farHipRoot:['far','Hip']}[key];
     if(ctrlKey&&root){
       const prefix=root.join('');return poseChange(clip,index,{[prefix+'OffsetX']:p[prefix+'OffsetX']+end.x-start.x,[prefix+'OffsetY']:p[prefix+'OffsetY']+end.y-start.y},scope);
@@ -64,7 +64,7 @@
     if(tool==='size'||ctrlKey){
       if(!resize)return copy(clip);
       if(bone){
-        const h=R.handles(p).find(h=>h.key===key);
+        const h=R.handles(p,p.rig_lengths).find(h=>h.key===key);
         return lengthChange(clip,index,bone,p.rig_lengths[bone]+Math.hypot(end.x-h.pivot.x,end.y-h.pivot.y)-Math.hypot(start.x-h.pivot.x,start.y-h.pivot.y),scope);
       }
       if(root){
@@ -74,8 +74,9 @@
       return copy(clip);
     }
     if(tool==='move'||key==='bodyY'){
+      if(key==='head'||key==='neck')return poseChange(clip,index,{[key+'OffsetX']:p[key+'OffsetX']+end.x-start.x,[key+'OffsetY']:p[key+'OffsetY']+end.y-start.y},scope);
       const dx=end.x-start.x,dy=end.y-start.y;
-      if(key==='bodyY'||!root&&!bone)return poseChange(clip,index,{bodyX:p.bodyX+dx,bodyY:p.bodyY+dy},scope);
+      if(key==='bodyY'||key==='bodyLean'||!root&&!bone)return poseChange(clip,index,{bodyX:p.bodyX+dx,bodyY:p.bodyY+dy},scope);
       const prefix=root?root.join(''):key.slice(0,key.startsWith('near')?4:3)+(key.includes('Shoulder')||key.includes('Elbow')?'Shoulder':'Hip');
       return poseChange(clip,index,{[prefix+'OffsetX']:p[prefix+'OffsetX']+dx,[prefix+'OffsetY']:p[prefix+'OffsetY']+dy},scope);
     }
@@ -132,6 +133,7 @@
       const change=old=>({...old,
         strength:R.clamp(old.strength+wanted.strength-effective.strength,0,1),
         radius:R.clamp(old.radius+wanted.radius-effective.radius,1,2000),
+        radius2:R.clamp((old.radius2??old.radius)+wanted.radius2-effective.radius2,1,2000),
         offset:[0,1].map(i=>R.clamp((old.offset?.[i]||0)+wanted.offset[i]-effective.offset[i],-2000,2000)),
         angle:wrap((old.angle||0)+wrap(wanted.angle-effective.angle)),
         direction:values.direction??old.direction});

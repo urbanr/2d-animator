@@ -75,20 +75,20 @@
       const button=document.createElement('button');button.className='pose-card';button.type='button';button.title='Vložit do vybraného snímku';
       const picture=document.createElement('div');picture.innerHTML=R.svg(pose.frame);
       const name=document.createElement('span');name.textContent=pose.name;button.append(picture,name);
-      button.onclick=()=>{stop();remember();current.frames[index]=clone(pose.frame);mark();frameStrip();draw();status(`Póza „${pose.name}“ vložena do snímku ${index+1}.`);};
-      const card=document.createElement('div'),remove=document.createElement('button');remove.textContent='Smazat pózu…';remove.setAttribute('aria-label','Smazat pózu '+pose.name);remove.onclick=()=>trashAction('poses',pose.id);card.append(button,remove);$('library').append(card);
+      button.onclick=()=>{stop();remember();current.frames[index]=clone(pose.frame);mark();frameStrip();draw();status(`Kostra „${pose.name}“ vložena do snímku ${index+1}.`);};
+      const card=document.createElement('div'),remove=document.createElement('button');remove.textContent='Smazat kosteru…';remove.setAttribute('aria-label','Smazat kosteru '+pose.name);remove.onclick=()=>trashAction('poses',pose.id);card.append(button,remove);$('library').append(card);
     }
     trashOptions();
   }
   function trashOptions(){
     $('trash').replaceChildren();for(const [id,item] of Object.entries(data.trash||{})){
-      const o=document.createElement('option');o.value=id;o.textContent=(item.collection==='clips'?'Animace: ':'Póza: ')+item.record.name;$('trash').append(o);
+      const o=document.createElement('option');o.value=id;o.textContent=(item.collection==='clips'?'Animace: ':'Kostra: ')+item.record.name;$('trash').append(o);
     }
     $('trash').value=$('trash').children[0]?.value||'';$('restoreDeleted').disabled=saving||!$('trash').children.length;
   }
   async function trashAction(collection,id,restore=false){
     if(saving)return;const record=restore?data.trash?.[id]?.record:data[collection]?.[id];if(!record)return;
-    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='clips'?'animaci':'pózu'} „${record.name}“? Kopie v postavách a jiných animacích zůstanou. ${restore?'':'Položku lze obnovit z koše.'}`))return;
+    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='clips'?'animaci':'kosteru'} „${record.name}“? Kopie v postavách a jiných animacích zůstanou. ${restore?'':'Položku lze obnovit z koše.'}`))return;
     stop();saving=true;draw();
     try{
       const response=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:clone(record)})});
@@ -126,7 +126,7 @@
           else selectClip(result.record.id);
         }
         status(changed?'Verze uložena; novější úpravy ještě nejsou uložené.':overwrite?`Změny uložené do „${result.record.name}“. Předchozí stav je v záloze.`:'Celá animace uložená jako nová varianta.');
-      } else {drawLibrary();status('Nová póza uložená v knihovně. Změny celé smyčky uložíš zvlášť.');}
+      } else {drawLibrary();status('Nová kostera uložená v knihovně. Změny celé smyčky uložíš zvlášť.');}
     } catch(error) {status(`Neuloženo: ${error.message} Použij místní editor na http://127.0.0.1:8765.`,true);}
     finally {saving=false;for(const id of ['savePose','saveClip'])$(id).disabled=false;draw();}
   }

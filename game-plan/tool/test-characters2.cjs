@@ -19,6 +19,7 @@ ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
+ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
@@ -57,7 +58,9 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
     const record={...p,id:p.mode==='update'?p.id:'game-1',skin:savedSkin,animation:{...p.animation,source_clip_id:p.animation.id}};delete record.expectedRecord;gameStore.characters[record.id]=copy(record);
     return {ok:true,json:async()=>({ok:true,record})};
   }
-  assert.equal(url,'/api/poses');assert.equal(p.kind,'clip');
+  assert.equal(url,'/api/poses');
+  if(p.kind==='rig'){store.rigs??={};if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.rigs[p.id]);const record={id:p.id||'rig-test',name:p.name,rig_lengths:p.rig_lengths};store.rigs[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
+  assert.equal(p.kind,'clip');
   if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.clips[p.id]);else assert.ok(!p.id);
   if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
   const record={...p,id:p.mode==='update'?p.id:'saved-'+(++seq)};delete record.kind;delete record.expectedRecord;store.clips[record.id]=record;
@@ -259,7 +262,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  // Joint transparency is reversible, scoped, persisted and used by both exports.
  elements.zoomReset.onclick();elements.frames.children[0].onclick();elements.renderMode.value='detail';elements.renderMode.onchange();
  elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';
- elements.fadePreset.onclick();await elements.updateCharacter.onclick();
+ await elements.updateCharacter.onclick();
  const faded=copy(gameStore.characters['legacy-b']),fadedPart=faded.skin.parts.nearForearm;
  for(const key of faded.skin.layers)for(const end of ['start','end'])assert.equal(faded.skin.parts[key].joint_fade[end].strength,.65);
  const fp=C.sample(faded.animation,0,false),fpart=C.partFor(faded.skin,'nearForearm',fp),fm=C.matrix(fpart,C.bones(fp).nearForearm);
@@ -277,7 +280,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end.strength,.65);
  elements.exportFrame.onclick();elements.exportSheet.onclick();
  elements.renderMode.value='game';elements.renderMode.onchange();elements.exportFrame.onclick();elements.exportSheet.onclick();
- elements.fadeClear.onclick();await elements.updateCharacter.onclick();
+ elements.fadeStrength.value='0';elements.fadeStrength.onchange();await elements.updateCharacter.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,0);
  elements.fadeX.value='12';elements.fadeX.onchange();elements.fadeAngle.value='45';elements.fadeAngle.onchange();await elements.updateCharacter.onclick();
  assert.deepEqual(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.offset,[12,0]);
@@ -323,5 +326,21 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  }
  yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
+
+ // Separate skeleton library persists only dimensions and supports overwrite/trash/restore.
+ promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
+ assert.equal(store.rigs['rig-test'].name,'Testovací kostra');assert.equal(store.rigs['rig-test'].frames,undefined);
+ await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,1);
+ await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,0);
+ elements.trash.value='rigs:trash-rig-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.rigs).length,1);
+ // On-canvas toggles change the selected endpoint only and undo restores it.
+ elements.frames.children[0].onclick();elements.editTarget.value='bitmap';elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();
+ await elements.updateCharacter.onclick();
+ const beforeToggle=copy(gameStore.characters['legacy-b']),togglePose=C.sample(beforeToggle.animation,0,false),togglePart=C.partFor(beforeToggle.skin,'nearForearm',togglePose);
+ const fg=C.fadeGeometry(togglePart,'end'),tm=C.matrix(togglePart,C.bones(togglePose).nearForearm),tx=fg.center[0]-fg.ux*fg.radius*.55,ty=fg.center[1]-fg.uy*fg.radius*.55;
+ const click={button:0,pointerId:155,clientX:tm[0]*tx+tm[2]*ty+tm[4],clientY:tm[1]*tx+tm[3]*ty+tm[5],preventDefault(){}};
+ elements.stage.onpointerdown(click);elements.stage.onpointerup(click);await elements.updateCharacter.onclick();
+ assert.notEqual(C.fadeFor(C.partFor(gameStore.characters['legacy-b'].skin,'nearForearm',C.sample(gameStore.characters['legacy-b'].animation,0,false)),'end').strength,fg.strength);
+ elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,beforeToggle.skin);
  console.log('PASS: cutout editor, persistent solid-yellow skeleton selection, pivot, keyboard, transparency, trash and exports.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

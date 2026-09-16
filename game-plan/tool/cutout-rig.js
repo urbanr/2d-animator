@@ -11,13 +11,15 @@
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function fadeFor(part,end='start'){
     const length=part.start&&part.end?Math.hypot(part.end[0]-part.start[0],part.end[1]-part.start[1]):100;
-    return {strength:0,radius:Math.max(1,Math.min(Math.min(...(part.size||[100,100]))*.5,length*.45)),direction:'outward',offset:[0,0],angle:0,...part.joint_fade?.[end]};
+    const f={strength:0,radius:Math.max(1,Math.min(Math.min(...(part.size||[100,100]))*.5,length*.45)),direction:'outward',offset:[0,0],angle:0,...part.joint_fade?.[end]};
+    return {...f,radius2:f.radius2??f.radius};
   }
   function validateFade(value){
     const obj=v=>v&&typeof v==='object'&&!Array.isArray(v);
     if(!obj(value)||Object.keys(value).some(k=>!['start','end'].includes(k)))throw Error('Neplatný přechod spoje.');
-    for(const v of Object.values(value))if(!obj(v)||Object.keys(v).some(k=>!['strength','radius','direction','offset','angle'].includes(k))||
+    for(const v of Object.values(value))if(!obj(v)||Object.keys(v).some(k=>!['strength','radius','radius2','direction','offset','angle'].includes(k))||
       !Number.isFinite(v.strength)||v.strength<0||v.strength>1||!Number.isFinite(v.radius)||v.radius<1||v.radius>2000||!['outward','inward'].includes(v.direction)||
+      (v.radius2!==undefined&&(!Number.isFinite(v.radius2)||v.radius2<1||v.radius2>2000))||
       (v.angle!==undefined&&(!Number.isFinite(v.angle)||Math.abs(v.angle)>180))||
       (v.offset!==undefined&&(!Array.isArray(v.offset)||v.offset.length!==2||v.offset.some(n=>!Number.isFinite(n)||Math.abs(n)>2000))))throw Error('Neplatný přechod spoje.');
     return value;
@@ -37,10 +39,10 @@
     for(const f of geometry||['start','end'].map(end=>fadeGeometry(part,end))){
       if(!f.strength)continue;
       const dx=x-f.center[0],dy=y-f.center[1],along=dx*f.ux+dy*f.uy;
-      const radius=Math.hypot(dx,dy);
+      const radius=Math.hypot(along/f.radius,(-dx*f.uy+dy*f.ux)/f.radius2);
       // The mask is a bounded half-disc, not an infinite outward half-plane.
-      if(along>=0||radius>f.radius)continue;
-      const t=clamp((radius/f.radius-.25)/.75,0,1);
+      if(along>=0||radius>1)continue;
+      const t=clamp((radius-.25)/.75,0,1);
       alpha*=1-f.strength*t*t*(3-2*t);
     }
     return alpha;
@@ -71,8 +73,9 @@
     const part=skin.parts[key],edit=pose.part_edits?.[key]||{},offset=part.offset||[0,0];
     const joint_fade={...part.joint_fade,...edit.joint_fade};
     if(edit.fade_mix)for(const end of ['start','end']){
-      const a={...fadeFor(part,end),...edit.fade_mix.a?.[end]},b={...fadeFor(part,end),...edit.fade_mix.b?.[end]},t=edit.fade_mix.t;
-      joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),direction:t<.5?a.direction:b.direction,
+      const base=fadeFor(part,end),endpoint=v=>({...base,...v,radius2:v?.radius2??v?.radius??base.radius2});
+      const a=endpoint(edit.fade_mix.a?.[end]),b=endpoint(edit.fade_mix.b?.[end]),t=edit.fade_mix.t;
+      joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),radius2:(a.radius2??a.radius)+t*((b.radius2??b.radius)-(a.radius2??a.radius)),direction:t<.5?a.direction:b.direction,
         offset:[0,1].map(i=>(a.offset?.[i]||0)+t*((b.offset?.[i]||0)-(a.offset?.[i]||0))),angle:wrap((a.angle||0)+t*wrap((b.angle||0)-(a.angle||0)))};
     }
     return {...part,joint_fade:canFade(key)?joint_fade:{},pivot_offset:[0,1].map(i=>(part.pivot_offset?.[i]||0)+(edit.pivot_offset?.[i]||0)),offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),

@@ -5,7 +5,7 @@
     location.replace('http://127.0.0.1:8765/tool/preview.html'+location.search+location.hash);return;
   }
   const pages={postavy:'gallery.html',postavy2:'characters2.html',levely:'levels.html',pozy:'poses.html',animator:'index.html'};
-  const names={postavy:'Postavy',postavy2:'Postavy2',levely:'Levely',pozy:'Pózy a kroky',animator:'Animátor'};
+  const names={postavy:'Postavy',postavy2:'Postavy2',levely:'Levely',pozy:'Kostry',animator:'Animátor'};
   const panels=new Map();
   const routes=new Map();
   const messageOrigin=location.origin==='null'?'*':location.origin;

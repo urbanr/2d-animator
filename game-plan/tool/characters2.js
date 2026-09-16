@@ -21,7 +21,7 @@
   let distance=0;
   let zoom=1;
   let pan={x:0,y:0},skinDirty=false,spread=15,delta=0;
-  let characterId='',characterSaving=false;
+  let characterId='',characterSaving=false,skeletonId='';
   let selectedSkeleton='';
   $('editTarget').value='skeleton';$('editTool').value='rotate';$('editScope').value='frame';
   const toolChoices={editTool:{toolMove:'move',toolRotate:'rotate',toolSize:'size'}};
@@ -31,6 +31,7 @@
     $('saveCharacter').disabled=busy;$('save').disabled=busy;
     $('updateCharacter').disabled=busy||!characterId;
     $('updateAnimation').disabled=busy||!animationId();
+    $('saveSkeleton').disabled=busy;$('updateSkeleton').disabled=busy||!library?.rigs?.[skeletonId];$('deleteSkeleton').disabled=busy||!library?.rigs?.[skeletonId];
     $('deleteCharacter').disabled=busy||!characterId;
     $('deleteAnimation').disabled=busy||!animationId();
     $('animationName').textContent=clip?.name||'';
@@ -40,7 +41,7 @@
   async function getJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('Nelze načíst '+url);return r.json();}
   const index=()=>Math.floor(phase)%clip.frames.length;
   const scope=()=>$('editScope').value==='all'?'all':'frame';
-  const snapshot=()=>copy({clip,skin,skinDirty,spread,index:index(),selected:$('layerOrder').value,selectedSkeleton});
+  const snapshot=()=>copy({clip,skin,skinDirty,spread,skeletonId,index:index(),selected:$('layerOrder').value,selectedSkeleton});
   function remember(){history.push(snapshot());future=[];if(history.length>60)history.shift();}
   function syncTools(){
     syncFade();
@@ -50,20 +51,20 @@
     $('undo').disabled=!history.length;$('redo').disabled=!future.length;
     $('resetFrame').disabled=!clip.frame_edits?.[index()]||!Object.keys(clip.frame_edits[index()]).length;
     $('editTools').classList.toggle('whole',scope()==='all');
-    $('scopeNote').textContent=scope()==='all'?`Všech ${clip.frames.length} snímků · ${$('editTarget').value==='bitmap'?'posun vůči uchycení, velikost stejným poměrem':'zachovává rozdíly mezi pózami'}.`:`Jen aktuální snímek ${index()+1} · Celá animace je vypnutá.`;
+    $('scopeNote').textContent=scope()==='all'?`Všech ${clip.frames.length} snímků · ${$('editTarget').value==='bitmap'?'posun vůči uchycení, velikost stejným poměrem':'zachovává rozdíly mezi snímky'}.`:`Jen aktuální snímek ${index()+1} · Celá animace je vypnutá.`;
     if(scope()==='all'&&$('editTarget').value==='bitmap'){
       const custom=Object.values(clip.frame_edits||{}).filter(e=>Object.keys(e.parts?.[$('layerOrder').value]||{}).length).length;
       if(custom)$('scopeNote').textContent+=` Dřívější výjimky tohoto dílu (${custom} snímků) zůstávají. Přepnutí je nesjednotí.`;
     }
   }
-  function mark(){dirty=true;status('Neuložené změny — celou kombinaci včetně bitmapových výjimek uložíš v části Postava.');syncTools();}
+  function mark(){dirty=true;status('Neuložené změny');syncTools();}
   function syncFade(){
     const key=$('layerOrder').value,allowed=C.canFade(key)&&Boolean(skin.parts[key]);
-    for(const id of ['fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
+    for(const id of ['fadeStrength','fadeRadius','fadeRadius2','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
     $('fadePart').textContent=skin.parts[key]?.label||'';
     if(!allowed)return;
     const f=C.fadeFor(C.partFor(skin,key,C.sample(clip,phase,$('smooth').checked)),$('fadeEnd').value||'start');
-    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeRadius:Math.round(f.radius),fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(document.activeElement!==$(id))$(id).value=value;
+    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeRadius:Math.round(f.radius),fadeRadius2:Math.round(f.radius2),fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(document.activeElement!==$(id))$(id).value=value;
     $('fadeValue').textContent=Math.round(f.strength*100)+' %';
   }
   function changeFade(values,record=true){
@@ -78,22 +79,13 @@
   $('fadeStrength').onpointercancel=()=>{fadeSliding=false;};
   $('fadeRadius').onchange=()=>{const v=Number($('fadeRadius').value);if(Number.isFinite(v))changeFade({radius:R.clamp(v,1,2000)});};
   $('fadeDirection').onchange=()=>changeFade({direction:$('fadeDirection').value});
-  $('fadeClear').onclick=()=>changeFade({strength:0});
+  $('fadeRadius2').onchange=()=>changeFade({radius2:R.clamp(Number($('fadeRadius2').value)||1,1,2000)});
   for(const [id,axis] of [['fadeX',0],['fadeY',1]])$(id).onchange=()=>{
     const value=Number($(id).value);if(!Number.isFinite(value))return;
     const f=C.fadeFor(C.partFor(skin,$('layerOrder').value,C.sample(clip,index(),false)),$('fadeEnd').value||'start');
     const offset=[...f.offset];offset[axis]=R.clamp(value,-2000,2000);changeFade({offset});
   };
   $('fadeAngle').onchange=()=>{const v=Number($('fadeAngle').value);if(Number.isFinite(v))changeFade({angle:R.clamp(v,-180,180)});};
-  $('fadePreset').onclick=()=>{
-    freeze();remember();
-    for(const key of skin.layers.filter(C.canFade)){
-      const part=skin.parts[key];part.joint_fade??={};
-      for(const end of ['start','end'])part.joint_fade[end]={...C.fadeFor(part,end),strength:.65,direction:'outward'};
-    }
-    $('editTarget').value='bitmap';$('fadeEnd').value='start';skinDirty=true;mark();thumbnails();draw();
-    status('Přechody nastavené na obou koncích všech bitmapových dílů. Každý konec můžeš samostatně upravit nebo vypnout. Změnu můžeš vrátit přes Zpět nebo uložit jako novou postavu.');
-  };
   function layerOptions(selected=$('layerOrder').value){
     $('layerOrder').replaceChildren();for(const [i,key] of skin.layers.entries()){
       if(!skin.parts[key]||['pelvis','shoulders'].includes(key))continue;
@@ -105,6 +97,11 @@
   }
   function stop(){playing=false;phase=Math.floor(phase);distance=0;last=0;$('play').textContent='Přehrát';}
   function handles(pose=C.sample(clip,index(),false)){return R.handles(pose,pose.rig_lengths).filter(h=>!$('side').value||!h.side||h.side===$('side').value);}
+  function fadeToggles(pose){
+    const key=$('layerOrder').value;if(!C.canFade(key)||!skin.parts[key])return [];
+    const part=C.partFor(skin,key,pose),m=C.matrix(part,C.bones(pose)[key]);
+    return ['start','end'].map(end=>{const f=C.fadeGeometry(part,end),x=f.center[0]-f.ux*f.radius*.55,y=f.center[1]-f.uy*f.radius*.55;return {key,end,strength:f.strength,x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]};});
+  }
   function draw(){
     const pose=C.sample(clip,phase,$('smooth').checked);
     ctx.clearRect(0,0,512,560);ctx.fillStyle='#505050';ctx.fillRect(0,0,512,560);
@@ -132,8 +129,14 @@
         if(C.canFade(key)&&f.strength){
           const g=C.fadeGeometry(part,end),a=g.center,angle=g.angle+Math.PI;
           ctx.save();ctx.transform(...C.matrix(part,C.bones(pose)[key]));ctx.strokeStyle='#80e6ff';
-          ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(...a,f.radius,angle-Math.PI/2,angle+Math.PI/2);ctx.closePath();ctx.stroke();ctx.restore();
+          ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.ellipse(...a,f.radius,f.radius2,angle,-Math.PI/2,Math.PI/2);ctx.closePath();ctx.stroke();ctx.restore();
         }
+      }
+    }
+    if($('edit').checked&&bitmap){
+      for(const t of fadeToggles(pose)){
+        ctx.beginPath();ctx.arc(t.x,t.y,7/zoom,0,Math.PI*2);ctx.fillStyle='#18373d';ctx.fill();ctx.strokeStyle='#80e6ff';ctx.lineWidth=1/zoom;ctx.stroke();
+        ctx.fillStyle='#80e6ff';ctx.font=`${12/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t.strength?'×':'+',t.x,t.y);
       }
     }
     if($('bones').checked||$('edit').checked&&!bitmap){
@@ -146,7 +149,7 @@
     }
     ctx.restore();ctx.restore();$('zoomLabel').textContent=Math.round(zoom*100)+' %';
     const m=mini.getContext('2d');m.clearRect(0,0,mini.width,mini.height);m.save();m.scale(mini.width/512,mini.height/560);M.floor(m);m.translate($('travel').checked?M.offset(distance,-1):0,0);paintCharacter(m,pose);m.restore();
-    $('frameLabel').textContent=`${index()+1} / ${clip.frames.length}${playing?' · přehrávání':''}`;
+    $('frameLabel').textContent=`${index()+1} / ${clip.frames.length}`;
     $('lean').value=clip.frames[index()].bodyLean||0;
     $('bodyY').value=clip.frames[index()].bodyY||0;
     const rates=M.rates(clip,delta);$('rateInfo').textContent=`${delta>=0?'+':''}${delta.toFixed(0)} % · ${rates.speed.toFixed(1)} bodů/s · ${rates.fps.toFixed(1)} sn./s`;
@@ -180,6 +183,7 @@
   async function loadSkin(id,snapshot){
     const entry=skinCatalog.skins[id];if(!entry)throw Error('Neznámá postava');
     skinURL=new URL('../graphics/characters2/'+entry.path,location.href);skin=copy(snapshot||await getJSON(skinURL));skin.layers=skin.layers.filter(k=>!['pelvis','shoulders'].includes(k));skinDirty=false;
+    if(!snapshot)for(const key of skin.layers.filter(C.canFade))for(const end of ['start','end']){const part=skin.parts[key];part.joint_fade??={};part.joint_fade[end]??={...C.fadeFor(part,end),strength:.65};}
     $('parts').replaceChildren();for(const key of Object.keys(images)){delete images[key];delete hitMasks[key];delete gameImages[key];delete gameMasks[key];}
     gameManifest=null;
     await Promise.all(Object.entries(skin.parts).filter(([key])=>!['pelvis','shoulders'].includes(key)).map(async([key,part])=>{
@@ -214,37 +218,63 @@
   }
   function trashOptions(){
     const selected=$('trash').value;$('trash').replaceChildren();
-    for(const [source,catalog] of [['characters',gameCatalog],['clips',library]])for(const [id,item] of Object.entries(catalog?.trash||{})){
+    for(const [source,catalog] of [['characters',gameCatalog],['clips',library],['rigs',library]])for(const [id,item] of Object.entries(catalog?.trash||{})){
       if(item.collection!==source)continue;
-      const o=document.createElement('option');o.value=source+':'+id;o.textContent=(source==='characters'?'Postava: ':'Animace: ')+item.record.name;$('trash').append(o);
+      const o=document.createElement('option');o.value=source+':'+id;o.textContent=(source==='characters'?'Postava: ':source==='rigs'?'Kostra: ':'Animace: ')+item.record.name;$('trash').append(o);
     }
     $('trash').value=[...$('trash').children].some(o=>o.value===selected)?selected:$('trash').children[0]?.value||'';
     $('restoreDeleted').disabled=!$('trash').children.length||saving||characterSaving;
   }
   async function catalogAction(collection,restore=false){
     if(saving||characterSaving)return;
-    let id=collection==='characters'?characterId:animationId(),catalog=collection==='characters'?gameCatalog:library;
+    let id=collection==='characters'?characterId:collection==='rigs'?skeletonId:animationId(),catalog=collection==='characters'?gameCatalog:library;
     if(restore){const selection=$('trash').value.split(':');collection=selection[0];id=selection[1];catalog=collection==='characters'?gameCatalog:library;}
     const record=restore?catalog.trash?.[id]?.record:catalog[collection]?.[id];if(!record)return;
-    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='characters'?'postavu':'animaci'} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. ${restore?'':'Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.'}`))return;
+    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='characters'?'postavu':collection==='rigs'?'kostru':'animaci'} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. ${restore?'':'Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.'}`))return;
     stop();characterSaving=true;saveButtons();
     try{
       const response=await fetch(collection==='characters'?'/api/game-characters':'/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:copy(record)})});
       const result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Operace koše selhala.');
       catalog.trash=result.trash;
       if(restore)catalog[collection][result.id]=result.record;
-      else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';skinDirty=true;dirty=true;}else if(collection==='clips'&&clip.id===id){clip.id='';dirty=true;}}
-      gameOptions(characterId);options(clip.id);trashOptions();draw();
+      else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';skinDirty=true;dirty=true;}else if(collection==='rigs'){skeletonId='';}else if(collection==='clips'&&clip.id===id){clip.id='';dirty=true;}}
+      gameOptions(characterId);options(clip.id);skeletonOptions();trashOptions();draw();
       status(restore?'Položka obnovena z koše.':'Položka je v koši. Rozpracovaná kopie zůstala v editoru; můžeš ji Uložit jako novou.');
     }catch(e){saveError(e);}finally{characterSaving=false;saveButtons();trashOptions();}
   }
+
+  function skeletonOptions(){
+    $('skeletonSelect').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Vlastní / neuložená kostra';$('skeletonSelect').append(blank);
+    for(const r of Object.values(library.rigs||{})){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('skeletonSelect').append(o);}
+    $('skeletonSelect').value=skeletonId;
+  }
+  async function saveSkeleton(overwrite){
+    if(saving||characterSaving)return;
+    let previous=library.rigs?.[skeletonId],name=previous?.name||'Moje kostra';
+    if(overwrite&&!previous)return;
+    if(!overwrite){name=prompt('Název kostry',name)?.trim();if(!name)return;previous=Object.values(library.rigs||{}).find(r=>characterNameKey(r.name)===characterNameKey(name));}
+    if(previous&&!confirm('Přepsat kostru „'+previous.name+'“ se zálohou?'))return;
+    const payload={kind:'rig',name,rig_lengths:R.lengthsFor(clip,index())};
+    if(previous)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
+    saving=true;saveButtons();
+    try{const r=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await r.json();if(!r.ok||!result.ok)throw Error(result.error||'Uložení kostry se nezdařilo.');
+      library.rigs??={};library.rigs[result.record.id]=result.record;skeletonId=result.record.id;skeletonOptions();status('Kostra uložená: '+result.record.name+'. Pohybové snímky ani bitmapy se neukládají do kostry.');
+    }catch(e){saveError(e);}finally{saving=false;saveButtons();}
+  }
+  $('saveSkeleton').onclick=()=>saveSkeleton(false);$('updateSkeleton').onclick=()=>saveSkeleton(true);
+  $('deleteSkeleton').onclick=()=>catalogAction('rigs');
+  $('skeletonSelect').onchange=()=>{
+    const next=$('skeletonSelect').value,record=library.rigs?.[next];if(!record){skeletonId='';saveButtons();return;}
+    if(!confirm('Použít rozměry kostry „'+record.name+'“ v celé animaci? Úhly a pohyb zůstanou, snímkové výjimky délek se odstraní. Změnu lze vrátit přes Zpět.')){$('skeletonSelect').value=skeletonId;return;}
+    freeze();remember();clip.rig_lengths=R.lengthsFor(record);for(const e of Object.values(clip.frame_edits||{}))delete e.lengths;skeletonId=next;mark();thumbnails();draw();saveButtons();
+  };
   $('deleteCharacter').onclick=()=>catalogAction('characters');
   $('deleteAnimation').onclick=()=>catalogAction('clips');
   $('restoreDeleted').onclick=()=>catalogAction(null,true);
   try{
     [skinCatalog,library,gameCatalog]=await Promise.all([getJSON('../graphics/characters2/skins.json'),getJSON('../graphics/poses/poses.json'),getJSON('../graphics/characters2/game-characters.json')]);
     for(const [id,entry] of Object.entries(skinCatalog.skins)){const o=document.createElement('option');o.value=id;o.textContent=entry.name;$('skinSelect').append(o);}
-    await loadSkin(Object.keys(skinCatalog.skins)[0]);gameOptions();
+    await loadSkin(Object.keys(skinCatalog.skins)[0]);gameOptions();skeletonOptions();
     select(library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]);
     for(const id of ['skinSelect','saveCharacter','play','previous','next','clip','reload','fps','moveSpeed','bodyY','up','down','lean','save','exportFrame','exportSheet','exportRig'])$(id).disabled=false;
     playing=true;$('play').textContent='Pozastavit';
@@ -259,7 +289,7 @@
   $('zoomOut').onclick=()=>setZoom(zoom/1.2);$('zoomIn').onclick=()=>setZoom(zoom*1.2);$('zoomReset').onclick=()=>{pan={x:0,y:0};zoom=1;draw();};
   $('renderMode').onchange=()=>{stage.style.imageRendering='auto';thumbnails();draw();};
   $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);thumbnails();draw();}catch(e){status(e.message,true);}};
-  $('layerOrder').onchange=()=>{layerOptions();$('editTarget').value='bitmap';cursor();draw();};
+  $('layerOrder').onchange=()=>{layerOptions();cursor();draw();};
   function reorder(step){const key=$('layerOrder').value,i=skin.layers.indexOf(key),j=i+step;if(i<0||j<0||j>=skin.layers.length)return;remember();[skin.layers[i],skin.layers[j]]=[skin.layers[j],skin.layers[i]];skinDirty=true;mark();layerOptions(key);thumbnails();draw();}
   $('layerBack').onclick=()=>reorder(-1);$('layerFront').onclick=()=>reorder(1);
   $('anchorReset').onclick=()=>{stop();const key=$('layerOrder').value;remember();({clip,skin}=E.partChange(clip,skin,index(),key,{offset:[0,0]},scope()));skinDirty=true;mark();thumbnails();draw();};
@@ -324,8 +354,8 @@
   $('edit').onchange=()=>{if($('edit').checked)stop();draw();};
   $('clip').onchange=()=>{if(dirty&&!confirm('Zahodit neuložené změny pohybu?')){$('clip').value=clip.id;return;}select($('clip').value);};
   $('reload').onclick=async()=>{
-    if(dirty&&!confirm('Zahodit neuložené změny a načíst uložené pózy?'))return;
-    try{const fresh=await getJSON('../graphics/poses/poses.json');library=fresh;select(library.clips[clip.id]?clip.id:Object.keys(library.clips)[0]);trashOptions();}catch(e){status(e.message,true);}
+    if(dirty&&!confirm('Zahodit neuložené změny a načíst uložené kostry?'))return;
+    try{const fresh=await getJSON('../graphics/poses/poses.json');library=fresh;skeletonOptions();select(library.clips[clip.id]?clip.id:Object.keys(library.clips)[0]);trashOptions();}catch(e){status(e.message,true);}
   };
   $('fps').onchange=()=>{stop();remember();clip.fps=Math.max(1,Math.min(30,Math.round(Number($('fps').value)||6)));$('fps').value=clip.fps;mark();draw();};
   $('moveSpeed').onchange=()=>{stop();remember();const value=Number($('moveSpeed').value);clip.move_speed_pt_s=Number.isFinite(value)?R.clamp(value,0,1000):M.DEFAULT_SPEED;$('moveSpeed').value=clip.move_speed_pt_s;mark();draw();};
@@ -334,7 +364,7 @@
   $('down').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)+(e.shiftKey?10:1),-100,100));
   $('lean').onchange=()=>change(p=>p.bodyLean=Number($('lean').value));
   $('bodyY').onchange=()=>change(p=>p.bodyY=R.clamp(Number($('bodyY').value)||0,-100,100));
-  function restore(old){stop();clip=old.clip;skin=old.skin;skinDirty=old.skinDirty;spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);mark();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
+  function restore(old){stop();skeletonId=old.skeletonId||'';skeletonOptions();clip=old.clip;skin=old.skin;skinDirty=old.skinDirty;spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);mark();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
   $('undo').onclick=()=>{if(!history.length||drag)return;const old=history.pop();future.push({...snapshot(),index:old.index});restore(old);};
   $('redo').onclick=()=>{if(!future.length||drag)return;const next=future.pop();history.push({...snapshot(),index:next.index});restore(next);};
   $('resetFrame').onclick=()=>{if(!clip.frame_edits?.[index()])return;stop();remember();clip=E.resetFrame(clip,index());mark();thumbnails();draw();};
@@ -352,6 +382,18 @@
   $('toolGrip').onpointermove=e=>{if(panelDrag?.id===e.pointerId)placePanel(panelDrag.left+e.clientX-panelDrag.x,panelDrag.top+e.clientY-panelDrag.y);};
   $('toolGrip').onpointerup=$('toolGrip').onpointercancel=e=>{panelDrag=null;if($('toolGrip').hasPointerCapture(e.pointerId))$('toolGrip').releasePointerCapture(e.pointerId);};
   window.addEventListener('resize',()=>placePanel(parseFloat($('editTools').style.left)||8,parseFloat($('editTools').style.top)||8));
+
+  let partsDrag=null;
+  function placeParts(x,y){
+    const box=$('stageWrap').getBoundingClientRect(),p=$('partsTools').getBoundingClientRect();
+    $('partsTools').style.left=R.clamp(x,0,Math.max(0,box.width-p.width))+'px';$('partsTools').style.top=R.clamp(y,0,Math.max(0,box.height-p.height))+'px';
+  }
+  $('partsCollapse').onclick=()=>{const hidden=!$('partsBody').hidden;$('partsBody').hidden=hidden;$('partsCollapse').textContent=hidden?'+':'−';$('partsCollapse').setAttribute('aria-expanded',String(!hidden));$('partsCollapse').setAttribute('aria-label',hidden?'Rozbalit díly':'Sbalit díly');};
+  $('partsGrip').onpointerdown=e=>{if(e.target.closest('button')||e.button!==0)return;const p=$('partsTools').getBoundingClientRect(),b=$('stageWrap').getBoundingClientRect();partsDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:p.left-b.left,top:p.top-b.top};e.preventDefault();$('partsGrip').setPointerCapture(e.pointerId);};
+  $('partsGrip').onpointermove=e=>{if(partsDrag?.id===e.pointerId)placeParts(partsDrag.left+e.clientX-partsDrag.x,partsDrag.top+e.clientY-partsDrag.y);};
+  $('partsGrip').onpointerup=$('partsGrip').onpointercancel=e=>{partsDrag=null;if($('partsGrip').hasPointerCapture(e.pointerId))$('partsGrip').releasePointerCapture(e.pointerId);};
+  window.addEventListener('resize',()=>placeParts(parseFloat($('partsTools').style.left)||266,parseFloat($('partsTools').style.top)||8));
+
   function pointer(e){const p=screen(e);return window.EditorView.point(p.x,p.y,zoom,true,pan);}
   function cursor(e={}){
     const bitmap=$('editTarget').value==='bitmap';
@@ -386,6 +428,7 @@
   function freeze(){const d=distance;phase=Math.round(phase)%clip.frames.length;stop();distance=d;}
   stage.onpointerdown=e=>{
     if(![0,2].includes(e.button)||drag)return;
+    if(e.button===0&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&$('edit').checked&&$('editTarget').value==='bitmap'){const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked),t=fadeToggles(pose).find(t=>Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y)<9/zoom);const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,$('layerOrder').value,pose):null,gripHit=grips&&['rotate','size','pivot'].some(k=>Math.hypot(grips[k].x-(512-p.x-travelX()),grips[k].y-p.y)<12/zoom);if(t&&!gripHit){e.preventDefault();$('fadeEnd').value=t.end;changeFade({strength:t.strength?0:.65});return;}}
     const right=e.button===2,bitmapMode=$('editTarget').value==='bitmap',bitmap=right||e.altKey||bitmapMode;
     if(bitmap&&$('edit').checked){
       const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked);
@@ -409,9 +452,13 @@
     }
     if(right){e.preventDefault();return;}
     const p=pointer(e),visiblePoint={x:p.x+travelX(),y:p.y};
-    const h=handles(C.sample(clip,phase,$('smooth').checked)).map(h=>({...h,d:Math.hypot(h.point.x-visiblePoint.x,h.point.y-visiblePoint.y)})).sort((a,b)=>a.d-b.d)[0];
+    let h=handles(C.sample(clip,phase,$('smooth').checked)).map(h=>({...h,d:Math.hypot(h.point.x-visiblePoint.x,h.point.y-visiblePoint.y)})).sort((a,b)=>a.d-b.d)[0];
+    if(!bitmap&&$('edit').checked&&(!h||h.d>14/zoom)){
+      const pose=C.sample(clip,phase,$('smooth').checked),key=C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,{x:512-visiblePoint.x,y:visiblePoint.y});
+      const handle=key&&handles(pose).find(v=>v.key===E.handleForBone(key));if(handle)h={...handle,d:0};
+    }
     if(bitmap||!$('edit').checked||!h||h.d>14/zoom){if(e.ctrlKey||e.altKey)return;e.preventDefault();drag={mode:'pan',id:e.pointerId,grab:screen(e),pan:{...pan}};stage.setPointerCapture(e.pointerId);cursor(e);return;}
-    freeze();const part=E.boneForHandle(h.key)||{head:'head',neck:'head',bodyY:'torso'}[h.key];if(part)layerOptions(part);selectedSkeleton=h.key;
+    freeze();const part=E.boneForHandle(h.key)||{head:'head',neck:'head',bodyY:'torso',bodyLean:'torso'}[h.key];if(part)layerOptions(part);selectedSkeleton=h.key;
     e.preventDefault();drag={mode:'skeleton',id:e.pointerId,key:h.key,index:index(),start:handles().find(v=>v.key===h.key).point,grab:p,clip:copy(clip),scope:scope(),tool:$('editTool').value||'rotate',ctrlKey:e.ctrlKey,resize:$('resizeBones').checked,changed:false};stage.setPointerCapture(e.pointerId);draw();
   };
   stage.onpointermove=e=>{

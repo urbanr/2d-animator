@@ -8,5 +8,5 @@ assert.ok(E.selectedHandleKeys(p,'head').includes('neck'));
 for(const side of ['near','far'])for(const joint of ['Shoulder','Elbow','Hip','Knee','Foot']){
   assert.equal(E.handleForBone(E.boneForHandle(side+joint)),side+joint);
 }
-assert.equal(E.handleForBone('head'),'head');assert.equal(E.handleForBone('torso'),'bodyY');
+assert.equal(E.handleForBone('head'),'head');assert.equal(E.handleForBone('torso'),'bodyLean');
 console.log('PASS: skeleton selection endpoints and skeleton/bitmap mapping.');

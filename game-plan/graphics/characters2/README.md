@@ -200,18 +200,17 @@ uživatelské animace a ruční posuny zůstávají zachované.
 ## Pokus `pruhlednost`: měkké půlkruhové spoje
 
 Pod zobrazením Detail / Herní pixely je **Varianta: průhlednost spojů**.
-Původní i uložené postavy bez nastavení mají efekt vypnutý. Tlačítko
-**Zkusit přechody na všech koncích** nastaví 65% zeslabení společného základu
-na obou koncích všech bitmapových dílů, včetně trupu a doplňku/nádrže.
-Každý konec lze samostatně upravit nebo vypnout. Pánev a ramena jsou jen
-vodítka kostry bez vlastní bitmapy, proto nemají vlastní masku.
-Dosavadní snímkové výjimky se zachovávají; tlačítko není destruktivní reset.
+Nové základy mají oba konce všech bitmapových dílů zapnuté na 65 %.
+Dřívější hromadné tlačítko bylo odstraněno. Oba konce se nezávisle vypínají
+a zapínají kliknutím na × / + u vybraného dílu v režimu Bitmapa.
+Pánev a ramena jsou jen vodítka kostry bez vlastní bitmapy.
+Po jednorázové migraci existujících postav se další uložená vypnutí zachovávají.
 
 - **Pravý tah na bitmapě dolů** zesílí průhlednost, nahoru ji odstraní.
   150 jednotek náhledu odpovídá celému rozsahu. Není to štětec: mění se celý
   zvolený půlkruhový přechod. Průhledné místo lze znovu uchopit podle původní
   bitmapy. Seznam vždy ukazuje vybraný díl.
-- **Konec** vybírá uchycení nebo druhý konec; bez nastavení jsou oba vypnuté.
+- **Konec** vybírá uchycení nebo druhý konec; u nového základu jsou oba zapnuté.
   **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
   následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
 - Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny.
@@ -288,3 +287,35 @@ Zdrojové PNG, vložené pózy ani snímkové kopie animace v uložených postav
 se nemažou. Neuložená pracovní kopie při smazání zůstává v editoru, už ale
 nepřepisuje smazaný záznam; lze ji uložit jako novou. Prázdná knihovna dovolí
 začít novou dvousnímkovou animací nebo obnovit položku z koše.
+
+## Editor: poloelipsy, hlava a knihovna koster (2026-09-16)
+
+- Přechod má `radius` (R1, hloubka ve směru dílu) a `radius2` (R2, šířka).
+  Starý záznam bez R2 zůstává kruhový (R2 = R1). Maska končí na hranici
+  poloelipsy; mimo ni nechává původní alfu. Obě osy mají rozsah 1–2000.
+  Rozsah Snímek / Animace, interpolace, hit-test i export používají stejnou geometrii.
+- Nově načtený základ má oba konce všech bitmapových dílů zapnuté na 65 %.
+  Uložená vypnutí se při běžném načítání respektují. Dle výslovného zadání byly
+  jednorázově zapnuty přechody ve třech uložených postavách (nulová síla → 65 %,
+  nenulové síly a geometrie zachované). Předchozí celý katalog je v
+  `history/game-characters-before-all-ellipse-20260916.json`.
+- V režimu Bitmapa jsou u obou konců vybraného dílu klikací × / +.
+  × nastaví sílu 0, + 65 %. Ostatní parametry se nemění; platí vybraný rozsah
+  a krok lze vrátit. Úchyty rotace/velikosti/středu mají přednost.
+  V režimu Kostra tyto tlačítkové zásahy nekradou úchyty kloubů.
+- Hlava, krk a trup mají nyní nastavitelné délky `head`, `neck`, `torso`
+  (výchozí 21, 18, 94). Ctrl nebo Velikost mění délku bez rotace.
+  Posun hlavy/krku používá vlastní `headOffsetX/Y`, `neckOffsetX/Y`,
+  nikoliv posun celé postavy. Úchyt v místě středu ramen ovládá `bodyLean`;
+  střed trupu dál přesouvá celou postavu. Náklon hlavy zůstává ±30°.
+- Kostry je nový samostatný katalog `rigs` v existujícím `poses.json`.
+  Obsahuje pojmenované rozměry kostí, ne pohybové snímky nebo bitmapy.
+  Uložit / Uložit jako / Smazat používá zálohy, kontrolu konfliktu a vratný koš.
+  Načtení kostry po potvrzení nahradí rozměry v animaci, zruší snímkové
+  délkové výjimky a ponechá úhly a pohyb. Načtení lze vrátit přes Zpět.
+- Sekce Kostry, Postavy, Animace, Koš a export jsou orámované a skládací.
+  Původní editor „Pózy“ je v navigaci pojmenovaný „Kostry“; staré URL zůstávají platné.
+  Seznam dílů má vlastní přetahovatelný panel vpravo od Úprav, výchozí sbalený.
+  Výběr je obousměrný a zachovává režim Kostra/Bitmapa.
+- Editor roste se šířkou okna bez pevného maxima. Snímky, zoom a ikonový reset
+  jsou v kompaktní řadě. Ikona `tool/reset-icon.png` je kopie dodaného pngegg.png.

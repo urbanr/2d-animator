@@ -14,9 +14,11 @@ for side in ('near', 'far'):
         LIMITS[side + joint] = (-180, 180)
     LIMITS[side + 'Foot'] = (-180, 180)
 ROOT_OFFSETS = {side+joint+'Offset'+axis: (-100, 100) for side in ('near','far') for joint in ('Shoulder','Hip') for axis in ('X','Y')}
+ROOT_OFFSETS.update({joint+'Offset'+axis: (-100,100) for joint in ('head','neck') for axis in ('X','Y')})
 LIMITS.update(ROOT_OFFSETS)
 DEFAULT_LENGTHS = {side+bone: length for side in ('near','far') for bone,length in {'UpperArm':46,'Forearm':44,'Thigh':70,'Shin':74,'Foot':25}.items()}
 PART_KEYS = set(DEFAULT_LENGTHS) | {'head', 'torso', 'backpack'}
+DEFAULT_LENGTHS.update(head=21, neck=18, torso=94)
 
 
 def bounded(value, low, high):
@@ -30,10 +32,12 @@ def validate_joint_fade(value):
         raise ValueError('Neplatný přechod spoje.')
     out = {}
     for end, fade in value.items():
-        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
+        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'radius2', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
             raise ValueError('Neplatný přechod spoje.')
         out[end] = {'strength': bounded(fade['strength'], 0, 1),
                     'radius': bounded(fade['radius'], 1, 2000), 'direction': fade['direction']}
+        if 'radius2' in fade:
+            out[end]['radius2'] = bounded(fade['radius2'], 1, 2000)
         if 'angle' in fade:
             out[end]['angle'] = bounded(fade['angle'], -180, 180)
         if 'offset' in fade:
@@ -131,6 +135,9 @@ def save_pose(payload, path=STORE):
     if kind == 'pose':
         record['frame'] = validate_frame(payload.get('frame'))
         collection = 'poses'
+    elif kind == 'rig':
+        record['rig_lengths'] = validate_lengths(payload.get('rig_lengths'))
+        collection = 'rigs'
     elif kind == 'clip':
         frames = payload.get('frames')
         fps = payload.get('fps')
@@ -147,22 +154,26 @@ def save_pose(payload, path=STORE):
     else:
         raise ValueError('Neznámý typ záznamu.')
     library = json.loads(path.read_text(encoding='utf-8'))
+    library.setdefault(collection, {})
     mode = payload.get('mode', 'create')
     backup = None
     if mode == 'update':
-        if kind != 'clip':
+        if kind not in ('clip', 'rig'):
             raise ValueError('Přepsat lze pouze animaci.')
         target = payload.get('id')
-        if not isinstance(target, str) or target not in library['clips']:
+        if not isinstance(target, str) or target not in library[collection]:
             raise ValueError('Vybraná animace neexistuje; nic se nepřepsalo.')
-        previous = library['clips'][target]
+        previous = library[collection][target]
         if payload.get('expectedRecord') != previous:
             raise ValueError('Animace se mezitím změnila v jiné kartě. Nic se nepřepsalo. Ulož úpravy jako novou variantu nebo načti aktuální stav.')
-        record = {**previous, 'frames': record['frames'], 'fps': record['fps'],
+        if kind == 'rig':
+            record = {**previous, 'rig_lengths': record['rig_lengths'], 'updated_at': datetime.now(timezone.utc).isoformat()}
+        else:
+            record = {**previous, 'frames': record['frames'], 'fps': record['fps'],
                   'move_speed_pt_s': record['move_speed_pt_s'] if 'move_speed_pt_s' in payload else previous.get('move_speed_pt_s', 8),
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
-        record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
+            record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
         backup_dir = path.parent / 'history'
         backup_dir.mkdir(exist_ok=True)
         backup_path = backup_dir / (str(uuid.uuid4()) + '.json')
