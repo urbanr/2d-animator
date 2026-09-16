@@ -8,13 +8,14 @@
   mini.width=192;mini.height=210;pixelFrame.width=192;pixelFrame.height=210;
   const pixelMode=()=>$('renderMode').value==='game'&&Boolean(gameManifest);
   const activeImages=()=>pixelMode()?gameImages:images;
+  const drawRig=(context,skin,images,pose,options={})=>C.draw(context,skin,images,pose,{...options,createCanvas:()=>document.createElement('canvas')});
   function paintCharacter(context,pose,options={}){
-    if(!pixelMode()){C.draw(context,skin,images,pose,options);return;}
+    if(!pixelMode()){drawRig(context,skin,images,pose,options);return;}
     const low=pixelFrame.getContext('2d');low.clearRect(0,0,pixelFrame.width,pixelFrame.height);
     low.save();low.imageSmoothingEnabled=false;low.scale(pixelFrame.width/512,pixelFrame.height/560);
-    C.draw(low,skin,gameImages,pose,{lengths:options.lengths});low.restore();
+    drawRig(low,skin,gameImages,pose,{lengths:options.lengths});low.restore();
     context.save();context.imageSmoothingEnabled=false;context.drawImage(pixelFrame,0,0,512,560);context.restore();
-    if(options.skeleton)C.draw(context,skin,images,pose,{...options,skeletonOnly:true});
+    if(options.skeleton)drawRig(context,skin,images,pose,{...options,skeletonOnly:true});
   }
   let skin,library,clip,phase=0,playing=false,visible=true,last=0,dirty=false,drag=null,history=[],future=[],saving=false;
   let distance=0;
@@ -39,6 +40,7 @@
   const snapshot=()=>copy({clip,skin,skinDirty,spread,index:index(),selected:$('layerOrder').value});
   function remember(){history.push(snapshot());future=[];if(history.length>60)history.shift();}
   function syncTools(){
+    syncFade();
     for(const [group,choices] of Object.entries(toolChoices))for(const [id,value] of Object.entries(choices))$(id).setAttribute('aria-pressed',String($(group).value===value));
     $('editScope').setAttribute('aria-pressed',String(scope()==='all'));
     $('undo').disabled=!history.length;$('redo').disabled=!future.length;
@@ -51,6 +53,33 @@
     }
   }
   function mark(){dirty=true;status('Neuložené změny — celou kombinaci včetně bitmapových výjimek uložíš v části Postava.');syncTools();}
+  function syncFade(){
+    const key=$('layerOrder').value,allowed=C.canFade(key)&&Boolean(skin.parts[key]);
+    for(const id of ['fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear'])$(id).disabled=!allowed;
+    $('fadePart').textContent=skin.parts[key]?.label||'';
+    if(!allowed)return;
+    const f=C.fadeFor(C.partFor(skin,key,C.sample(clip,phase,$('smooth').checked)),$('fadeEnd').value||'start');
+    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeRadius:Math.round(f.radius),fadeDirection:f.direction}))if(document.activeElement!==$(id))$(id).value=value;
+    $('fadeValue').textContent=Math.round(f.strength*100)+' %';
+  }
+  function changeFade(values){
+    const key=$('layerOrder').value;if(!C.canFade(key))return;
+    freeze();const result=E.fadeChange(clip,skin,index(),key,$('fadeEnd').value||'start',values,scope());
+    remember();({clip,skin}=result);skinDirty=true;mark();thumbnails();draw();
+  }
+  $('fadeEnd').onchange=()=>draw();
+  $('fadeStrength').onchange=()=>changeFade({strength:R.clamp(Number($('fadeStrength').value)/100,0,1)});
+  $('fadeRadius').onchange=()=>{const v=Number($('fadeRadius').value);if(Number.isFinite(v))changeFade({radius:R.clamp(v,1,2000)});};
+  $('fadeDirection').onchange=()=>changeFade({direction:$('fadeDirection').value});
+  $('fadeClear').onclick=()=>changeFade({strength:0});
+  $('fadePreset').onclick=()=>{
+    freeze();remember();
+    for(const key of skin.layers.filter(C.canFade)){
+      const part=skin.parts[key];part.joint_fade??={};part.joint_fade.start={...C.fadeFor(part),strength:.65,direction:'outward'};
+    }
+    $('editTarget').value='bitmap';$('fadeEnd').value='start';skinDirty=true;mark();thumbnails();draw();
+    status('Přechody spojů nastavené. U předloktí jen loket směrem do paže; ruka se nemění. Změnu můžeš vrátit přes Zpět nebo uložit jako novou postavu.');
+  };
   function layerOptions(selected=$('layerOrder').value){
     $('layerOrder').replaceChildren();for(const [i,key] of skin.layers.entries()){
       if(!skin.parts[key]||['pelvis','shoulders'].includes(key))continue;
@@ -82,6 +111,13 @@
         for(const key of ['pivot','rotate','size']){
           const p=h[key],r=6/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
           ctx.fillStyle=key==='pivot'?'#26332c':'#ffe08b';ctx.fill();ctx.stroke();
+        }
+        const key=$('layerOrder').value,part=C.partFor(skin,key,pose),end=$('fadeEnd').value||'start',f=C.fadeFor(part,end);
+        if(C.canFade(key)&&f.strength){
+          const a=part[end],b=part[end==='start'?'end':'start'];
+          const angle=Math.atan2(b[1]-a[1],b[0]-a[0])+(f.direction==='outward'?Math.PI:0);
+          ctx.save();ctx.transform(...C.matrix(part,C.bones(pose)[key]));ctx.strokeStyle='#80e6ff';
+          ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(...a,f.radius,angle-Math.PI/2,angle+Math.PI/2);ctx.closePath();ctx.stroke();ctx.restore();
         }
       }
     }
@@ -211,6 +247,7 @@
       const snapshot=JSON.stringify({clip,skin,spread});
       const payload={name,skin_id:$('skinSelect').value,layers:skin.layers,part_offsets:Object.fromEntries(skin.layers.map(k=>[k,skin.parts[k].offset||[0,0]])),motion:{variation_percent:spread},animation:{...copy(clip),id:animationId()||'',rig_lengths:R.lengthsFor(clip),move_speed_pt_s:M.speed(clip)}};
       payload.part_transforms=Object.fromEntries(skin.layers.map(k=>[k,{offset:skin.parts[k].offset||[0,0],rotation:skin.parts[k].rotation||0,
+        ...(skin.parts[k].joint_fade?{joint_fade:skin.parts[k].joint_fade}:{}),
         ...Object.fromEntries(['scale','scale_x','scale_y'].map(axis=>[axis,skin.parts[k][axis]||1]))}]));
       if(overwrite)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
       const r=await fetch('/api/game-characters',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -264,29 +301,32 @@
   function cursor(e={}){
     const bitmap=$('editTarget').value==='bitmap';
     const tool=drag?.mode==='bitmap'?drag.tool:e.ctrlKey&&e.altKey?'size':bitmap&&e.ctrlKey?'height':bitmap&&e.altKey?'width':e.altKey?'move':e.ctrlKey?'length':$('editTool').value;
-    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='height'?'ns-resize':tool==='width'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
+    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='fade'||tool==='height'?'ns-resize':tool==='width'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
     $('gestureHint').textContent=tool==='height'?'Ctrl + tah dolů/nahoru: výška bitmapy · šířka a kostra se nemění':tool==='width'?'Option + tah doprava/doleva: šířka bitmapy · výška a kostra se nemění':bitmap?'Bitmapa: Ctrl = výška · Option = šířka · Ctrl+Option = obojí · posun: nástroj Posun':'Ctrl: délka kosti · Option: posun bitmapy · Ctrl+Option: velikost bitmapy';
+    $('gestureHint').textContent+=' · Pravý tah ↓/↑: zprůhlednit / zneprůhlednit spoj';
   }
   window.addEventListener('keydown',e=>{cursor(e);if((e.metaKey||e.ctrlKey)&&e.key?.toLowerCase()==='z'&&!['INPUT','TEXTAREA','SELECT'].includes(e.target?.tagName)&&!e.target?.isContentEditable){e.preventDefault();(e.shiftKey?$('redo'):$('undo')).onclick();}});
   window.addEventListener('keyup',cursor);window.addEventListener('blur',()=>cursor());cursor();
   const travelX=()=>$('travel').checked?M.offset(distance,-1):0;
   function freeze(){const d=distance;phase=Math.round(phase)%clip.frames.length;stop();distance=d;}
   stage.onpointerdown=e=>{
-    if(e.button!==0||drag)return;
-    const bitmapMode=$('editTarget').value==='bitmap',bitmap=e.altKey||bitmapMode;
+    if(![0,2].includes(e.button)||drag)return;
+    const right=e.button===2,bitmapMode=$('editTarget').value==='bitmap',bitmap=right||e.altKey||bitmapMode;
     if(bitmap&&$('edit').checked){
       const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked);
       const point={x:512-p.x-travelX(),y:p.y},selected=$('layerOrder').value;
       const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,selected,pose):null;
-      const grip=grips?['rotate','size','pivot'].find(k=>Math.hypot(point.x-grips[k].x,point.y-grips[k].y)<12/zoom):null;
-      const key=grip?selected:C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,point);
+      const grip=grips&&!right?['rotate','size','pivot'].find(k=>Math.hypot(point.x-grips[k].x,point.y-grips[k].y)<12/zoom):null;
+      const key=grip?selected:C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,point,{ignoreFade:right});
       if(key){
+        if(right&&!C.canFade(key)){e.preventDefault();status('Tělo ani doplněk nemají přechody spojů. Vyber ruku, nohu nebo hlavu.');return;}
         freeze();layerOptions(key);$('editTarget').value='bitmap';
         const frozen=C.sample(clip,index(),false),h=E.partHandles(skin,key,frozen);
-        const tool=e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
+        const tool=right?'fade':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
         e.preventDefault();drag={mode:'bitmap',tool,scope:scope(),index:index(),id:e.pointerId,key,grab:point,part:C.partFor(skin,key,frozen),bone:C.bones(frozen)[key],pivot:h.pivot,clip:copy(clip),skin:copy(skin),changed:false};stage.setPointerCapture(e.pointerId);cursor(e);draw();return;
       }
     }
+    if(right){e.preventDefault();return;}
     const p=pointer(e),visiblePoint={x:p.x+travelX(),y:p.y};
     const h=handles(C.sample(clip,phase,$('smooth').checked)).map(h=>({...h,d:Math.hypot(h.point.x-visiblePoint.x,h.point.y-visiblePoint.y)})).sort((a,b)=>a.d-b.d)[0];
     if(bitmap||!$('edit').checked||!h||h.d>14/zoom){if(e.ctrlKey||e.altKey)return;e.preventDefault();drag={mode:'pan',id:e.pointerId,grab:screen(e),pan:{...pan}};stage.setPointerCapture(e.pointerId);cursor(e);return;}
@@ -298,12 +338,13 @@
     if(drag.mode==='pan'){const p=screen(e);pan={x:drag.pan.x+p.x-drag.grab.x,y:drag.pan.y+p.y-drag.grab.y};draw();return;}
     if(drag.mode==='bitmap'){
       const p=pointer(e),point={x:512-p.x-travelX(),y:p.y};let values;
-      if(drag.tool==='move')values={offset:C.moveAttachment(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y).offset};
+      if(drag.tool==='fade')values={strength:R.clamp(C.fadeFor(drag.part,$('fadeEnd').value||'start').strength+(point.y-drag.grab.y)/150,0,1)};
+      else if(drag.tool==='move')values={offset:C.moveAttachment(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y).offset};
       else if(drag.tool==='rotate')values={rotation:drag.part.rotation+(Math.atan2(point.y-drag.pivot.y,point.x-drag.pivot.x)-Math.atan2(drag.grab.y-drag.pivot.y,drag.grab.x-drag.pivot.x))*180/Math.PI};
       else if(drag.tool==='height')values={scale_y:drag.part.scale_y*Math.exp(R.clamp((point.y-drag.grab.y)/100,-10,10))};
       else if(drag.tool==='width')values={scale_x:drag.part.scale_x*Math.exp(R.clamp((point.x-drag.grab.x)/100,-10,10))};
       else values={scale:drag.part.scale*Math.hypot(point.x-drag.pivot.x,point.y-drag.pivot.y)/Math.max(1,Math.hypot(drag.grab.x-drag.pivot.x,drag.grab.y-drag.pivot.y))};
-      const result=E.partChange(drag.clip,drag.skin,drag.index,drag.key,values,drag.scope);
+      const result=drag.tool==='fade'?E.fadeChange(drag.clip,drag.skin,drag.index,drag.key,$('fadeEnd').value||'start',values,drag.scope):E.partChange(drag.clip,drag.skin,drag.index,drag.key,values,drag.scope);
       if(JSON.stringify(result)===JSON.stringify({clip,skin}))return;
       if(!drag.changed){remember();drag.changed=true;}({clip,skin}=result);skinDirty=true;mark();thumbnails();draw();return;
     }
@@ -373,6 +414,7 @@
         const part=s.parts[k]||{},o=part.offset||[0,0],rotation=part.rotation??0,scales=Object.fromEntries(['scale','scale_x','scale_y'].map(axis=>[axis,part[axis]??1]));
         if(!Array.isArray(o)||o.length!==2||o.some(v=>!Number.isFinite(v)||Math.abs(v)>2000)||!Number.isFinite(rotation)||Math.abs(rotation)>180||Object.values(scales).some(v=>!Number.isFinite(v)||v<.1||v>10))throw Error('Neplatná úprava bitmapy.');
         Object.assign(base.parts[k],{offset:o,rotation,...scales});
+        if(part.joint_fade!==undefined)base.parts[k].joint_fade=copy(C.validateFade(part.joint_fade));
       }
       E.validateEdits(c,base);
       if(dirty&&!confirm('Nahradit rozpracované změny zálohou?'))return;
@@ -382,8 +424,8 @@
       select(id);skinDirty=true;mark();status('Záloha načtena. Ulož ji jako postavu; původní soubory se nezměnily.');
     }catch(e){status(e.message,true);}finally{$('importDraft').value='';}
   };
-  $('exportFrame').onclick=()=>{const c=document.createElement('canvas');c.width=pixelMode()?pixelFrame.width:512;c.height=pixelMode()?pixelFrame.height:560;const x=c.getContext('2d');x.scale(c.width/512,c.height/560);x.imageSmoothingEnabled=!pixelMode();C.draw(x,skin,activeImages(),C.sample(clip,phase,$('smooth').checked));exportCanvas(c,pixelMode()?'postava-game-192.png':'postava-detail.png');};
-  $('exportSheet').onclick=()=>{const c=document.createElement('canvas'),w=pixelMode()?pixelFrame.width:512,h=pixelMode()?pixelFrame.height:560;c.width=4*w;c.height=Math.ceil(clip.frames.length/4)*h;const x=c.getContext('2d');x.imageSmoothingEnabled=!pixelMode();clip.frames.forEach((p,i)=>{x.save();x.translate(i%4*w,Math.floor(i/4)*h);x.scale(w/512,h/560);C.draw(x,skin,activeImages(),C.sample(clip,i,false));x.restore();});exportCanvas(c,pixelMode()?'postava-game-192-sheet.png':'postava-detail-sheet.png');};
+  $('exportFrame').onclick=()=>{const c=document.createElement('canvas');c.width=pixelMode()?pixelFrame.width:512;c.height=pixelMode()?pixelFrame.height:560;const x=c.getContext('2d');x.scale(c.width/512,c.height/560);x.imageSmoothingEnabled=!pixelMode();drawRig(x,skin,activeImages(),C.sample(clip,phase,$('smooth').checked));exportCanvas(c,pixelMode()?'postava-game-192.png':'postava-detail.png');};
+  $('exportSheet').onclick=()=>{const c=document.createElement('canvas'),w=pixelMode()?pixelFrame.width:512,h=pixelMode()?pixelFrame.height:560;c.width=4*w;c.height=Math.ceil(clip.frames.length/4)*h;const x=c.getContext('2d');x.imageSmoothingEnabled=!pixelMode();clip.frames.forEach((p,i)=>{x.save();x.translate(i%4*w,Math.floor(i/4)*h);x.scale(w/512,h/560);drawRig(x,skin,activeImages(),C.sample(clip,i,false));x.restore();});exportCanvas(c,pixelMode()?'postava-game-192-sheet.png':'postava-detail-sheet.png');};
   $('exportRig').onclick=()=>download(new Blob([JSON.stringify({schema_version:1,skin,asset_base:'graphics/characters2/'+skinCatalog.skins[$('skinSelect').value].path.replace(/[^/]+$/,''),clip:{...copy(clip),rig_lengths:R.lengthsFor(clip),move_speed_pt_s:M.speed(clip)},motion:{variation_percent:spread,coupled_cadence:true,sample_once_per_actor:true},rig_units_per_game_point:M.UNITS_PER_POINT,interpolation:'shortest-angle',frames_include_endpoint_duplicate:false},null,2)],{type:'application/json'}),'postava-cutout.json');
   window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
   window.addEventListener('message',e=>{if(e.source===parent&&e.origin===location.origin&&e.data?.type==='preview-visibility'){visible=Boolean(e.data.visible);last=0;}});

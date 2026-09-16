@@ -194,3 +194,38 @@ patří do snímku; chybějící hodnoty znamenají nulu.
 Ukládání vyžaduje běžící `tools/serve_sprite_gallery.py`. POST
 `/api/game-characters` ověřuje vstup a atomicky přidává záznam. Všechny dosavadní
 uživatelské animace a ruční posuny zůstávají zachované.
+
+## Pokus `pruhlednost`: měkké půlkruhové spoje
+
+Pod zobrazením Detail / Herní pixely je **Varianta: průhlednost spojů**.
+Původní i uložené postavy bez nastavení mají efekt vypnutý. Tlačítko
+**Zkusit přechody na všech spojích** nastaví 65% zeslabení společného základu
+u uchycení končetin a hlavy s krkem. Trup, nádrž, pánev a ramena vynechává.
+U předloktí jde o loket směrem do paže, nikoliv konec u ruky.
+Dosavadní snímkové výjimky se zachovávají; tlačítko není destruktivní reset.
+
+- **Pravý tah na bitmapě dolů** zesílí průhlednost, nahoru ji odstraní.
+  150 jednotek náhledu odpovídá celému rozsahu. Není to štětec: mění se celý
+  zvolený půlkruhový přechod. Průhledné místo lze znovu uchopit podle původní
+  bitmapy. Seznam vždy ukazuje vybraný díl.
+- **Konec** vybírá uchycení nebo druhý konec, ten je standardně beze změny.
+  **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
+  následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
+- Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny;
+  střed zůstává neprůhledný. Při nevhodném poloměru nebo chybějícím překryvu
+  se může ukázat mezera — maska nepřikresluje chybějící materiál.
+- Změny respektují **Celá animace / snímek**, Zpět a Znovu. Nastavení celé
+  postavy ulož přes **Postava → Uložit / Uložit jako**; samotná Animace
+  uchovává jen snímkové výjimky, nikoli společné nastavení bitmap.
+
+Data: `skin.parts[key].joint_fade.start/end = {strength, radius, direction}`.
+Síla je 0–1, poloměr 1–2000, směr `outward`/`inward`. Snímkové výjimky mají
+stejný formát v `clip.frame_edits[i].parts[key].joint_fade`. Číselné hodnoty
+se interpolují včetně přechodu posledního snímku na první, směr se přepne
+v polovině. Globální úprava přičítá stejný rozdíl i k výjimkám (v mezích rozsahu).
+
+Renderer násobí původní alfu maskou v souřadnicích zdrojového obrázku.
+Detail, herní díly, miniatura, snímky i oba PNG exporty používají stejný postup.
+RGB a originální PNG soubory se nikdy nemění. Textury jsou omezeně cachované;
+PNG export neobsahuje tyrkysovou pomůcku. Swift prototyp tento pokus zatím
+nepoužívá; starý skript `export_cutout_poses.cjs` je jen export původní předlohy.

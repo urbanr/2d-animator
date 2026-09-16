@@ -7,12 +7,63 @@
   const mirror=p=>({x:512-p.x,y:p.y});
   const angleKeys=new Set(R.fields.filter(f=>f[4]==='°').map(f=>f[0]));
   const wrap=v=>((v+180)%360+360)%360-180;
+  const canFade=key=>key==='head'||/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.test(key);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  function fadeFor(part,end='start'){
+    return {strength:0,radius:Math.max(1,Math.min(...(part.size||[100,100]))*.5),direction:'outward',...part.joint_fade?.[end]};
+  }
+  function validateFade(value){
+    const obj=v=>v&&typeof v==='object'&&!Array.isArray(v);
+    if(!obj(value)||Object.keys(value).some(k=>!['start','end'].includes(k)))throw Error('Neplatný přechod spoje.');
+    for(const v of Object.values(value))if(!obj(v)||Object.keys(v).some(k=>!['strength','radius','direction'].includes(k))||
+      !Number.isFinite(v.strength)||v.strength<0||v.strength>1||!Number.isFinite(v.radius)||v.radius<1||v.radius>2000||!['outward','inward'].includes(v.direction))throw Error('Neplatný přechod spoje.');
+    return value;
+  }
+  // Alpha is evaluated in original bitmap coordinates, before any bone/bitmap transform.
+  // The inward half stays untouched; the outward half forms a feathered semicircular cap.
+  function fadeAlpha(part,x,y){
+    if(!part.joint_fade)return 1;
+    let alpha=1;
+    for(const end of ['start','end']){
+      const f=fadeFor(part,end);if(!f.strength)continue;
+      const a=part[end],b=part[end==='start'?'end':'start'],len=Math.hypot(b[0]-a[0],b[1]-a[1]);
+      const dx=x-a[0],dy=y-a[1],along=(dx*(b[0]-a[0])+dy*(b[1]-a[1]))/len;
+      if((f.direction==='outward'?along:-along)>=0)continue;
+      const t=clamp((Math.hypot(dx,dy)/f.radius-.25)/.75,0,1);
+      alpha*=1-f.strength*t*t*(3-2*t);
+    }
+    return alpha;
+  }
+  const fadedImages=new WeakMap();
+  function fadedImage(img,part,createCanvas){
+    if(!['start','end'].some(end=>fadeFor(part,end).strength))return img;
+    const signature=JSON.stringify([part.size,part.start,part.end,part.joint_fade]);
+    let cache=fadedImages.get(img);if(!cache){cache=new Map();fadedImages.set(img,cache);}
+    if(cache.has(signature))return cache.get(signature);
+    const canvas=createCanvas?createCanvas():document.createElement('canvas');
+    canvas.width=img.naturalWidth||img.width;canvas.height=img.naturalHeight||img.height;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0);
+    const data=ctx.getImageData(0,0,canvas.width,canvas.height),[w,h]=part.size;
+    for(let y=0;y<canvas.height;y++)for(let x=0;x<canvas.width;x++){
+      const i=(y*canvas.width+x)*4+3;
+      if(data.data[i])data.data[i]*=fadeAlpha(part,(x+.5)*w/canvas.width,(y+.5)*h/canvas.height);
+    }
+    ctx.putImageData(data,0,0);cache.set(signature,canvas);
+    // Slider/drag edits must not retain an unbounded number of full-size textures.
+    if(cache.size>4)cache.delete(cache.keys().next().value);
+    return canvas;
+  }
   function frameLengths(clip,index){
     return R.lengthsFor(clip,index);
   }
   function partFor(skin,key,pose){
     const part=skin.parts[key],edit=pose.part_edits?.[key]||{},offset=part.offset||[0,0];
-    return {...part,offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),
+    const joint_fade={...part.joint_fade,...edit.joint_fade};
+    if(edit.fade_mix)for(const end of ['start','end']){
+      const a={...fadeFor(part,end),...edit.fade_mix.a?.[end]},b={...fadeFor(part,end),...edit.fade_mix.b?.[end]},t=edit.fade_mix.t;
+      joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),direction:t<.5?a.direction:b.direction};
+    }
+    return {...part,joint_fade:canFade(key)?joint_fade:{},offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),
       ...Object.fromEntries(['scale','scale_x','scale_y'].map(k=>[k,(part[k]||1)*(edit[k]||1)]))};
   }
   function sample(clip,phase,smooth=true){
@@ -31,6 +82,7 @@
     for(const key of new Set([...Object.keys(pa),...Object.keys(pb)])){
       const a=pa[key]||{},b=pb[key]||{};
       p.part_edits[key]={offset:[0,1].map(i=>(a.offset?.[i]||0)+t*((b.offset?.[i]||0)-(a.offset?.[i]||0))),
+        ...(a.joint_fade||b.joint_fade?{fade_mix:{a:a.joint_fade,b:b.joint_fade,t}}:{}),
         rotation:(a.rotation||0)+t*wrap((b.rotation||0)-(a.rotation||0)),
         ...Object.fromEntries(['scale','scale_x','scale_y'].map(k=>[k,(a[k]||1)+t*((b[k]||1)-(a[k]||1))]))};
     }
@@ -84,7 +136,7 @@
       if(Math.abs(det)<1e-10)continue;
       const dx=point.x-e,dy=point.y-f;
       const x=Math.floor((d*dx-c*dy)/det*mask.width/(mask.sourceWidth||mask.width)),y=Math.floor((-b*dx+a*dy)/det*mask.height/(mask.sourceHeight||mask.height));
-      if(x>=0&&y>=0&&x<mask.width&&y<mask.height&&mask.data[(y*mask.width+x)*4+3]>8)return key;
+      if(x>=0&&y>=0&&x<mask.width&&y<mask.height&&mask.data[(y*mask.width+x)*4+3]*(options.ignoreFade?1:fadeAlpha(part,(d*dx-c*dy)/det,(-b*dx+a*dy)/det))>8)return key;
     }
     return null;
   }
@@ -93,7 +145,8 @@
     for(const key of skin.layers){
       if(options.skeletonOnly)continue;
       if(options.only&&options.only!==key)continue;
-      const part=partFor(skin,key,pose),img=images[key];if(!img||!joints[key])continue;
+      const part=partFor(skin,key,pose);if(!images[key]||!joints[key])continue;
+      const img=fadedImage(images[key],part,options.createCanvas);
       ctx.save();ctx.transform(...matrix(part,joints[key]));
       if(part.size)ctx.drawImage(img,0,0,part.size[0],part.size[1]);else ctx.drawImage(img,0,0);
       ctx.restore();
@@ -109,5 +162,5 @@
       ctx.restore();
     }
   }
-  return {sample,frameLengths,partFor,bones,matrix,moveAttachment,hitTest,draw};
+  return {sample,frameLengths,partFor,bones,matrix,moveAttachment,hitTest,draw,canFade,fadeFor,fadeAlpha,validateFade,fadedImage};
 });

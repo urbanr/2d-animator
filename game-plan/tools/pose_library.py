@@ -25,10 +25,24 @@ def bounded(value, low, high):
     return value
 
 
+def validate_joint_fade(value):
+    if not isinstance(value, dict) or set(value)-{'start', 'end'}:
+        raise ValueError('Neplatný přechod spoje.')
+    out = {}
+    for end, fade in value.items():
+        if not isinstance(fade, dict) or set(fade) != {'strength', 'radius', 'direction'} or fade['direction'] not in ('outward', 'inward'):
+            raise ValueError('Neplatný přechod spoje.')
+        out[end] = {'strength': bounded(fade['strength'], 0, 1),
+                    'radius': bounded(fade['radius'], 1, 2000), 'direction': fade['direction']}
+    return out
+
+
 def validate_part_transform(value, exception=False):
-    if not isinstance(value, dict) or set(value)-{'offset', 'rotation', 'scale', 'scale_x', 'scale_y'}:
+    if not isinstance(value, dict) or set(value)-{'offset', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
         raise ValueError('Neplatná úprava bitmapového dílu.')
     out = {}
+    if 'joint_fade' in value:
+        out['joint_fade'] = validate_joint_fade(value['joint_fade'])
     if 'offset' in value:
         if not isinstance(value['offset'], list) or len(value['offset']) != 2:
             raise ValueError('Posun musí být dvojice čísel.')

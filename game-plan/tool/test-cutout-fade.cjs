@@ -1,0 +1,38 @@
+const assert=require('node:assert/strict');
+const C=require('./cutout-rig.js'),E=require('./cutout-editor.js'),R=require('./pose-rig.js');
+const part={size:[100,160],start:[50,40],end:[50,140],joint_fade:{start:{strength:1,radius:40,direction:'outward'}}};
+assert.equal(C.fadeAlpha(part,50,40),1,'Opaque at attachment');
+assert.equal(C.fadeAlpha(part,50,0),0,'Transparent at outward curved edge');
+assert.ok(C.fadeAlpha(part,50,20)>0&&C.fadeAlpha(part,50,20)<1);
+assert.equal(C.fadeAlpha(part,50,140),1,'Hand untouched');
+assert.equal(C.fadeAlpha(part,0,120),1,'Whole inward half untouched');
+const inverse={...part,joint_fade:{start:{...part.joint_fade.start,direction:'inward'}}};
+assert.equal(C.fadeAlpha(inverse,50,0),1);assert.equal(C.fadeAlpha(inverse,50,80),0);
+const endOnly={...part,joint_fade:{end:{strength:1,radius:20,direction:'outward'}}};
+assert.equal(C.fadeAlpha(endOnly,50,40),1);assert.equal(C.fadeAlpha(endOnly,50,160),0);
+const skin={layers:['nearForearm','torso'],parts:{nearForearm:{...part,joint_fade:{}},torso:part}};
+const clip={frames:[R.neutral(),R.neutral()],fps:6};
+assert.equal(C.fadeAlpha(C.partFor(skin,'torso',{}),50,0),1,'Torso excluded even in imported data');
+let changed=E.fadeChange(clip,skin,0,'nearForearm','start',{strength:.6},'frame');
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,0))).strength,.6);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1))).strength,0);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1.5))).strength,.3,'Last to first fade interpolation');
+changed=E.fadeChange(changed.clip,changed.skin,1,'nearForearm','start',{strength:.2},'all');
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,0))).strength,.8);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1))).strength,.2);
+E.validateEdits(changed.clip,changed.skin);
+const reset=E.resetFrame(changed.clip,0);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(reset,0))).strength,.2);
+assert.deepEqual(clip,{frames:[R.neutral(),R.neutral()],fps:6});assert.deepEqual(skin.parts.nearForearm.joint_fade,{});
+assert.deepEqual(E.fadeChange(clip,skin,0,'torso','start',{strength:1},'all'),{clip,skin});
+for(const bad of [null,[],{x:{}},{start:{strength:NaN,radius:4,direction:'outward'}},{start:{strength:.5,radius:0,direction:'outward'}}])assert.throws(()=>C.validateFade(bad));
+// Actual RGBA multiplication, original retained, bounded cache, detail and game coordinates.
+function surface(w,h){let pixels;return {width:w,height:h,getContext:()=>({drawImage(){},getImageData:()=>({data:new Uint8ClampedArray(w*h*4).fill(255)}),putImageData:d=>{pixels=d.data;}}),get pixels(){return pixels;}};}
+const img={width:100,height:160},masked=C.fadedImage(img,part,()=>surface(100,160));
+assert.ok(masked.pixels[3]<10);assert.equal(masked.pixels[(140*100+50)*4+3],255);
+assert.equal(C.fadedImage(img,part,()=>{throw Error('Cache miss');}),masked);
+const low=C.fadedImage({width:10,height:16},part,()=>surface(10,16));
+assert.equal(low.pixels[(14*10+5)*4+3],255);assert.ok(low.pixels[3]<20);
+const disabled={...part,joint_fade:{start:{...part.joint_fade.start,strength:0}}};
+assert.equal(C.fadedImage(img,disabled,()=>{throw Error('Unnecessary surface');}),img);
+console.log('PASS: semicircle alpha, direction, ends, scope, reset, cyclic interpolation, immutable sources and both texture resolutions.');

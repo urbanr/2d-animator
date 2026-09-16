@@ -93,6 +93,26 @@
     }
     return {clip:out,skin:s};
   }
+  function fadeChange(clip,skin,index,key,end,values,scope='frame'){
+    const out=copy(clip),s=copy(skin);
+    if(!C.canFade(key)||!s.parts[key]||!['start','end'].includes(end))return {clip:out,skin:s};
+    const effective=C.fadeFor(C.partFor(skin,key,C.sample(clip,index,false)),end);
+    const wanted={...effective,...values};C.validateFade({[end]:wanted});
+    if(scope==='all'){
+      // Apply the same delta to existing exceptions, retaining their differences.
+      const change=old=>({...old,
+        strength:R.clamp(old.strength+wanted.strength-effective.strength,0,1),
+        radius:R.clamp(old.radius+wanted.radius-effective.radius,1,2000),
+        direction:values.direction??old.direction});
+      s.parts[key].joint_fade??={};s.parts[key].joint_fade[end]=change(C.fadeFor(skin.parts[key],end));
+      for(const edit of Object.values(out.frame_edits||{}))if(edit.parts?.[key]?.joint_fade?.[end]){
+        edit.parts[key].joint_fade[end]=change(edit.parts[key].joint_fade[end]);
+      }
+    }else{
+      const e=editAt(out,index);e.parts??={};e.parts[key]??={};e.parts[key].joint_fade??={};e.parts[key].joint_fade[end]=wanted;
+    }
+    return {clip:out,skin:s};
+  }
   function resetFrame(clip,index){
     const out=copy(clip),e=out.frame_edits?.[index];if(!e)return out;
     Object.assign(out.frames[index],e.pose_base||{});delete out.frame_edits[index];return out;
@@ -114,7 +134,8 @@
       for(const [k,v] of Object.entries(e.pose_base||{}))if(!fields[k]||!number(v,fields[k][2],fields[k][3]))fail();
       for(const [k,v] of Object.entries(e.lengths||{}))if(!(k in R.defaultLengths())||!number(v,.02,50)||!number(R.lengthsFor(clip)[k]*v,5,250))fail();
       for(const [k,v] of Object.entries(e.parts||{})){
-        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','scale','scale_x','scale_y','rotation'].includes(k)))fail();
+        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','scale','scale_x','scale_y','rotation','joint_fade'].includes(k)))fail();
+        if(v.joint_fade!==undefined)C.validateFade(v.joint_fade);
         if(v.offset!==undefined&&(!Array.isArray(v.offset)||v.offset.length!==2||v.offset.some(n=>!number(n,-4000,4000))))fail();
         if(v.rotation!==undefined&&!number(v.rotation,-180,180))fail();
         for(const axis of ['scale','scale_x','scale_y'])if(v[axis]!==undefined&&!number(v[axis],.01,100))fail();
@@ -122,5 +143,5 @@
       }
     }
   }
-  return {poseChange,lengthChange,boneForHandle,dragSkeleton,partChange,resetFrame,partHandles,validateEdits};
+  return {poseChange,lengthChange,boneForHandle,dragSkeleton,partChange,fadeChange,resetFrame,partHandles,validateEdits};
 });

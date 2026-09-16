@@ -18,6 +18,7 @@ ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
+ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
 elements.editScope.value='frame';elements.editTarget.value='skeleton';elements.editTool.value='rotate';
 elements.edit.checked=true;elements.resizeBones.checked=true;
@@ -238,5 +239,29 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const untouched=copy(gameStore.characters['legacy-a']);
  promptAnswers.push('Starší duplicita','2');confirmAnswers.push(true);await elements.saveCharacter.onclick();
  assert.equal(characterPosts.at(-1).id,'legacy-b');assert.deepEqual(gameStore.characters['legacy-a'],untouched);
- console.log('PASS: cutout editing, name collision confirmation/cancel/retry, Save/Save As, draft restore, pan/pinch, game textures and export.');
+ // Joint transparency is reversible, scoped, persisted and used by both exports.
+ elements.zoomReset.onclick();elements.frames.children[0].onclick();elements.renderMode.value='detail';elements.renderMode.onchange();
+ elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';
+ elements.fadePreset.onclick();await elements.updateCharacter.onclick();
+ const faded=copy(gameStore.characters['legacy-b']),fadedPart=faded.skin.parts.nearForearm;
+ assert.equal(fadedPart.joint_fade.start.strength,.65);assert.equal(fadedPart.joint_fade.end,undefined);
+ assert.equal(faded.skin.parts.torso.joint_fade,undefined);assert.equal(faded.skin.parts.backpack.joint_fade,undefined);
+ const fp=C.sample(faded.animation,0,false),fpart=C.partFor(faded.skin,'nearForearm',fp),fm=C.matrix(fpart,C.bones(fp).nearForearm);
+ const local=fpart.start.map((v,i)=>(v+fpart.end[i])/2);
+ const right={button:2,pointerId:99,clientX:fm[0]*local[0]+fm[2]*local[1]+fm[4],clientY:fm[1]*local[0]+fm[3]*local[1]+fm[5],preventDefault(){}};
+ elements.stage.onpointerdown(right);elements.stage.onpointermove({...right,clientY:right.clientY+30});elements.stage.onpointerup(right);
+ await elements.updateCharacter.onclick();
+ assert.ok(Math.abs(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.start.strength-.85)<1e-8);
+ assert.deepEqual(gameStore.characters['legacy-b'].animation.frames,faded.animation.frames);
+ elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,faded.skin);
+ elements.redo.onclick();await elements.updateCharacter.onclick();
+ elements.editScope.value='frame';elements.fadeEnd.value='end';elements.fadeEnd.onchange();
+ elements.fadeStrength.value='25';elements.fadeStrength.onchange();await elements.updateCharacter.onclick();
+ assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,.25);
+ assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end,undefined);
+ elements.exportFrame.onclick();elements.exportSheet.onclick();
+ elements.renderMode.value='game';elements.renderMode.onchange();elements.exportFrame.onclick();elements.exportSheet.onclick();
+ elements.fadeClear.onclick();await elements.updateCharacter.onclick();
+ assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,0);
+ console.log('PASS: cutout editor, scoped right-drag transparency, undo/redo, Save/Save As, draft restore, pan/pinch and both PNG export modes.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -8,6 +8,25 @@ from pose_library import LIMITS
 
 
 class CharacterTests(unittest.TestCase):
+    def test_joint_fade_roundtrip_and_invalid_input(self):
+        fade = {'start': {'strength': .65, 'radius': 40, 'direction': 'outward'}}
+        payload = copy.deepcopy(self.payload)
+        payload['part_transforms'] = {'head': {'joint_fade': fade}}
+        payload['animation']['frame_edits'] = {'0': {'parts': {'head': {'joint_fade': {
+            'end': {'strength': .2, 'radius': 18, 'direction': 'inward'}}}}}}
+        saved = save_character(payload, self.root)
+        self.assertEqual(saved['skin']['parts']['head']['joint_fade'], fade)
+        self.assertEqual(saved['animation']['frame_edits'], payload['animation']['frame_edits'])
+        self.assertEqual(json.loads((self.root/'zombie/skin.json').read_text()), self.skin)
+        before = (self.root/'game-characters.json').read_bytes()
+        for bad in [None, [], {'file': 'evil'}, {'start': {'strength': True, 'radius': 40, 'direction': 'outward'}},
+                    {'start': {'strength': .5, 'radius': 0, 'direction': 'outward'}},
+                    {'start': {'strength': 2, 'radius': 40, 'direction': 'outward'}},
+                    {'start': {'strength': .5, 'radius': 40, 'direction': 'sideways'}}]:
+            with self.assertRaises(ValueError):
+                save_character({**payload, 'part_transforms': {'head': {'joint_fade': bad}}}, self.root)
+            self.assertEqual((self.root/'game-characters.json').read_bytes(), before)
+
     def test_duplicate_name_requires_explicit_update(self):
         first=save_character(self.payload,self.root)
         path=self.root/'game-characters.json'

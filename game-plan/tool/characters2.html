@@ -33,6 +33,15 @@
 <div class="row"><button id="play" class="primary" disabled>Přehrát</button><button id="previous" disabled aria-label="Předchozí snímek">←</button><span id="frameLabel">Načítání…</span><button id="next" disabled aria-label="Následující snímek">→</button></div>
 <div class="zoom-tools"><button id="zoomOut">−</button><span id="zoomLabel">100 %</span><button id="zoomIn">+</button><button id="zoomReset">Reset pohledu</button></div>
 <label class="row">Zobrazení <select id="renderMode"><option value="detail">Detailní originály</option><option value="game">Herní pixely · 192 × 210 px</option></select></label>
+<details id="fadePanel" open><summary>Varianta: průhlednost spojů</summary>
+<p class="small">Vyber bitmapový díl v náhledu nebo v seznamu. Přechod upravuje jen jeho spoj, ne celou bitmapu. Tělo a doplněk vynecháváme.</p>
+<div class="row"><button id="fadePreset">Zkusit přechody na všech spojích</button><span id="fadePart" class="small"></span></div>
+<div class="row"><label>Konec <select id="fadeEnd"><option value="start">Uchycení (např. loket)</option><option value="end">Druhý konec (jen ručně)</option></select></label>
+<label>Směr <select id="fadeDirection"><option value="outward">Ven ke spojovanému dílu</option><option value="inward">Obráceně dovnitř dílu</option></select></label></div>
+<div class="row"><label>Zprůhlednění <input id="fadeStrength" type="range" min="0" max="100" step="1" value="0"></label><output id="fadeValue">0 %</output>
+<label>Poloměr <input id="fadeRadius" type="number" min="1" max="2000" step="1" style="width:80px"></label><button id="fadeClear">Bez přechodu na tomto konci</button></div>
+<p class="small">Pravé tlačítko + tah na dílu: dolů = průhlednější, nahoru = neprůhlednější. Platí pro snímek / celou animaci podle přepínače. Zpět vrátí celý tah. Poloměr je v pixelech původní bitmapy; druhý konec se sám nemění. Tlačítko „všechny spoje“ nastaví společný základ celé postavy.</p>
+</details>
 <div class="row"><button id="up" disabled>Postava ↑</button><button id="down" disabled>Postava ↓</button><label>Výška <input id="bodyY" type="number" min="-100" max="100" step="0.1" value="0" style="width:80px" disabled></label><label>Strana <select id="side"><option value="">Obě</option><option value="near">Bližší · červená</option><option value="far">Vzdálenější · zelená</option></select></label></div>
 <label class="stack">Předklon trupu <input id="lean" type="range" min="-45" max="45" step="1" value="22" disabled></label>
 <div id="frames" aria-label="Snímky animace"></div>
