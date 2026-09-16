@@ -76,9 +76,9 @@ Bitmapové PNG se nekopírují; záznam na ně odkazuje. Nové výtvarné varian
 proto patří do nové složky skinu, ne přes původní PNG. Tento katalog zatím
 není automaticky napojený na Swift/iPhone přehrávač ani původní sprite katalog.
 
-## Ovládání Póz i Postavy2
+## Ovládání Póz i Animátor
 
-### Panel přímo v Postavy2 (2026-09-16)
+### Panel přímo v Animátor (2026-09-16)
 
 Panel lze táhnout za záhlaví a sbalit tlačítkem −. Je součástí okna, nikoli
 bitmapy: zoom jej nezvětšuje a nikdy nevstupuje do PNG. Vše vybíráš jedním klikem:
@@ -135,17 +135,17 @@ kombinace převedl jednorázový migrační nástroj do společné knihovny.
 - Kolečko nad náhledem přibližuje/oddaluje. Reset zoomu vrací 100 %, nemění pózu.
 - Všechny snímky jsou v jednom vodorovně posuvném řádku.
 - Editor Póz zatím zachovává změnu délky běžným tahem pro celou animaci.
-  Bližší a vzdálenější končetina mají vlastní délky. Postavy2 používá panel výše.
+  Bližší a vzdálenější končetina mají vlastní délky. Animátor používá panel výše.
 - Ctrl + tah za konec ramen/pánve posune jen tento úchyt; opačný konec i střed
-  zůstávají. V Postavy2 rozsah určuje panel, v Pózách jde o aktuální snímek.
-- V Postavy2 je „Upravit klouby myší“ standardně zapnuté. Přehrávání volbu
+  zůstávají. V Animátor rozsah určuje panel, v Pózách jde o aktuální snímek.
+- V Animátor je „Upravit klouby myší“ standardně zapnuté. Přehrávání volbu
   nevypíná, úchyty sledují i plynulou animaci a pohyb vpřed. Uchopení kloubu
   přehrávání zastaví. Vybrat lze bližší/vzdálenější stranu.
   Výška je pod animací, pod ní předklon; Zpět/Znovu přímo v panelu. Šedá nápověda uvnitř plochy
   shrnuje tah, Ctrl a zoom; není součástí exportovaných obrázků.
 - Holeně se vykreslují před stehny příslušné nohy.
 
-### Postavy2: uchycení, pořadí, posun pohledu a rychlost
+### Animátor: uchycení, pořadí, posun pohledu a rychlost
 
 - Seznam dílů je **zezadu dopředu**. Vyber díl a tlačítky ↑ Dozadu / ↓ Dopředu
   změň pořadí. Pořadí se nepřetáčí přes konec seznamu a ukládá se do bitmapového
@@ -283,7 +283,7 @@ barevné obrysy dál rozlišují stranu. Výběr zůstává při přepínání s
 i po puštění myši a přenáší se mezi kostrou a odpovídajícím bitmapovým dílem.
 Bitmapový výběr dál používá původní obdélníkový rámeček.
 
-Postavy2 nabízí **Smazat vybranou postavu / animaci** a **Koš postav a animací**.
+Animátor nabízí **Smazat vybranou postavu / animaci** a **Koš postav a animací**.
 Editor Pózy má **Smazat vybranou animaci** a **Smazat pózu** u každé karty.
 V obou místech lze smazané položky obnovit. Smazání vyžaduje potvrzení,
 kontroluje aktuální verzi záznamu a atomicky jej přesouvá do `trash` téhož

@@ -13,6 +13,26 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 
 Tyto katalogy se nesmějí znovu sloučit do jednoho souboru. Jednorázový převod `tools/reorganize_graphics_data.py` odstranil staré postavy, hotové animace, pózy, archivy i koše, zachoval tři pojmenované kosterní animace a jednu bitmapovou předlohu Běžce.
 
+### Stav po rozdělení 2026-09-16
+
+- `postavy`: 0 uložených postav, prázdný koš.
+- `animace`: 0 hotových animací, prázdný koš.
+- `kostry`: 3 pojmenované kosterní animace, 0 samostatných póz, prázdný koš.
+- `bitmapove-predlohy`: jediná předloha `bezec-zombie-v1`, 13 vykreslovaných dílů.
+- `bitmapove-sekvence`: všechny původní hotové snímkové animace, jejich varianty, ruční posuny a generovaný herní katalog.
+- `levely`: všechny levelové obrázky, varianty, linky podlahy a generovaný herní katalog.
+
+Velké PNG a další obrazové podklady byly už před rozdělením lokální nesledované soubory. Zůstávají fyzicky v nových adresářích, ale nejsou automaticky přidány do Gitu. Git sleduje kód, dokumentaci a hlavní JSON katalogy. Přepnutí větve proto nesmí nesledované obrazové podklady mazat ani přesouvat zpět.
+
+### Pravidla cest
+
+- Každá cesta ke klasické snímkové animaci začíná `graphics/bitmapove-sekvence/`.
+- Každá cesta k rozsekané bitmapové předloze začíná `graphics/bitmapove-predlohy/`.
+- Cesty levelů začínají `graphics/levely/`; kostry, hotové animace a postavy používají své samostatné katalogy uvedené výše.
+- Generovaný `tool/sprite-variants.generated.js` používá z HTML cestu `../graphics/bitmapove-sekvence/...`.
+- Pevně zadané cesty Chuchvalce v `tool/gallery.html` a `tool/index.html` musí rovněž obsahovat podadresář `bitmapove-sekvence`; nesmějí mířit přímo do `graphics/chuchvalec/`.
+- Po přesunu se nesmí znovu objevit staré cesty `graphics/characters2/`, `graphics/poses/` ani `graphics/levels/`.
+
 ## Pojmy a vlastnictví dat
 
 ### Bitmapová předloha (`skin`)
@@ -96,6 +116,15 @@ Tyto katalogy se nesmějí znovu sloučit do jednoho souboru. Jednorázový pře
 - `3` nebo `š`: Posun → Rotace → Velikost → Posun.
 - Mezerník: přehrát nebo pozastavit. `Y`: předchozí snímek. `X` nebo `C`: další snímek. `WASD`: posun. `Q` / `E`: rotace.
 - Zkratky neplatí při psaní do pole, výběru nebo textové oblasti. Přepínače v záhlaví a uvnitř rozbaleného panelu ovládají stejný stav.
+
+### Ikony a navigace
+
+- Režim Kostra má v záhlaví ikonu dvou spojených čar s kloubem.
+- Režim Bitmapa má tečkovanou ikonu; obdélník se pro tento režim už nepoužívá.
+- Hlavní preview má samostatné sekce **Bitmapové sekvence**, **Bitmapové předlohy**, **Animátor**, **Levely** a **Kostry**.
+- „Bitmapové sekvence“ jsou původní galerie hotových bitmapových snímků. „Bitmapové předlohy“ jsou rozsekané zdroje pro Animátor a aktuálně zobrazují jen Běžce.
+- Starý název **Postavy2** se v uživatelském rozhraní ani aktuální dokumentaci nepoužívá. Kompatibilní URL alias může zůstat pouze v routeru.
+- Lokální editor se otevírá přes `http://127.0.0.1:8765/tool/preview.html`; přímé `file://` se přesměruje na místní server, protože ukládání používá jeho API.
 
 ## Známá omezení a další záměry
 

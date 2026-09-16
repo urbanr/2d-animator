@@ -64,6 +64,11 @@ produkční výběr. Nový pokus vytvoří ve `variants/<název>/`, zapíše ho 
 `graphics/bitmapove-sekvence/sprite-variants.json` a obnoví seznam v galerii. Existující varianta
 se nikdy nepřepisuje; pro jiné parametry je nutný nový název.
 
+Všechny obrázkové cesty vytvořené pro tuto galerii musí obsahovat podadresář
+`graphics/bitmapove-sekvence/`. Platí to i pro ručně zapsané odkazy Chuchvalce
+v `tool/gallery.html` a `tool/index.html`; přímá cesta `graphics/chuchvalec/`
+je po rozdělení dat neplatná.
+
 Příklad alternativy odvozené z produkčního profilu, ale s jinou černotou:
 
 ```sh
