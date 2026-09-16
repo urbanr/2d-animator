@@ -37,8 +37,10 @@
     for(const f of geometry||['start','end'].map(end=>fadeGeometry(part,end))){
       if(!f.strength)continue;
       const dx=x-f.center[0],dy=y-f.center[1],along=dx*f.ux+dy*f.uy;
-      if(along>=0)continue;
-      const t=clamp((Math.hypot(dx,dy)/f.radius-.25)/.75,0,1);
+      const radius=Math.hypot(dx,dy);
+      // The mask is a bounded half-disc, not an infinite outward half-plane.
+      if(along>=0||radius>f.radius)continue;
+      const t=clamp((radius/f.radius-.25)/.75,0,1);
       alpha*=1-f.strength*t*t*(3-2*t);
     }
     return alpha;

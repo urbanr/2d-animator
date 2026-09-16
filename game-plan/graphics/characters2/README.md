@@ -20,8 +20,10 @@ Rozlišení každého dílu vychází z jeho měřítka při uchycení na neutr�
 díly proto nejsou všechny uměle velké 192 px. Bitmapové souřadnice úchytů a
 uživatelských offsetů zůstávají původní. Renderer kreslí malou texturu do
 původního lokálního obdélníku a aplikuje stejnou transformaci jako u detailu.
-Herní režim skládá postavu na opravdové plátno 192 × 210 bez vyhlazování a teprve
-to zvětšuje pro editaci. Má i odpovídající alfa masku pro výběr Option tahem.
+Herní režim skládá postavu na opravdové plátno 192 × 210 s bilineárním vyhlazováním
+(Canvas smoothing, kvalita low) a vyhlazeně ho zvětšuje pro editaci. Stejné filtrování
+mají miniatury i PNG export. Zdrojové díly se nemění. Má i odpovídající alfa masku
+pro výběr Option tahem.
 
 Malý kontrolní náhled má nově 192 × 210 pixelů. PNG export respektuje režim:
 detail 512 × 560, herní 192 × 210, list osmi herních snímků 768 × 420. Zoom,
@@ -236,6 +238,8 @@ poloměr a směr umožňují masku přizpůsobit. Při zobrazené kostře mají 
 aktivní konce tyrkysový symbol půlkruhu (včetně přehrávání), nikoli jen vybraný díl.
 
 Renderer násobí původní alfu maskou v souřadnicích zdrojového obrázku.
+Maska působí jen uvnitř půlkruhu včetně jeho oblouku. Za poloměrem ani na druhé
+straně rovné hrany alfu nemění; nezprůhledňuje tedy celý prostor za spojem.
 Detail, herní díly, miniatura, snímky i oba PNG exporty používají stejný postup.
 RGB a originální PNG soubory se nikdy nemění. Textury jsou omezeně cachované;
 PNG export neobsahuje tyrkysovou pomůcku. Swift prototyp tento pokus zatím

@@ -7,10 +7,11 @@ const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
 const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}}};
 const gameStore={characters:{}};
 const translations=[];
+const smoothingWrites=[];
 const paint=new Proxy({},{get:(target,key)=>key==='translate'?(x,y)=>translations.push([x,y]):key==='getImageData'?(x,y,width,height)=>({width,height,data:new Uint8ClampedArray(width*height*4).fill(255)}):()=>{}});
 function element(){return {children:[],style:{},value:'',textContent:'',disabled:false,checked:false,classList:{toggle(){}},
  append(...a){this.children.push(...a);},replaceChildren(){this.children=[];},setAttribute(k,v){this[k]=v;},
- getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
+ getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='imageSmoothingEnabled'||key==='imageSmoothingQuality'){owner[key]=value;smoothingWrites.push([key,value]);}if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
  setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(){this.capture=null;},
  toBlob(fn){exportedSizes.push([this.width,this.height]);fn(new Blob(['png']));},click(){}};}
 const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','gameCharacter','characterName','saveCharacter','undo','play','previous','next','reload','up','down','save','exportFrame','exportSheet','exportRig','parts'];
@@ -162,10 +163,14 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.importDraft.files=[{text:async()=>JSON.stringify({skin:gameStore.characters['game-1'].skin,clip:store.clips['saved-7'],motion:{variation_percent:17}})}];
  await elements.importDraft.onchange();assert.match(elements.status.textContent,/Záloha načtena/);assert.equal(Number(elements.spread.value),17);
  const unchanged=JSON.stringify(store);
+ smoothingWrites.length=0;
  elements.renderMode.value='game';elements.renderMode.onchange();
- assert.equal(elements.stage.style.imageRendering,'pixelated');
+ assert.equal(elements.stage.style.imageRendering,'auto');
+ assert.equal(elements.stage.imageSmoothingEnabled,true);assert.equal(elements.mini.imageSmoothingEnabled,true);
+ assert.ok(smoothingWrites.some(([key,value])=>key==='imageSmoothingQuality'&&value==='low'));
  assert.equal(elements.mini.width,192);assert.equal(elements.mini.height,210);
  elements.exportFrame.onclick();elements.exportSheet.onclick();
+ assert.ok(!smoothingWrites.some(([key,value])=>key==='imageSmoothingEnabled'&&value===false),'Game previews and exports never disable filtering');
  assert.deepEqual(exportedSizes.slice(-2),[[192,210],[768,420]]);
  elements.renderMode.value='detail';elements.renderMode.onchange();elements.exportFrame.onclick();
  assert.deepEqual(exportedSizes.at(-1),[512,560]);assert.equal(JSON.stringify(store),unchanged);

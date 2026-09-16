@@ -12,9 +12,9 @@
   function paintCharacter(context,pose,options={}){
     if(!pixelMode()){drawRig(context,skin,images,pose,options);return;}
     const low=pixelFrame.getContext('2d');low.clearRect(0,0,pixelFrame.width,pixelFrame.height);
-    low.save();low.imageSmoothingEnabled=false;low.scale(pixelFrame.width/512,pixelFrame.height/560);
+    low.save();low.imageSmoothingEnabled=true;low.imageSmoothingQuality='low';low.scale(pixelFrame.width/512,pixelFrame.height/560);
     drawRig(low,skin,gameImages,pose,{lengths:options.lengths});low.restore();
-    context.save();context.imageSmoothingEnabled=false;context.drawImage(pixelFrame,0,0,512,560);context.restore();
+    context.save();context.imageSmoothingEnabled=true;context.imageSmoothingQuality='low';context.drawImage(pixelFrame,0,0,512,560);context.restore();
     if(options.skeleton)drawRig(context,skin,images,pose,{...options,skeletonOnly:true});
   }
   let skin,library,clip,phase=0,playing=false,visible=true,last=0,dirty=false,drag=null,history=[],future=[],saving=false;
@@ -256,7 +256,7 @@
   stage.onwheel=e=>{e.preventDefault();setZoom(window.EditorView.zoom(zoom,e.deltaY),Number.isFinite(e.clientX)?screen(e):undefined);};
   stage.oncontextmenu=e=>e.preventDefault(); // Ctrl-drag is an edit, including on macOS.
   $('zoomOut').onclick=()=>setZoom(zoom/1.2);$('zoomIn').onclick=()=>setZoom(zoom*1.2);$('zoomReset').onclick=()=>{pan={x:0,y:0};zoom=1;draw();};
-  $('renderMode').onchange=()=>{stage.style.imageRendering=pixelMode()?'pixelated':'auto';thumbnails();draw();};
+  $('renderMode').onchange=()=>{stage.style.imageRendering='auto';thumbnails();draw();};
   $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);thumbnails();draw();}catch(e){status(e.message,true);}};
   $('layerOrder').onchange=()=>{layerOptions();$('editTarget').value='bitmap';cursor();draw();};
   function reorder(step){const key=$('layerOrder').value,i=skin.layers.indexOf(key),j=i+step;if(i<0||j<0||j>=skin.layers.length)return;remember();[skin.layers[i],skin.layers[j]]=[skin.layers[j],skin.layers[i]];skinDirty=true;mark();layerOptions(key);thumbnails();draw();}
@@ -510,8 +510,8 @@
       select(id);skinDirty=true;mark();status('Záloha načtena. Ulož ji jako postavu; původní soubory se nezměnily.');
     }catch(e){status(e.message,true);}finally{$('importDraft').value='';}
   };
-  $('exportFrame').onclick=()=>{const c=document.createElement('canvas');c.width=pixelMode()?pixelFrame.width:512;c.height=pixelMode()?pixelFrame.height:560;const x=c.getContext('2d');x.scale(c.width/512,c.height/560);x.imageSmoothingEnabled=!pixelMode();drawRig(x,skin,activeImages(),C.sample(clip,phase,$('smooth').checked));exportCanvas(c,pixelMode()?'postava-game-192.png':'postava-detail.png');};
-  $('exportSheet').onclick=()=>{const c=document.createElement('canvas'),w=pixelMode()?pixelFrame.width:512,h=pixelMode()?pixelFrame.height:560;c.width=4*w;c.height=Math.ceil(clip.frames.length/4)*h;const x=c.getContext('2d');x.imageSmoothingEnabled=!pixelMode();clip.frames.forEach((p,i)=>{x.save();x.translate(i%4*w,Math.floor(i/4)*h);x.scale(w/512,h/560);drawRig(x,skin,activeImages(),C.sample(clip,i,false));x.restore();});exportCanvas(c,pixelMode()?'postava-game-192-sheet.png':'postava-detail-sheet.png');};
+  $('exportFrame').onclick=()=>{const c=document.createElement('canvas');c.width=pixelMode()?pixelFrame.width:512;c.height=pixelMode()?pixelFrame.height:560;const x=c.getContext('2d');x.scale(c.width/512,c.height/560);x.imageSmoothingEnabled=true;x.imageSmoothingQuality='low';drawRig(x,skin,activeImages(),C.sample(clip,phase,$('smooth').checked));exportCanvas(c,pixelMode()?'postava-game-192.png':'postava-detail.png');};
+  $('exportSheet').onclick=()=>{const c=document.createElement('canvas'),w=pixelMode()?pixelFrame.width:512,h=pixelMode()?pixelFrame.height:560;c.width=4*w;c.height=Math.ceil(clip.frames.length/4)*h;const x=c.getContext('2d');x.imageSmoothingEnabled=true;x.imageSmoothingQuality='low';clip.frames.forEach((p,i)=>{x.save();x.translate(i%4*w,Math.floor(i/4)*h);x.scale(w/512,h/560);drawRig(x,skin,activeImages(),C.sample(clip,i,false));x.restore();});exportCanvas(c,pixelMode()?'postava-game-192-sheet.png':'postava-detail-sheet.png');};
   $('exportRig').onclick=()=>download(new Blob([JSON.stringify({schema_version:1,skin,asset_base:'graphics/characters2/'+skinCatalog.skins[$('skinSelect').value].path.replace(/[^/]+$/,''),clip:{...copy(clip),rig_lengths:R.lengthsFor(clip),move_speed_pt_s:M.speed(clip)},motion:{variation_percent:spread,coupled_cadence:true,sample_once_per_actor:true},rig_units_per_game_point:M.UNITS_PER_POINT,interpolation:'shortest-angle',frames_include_endpoint_duplicate:false},null,2)],{type:'application/json'}),'postava-cutout.json');
   window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
   window.addEventListener('message',e=>{if(e.source===parent&&e.origin===location.origin&&e.data?.type==='preview-visibility'){visible=Boolean(e.data.visible);last=0;}});
