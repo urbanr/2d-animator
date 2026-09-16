@@ -21,7 +21,22 @@ class GraphicsDataBanksTests(unittest.TestCase):
         self.assertEqual(animations['trash'], {})
         self.assertEqual(characters['characters'], {})
         self.assertEqual(characters['trash'], {})
-        self.assertEqual(list(templates['skins']), ['bezec-zombie-v1'])
+        self.assertEqual(
+            list(templates['skins']),
+            ['bezec-zombie-v1', 'soudruh-generalissimus-v1'],
+        )
+        self.assertEqual(
+            list(templates['templates']),
+            ['bezec-zombie-v1', 'soudruh-generalissimus-v1'],
+        )
+        general = templates['templates']['soudruh-generalissimus-v1']
+        self.assertTrue(general['animator_ready'])
+        skin = json.loads((graphics / 'bitmapove-predlohy' / general['path']).read_text())
+        self.assertEqual(len(skin['parts']), 14)
+        self.assertEqual(set(skin['layers']), set(skin['parts']))
+        for part in skin['parts'].values():
+            self.assertEqual(len(part['start']), 2)
+            self.assertEqual(len(part['end']), 2)
 
 
 if __name__ == '__main__':

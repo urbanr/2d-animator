@@ -111,7 +111,7 @@
   $('fadeAngle').onchange=()=>{const v=Number($('fadeAngle').value);if(Number.isFinite(v))changeFade({angle:R.clamp(v,-180,180)});};
   function layerOptions(selected=$('layerOrder').value){
     $('layerOrder').replaceChildren();for(const [i,key] of skin.layers.entries()){
-      if(!skin.parts[key]||['pelvis','shoulders'].includes(key))continue;
+      if(!skin.parts[key]||key==='shoulders')continue;
       const o=document.createElement('option');o.value=key;o.textContent=`${i+1}. ${skin.parts[key].label}`;$('layerOrder').append(o);
     }
     $('layerOrder').value=skin.layers.includes(selected)?selected:skin.layers[skin.layers.length-1];
@@ -235,11 +235,11 @@
   }
   async function loadSkin(id,snapshot){
     const entry=skinCatalog.skins[id];if(!entry)throw Error('Neznámá bitmapová předloha');
-    skinURL=new URL('../graphics/bitmapove-predlohy/'+entry.path,location.href);skin=copy(snapshot||await getJSON(skinURL));skin.layers=skin.layers.filter(k=>!['pelvis','shoulders'].includes(k));skinDirty=false;
+    skinURL=new URL('../graphics/bitmapove-predlohy/'+entry.path,location.href);skin=copy(snapshot||await getJSON(skinURL));skin.layers=skin.layers.filter(k=>k!=='shoulders');skinDirty=false;
     if(!snapshot)for(const key of skin.layers.filter(C.canFade))for(const end of ['start','end']){const part=skin.parts[key];part.joint_fade??={};part.joint_fade[end]??={...C.fadeFor(part,end),strength:.65};}
     $('parts').replaceChildren();for(const key of Object.keys(images)){delete images[key];delete hitMasks[key];delete gameImages[key];delete gameMasks[key];}
     gameManifest=null;
-    await Promise.all(Object.entries(skin.parts).filter(([key])=>!['pelvis','shoulders'].includes(key)).map(async([key,part])=>{
+    await Promise.all(Object.entries(skin.parts).filter(([key])=>skin.layers.includes(key)).map(async([key,part])=>{
       const img=new Image();img.src=new URL(part.file,skinURL).href;await img.decode();images[key]=img;
       const maskCanvas=document.createElement('canvas');maskCanvas.width=img.naturalWidth;maskCanvas.height=img.naturalHeight;
       const maskContext=maskCanvas.getContext('2d',{willReadFrequently:true});maskContext.drawImage(img,0,0);
@@ -261,17 +261,19 @@
     $('renderMode').disabled=!gameManifest;
     if(!gameManifest)$('renderMode').value='detail';
     $('skinSelect').value=id;
+    $('nearLegend').textContent='Bližší: '+(skin.parts.nearFoot?.label||'díly');
+    $('farLegend').textContent='Vzdálenější: '+(skin.parts.farFoot?.label||'díly');
     layerOptions();
   }
   function bitmapSnapshot(){
-    const layers=skin.layers.filter(key=>!['pelvis','shoulders'].includes(key));
+    const layers=skin.layers.filter(key=>key!=='shoulders');
     return {layers:copy(layers),parts:Object.fromEntries(layers.map(key=>[key,{offset:copy(skin.parts[key].offset||[0,0]),rotation:skin.parts[key].rotation||0,
       ...(skin.parts[key].pivot_offset?{pivot_offset:copy(skin.parts[key].pivot_offset)}:{}),...(skin.parts[key].joint_fade?{joint_fade:copy(skin.parts[key].joint_fade)}:{}),
       ...Object.fromEntries(['scale','scale_x','scale_y'].map(axis=>[axis,skin.parts[key][axis]||1]))}]))};
   }
   function applyBitmap(bitmap){
     if(!bitmap?.layers||!bitmap?.parts)return;
-    const active=skin.layers.filter(key=>!['pelvis','shoulders'].includes(key));
+    const active=skin.layers.filter(key=>key!=='shoulders');
     if(bitmap.layers.length!==active.length||bitmap.layers.some(key=>!active.includes(key)))return;
     skin.layers=copy(bitmap.layers);for(const key of skin.layers)if(bitmap.parts[key])Object.assign(skin.parts[key],copy(bitmap.parts[key]));layerOptions();
   }
@@ -710,7 +712,7 @@
       const allowedLimits=R.defaultJointLimits();for(const [key,pair] of Object.entries(c.joint_limits||{}))if(!(key in allowedLimits)||!Array.isArray(pair)||pair.length!==2||pair.some(v=>!Number.isFinite(v)||v<-180||v>180)||pair[0]>pair[1])throw Error('Neplatné limity kloubů v záloze.');
       c.joint_limits=R.jointLimitsFor(c);
       const base=await getJSON(new URL('../graphics/bitmapove-predlohy/'+skinCatalog.skins[s.id].path,location.href));
-      const keys=base.layers.filter(k=>!['pelvis','shoulders'].includes(k)),layers=s.layers.filter(k=>!['pelvis','shoulders'].includes(k));
+      const keys=base.layers.filter(k=>k!=='shoulders'),layers=s.layers.filter(k=>k!=='shoulders');
       if(layers.length!==keys.length||new Set(layers).size!==keys.length||layers.some(k=>!keys.includes(k)))throw Error('Neplatné pořadí dílů.');
       base.layers=layers;
       for(const k of keys){

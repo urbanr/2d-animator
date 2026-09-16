@@ -4,6 +4,45 @@ Kanonický popis vlastnictví dat je v `../../tool/ANIMATOR-DATA-MODEL.md`. Hoto
 animace vlastní kombinaci kostry a konkrétního nastavení bitmapy. Herní postava
 v `../postavy/game-characters.json` drží jen atributy a odkazy na hotové animace.
 
+## Zavedený import nové bitmapové předlohy
+
+Nevymýšlej nový způsob řezání atlasu. Použij existující lokální postup z
+`tools/import_cutout_trial.py` a pomocné funkce z `tools/import_sprite_sheet.py`:
+
+1. Původní atlas ulož beze změny jako `source/parts-atlas.png` a zachovej jeho
+   SHA-256. Nikdy jej nepřevzorkovávej ani nezmenšuj.
+2. Atlas rozděl podle potvrzených buněk. V každé buňce odstraň pouze neutrální
+   šedé pozadí, které je spojité s okrajem, funkcí
+   `remove_connected_gray_background`. Neodstraňuj šedé pixely uzavřené uvnitř
+   kresby.
+3. Funkcí `visible_bounds` zjisti neprůhledný obrys dílu, ověř, že se nedotýká
+   hranice buňky, a přidej přesně třípixelovou průhlednou rezervu. Teprve tento
+   výřez ulož jako samostatné RGBA PNG.
+4. Do importního protokolu zapiš zdrojovou buňku, výsledný výřez, rozměry,
+   odstraněné pixely pozadí a SHA-256 každého PNG. Kontrola musí potvrdit, že
+   zdroj je bitově shodný a že žádný díl nebyl resamplovaný.
+5. Pro nový atlas vytvoř novou složku pod `graphics/bitmapove-predlohy/`; nikdy
+   nepřepisuj Běžce ani jinou schválenou předlohu.
+
+Konkrétní import Generalissima reprodukuje
+`python3 tools/import_generalissimus_parts.py <atlas.png>`. Následné zapojení
+schválené orientace vzdálenějšího nadloktí, stehna a lýtka provede
+`python3 tools/flip_generalissimus_far_parts.py`; skript vodorovně převrátí PNG
+i jejich úchyty a aktualizuje kontrolní součty a manifesty. Zapojení hotových
+dílů do Animátoru potom provede
+`python3 tools/register_generalissimus_skin.py`. Skripty používají výše uvedené
+společné lokální funkce a odmítnou přepsat existující výstup.
+
+`skins.json` má dva záměrně oddělené katalogy:
+
+- `templates` obsahuje všechny rozřezané podklady viditelné v sekci
+  **Bitmapové předlohy**, i když ještě nemají kloubové úchyty;
+- `skins` obsahuje pouze kompletně zkalibrované předlohy použitelné Animátorem.
+
+Nový rozřezaný podklad nejprve přidej do `templates`. Do `skins` jej přesuň nebo
+doplň až po vytvoření a ověření `skin.json` s kloubovými úchyty, vrstvami a
+výchozí kostrou.
+
 ## Detail a herní pixely
 
 Pod náhledem je přepínač **Detailní originály / Herní pixely · 192 × 210 px**.
@@ -63,7 +102,8 @@ Tyto možnosti nahrazují starší popis ukládání jen nových kombinací ní�
 
 Sekce je součástí společného `tool/preview.html?sekce=animator`.
 
-- `skins.json`: nabídka bitmapových postav; zatím Zombie (Běžec).
+- `skins.json`: katalog `templates` pro prohlížeč rozřezaných podkladů a katalog
+  `skins` pro předlohy připravené v Animátoru.
 - `../postavy/game-characters.json`: katalog postav ve schématu 3. Každá postava obsahuje
   `animation_ids` a `default_animation_id`; neobsahuje `skin`, `animation` ani
   `animations`.

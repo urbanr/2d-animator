@@ -6,7 +6,9 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
 const apply=(m,p)=>[m[0]*p[0]+m[2]*p[1]+m[4],m[1]*p[0]+m[3]*p[1]+m[5]];
 assert.equal(skin.layers.length,13);assert.equal(new Set(skin.layers).size,13);
 assert.deepEqual(skin.layers,['farUpperArm','farForearm','farFoot','farThigh','farShin','nearFoot','nearThigh','nearShin','backpack','torso','head','nearUpperArm','nearForearm']);
-assert.equal(C.bones(R.neutral()).pelvis,undefined);assert.equal(C.bones(R.neutral()).shoulders,undefined);
+assert.deepEqual(C.bones(R.neutral()).pelvis,C.bones(R.neutral()).torso);
+assert.deepEqual(C.bones(R.neutral()).megaphone,C.bones(R.neutral()).nearForearm);
+assert.equal(C.bones(R.neutral()).shoulders,undefined);
 for(const clip of clips){
  assert.deepEqual(C.sample(clip,8),C.sample(clip,0));
  assert.deepEqual(C.sample(clip,-.5),C.sample(clip,7.5));

@@ -7,7 +7,7 @@
   const mirror=p=>({x:512-p.x,y:p.y});
   const angleKeys=new Set(R.fields.filter(f=>f[4]==='°').map(f=>f[0]));
   const wrap=v=>((v+180)%360+360)%360-180;
-  const canFade=key=>['head','torso','backpack'].includes(key)||/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.test(key);
+  const canFade=key=>['head','torso','pelvis','backpack'].includes(key)||/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.test(key);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function fadeFor(part,end='start'){
     const length=part.start&&part.end?Math.hypot(part.end[0]-part.start[0],part.end[1]-part.start[1]):100;
@@ -109,7 +109,9 @@
     const pair=(a,z)=>[mirror(a),mirror(z)];
     b.torso=pair(g.shoulderCenter,g.hipCenter);
     b.head=pair(g.headBase,g.headCenter);
-    // Pelvis and shoulders are attachment guides, never bitmap body parts.
+    // Shoulders are attachment guides. A skin may also supply a separate
+    // pelvis bitmap; it follows the torso and overlaps both hip roots.
+    b.pelvis=b.torso;
     const [s,h]=b.torso,dx=h.x-s.x,dy=h.y-s.y,len=Math.hypot(dx,dy);
     const offset={x:dy/len*27,y:-dx/len*27};
     b.backpack=[{x:s.x+offset.x,y:s.y+offset.y},{x:h.x+offset.x,y:h.y+offset.y}];
@@ -121,6 +123,9 @@
       b[side+'Shin']=pair(v.knee,v.ankle);
       b[side+'Foot']=pair(v.ankle,v.toe);
     }
+    // Generalissimus holds his detached megaphone by the near hand. The
+    // bitmap has its own authored anchors and therefore only shares the bone.
+    b.megaphone=b.nearForearm;
     return b;
   }
   function matrix(part,bone){

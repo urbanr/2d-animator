@@ -127,7 +127,7 @@ summary .help .help-text{left:auto;right:0;top:calc(100% + 8px);bottom:auto}
 <details><summary>Koš koster, postav a animací</summary><label class="stack">Smazaná položka<select id="trash"></select></label><button id="restoreDeleted">Obnovit z koše</button><p class="small">Zdrojové bitmapy ani kopie animace v uložených postavách se nemažou.</p></details>
 <div id="status" role="status">Načítám díly a knihovnu…</div>
 <div class="row"><canvas id="mini" width="192" height="210" aria-label="Kontrolní náhled 192 × 210 pixelů"></canvas><p class="small">192 × 210 px<br>Dvojnásobek původního náhledu.<br>Podle vybraného režimu.</p></div>
-<div class="legend"><span class="near">Bližší: červená bota</span><span class="far">Vzdálenější: hnědá bota</span></div>
+<div class="legend"><span class="near" id="nearLegend">Bližší díly</span><span class="far" id="farLegend">Vzdálenější díly</span></div>
 </aside>
 <details class="panel span"><summary>Podklady a export</summary><p>Detail používá původní bitmapy. Herní režim používá skutečné zmenšené díly s profilem enemy-production-v1: jas +30, kontrast 1,4, Ztmavit 100 %, obrys 0,45 a černota 0,25. Kostra, velikost postavy a uchycení jsou společné. PNG se exportuje ve zvoleném režimu. U kloubů mohou být při velkém ohybu vidět spoje.</p>
 <div class="row"><button id="exportFrame" disabled>Stáhnout aktuální PNG</button><button id="exportSheet" disabled>Stáhnout list snímků</button><button id="exportRig" disabled>Stáhnout data pohybu a napojení</button><a href="../graphics/bitmapove-predlohy/bezec-zombie-v1/README.md">Popis pokusu a zadání</a></div>

@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "source_sha256": "06833fa9136176ea32f7bcc07a0ab19dc1f04045afc24fe69e6716ddff7265c9",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "resampled": false,
+  "parts": [
+    {
+      "key": "head",
+      "removed_background_pixels": 61854,
+      "cell_margins": {
+        "left": 33,
+        "top": 46,
+        "right": 17,
+        "bottom": 24
+      },
+      "label": "Hlava a krk",
+      "file": "parts/head.png",
+      "size": [
+        270,
+        256
+      ],
+      "source_cell": [
+        0,
+        0,
+        314,
+        320
+      ],
+      "source_rect": [
+        30,
+        43,
+        270,
+        256
+      ],
+      "sha256": "de04eb5555316900b0cef0082dcf86b8d24dbabe82add94c6bb547c717f43ce1"
+    },
+    {
+      "key": "torso",
+      "removed_background_pixels": 40152,
+      "cell_margins": {
+        "left": 16,
+        "top": 41,
+        "right": 14,
+        "bottom": 2
+      },
+      "label": "Trup",
+      "file": "parts/torso.png",
+      "size": [
+        289,
+        282
+      ],
+      "source_cell": [
+        314,
+        0,
+        313,
+        320
+      ],
+      "source_rect": [
+        327,
+        38,
+        289,
+        282
+      ],
+      "sha256": "b3770e764c9ce04c28a3f33151fa3732f3149258465b71e27659a41d39cd92b4"
+    },
+    {
+      "key": "pelvis",
+      "removed_background_pixels": 59246,
+      "cell_margins": {
+        "left": 41,
+        "top": 92,
+        "right": 32,
+        "bottom": 23
+      },
+      "label": "Pánev",
+      "file": "parts/pelvis.png",
+      "size": [
+        247,
+        211
+      ],
+      "source_cell": [
+        627,
+        0,
+        314,
+        320
+      ],
+      "source_rect": [
+        665,
+        89,
+        247,
+        211
+      ],
+      "sha256": "f55950cb6cf964fd6b6cce705147e0d50b38453b1dcc5071b6b45dd98d43661c"
+    },
+    {
+      "key": "megaphone",
+      "removed_background_pixels": 70706,
+      "cell_margins": {
+        "left": 24,
+        "top": 104,
+        "right": 56,
+        "bottom": 26
+      },
+      "label": "Amplion",
+      "file": "parts/megaphone.png",
+      "size": [
+        239,
+        196
+      ],
+      "source_cell": [
+        941,
+        0,
+        313,
+        320
+      ],
+      "source_rect": [
+        962,
+        101,
+        239,
+        196
+      ],
+      "sha256": "323c62df12e7cc96714f8b24c7b58c32358190d78f43550325c9874b4ece3984"
+    },
+    {
+      "key": "nearUpperArm",
+      "removed_background_pixels": 66290,
+      "cell_margins": {
+        "left": 88,
+        "top": 18,
+        "right": 70,
+        "bottom": 44
+      },
+      "label": "Bližší nadloktí",
+      "file": "parts/nearUpperArm.png",
+      "size": [
+        162,
+        251
+      ],
+      "source_cell": [
+        0,
+        320,
+        314,
+        307
+      ],
+      "source_rect": [
+        85,
+        335,
+        162,
+        251
+      ],
+      "sha256": "750dbc7a248eefc7498279fa37588925a94b1a7a54d04f1519fa8d6fa242288c"
+    },
+    {
+      "key": "nearForearm",
+      "removed_background_pixels": 66767,
+      "cell_margins": {
+        "left": 60,
+        "top": 19,
+        "right": 86,
+        "bottom": 14
+      },
+      "label": "Bližší předloktí a ruka",
+      "file": "parts/nearForearm.png",
+      "size": [
+        173,
+        280
+      ],
+      "source_cell": [
+        314,
+        320,
+        313,
+        307
+      ],
+      "source_rect": [
+        371,
+        336,
+        173,
+        280
+      ],
+      "sha256": "94871012f5cab04be3cf67118d0715847fcc85d0e41f28fde1bd0b58ab630237"
+    },
+    {
+      "key": "farUpperArm",
+      "removed_background_pixels": 64205,
+      "cell_margins": {
+        "left": 39,
+        "top": 19,
+        "right": 48,
+        "bottom": 53
+      },
+      "label": "Vzdálenější nadloktí",
+      "file": "parts/farUpperArm.png",
+      "size": [
+        233,
+        241
+      ],
+      "source_cell": [
+        627,
+        320,
+        314,
+        307
+      ],
+      "source_rect": [
+        663,
+        336,
+        233,
+        241
+      ],
+      "sha256": "d2e56ee12b9ae2c611c5955b66c60edcb146607939ed39e1198af42dd124bc35",
+      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+    },
+    {
+      "key": "farForearm",
+      "removed_background_pixels": 66903,
+      "cell_margins": {
+        "left": 48,
+        "top": 26,
+        "right": 59,
+        "bottom": 20
+      },
+      "label": "Vzdálenější předloktí a ruka",
+      "file": "parts/farForearm.png",
+      "size": [
+        212,
+        267
+      ],
+      "source_cell": [
+        941,
+        320,
+        313,
+        307
+      ],
+      "source_rect": [
+        986,
+        343,
+        212,
+        267
+      ],
+      "sha256": "011d6cbcdc0be67f090940073605b7dd3811eab16c0a07c60a670f7f78d01c37"
+    },
+    {
+      "key": "nearThigh",
+      "removed_background_pixels": 63432,
+      "cell_margins": {
+        "left": 62,
+        "top": 7,
+        "right": 59,
+        "bottom": 36
+      },
+      "label": "Bližší stehno",
+      "file": "parts/nearThigh.png",
+      "size": [
+        199,
+        283
+      ],
+      "source_cell": [
+        0,
+        627,
+        314,
+        320
+      ],
+      "source_rect": [
+        59,
+        631,
+        199,
+        283
+      ],
+      "sha256": "9509c8062639bdda54238e1dc5b700c92258da4403a2258a719ea4e87486e54c"
+    },
+    {
+      "key": "nearShin",
+      "removed_background_pixels": 72705,
+      "cell_margins": {
+        "left": 91,
+        "top": 10,
+        "right": 81,
+        "bottom": 36
+      },
+      "label": "Bližší lýtko",
+      "file": "parts/nearShin.png",
+      "size": [
+        147,
+        280
+      ],
+      "source_cell": [
+        314,
+        627,
+        313,
+        320
+      ],
+      "source_rect": [
+        402,
+        634,
+        147,
+        280
+      ],
+      "sha256": "21eb2f3525064dc0a107470ba0122c77d2fe6f918bbabfc67438beec59c29503"
+    },
+    {
+      "key": "farThigh",
+      "removed_background_pixels": 63426,
+      "cell_margins": {
+        "left": 78,
+        "top": 6,
+        "right": 57,
+        "bottom": 34
+      },
+      "label": "Vzdálenější stehno",
+      "file": "parts/farThigh.png",
+      "size": [
+        185,
+        286
+      ],
+      "source_cell": [
+        627,
+        627,
+        314,
+        320
+      ],
+      "source_rect": [
+        702,
+        630,
+        185,
+        286
+      ],
+      "sha256": "749e36b9d9963c25f16b0cc941da56a29911153bdcaee74ac8c3b582fbcdc7c2",
+      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+    },
+    {
+      "key": "farShin",
+      "removed_background_pixels": 73250,
+      "cell_margins": {
+        "left": 88,
+        "top": 9,
+        "right": 88,
+        "bottom": 36
+      },
+      "label": "Vzdálenější lýtko",
+      "file": "parts/farShin.png",
+      "size": [
+        143,
+        281
+      ],
+      "source_cell": [
+        941,
+        627,
+        313,
+        320
+      ],
+      "source_rect": [
+        1026,
+        633,
+        143,
+        281
+      ],
+      "sha256": "d74aa11e84e9c33c1cbc2fae761f039c28aa2a8e401fb7729901aedc8f0482f2",
+      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+    },
+    {
+      "key": "nearFoot",
+      "removed_background_pixels": 77539,
+      "cell_margins": {
+        "left": 43,
+        "top": 62,
+        "right": 38,
+        "bottom": 88
+      },
+      "label": "Bližší bota",
+      "file": "parts/nearFoot.png",
+      "size": [
+        239,
+        163
+      ],
+      "source_cell": [
+        0,
+        947,
+        314,
+        307
+      ],
+      "source_rect": [
+        40,
+        1006,
+        239,
+        163
+      ],
+      "sha256": "fa4cddd13484632678140f94850382723315b2587125dc1c69e9a03002b53020"
+    },
+    {
+      "key": "farFoot",
+      "removed_background_pixels": 78052,
+      "cell_margins": {
+        "left": 27,
+        "top": 62,
+        "right": 65,
+        "bottom": 88
+      },
+      "label": "Vzdálenější bota",
+      "file": "parts/farFoot.png",
+      "size": [
+        227,
+        163
+      ],
+      "source_cell": [
+        314,
+        947,
+        313,
+        307
+      ],
+      "source_rect": [
+        338,
+        1006,
+        227,
+        163
+      ],
+      "sha256": "98ec4e94449d6754839e62bcb252c56cff15bd4c685310edb523302e509c1ae5"
+    }
+  ],
+  "postprocess": {
+    "operation": "horizontal-flip-around-vertical-axis",
+    "parts": [
+      "farUpperArm",
+      "farThigh",
+      "farShin"
+    ]
+  }
+}
