@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<script src="preview-bridge.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chuchvalec — návrh a animace</title>
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#111718;color:#e8ede5;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}main{max-width:1220px;margin:auto;padding:36px 30px 50px}header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:24px;border-bottom:1px solid #34403e}.eyebrow{color:#b4c877;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}h1{font-size:clamp(30px,5vw,54px);letter-spacing:-.06em;line-height:1;margin:10px 0}p{color:#aebbb4;font-size:14px;line-height:1.6;margin:8px 0}.version{text-align:right;white-space:nowrap;color:#9bac9f;font-size:12px}.layout{display:grid;grid-template-columns:minmax(300px,440px) minmax(0,1fr);gap:36px;margin-top:26px}h2{font-size:13px;letter-spacing:.04em;font-weight:600;margin:0 0 14px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px}.dim{font-size:12px;color:#98aaa0;font-variant-numeric:tabular-nums}.detail{min-height:492px;display:flex;align-items:center;justify-content:center;background-color:#1b2324;background-image:linear-gradient(45deg,#242d2d 25%,transparent 25%),linear-gradient(-45deg,#242d2d 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#242d2d 75%),linear-gradient(-45deg,transparent 75%,#242d2d 75%);background-size:24px 24px;background-position:0 0,0 12px,12px -12px,-12px 0;border-radius:8px;border:1px solid #34403e}.detail canvas{display:block;width:384px;height:480px;max-width:100%;object-fit:contain;image-rendering:auto}.game-size{display:flex;align-items:flex-end;justify-content:center;gap:26px;height:205px;border-bottom:1px solid #697365;margin-top:8px;background:radial-gradient(ellipse at 60% 100%,#28322a,transparent 70%)}.game-size canvas{width:128px;height:160px;image-rendering:auto;margin-bottom:-4px}.scale-person{position:relative;width:12px;height:24px;background:#798379;clip-path:polygon(25% 0,75% 0,75% 25%,100% 36%,100% 64%,72% 57%,85% 100%,56% 100%,49% 72%,41% 100%,10% 100%,27% 57%,0 64%,0 36%,25% 25%)}.size-labels{display:flex;justify-content:center;gap:30px;font-size:11px;color:#95a298;margin:9px 0 27px}.size-labels span:last-child{width:128px;text-align:center}.controls{padding:19px 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}button,select{min-height:40px;border:1px solid #465248;border-radius:6px;background:#232e28;color:#e4eee2;font-size:13px;padding:8px 12px;cursor:pointer}button:hover,select:hover{border-color:#a4bb72}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #c3df84;outline-offset:4px}button.primary{background:#bed084;color:#172016;border-color:#bed084;font-weight:600}.frame-info{margin-left:auto;font-variant-numeric:tabular-nums;font-size:12px;color:#c8d4c4}.speed{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#b6c4b8}.speed input{width:145px;accent-color:#bed084}.strip{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin:18px 0}.strip button{padding:3px 2px;background:#1c2522;min-width:0;border:1px solid #344036;border-radius:4px}.strip button[aria-pressed=true]{border-color:#c1d68a;background:#34412e}.strip img{width:100%;height:auto;image-rendering:auto;display:block}.strip span{display:block;text-align:center;font-size:10px;color:#acbaa7}.screen-section{margin-top:30px;padding-top:23px;border-top:1px solid #34403e}.screen-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}.screen-controls h2{margin:0}.phone{position:relative;border:1px solid #4b554c;border-radius:22px;overflow:hidden;max-width:852px;margin:0 auto;background:#1b2425;aspect-ratio:852/393}.phone canvas{width:100%;height:100%;display:block;image-rendering:auto}.screen-note{font-size:12px;text-align:center;margin-top:11px}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}.notes strong{font-size:13px;color:#e3ecd6}.notes p{font-size:12px}.error{color:#ffd5b9}.footer{font-size:12px;border-top:1px solid #34403e;margin-top:24px;padding-top:17px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}.footer a{color:#c0d68a} @media(max-width:760px){main{padding:24px 18px}.layout{grid-template-columns:1fr;gap:24px}.detail{min-height:0}.detail canvas{height:auto}.version{display:none}.notes{grid-template-columns:1fr;gap:8px}.game-size{height:180px}.screen-note{line-height:1.5}}@media(pointer:coarse){button,select{min-height:44px}.strip button{min-height:50px}}
+.detail,.strip button,.strip button[aria-pressed=true]{background:rgb(80,80,80);background-image:none}
+.strip-label{margin-top:16px;color:#c8d4c4;font-size:12px;font-weight:600}
+</style>
+</head>
+<body><main>
+<header><div><div class="eyebrow">Prdel světa / první boss</div><h1>CHUCHVALEC</h1><p>Babička. Traktor. Ledničky. Profesor. Jeden problém.</p></div><div class="version"><a href="gallery.html" style="color:#c0d68a">Přehled všech verzí</a><br><br>8 SNÍMKŮ</div></header>
+<div class="layout">
+<section><div class="topline"><h2 id="detailTitle">Obrysy</h2><span class="dim">384 × 480 px</span></div><div class="detail"><canvas id="detail" width="384" height="480" role="img" aria-label="Zvětšený pohled na kresleného Chuchvalce">Chuchvalec v animaci jízdy.</canvas></div></section>
+<section><div class="topline"><h2>Herní velikost</h2><span class="dim">128 × 160 pt</span></div><div class="game-size"><div class="scale-person" aria-label="Měřítko běžné postavy, 24 bodů"></div><canvas id="native" width="384" height="480" role="img" aria-label="Chuchvalec při velikosti 128 krát 160 bodů">Chuchvalec v herní velikosti.</canvas></div><div class="size-labels"><span>postava 24 pt</span><span id="bodySize">původní velikost</span></div>
+<label for="animationVersion">Animace <select id="animationVersion"><option value="v9">Obrysy pro Cadmium — 8 snímků</option></select></label>
+<div class="controls"><button id="play" class="primary" type="button">Pozastavit</button><button id="prev" type="button" aria-label="Předchozí snímek">←</button><button id="next" type="button" aria-label="Další snímek">→</button><span class="frame-info" id="frameLabel">Snímek 1 / 8</span></div>
+<label class="speed" for="speed"><span>Rychlost <strong id="speedLabel">8 snímků/s</strong></span><input id="speed" type="range" min="1" max="16" step="1" value="8"></label>
+<div class="strip-label">Černé obrysy</div><div class="strip" id="strip" aria-label="Výběr obrysového snímku"></div>
+<div class="strip-label">Barevný pokus</div><div class="strip" id="colorStrip" aria-label="Výběr barevného snímku"></div>
+<p id="status" aria-live="polite">Načítám animaci…</p><p id="animationDescription">Osm snímků s pevnou paletou: nejvýše tři tóny pro každou skupinu barev. Souvislé plochy boty, bez ditheringu a přidaného osvětlení.</p>
+</section></div>
+<section class="screen-section"><div class="screen-controls"><h2>Poměr k obrazovce na šířku</h2><label><select id="screenSize" aria-label="Referenční rozměry obrazovky"><option value="874,402">iPhone 17 · 874 × 402 pt</option><option value="912,420">iPhone Air · 912 × 420 pt</option><option value="667,375">Menší displej · 667 × 375 pt</option></select></label></div><div class="phone" id="phone"><canvas id="screen" role="img" aria-label="Schéma velikosti bosse na telefonu a kontrola odvalování kol">Referenční schéma měřítka na iPhonu.</canvas></div><p class="screen-note">Stejných osm snímků v herní velikosti na telefonu.</p></section>
+<div class="notes"><div><strong>Původní kresba a pohyb</strong><p>Bába, profesor a stroje vycházejí z první verze.</p></div><div><strong>Jen osm snímků</strong><p>Brusle a animace kol. Bez dopočítávaných mezifází.</p></div><div><strong>Stíny přímo v kresbě</strong><p>Přehrávač nepřidává osvětlení ani stínovací vrstvu.</p></div></div>
+<div class="footer"><span>Finální podklady + nezapsaný barevný pokus</span><span><a href="gallery.html">Přehled všech verzí</a> · <a id="assetLink" href="../graphics/chuchvalec/cadmium-final/chuchvalec-line-00.png">První obrys</a> · <a href="../graphics/chuchvalec/cadmium-final/chuchvalec-color-reference_00.png">Barevný vzor</a> · <a href="../graphics/chuchvalec/coloring-attempt/frames/">8 barevných pokusů</a></span></div>
+</main>
+<script>
+(() => {
+ const byId=id=>document.getElementById(id);
+ const detail=byId('detail').getContext('2d'),native=byId('native').getContext('2d'),screen=byId('screen').getContext('2d');
+ const versions={v9:{folder:'cadmium-final/',prefix:'chuchvalec-line-',suffix:'.png',description:'Osm samostatných průhledných PNG tvořených pouze černými čarami a jeden samostatný průhledný barevný referenční PNG. Přehrávač používá šedou RGB(80,80,80), která není součástí obrázků.'}};
+ let frames=[],lineFrames=[],colorFrames=[],current=0,fps=8,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,last=null,elapsed=0,width=874,height=402,loadId=0;
+ function speedLabel(){byId('speedLabel').textContent=fps+' snímků/s';}
+ function setPlay(value){playing=value;last=null;elapsed=0;byId('play').textContent=value?'Pozastavit':'Přehrát';}
+ function draw(){
+  if(!frames.length)return;
+  for(const ctx of [detail,native]){ctx.clearRect(0,0,384,480);ctx.imageSmoothingEnabled=true;ctx.drawImage(frames[current],0,0);}
+  byId('frameLabel').textContent='Snímek '+(current+1)+' / 8';
+  document.querySelectorAll('#strip button,#colorStrip button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.frame)===current&&b.dataset.mode===(frames===colorFrames?'color':'line'))));
+  screen.setTransform(3,0,0,3,0,0);screen.imageSmoothingEnabled=true;
+  screen.fillStyle='#1b2425';screen.fillRect(0,0,width,height);
+  const ground=height-88,safe=width<700?16:44,left=safe+16,zone=(width-safe*2)*.4;
+  screen.fillStyle='#202d2d';screen.fillRect(left,53,zone,ground-53);
+  screen.fillStyle='#8e9c91';screen.font='10px -apple-system, sans-serif';screen.fillText('PROSTOR PEVNOSTI',left+12,74);
+  screen.fillStyle='#465446';screen.fillRect(0,ground,width,3);
+  screen.fillStyle='#151d1c';screen.fillRect(0,ground+3,width,height-ground-3);
+  screen.fillStyle='#758572';screen.fillText('LIŠTA DÍLŮ',left,ground+46);
+  const enemyX=width*.57;screen.fillStyle='#7d8e7b';screen.fillRect(enemyX,ground-17,6,13);screen.fillRect(enemyX-1,ground-24,8,6);screen.fillRect(enemyX,ground-4,2,4);screen.fillRect(enemyX+4,ground-4,2,4);
+  screen.drawImage(frames[current],width-safe-155,ground-156,128,160);
+  const hpX=width*.49,hpW=width*.31;screen.fillStyle='#0e1514';screen.fillRect(hpX,26,hpW,6);
+  ['#a8b978','#b68659','#c3c5a7','#859bac'].forEach((c,i)=>{screen.fillStyle=c;screen.fillRect(hpX+i*hpW/4,26,hpW/4-2,6);});
+  screen.fillStyle='#dce3d5';screen.fillText('CHUCHVALEC',hpX,20);
+ }
+ function tick(time){if(playing&&frames.length&&last!==null){elapsed+=Math.min(time-last,250);const interval=1000/fps;if(elapsed>=interval){current=(current+Math.floor(elapsed/interval))%8;elapsed%=interval;draw();}}last=time;requestAnimationFrame(tick);}
+ function step(delta){if(!frames.length)return;setPlay(false);current=(current+8+delta)%8;draw();}
+ byId('play').onclick=()=>setPlay(!playing);byId('prev').onclick=()=>step(-1);byId('next').onclick=()=>step(1);
+ byId('speed').oninput=e=>{fps=Number(e.target.value);elapsed=0;speedLabel();};
+ function resize(){[width,height]=byId('screenSize').value.split(',').map(Number);byId('screen').width=width*3;byId('screen').height=height*3;byId('phone').style.aspectRatio=width+'/'+height;draw();}
+ byId('screenSize').onchange=resize;document.addEventListener('visibilitychange',()=>{last=null;elapsed=0;});
+ async function loadVersion(){
+  const id=++loadId,version=versions[byId('animationVersion').value],resume=playing;
+  frames=[];lineFrames=[];colorFrames=[];current=0;setPlay(false);byId('strip').replaceChildren();byId('colorStrip').replaceChildren();byId('status').textContent='Načítám dvě řady snímků…';byId('status').className='';
+  const url=i=>'../graphics/chuchvalec/'+version.folder+version.prefix+String(i).padStart(2,'0')+version.suffix;
+  const colorUrl=i=>'../graphics/chuchvalec/coloring-attempt/frames/chuchvalec-color-'+String(i).padStart(2,'0')+'.png';
+  try{
+   const load=url=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error('Snímek se nepodařilo načíst.'));img.src=url;});
+   [lineFrames,colorFrames]=await Promise.all([Promise.all(Array.from({length:8},(_,i)=>load(url(i)))),Promise.all(Array.from({length:8},(_,i)=>load(colorUrl(i))))]);if(id!==loadId)return;frames=colorFrames;byId('detailTitle').textContent='Barevný pokus';
+   const addRow=(target,images,mode)=>images.forEach((image,i)=>{const b=document.createElement('button');b.type='button';b.dataset.frame=String(i);b.dataset.mode=mode;b.setAttribute('aria-label','Zobrazit '+(mode==='color'?'barevný':'obrysový')+' snímek '+(i+1));const thumb=document.createElement('canvas');thumb.width=384;thumb.height=480;thumb.getContext('2d').drawImage(image,0,0);const caption=document.createElement('span');caption.textContent=String(i+1);b.append(thumb,caption);b.onclick=()=>{setPlay(false);frames=mode==='color'?colorFrames:lineFrames;current=i;byId('detailTitle').textContent=mode==='color'?'Barevný pokus':'Obrysy';draw();};byId(target).append(b);});
+   addRow('strip',lineFrames,'line');addRow('colorStrip',colorFrames,'color');
+   byId('status').textContent='2 řady × 8 snímků · 384 × 480 px';byId('animationDescription').textContent=version.description+' Druhá řada je pouze pokus a není zapsaná jako schválené pravidlo.';byId('assetLink').href=url(0);speedLabel();setPlay(resume);resize();
+  }catch(error){if(id!==loadId)return;byId('status').className='error';byId('status').textContent=error.message;}
+ }
+ byId('animationVersion').onchange=loadVersion;loadVersion();requestAnimationFrame(tick);
+})();
+</script></body></html>

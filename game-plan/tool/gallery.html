@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<script src="preview-bridge.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Game-plan — přehled grafiky</title>
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101617;color:#e8ede5;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,a{font:inherit}main{max-width:1320px;margin:auto;padding:34px 28px 56px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:24px;border-bottom:1px solid #34403e}.eyebrow{color:#bed084;font-size:11px;font-weight:750;letter-spacing:.18em;text-transform:uppercase}h1{font-size:clamp(34px,5vw,58px);letter-spacing:-.055em;line-height:.98;margin:10px 0 8px}p{color:#aebbb4;line-height:1.5;margin:0}.back{color:#d4e5a1;text-decoration:none;border:1px solid #4b594a;border-radius:7px;padding:10px 14px;white-space:nowrap}.back:hover{border-color:#bed084;background:#202a24}
+.toolbar{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:14px;margin:24px 0}.picker{display:flex;align-items:center;gap:10px}.picker label{color:#aebbb4;font-size:13px}.picker select,.toggle-all{min-height:42px;border:1px solid #4b594a;border-radius:7px;background:#202925;color:#e8ede5;padding:8px 12px;cursor:pointer}.picker select{min-width:230px;font-weight:700}.toggle-all{background:#bed084;border-color:#bed084;color:#172016;font-weight:700}.filters{display:flex;flex-wrap:wrap;gap:8px}.filter{border:1px solid #445148;border-radius:999px;background:#202925;color:#dce5d9;padding:8px 13px;cursor:pointer}.filter[aria-pressed=true]{background:#bed084;border-color:#bed084;color:#172016;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{overflow:hidden;border:1px solid #34403e;border-radius:10px;background:#171f1f}.card[hidden]{display:none}.preview{position:relative;height:330px;background:#505050;display:flex;align-items:center;justify-content:center;overflow:hidden}.preview::before{content:'DETAIL · AUTOMATICKY ZVĚTŠENO';position:absolute;left:10px;top:10px;z-index:1;padding:5px 7px;border-radius:5px;background:rgba(12,16,16,.72);color:#c8d2ca;font-size:9px;font-weight:700;letter-spacing:.06em}.preview img{display:block;flex:none;max-width:none;max-height:none}.preview .counter{position:absolute;right:10px;bottom:10px;padding:5px 8px;border-radius:5px;background:rgba(12,16,16,.78);color:#e7ece5;font-size:11px;font-variant-numeric:tabular-nums}.game-scale{position:relative;height:184px;background:#1d2726;border-top:1px solid #34403e;border-bottom:1px solid #34403e;display:flex;align-items:flex-end;justify-content:center;padding-bottom:13px;overflow:hidden}.game-scale::after{content:'';position:absolute;left:12px;right:12px;bottom:12px;height:1px;background:#647167}.game-scale span{position:absolute;left:10px;top:9px;color:#aebbb4;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.game-scale img{position:relative;z-index:1;display:block;flex:none;max-width:none}.info{padding:16px}.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.topline h2{font-size:18px;line-height:1.2;margin:0}.badge{flex:none;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.current{background:#bed084;color:#172016}.trial{background:#588e8a;color:#f2ffff}.reference{background:#6c7197;color:#fff}.rejected{background:#604340;color:#ffdcd7}.older{background:#4b5350;color:#e5ebe8}.metrics{margin:11px 0 0;padding:10px 11px;border-radius:6px;background:#101716;color:#dce7dd;font-size:12px;line-height:1.55;font-variant-numeric:tabular-nums}.metrics strong{color:#bed084}.metrics .warning{display:block;margin-top:5px;color:#ffb09f;font-weight:700}.info p{min-height:45px;font-size:13px;margin:10px 0 14px}.actions{display:flex;flex-wrap:wrap;gap:8px}.actions button,.actions a{border:1px solid #465248;border-radius:6px;background:#232e28;color:#e4eee2;text-decoration:none;padding:8px 11px;cursor:pointer;font-size:12px}.actions button:hover,.actions a:hover{border-color:#bed084}.actions button.playing{background:#bed084;color:#172016;border-color:#bed084}.frame-editor{margin:14px 0;padding:12px;border:1px solid #34403e;border-radius:7px;background:#111918}.frame-editor h3{margin:0 0 9px;font-size:12px;color:#dbe7d6}.frame-picker{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}.frame-picker button,.nudge button,.editor-actions button{min-height:32px;border:1px solid #465248;border-radius:5px;background:#232e28;color:#e4eee2;cursor:pointer}.frame-picker button[aria-pressed=true]{background:#bed084;border-color:#bed084;color:#172016;font-weight:800}.nudge{display:grid;grid-template-columns:repeat(3,36px) 1fr;grid-template-rows:repeat(2,34px);gap:5px;align-items:center;margin-top:10px}.nudge .up{grid-column:2;grid-row:1}.nudge .left{grid-column:1;grid-row:2}.nudge .down{grid-column:2;grid-row:2}.nudge .right{grid-column:3;grid-row:2}.position{grid-column:4;grid-row:1 / span 2;color:#bed084;font-size:12px;text-align:right;font-variant-numeric:tabular-nums}.editor-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.editor-actions button{padding:6px 9px;font-size:11px}.editor-actions .save{background:#bed084;border-color:#bed084;color:#172016;font-weight:800}.editor-actions button:disabled{opacity:.45;cursor:not-allowed}.save-status{min-height:18px;margin-top:7px;color:#91a098;font-size:11px}.save-status.error{color:#ffb09f}.save-status.ok{color:#bed084}.footer{margin-top:28px;padding-top:18px;border-top:1px solid #34403e;color:#91a098;font-size:12px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){main{padding:24px 16px 44px}header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.preview{height:360px}.info p{min-height:0}}
+</style>
+<style>
+.position-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.position-tools .nudge{flex:1;min-width:170px}.reorder{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:10px}.reorder span{grid-column:1 / -1;font-size:11px;color:#aebbb4}.reorder button{min-height:34px;padding:5px 8px;border:1px solid #465248;border-radius:5px;background:#232e28;color:#e4eee2;cursor:pointer}.order-label{margin-top:8px;color:#91a098;font-size:11px;font-variant-numeric:tabular-nums}.frame-editor button:hover{border-color:#bed084}
+</style>
+</head>
+<body><main>
+<header><div><div class="eyebrow">Prdel světa / game-plan</div><h1>Přehled grafiky</h1><p>Postavy a všechny důležité animační pokusy na jednom místě.</p></div><div><a class="back" href="poses.html">Pózy →</a> <a class="back" href="levels.html">Levely →</a> <a class="back" href="index.html">Animátor →</a></div></header>
+<div class="toolbar">
+ <div class="picker"><label for="character">Animace</label><select id="character"><option value="chuchvalec">Bába – Chuchvalec</option><option value="kanec">Přerostlý kanec</option><option value="cernobylak">Černobylák</option><option value="kopac">Kopáč</option></select></div>
+ <nav class="filters" aria-label="Filtrovat verze">
+  <button class="filter" data-filter="all" aria-pressed="true">Všechno</button>
+  <button class="filter" data-filter="current" aria-pressed="false">Aktuální</button>
+  <button class="filter" data-filter="trial" aria-pressed="false">Pokusy</button>
+  <button class="filter" data-filter="rejected" aria-pressed="false">Zamítnuté</button>
+ </nav>
+ <button class="toggle-all" id="toggleAll" type="button">Pozastavit vše</button>
+</div>
+<section class="grid" id="grid" aria-live="polite"></section>
+<div class="footer">Náhled používá jednolité pozadí RGB(80,80,80). Pozadí není součástí průhledných PNG.</div>
+</main>
+<script src="sprite-frame-offsets.generated.js"></script>
+<script src="sprite-variants.generated.js"></script>
+<script src="sprite-frame-editing.js"></script>
+<script>
+(() => {
+ const root='../graphics/chuchvalec/';
+ const eight=(folder,prefix='chuchvalec-idle-',suffix='@3x.png')=>Array.from({length:8},(_,i)=>root+folder+prefix+String(i).padStart(2,'0')+suffix);
+ const versions=[...(window.SPRITE_VARIANTS||[]),
+  {title:'Kopáč — tmavší vnější obrys',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +30, kontrast 1,40, Ztmavit 100 % a zesílený vnější obrys 0,60. Filtr ztmavuje jen hranu u průhlednosti; vnitřní barvy, alfa a kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/'},
+  {title:'Kopáč — vnější obrys 0,45',status:'Předchozí kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Stejné nastavení s mírnějším vnějším obrysem 0,45, zachované pro přímé porovnání.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline45/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline45/'},
+  {title:'Kopáč — jas +30 / Ztmavit 100 %',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +30, kontrast 1,40, potom Dark-DPID a vrstva Ztmavit 100 %. Plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100/'},
+  {title:'Kopáč — Ztmavit 90 %',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +20, kontrast 1,40, potom Dark-DPID a silnější vrstva Ztmavit 90 %. Plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c40-d90/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c40-d90/'},
+  {title:'Kopáč — jas +20 / kontrast 1,40',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +20, kontrast 1,40, potom Dark-DPID a vrstva Ztmavit 80 %. Plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c40/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c40/'},
+  {title:'Kopáč — jas +20 / kontrast 1,32',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +20, kontrast zvýšený na 1,32, potom Dark-DPID a vrstva Ztmavit 80 %. Plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c32/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-b20-c32/'},
+  {title:'Kopáč — jas +20',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +20, kontrast 1,22, potom Dark-DPID a vrstva Ztmavit 80 %. Společné plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-bright20/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-bright20/'},
+  {title:'Kopáč — světlejší Photopea',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Jas +10, kontrast 1,22, potom Dark-DPID a vrstva Ztmavit 80 %. Společné plátno 96 × 96 px a spodní středová kotva zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea-bright/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea-bright/'},
+  {title:'Kopáč — Photopea Ztmavit',status:'Nový kandidát',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Společné plátno 96 × 96 px. Dark-DPID, mírně kontrastní kopie a režim Ztmavit s krytím 80 %; obrysy jsou výraznější, světlé barvy zůstávají.',frames:eight('../kopac/rage-gray-v2/frames-game@3x-photopea/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x-photopea/'},
+  {title:'Kopáč — herní @3×',status:'Migrováno',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Automaticky zmenšeno na 96 × 96 px pomocí dark-dpid-v1. Tmavé obrysy a vnitřní kresba mají přednost; čeká na výtvarné potvrzení.',frames:eight('../kopac/rage-gray-v2/frames-game@3x/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames-game@3x/'},
+  {title:'Kopáč — pochod s lopatou',status:'První návrh',group:'trial',badge:'trial',character:'kopac',gameHeight:32,note:'Osm unikátních snímků 444 × 444 px vyříznutých ze zdrojového plátna bez zmenšení nebo převzorkování.',frames:eight('../kopac/rage-gray-v2/frames/','kopac-walk-','.png'),link:root+'../kopac/rage-gray-v2/frames/'},
+  {title:'Černobylák — vnější obrys 0,45',status:'Předchozí vybraná',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Předchozí varianta bez finálního zčernání kresby 0,25; zachovaná pro porovnání.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline45/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline45/'},
+  {title:'Černobylák — tmavší vnější obrys 0,60',status:'Příliš tmavé',group:'rejected',badge:'rejected',character:'cernobylak',gameHeight:32,note:'Silnější vnější obrys 0,60 byl proti verzi 0,45 vyhodnocen jako příliš tmavý. Zůstává jen pro historii a porovnání.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/'},
+  {title:'Černobylák — jas +30 / Ztmavit 100 %',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +30, kontrast 1,40, potom Dark-DPID a vrstva Ztmavit 100 %. Kresba 77 × 96 px zůstává bez deformace.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100/'},
+  {title:'Černobylák — Ztmavit 90 %',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +20, kontrast 1,40, potom Dark-DPID a silnější vrstva Ztmavit 90 %. Kresba 77 × 96 px zůstává bez deformace.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c40-d90/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c40-d90/'},
+  {title:'Černobylák — jas +20 / kontrast 1,40',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +20, kontrast 1,40, potom Dark-DPID a vrstva Ztmavit 80 %. Kresba 77 × 96 px zůstává bez deformace.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c40/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c40/'},
+  {title:'Černobylák — jas +20 / kontrast 1,32',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +20, kontrast zvýšený na 1,32, potom Dark-DPID a vrstva Ztmavit 80 %. Kresba 77 × 96 px zůstává bez deformace.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c32/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-b20-c32/'},
+  {title:'Černobylák — jas +20',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +20, kontrast 1,22, potom Dark-DPID a vrstva Ztmavit 80 %. Kresba 77 × 96 px zůstává bez deformace na společném plátně.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-bright20/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-bright20/'},
+  {title:'Černobylák — světlejší Photopea',status:'Nejnovější kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Jas +10, kontrast 1,22, potom Dark-DPID a vrstva Ztmavit 80 %. Kresba 77 × 96 px zůstává bez deformace na společném plátně.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea-bright/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea-bright/'},
+  {title:'Černobylák — Photopea Ztmavit',status:'Nový kandidát',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Společné plátno 96 × 96 px; kresba 77 × 96 px je ukotvená dole uprostřed. Kontrastní kopie v režimu Ztmavit vytahuje obrysy bez potlačení zářivých částí.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x-photopea/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x-photopea/'},
+  {title:'Černobylák — herní @3×',status:'Migrováno',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Společné plátno 96 × 96 px; kresba bez deformace zabírá 77 × 96 px a je ukotvená dole uprostřed. Zmenšeno pomocí dark-dpid-v1; čeká na výtvarné potvrzení.',frames:eight('../cernobylak/rage-gray-v2/frames-game@3x/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames-game@3x/'},
+  {title:'Černobylák — čtyřnohý běh',status:'První návrh',group:'trial',badge:'trial',character:'cernobylak',gameHeight:32,note:'Osm snímků 384 × 480 px vyříznutých ze zdrojového plátna bez zmenšení; postapokalyptické vybavení zůstává detailní.',frames:eight('../cernobylak/rage-gray-v2/frames/','cernobylak-scuttle-','.png'),link:root+'../cernobylak/rage-gray-v2/frames/'},
+  {title:'Přerostlý kanec — běh',status:'První návrh',group:'trial',badge:'trial',character:'kanec',gameHeight:112,note:'8 fází zuřivého běhu doleva: střídání nohou, práce ramen a hlavy, pohyb řetězu.',frames:eight('../prerostly-kanec/rage-gray-v2/frames/','prerostly-kanec-rage-','.png'),link:root+'../prerostly-kanec/rage-gray-v2/frames/'},
+  {title:'Šedý podklad — vyříznutá verze',status:'Nejnovější pokus',group:'trial',badge:'trial',note:'8 průhledných PNG: mávání válečkem, prudký pohyb obou hlav a změny kresby kola.',frames:eight('rage-gray-v2/frames/','chuchvalec-rage-','.png'),link:root+'rage-gray-v2/frames/'},
+  {title:'Původní styl — zuřivější pohyb',status:'Nový pokus',group:'trial',badge:'trial',note:'Původní výtvarná verze; výrazné mávání válečkem, prudší pohyb hlavy a proměnlivá kresba běhounu kola.',frames:eight('rage-wheel-v1/frames/','chuchvalec-rage-','.png'),link:root+'rage-wheel-v1/frames/'},
+  {title:'Aktuální obrysy pro Cadmium',status:'Aktuální',group:'current',badge:'current',note:'8 samostatných průhledných PNG. Viditelné jsou pouze černé čáry.',frames:eight('cadmium-final/','chuchvalec-line-','.png'),link:root+'cadmium-final/'},
+  {title:'Barevný pokus — 8 snímků',status:'Pokus',group:'trial',badge:'trial',note:'Druhá barevná řada. Vypadá slibně, ale místy má drobné glitche a změny barev.',frames:eight('coloring-attempt/frames/','chuchvalec-color-','.png'),link:root+'coloring-attempt/frames/'},
+  {title:'Barevný referenční snímek',status:'Reference',group:'current',badge:'reference',note:'Jeden vybarvený průhledný PNG jako vzor pro další barvení.',frames:[root+'cadmium-final/chuchvalec-color-reference_00.png'],link:root+'cadmium-final/chuchvalec-color-reference_00.png'},
+  {title:'Původní první animace',status:'Důležitý základ',group:'current',badge:'reference',note:'Nejživější pohyb ruky, báby a profesora. Tohle je pohybový vzor.',frames:eight('frames/'),link:root+'frames/'},
+  {title:'8 snímků — první jízda',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Pokus s bruslí; vadil lem, stínování a nečitelná rotace kol.',frames:eight('ride-eight/frames/'),link:root+'ride-eight/frames/'},
+  {title:'8 snímků — oprava kola',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Další pokus o rotaci; velké kolo se mezi snímky deformovalo.',frames:eight('ride-eight-fixed/frames/'),link:root+'ride-eight-fixed/frames/'},
+  {title:'8 snímků — čisté barvy',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Bez přidané stínové vrstvy, ale stále se objevil stínový šum.',frames:eight('ride-eight-clean/frames/'),link:root+'ride-eight-clean/frames/'},
+  {title:'8 snímků — pevná paleta',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Omezená paleta zlepšila barvy, ale na zelené vznikaly mapy.',frames:eight('ride-eight-solid/frames/'),link:root+'ride-eight-solid/frames/'},
+  {title:'První pokus o automatické barvení',status:'Starší pokus',group:'trial',badge:'older',note:'První rozdělení kresby na oblasti pro následné vybarvení.',frames:eight('coloring-test/frames/'),link:root+'coloring-test/'},
+  {title:'Černobílý pokus v2',status:'Starší pokus',group:'trial',badge:'older',note:'Mezikrok při hledání čistých obrysů a průhledného pozadí.',frames:eight('coloring-test-v2/frames/','chuchvalec-ink-','.png'),link:root+'coloring-test-v2/'},
+  {title:'Černobílý pokus v3',status:'Starší pokus',group:'trial',badge:'older',note:'Další varianta samostatných čar před finální sadou pro Cadmium.',frames:eight('coloring-test-v3/frames/','chuchvalec-ink-','.png'),link:root+'coloring-test-v3/'},
+  {title:'Idle v2 — 24 snímků',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Příliš klidné dýchání; chyběl výraznější pohyb ruky, hlavy a profesora.',frames:[root+'idle-v2/chuchvalec-idle.webp'],link:root+'idle-v2/'},
+  {title:'Jízda v3 — 120 snímků',status:'Zamítnuté',group:'rejected',badge:'rejected',note:'Zbytečně mnoho snímků a výsledek neodpovídal požadovanému stylu.',frames:[root+'ride-v3/chuchvalec-ride.webp'],link:root+'ride-v3/'},
+  {title:'Samostatný lineart',status:'Starší pokus',group:'trial',badge:'older',note:'Jeden černobílý návrh před rozdělením do osmi samostatných PNG.',frames:[root+'lineart/chuchvalec-ink.png'],link:root+'lineart/'},
+  {title:'Původní neutrální návrh',status:'Reference',group:'trial',badge:'reference',note:'Výchozí kresba postavy před dalšími animačními pokusy.',frames:[root+'chuchvalec-neutral@3x.png'],link:root+'chuchvalec-neutral@3x.png'}
+ ];
+ const zeroOffsets=()=>Array.from({length:8},()=>({x:0,y:0}));
+ const storedOffsets=window.SPRITE_FRAME_OFFSETS||{};
+ const storedOrders=window.SPRITE_FRAME_ORDERS||{};
+ versions.forEach((item,index)=>{
+  item.alignmentKey=item.alignmentKey||('legacy:'+(item.character||'chuchvalec')+':'+(item.link||index));
+  item.frameOrder=[...(storedOrders[item.alignmentKey]||item.frameOrder||item.frames.map((_,i)=>i+1))];
+  const originalFrames=[...item.frames];
+  item.frames=item.frameOrder.map(source=>originalFrames[source-1]);
+  const source=storedOffsets[item.alignmentKey]||item.frameOffsets||zeroOffsets();
+  item.frameOffsets=zeroOffsets().map((fallback,frame)=>{
+   const value=source[frame]||fallback;
+   return {x:Number(value.x)||0,y:Number(value.y)||0};
+  });
+ });
+ const character=document.getElementById('character');
+ const knownCharacters=new Set([...character.options].map(option=>option.value));
+ (window.SPRITE_VARIANTS||[]).forEach(item=>{
+  if(knownCharacters.has(item.character))return;
+  const option=document.createElement('option');option.value=item.character;option.textContent=item.displayName||item.character;character.append(option);knownCharacters.add(item.character);
+ });
+ const grid=document.getElementById('grid');
+ const timers=new Map();
+ const players=[];
+ let allPlaying=true;
+ function fitImage(img,host,offset,fixedHeight){
+  if(!img.naturalWidth||!img.naturalHeight)return;
+  const scale=fixedHeight
+   ? fixedHeight/img.naturalHeight
+   : Math.min(host.clientWidth/img.naturalWidth,host.clientHeight/img.naturalHeight);
+  img.style.width=(img.naturalWidth*scale)+'px';
+  img.style.height=(img.naturalHeight*scale)+'px';
+  img.style.transform='translate('+(offset.x*scale)+'px,'+(offset.y*scale)+'px)';
+ }
+ function positionPlayer(player){
+  const offset=player.item.frameOffsets[player.frame]||{x:0,y:0};
+  fitImage(player.img,player.preview,offset,null);
+  fitImage(player.scaleImg,player.gameScale,offset,player.gameHeight);
+  if(player.positionLabel)player.positionLabel.textContent='x '+(offset.x>=0?'+':'')+offset.x+' · y '+(offset.y>=0?'+':'')+offset.y+' px';
+ }
+ function showFrame(player,frame){
+  player.frame=(frame+player.item.frames.length)%player.item.frames.length;
+  const source=player.item.frames[player.frame];
+  player.img.src=source;player.scaleImg.src=source;
+  player.counter.textContent=(player.frame+1)+' / '+player.item.frames.length;
+  player.frameButtons.forEach((button,index)=>button.setAttribute('aria-pressed',String(index===player.frame)));
+  if(player.orderLabel)player.orderLabel.textContent='Pořadí původních snímků: '+player.item.frameOrder.join(' · ');
+  requestAnimationFrame(()=>positionPlayer(player));
+ }
+ function start(player){
+  if(player.item.frames.length<2||timers.has(player.card))return;
+  player.button.textContent='Pozastavit';player.button.classList.add('playing');
+  const fps=Number(player.item.fps)||8;
+  timers.set(player.card,setInterval(()=>showFrame(player,player.frame+1),1000/Math.max(1,Math.min(60,fps))));
+ }
+ function stop(player){
+  if(!timers.has(player.card))return;clearInterval(timers.get(player.card));timers.delete(player.card);player.button.textContent='Přehrát';player.button.classList.remove('playing');
+ }
+ versions.forEach((item,index)=>{
+  const card=document.createElement('article');card.className='card';card.dataset.group=item.group;card.dataset.character=item.character||'chuchvalec';
+  const preview=document.createElement('div');preview.className='preview';
+  const img=document.createElement('img');img.src=item.frames[0];img.alt=item.title;img.loading=index<6?'eager':'lazy';
+  const counter=document.createElement('span');counter.className='counter';counter.textContent=item.frames.length>1?'1 / '+item.frames.length:'1 snímek';preview.append(img,counter);
+  const gameScale=document.createElement('div');gameScale.className='game-scale';const scaleLabel=document.createElement('span');const gameHeight=item.gameHeight||160;scaleLabel.textContent='Herní měřítko · '+gameHeight+' pt';const scaleImg=document.createElement('img');scaleImg.src=item.frames[0];scaleImg.alt='';gameScale.append(scaleLabel,scaleImg);
+  const info=document.createElement('div');info.className='info';
+  const top=document.createElement('div');top.className='topline';
+  const title=document.createElement('h2');title.textContent=item.title;
+  const badge=document.createElement('span');badge.className='badge '+item.badge;badge.textContent=item.status;top.append(title,badge);
+  const metrics=document.createElement('div');metrics.className='metrics';metrics.textContent='Rozměry se načítají…';
+  const showMetrics=()=>{if(!img.naturalWidth||!img.naturalHeight)return;const ratio=img.naturalWidth/img.naturalHeight;const gameWidth=gameHeight*ratio;const fmt=value=>Number.isInteger(value)?String(value):value.toFixed(1).replace('.',',');const physicalWidth=Math.round(gameWidth*3);const physicalHeight=Math.round(gameHeight*3);const wrongSize=img.naturalWidth!==physicalWidth||img.naturalHeight!==physicalHeight;metrics.innerHTML='<strong>Herní:</strong> '+fmt(gameWidth)+' × '+fmt(gameHeight)+' pt<br><strong>Fyzicky @3×:</strong> '+physicalWidth+' × '+physicalHeight+' px<br><strong>Zdrojový snímek:</strong> '+img.naturalWidth+' × '+img.naturalHeight+' px'+(wrongSize?'<span class="warning">Zdroj neodpovídá cílové fyzické velikosti.</span>':'');};
+  img.addEventListener('load',showMetrics,{once:true});if(img.complete)showMetrics();
+  const note=document.createElement('p');note.textContent=item.note;
+  const actions=document.createElement('div');actions.className='actions';
+  let player=null;
+  if(item.frames.length>1){
+   const play=document.createElement('button');play.type='button';
+   player={item,card,img,scaleImg,counter,button:play,frame:0,frameButtons:[],positionLabel:null,preview,gameScale,gameHeight};
+   play.onclick=()=>{if(timers.has(card)){player.manualPaused=true;stop(player);}else{player.manualPaused=false;start(player);}};player.manualPaused=false;players.push(player);actions.append(play);
+   const editor=document.createElement('div');editor.className='frame-editor';
+   const editorTitle=document.createElement('h3');editorTitle.textContent='Poloha a pořadí snímků';
+   const framePicker=document.createElement('div');framePicker.className='frame-picker';
+   item.frames.forEach((_,frame)=>{const button=document.createElement('button');button.type='button';button.textContent=String(frame+1);button.setAttribute('aria-pressed',String(frame===0));button.onclick=()=>{player.manualPaused=true;stop(player);showFrame(player,frame);};player.frameButtons.push(button);framePicker.append(button);});
+   const nudge=document.createElement('div');nudge.className='nudge';
+   const position=document.createElement('div');position.className='position';player.positionLabel=position;
+   [['up','↑',0,-1],['left','←',-1,0],['down','↓',0,1],['right','→',1,0]].forEach(([className,label,dx,dy])=>{const button=document.createElement('button');button.type='button';button.className=className;button.textContent=label;button.title='Kliknutí: 1 px, Shift + kliknutí: 3 px';button.onclick=event=>{player.manualPaused=true;stop(player);const step=event.shiftKey?3:1;const offset=item.frameOffsets[player.frame];offset.x+=dx*step;offset.y+=dy*step;positionPlayer(player);status.textContent='Neuložená změna';status.className='save-status';};nudge.append(button);});
+   nudge.append(position);
+   const positionTools=document.createElement('div');positionTools.className='position-tools';
+   const reorder=document.createElement('div');reorder.className='reorder';reorder.setAttribute('role','group');reorder.setAttribute('aria-label','Přehazování aktuálního snímku');
+   const reorderTitle=document.createElement('span');reorderTitle.textContent='Přehodit snímek';reorder.append(reorderTitle);
+   [[-1,'← Dříve','Přesunout snímek doleva. První se prohodí s posledním.'],[1,'Později →','Přesunout snímek doprava. Poslední se prohodí s prvním.']].forEach(([direction,label,help])=>{
+    const button=document.createElement('button');button.type='button';button.textContent=label;button.title=help;
+    button.onclick=()=>{player.manualPaused=true;stop(player);const next=SpriteFrameEditing.moveFrame(item,player.frame,direction);showFrame(player,next);status.textContent='Neuložená změna pořadí';status.className='save-status';};reorder.append(button);
+   });
+   positionTools.append(nudge,reorder);
+   const orderLabel=document.createElement('div');orderLabel.className='order-label';player.orderLabel=orderLabel;
+   const editorActions=document.createElement('div');editorActions.className='editor-actions';
+   const resetFrame=document.createElement('button');resetFrame.type='button';resetFrame.textContent='Nulovat snímek';resetFrame.onclick=()=>{player.manualPaused=true;stop(player);item.frameOffsets[player.frame]={x:0,y:0};positionPlayer(player);status.textContent='Neuložená změna';status.className='save-status';};
+   const resetAll=document.createElement('button');resetAll.type='button';resetAll.textContent='Nulovat vše';resetAll.onclick=()=>{player.manualPaused=true;stop(player);item.frameOffsets=zeroOffsets();positionPlayer(player);status.textContent='Neuložená změna';status.className='save-status';};
+   const save=document.createElement('button');save.type='button';save.className='save';save.textContent='Uložit polohy a pořadí';
+   const status=document.createElement('div');status.className='save-status';
+   if(location.protocol==='file:'){save.disabled=true;status.textContent='Posuny lze zkoušet. Ukládání funguje v lokálním editoru.';}
+   save.onclick=async()=>{save.disabled=true;const snapshot=JSON.stringify({alignmentKey:item.alignmentKey,frames:item.frameOffsets,order:item.frameOrder});status.textContent='Ukládám…';status.className='save-status';try{const response=await fetch('/api/frame-offsets',{method:'POST',headers:{'Content-Type':'application/json'},body:snapshot});const result=await response.json();if(!response.ok||!result.ok)throw new Error(result.error||'Uložení se nezdařilo.');if(JSON.stringify(result.order)!==JSON.stringify(JSON.parse(snapshot).order))throw new Error('Server nepotvrdil pořadí. Je potřeba aktualizovat místní editor.');const changed=snapshot!==JSON.stringify({alignmentKey:item.alignmentKey,frames:item.frameOffsets,order:item.frameOrder});status.textContent=changed?'Uloženo; další změny zatím neuložené':'Polohy a pořadí uloženy';status.className=changed?'save-status':'save-status ok';}catch(error){status.textContent=error.message;status.className='save-status error';}finally{save.disabled=false;}};
+   editorActions.append(resetFrame,resetAll,save);editor.append(editorTitle,framePicker,positionTools,orderLabel,editorActions,status);info.append(editor);
+   img.addEventListener('load',()=>positionPlayer(player));scaleImg.addEventListener('load',()=>positionPlayer(player));
+  }
+  const open=document.createElement('a');open.href=item.link;open.textContent='Otevřít soubory';actions.append(open);
+  info.prepend(top,metrics,note);info.append(actions);card.append(preview,gameScale,info);grid.append(card);if(player)showFrame(player,0);
+ });
+ const toggleAll=document.getElementById('toggleAll');
+ toggleAll.onclick=()=>{allPlaying=!allPlaying;players.forEach(player=>{if(allPlaying&&!player.card.hidden){player.manualPaused=false;start(player);}else stop(player);});toggleAll.textContent=allPlaying?'Pozastavit vše':'Přehrát vše';};
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)players.forEach(stop);else applyFilters();});
+ window.addEventListener('resize',()=>players.forEach(positionPlayer));
+ let activeFilter='all';
+ const requested=new URLSearchParams(location.search).get('postava');if(requested&&[...character.options].some(option=>option.value===requested))character.value=requested;
+ function applyFilters(){document.querySelectorAll('.card').forEach(card=>card.hidden=card.dataset.character!==character.value||(activeFilter!=='all'&&card.dataset.group!==activeFilter));players.forEach(player=>{if(player.card.hidden)stop(player);else if(allPlaying&&!player.manualPaused)start(player);});}
+ character.onchange=applyFilters;
+ document.querySelectorAll('.filter').forEach(button=>button.onclick=()=>{activeFilter=button.dataset.filter;document.querySelectorAll('.filter').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));applyFilters();});
+ applyFilters();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "enemy-production-v1",
+  "scope": "regular-enemy sprites",
+  "target_canvas_px": [96, 96],
+  "fit": "contain",
+  "anchor": "bottom-center",
+  "settings": {
+    "dark_strength": 0.72,
+    "lambda_value": 0.60,
+    "dark_threshold": 0.01,
+    "detail_floor": 0.03,
+    "photopea_brightness": 30,
+    "photopea_contrast": 1.40,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold": 128
+  }
+}

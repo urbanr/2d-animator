@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),M=require('./motion-preview.js'),R=require('./pose-rig.js');
+assert.equal(M.UNITS_PER_POINT,512/32);
+assert.equal(M.speed({}),8);assert.equal(M.speed({move_speed_pt_s:0}),0);
+assert.equal(M.offset(1),16);assert.equal(M.offset(1,-1),-16);
+assert.equal(M.offset(48),0);assert.equal(M.offset(49),16);
+const svg=R.svg(R.neutral(),{offsetX:100});
+assert.match(svg,/<line x1="24" y1="392" x2="488" y2="392"/);
+assert.match(svg,/<g transform="translate\(100 0\)">/);
+assert.ok(svg.indexOf('y1="392"')<svg.indexOf('translate(100'));
+console.log('PASS: game-point units, zero speed, travel directions/wrap and stationary floor.');
