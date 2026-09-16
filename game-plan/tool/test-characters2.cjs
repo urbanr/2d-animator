@@ -24,6 +24,7 @@ ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
 ids.push('stageResize');
 ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
 ids.push('skeletonCount','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation');
+ids.push('skeletonDirtyStar','animationDirtyStar');
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
@@ -155,7 +156,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.deepEqual(savedGame.animation.joint_limits,R.defaultJointLimits());
  assert.equal(savedGame.animation.move_speed_pt_s,10);assert.equal(savedGame.animation.rig_lengths.nearShin,74);
  assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.ok(Object.keys(savedGame.animations).length>=4);
- elements.lean.value='10';elements.lean.onchange();confirmed=true;
+ elements.lean.value='10';elements.lean.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skeletonDirtyStar.hidden,false);assert.equal(elements.animationDirtyStar.hidden,false);confirmed=true;
  await elements.gameCharacter.onchange();assert.equal(Number(elements.lean.value),30);
  assert.equal(elements.clip.value,'');assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
  // Playback must never silently change the editor checkbox.

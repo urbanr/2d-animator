@@ -65,7 +65,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 5. Disketa přepisuje vybranou položku se zálohou, plus vytváří novou položku a koš ji přesouvá do vratného koše.
 6. Výběr Kostry je začátek nové práce: po potvrzení načte všechny snímky vybrané kosterní animace, ponechá zvolenou bitmapovou předlohu a odpojí animaci vybranou u postavy.
 7. Jakákoli datová změna okamžitě odpojí hodnotu **Animace postavy**. Upravený pohyb lze k postavě uložit pouze jako novou animaci; původní zůstává beze změny, dokud ji uživatel samostatně nesmaže.
-8. Hvězdička u Kostry nebo Hotové animace označuje rozpracované neuložené změny příslušné vrstvy.
+8. Jakákoli datová změna v animačním panelu rozsvítí červenou hvězdičku za popisem pole Kostry i Hotové animace. Hvězdička není součást názvu ani položky seznamu.
 
 ## Kompatibilita a bezpečnost zápisu
 

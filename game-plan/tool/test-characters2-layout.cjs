@@ -50,9 +50,10 @@ assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesN
 assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
 assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
 const skeletonSection=html.match(/<details id="skeletonSection">([\s\S]*?)<\/details>/)[1];
-for(const id of ['skeletonSelect','updateSkeleton','saveSkeleton','deleteSkeleton','skeletonCount'])assert.ok(skeletonSection.includes(`id="${id}"`));
+for(const id of ['skeletonSelect','skeletonDirtyStar','updateSkeleton','saveSkeleton','deleteSkeleton','skeletonCount'])assert.ok(skeletonSection.includes(`id="${id}"`));
 assert.match(skeletonSection,/stejné celé kosterní animace jako v editoru Koster/);
 const animationSection=html.match(/<details id="animationSection">([\s\S]*?)<\/details>/)[1];
 assert.match(animationSection,/<summary><span>Hotové animace<\/span>/);
-for(const id of ['clip','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation','assignAnimation'])assert.ok(animationSection.includes(`id="${id}"`));
+for(const id of ['clip','animationDirtyStar','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation','assignAnimation'])assert.ok(animationSection.includes(`id="${id}"`));
+assert.match(html,/\.dirty-star\{color:#ff514f/);
 console.log('PASS: Animator libraries, fixed Parts panel, corrected mode icons, speed row and collapsed panels.');
