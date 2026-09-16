@@ -1,0 +1,761 @@
+{
+  "schema_version": 1,
+  "levels": {
+    "rovina-u-dalnice": {
+      "display_name": "Rovina u dálnice",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "rovina-u-dalnice",
+          "display_name": "Rovina u dálnice",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:11:40.092899+00:00",
+          "source": "graphics/levely/rovina-u-dalnice/concept-v1/source.png",
+          "source_sha256": "77853a77a440d2546a3d5617621fbb53faf302d6929b59b029e67ae9d8ede618",
+          "background_master": "graphics/levely/rovina-u-dalnice/concept-v1/background-master.png",
+          "background_sha256": "fa002c11330da48aaa2cba9eb2cd873d52ad2d00ab6ea25de77345f4a53952ac",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Rovná betonová cesta; bez zvláštní mechaniky.",
+          "walk_line": {
+            "y": 0.6096590909090855,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "svah": {
+      "display_name": "Svah",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "svah",
+          "display_name": "Svah",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:11:41.528815+00:00",
+          "source": "graphics/levely/svah/concept-v1/source.png",
+          "source_sha256": "9bac3b3ce8bcbe7dfe5392b1c78bceebf62009f948f9ac1c8bc62a9a2025ab05",
+          "background_master": "graphics/levely/svah/concept-v1/background-master.png",
+          "background_sha256": "0051f18fbf204d31d76fde17990a726dbdc4f46ab159405fd673684ee9a587ec",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Sklon terénu přibližně 20 stupňů a boční tah.",
+          "walk_line": {
+            "y": 0.7275568181818162,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "most-pres-propast": {
+      "display_name": "Most přes propast",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "most-pres-propast",
+          "display_name": "Most přes propast",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:11:42.919852+00:00",
+          "source": "graphics/levely/most-pres-propast/concept-v1/source.png",
+          "source_sha256": "59b220cd3686235f887a96ffb1129336bd5241472e23ffef216843593c8b71f1",
+          "background_master": "graphics/levely/most-pres-propast/concept-v1/background-master.png",
+          "background_sha256": "52153b3ff479664ff25c70616d7dcc40a2634aab4bb2256111f122d34f2e9db9",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Jedna úzká cesta a smrt pádem do propasti.",
+          "walk_line": {
+            "y": 0.317045454545448,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "skladka": {
+      "display_name": "Skládka",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "skladka",
+          "display_name": "Skládka",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:11:44.263142+00:00",
+          "source": "graphics/levely/skladka/concept-v1/source.png",
+          "source_sha256": "438444b71441f8e6ce8d5ec363b5d735e1548cfd828ff91d8c4ed17f0ae01174",
+          "background_master": "graphics/levely/skladka/concept-v1/background-master.png",
+          "background_sha256": "54a57f99f9df728cfca1dcdbaf99996102b03ea79e4d21b217dbca32479b48a9",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Sesouvající se fyzický odpad a šrot zdarma.",
+          "walk_line": {
+            "y": 0.6963068181818153,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "strecha-panelaku": {
+      "display_name": "Střecha paneláku",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "strecha-panelaku",
+          "display_name": "Střecha paneláku",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:14:31.711423+00:00",
+          "source": "graphics/levely/strecha-panelaku/concept-v1/source.png",
+          "source_sha256": "37774c22cc316f123adac7a8c190f22d6d4916321fc2497dd5e8ba868fcd8c90",
+          "background_master": "graphics/levely/strecha-panelaku/concept-v1/background-master.png",
+          "background_sha256": "a7b6ac9b8afa9a0452729ed8124b7066af72068d4ae43c0cac87ad8afa853884",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Vítr, lezení po fasádě a pády ze střechy.",
+          "walk_line": {
+            "y": 0.5772727272727266,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "composition-v2": {
+          "schema_version": 1,
+          "level": "strecha-panelaku",
+          "display_name": "Střecha paneláku",
+          "variant": "composition-v2",
+          "title": "Nekončící střecha — v2",
+          "description": "Střecha i fasáda pokračují vlevo a vpravo mimo obraz, bez bočního konce budovy.",
+          "status": "alternative",
+          "generated_at": "2026-09-15T09:04:05.865989+00:00",
+          "source": "graphics/levely/strecha-panelaku/composition-v2/source.png",
+          "source_sha256": "7a73a6590f9ee5f5167a7cf2552efdb9e347bfe1fdcef40de49119516f3269c3",
+          "background_master": "graphics/levely/strecha-panelaku/composition-v2/background-master.png",
+          "background_sha256": "c709c4e030e83b08997436ced776a6afa5cf201b05ea44747b587d16365c98e0",
+          "source_size": [
+            1855,
+            848
+          ],
+          "master_size": [
+            1855,
+            848
+          ],
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 1855,
+            "height": 848
+          },
+          "resampled": false,
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Vítr, lezení po fasádě a pády ze střechy.",
+          "prompt": "graphics/levely/strecha-panelaku/composition-v2/prompt.txt",
+          "generation_mode": "built-in image_gen",
+          "walk_line": {
+            "y": 0.5882075471698117,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "zamrzly-rybnik": {
+      "display_name": "Zamrzlý rybník",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "zamrzly-rybnik",
+          "display_name": "Zamrzlý rybník",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:14:33.147630+00:00",
+          "source": "graphics/levely/zamrzly-rybnik/concept-v1/source.png",
+          "source_sha256": "6872a06f6ec19f2429d6a95ba39f1f09508386675b08008a04a5b50cab8f3ab9",
+          "background_master": "graphics/levely/zamrzly-rybnik/concept-v1/background-master.png",
+          "background_sha256": "541a003e7bf9439a071def60cb78945f3670b6a01f7598013fc74135c9ddccac",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Kluzký led, čtyři kotvicí díry a tání ohněm.",
+          "walk_line": {
+            "y": 0.567045454545448,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "vrakoviste-aut": {
+      "display_name": "Vrakoviště aut",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "vrakoviste-aut",
+          "display_name": "Vrakoviště aut",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:14:34.585633+00:00",
+          "source": "graphics/levely/vrakoviste-aut/concept-v1/source.png",
+          "source_sha256": "07473cc18813c3bde2c43f97eb4e6caacf78ffa19803a3633228d9d847afa34e",
+          "background_master": "graphics/levely/vrakoviste-aut/concept-v1/background-master.png",
+          "background_sha256": "35e66447c97de611b321756ccd3606b2d970ae1f7fc20bd27fee71a6517a1958",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Vraky jako kryt a konstrukční základ; hoří a vybuchují.",
+          "walk_line": {
+            "y": 0.5883522727272668,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "tunel-metra": {
+      "display_name": "Tunel metra",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "tunel-metra",
+          "display_name": "Tunel metra",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:14:36.013563+00:00",
+          "source": "graphics/levely/tunel-metra/concept-v1/source.png",
+          "source_sha256": "eb3628220364eab944f606fa25cd13d2528fd43db8b3f6d15c04283be5e3517b",
+          "background_master": "graphics/levely/tunel-metra/concept-v1/background-master.png",
+          "background_sha256": "63e3894a9a668095183375049d5d09d799ce33ec228bff413a38545fb3210a6f",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Nízký strop, koleje a pravidelně projíždějící souprava.",
+          "walk_line": {
+            "y": 0.8511363636363651,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "prehrada": {
+      "display_name": "Přehrada",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "prehrada",
+          "display_name": "Přehrada",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:17:27.579535+00:00",
+          "source": "graphics/levely/prehrada/concept-v1/source.png",
+          "source_sha256": "8338c93663d3e9756f65d83e1587662dc4e05eb149e2cf97b5d1190437f17f03",
+          "background_master": "graphics/levely/prehrada/concept-v1/background-master.png",
+          "background_sha256": "1ced5108b0032c0d68c1b6eb5644f8d30d0792dbad7a0ed094e39ac6d9efe046",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Hráz s vlastními HP; protržení smete obě strany.",
+          "walk_line": {
+            "y": 0.48,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        },
+        "composition-v2": {
+          "schema_version": 1,
+          "level": "prehrada",
+          "display_name": "Přehrada",
+          "variant": "composition-v2",
+          "title": "Přehrada zepředu — v2",
+          "description": "Přímý pohled na hráz, vodorovná cesta po její koruně zprava doleva.",
+          "status": "alternative",
+          "generated_at": "2026-09-15T09:04:02.130660+00:00",
+          "source": "graphics/levely/prehrada/composition-v2/source.png",
+          "source_sha256": "487b9cae65a760ad8d2c2c63b64d4495b35cf049e6fd455c57fbb8e1563edd40",
+          "background_master": "graphics/levely/prehrada/composition-v2/background-master.png",
+          "background_sha256": "8a78650361f44e7634a690f424a5adc1eb115c9afbc447f3f9a5474edc004661",
+          "source_size": [
+            1852,
+            849
+          ],
+          "master_size": [
+            1852,
+            849
+          ],
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 1852,
+            "height": 849
+          },
+          "resampled": false,
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Hráz s vlastními HP; protržení smete obě strany.",
+          "prompt": "graphics/levely/prehrada/composition-v2/prompt.txt",
+          "generation_mode": "built-in image_gen",
+          "walk_line": {
+            "y": 0.48,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "kolotoc-z-pouti": {
+      "display_name": "Kolotoč z pouti",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "kolotoc-z-pouti",
+          "display_name": "Kolotoč z pouti",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:17:29.036116+00:00",
+          "source": "graphics/levely/kolotoc-z-pouti/concept-v1/source.png",
+          "source_sha256": "ef4ec6151c79366d984d923d8e80500b318e1d4429e556292e803900d47b2693",
+          "background_master": "graphics/levely/kolotoc-z-pouti/concept-v1/background-master.png",
+          "background_sha256": "cac5cc2b8cdd10dc1610cbf577299605a054fd2944f062c1eece814920118eb7",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Rotující plošina, střídání vstupů a odstředivá síla.",
+          "walk_line": {
+            "y": 0.5585227272727205,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "telocvicna": {
+      "display_name": "Tělocvična",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "telocvicna",
+          "display_name": "Tělocvična",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:17:30.474774+00:00",
+          "source": "graphics/levely/telocvicna/concept-v1/source.png",
+          "source_sha256": "ea1709d271922cef29d3362527390bfeb84ec5b5028b95027c9f949df6ad101d",
+          "background_master": "graphics/levely/telocvicna/concept-v1/background-master.png",
+          "background_sha256": "c385f7165743e75f4ffb10c68644a119c622e0429b0203e269a5937c242da6d3",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Žebřiny jako kotvy a pohyblivé sportovní předměty.",
+          "walk_line": {
+            "y": 0.8,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        }
+      }
+    },
+    "hrbitov": {
+      "display_name": "Hřbitov",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "hrbitov",
+          "display_name": "Hřbitov",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:17:31.945198+00:00",
+          "source": "graphics/levely/hrbitov/concept-v1/source.png",
+          "source_sha256": "4e832e8a3391d71aba4850eb05d3ee1c2fe4e1b291d3890f4dbbe5315b303126",
+          "background_master": "graphics/levely/hrbitov/concept-v1/background-master.png",
+          "background_sha256": "b8103350a5fdaa723e45eadf16a7d8ec8ce9d3fb08cba1c19291354df34853bf",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Noční mapa; nespálení nepřátelé se znovu zvedají.",
+          "walk_line": {
+            "y": 0.7143181818181816,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "composition-v2": {
+          "schema_version": 1,
+          "level": "hrbitov",
+          "display_name": "Hřbitov",
+          "variant": "composition-v2",
+          "title": "Průchozí hřbitov — v2",
+          "description": "Vodorovná cesta pokračuje za oba okraje; odstraněný vstup do krypty vlevo.",
+          "status": "alternative",
+          "generated_at": "2026-09-15T09:04:00.386588+00:00",
+          "source": "graphics/levely/hrbitov/composition-v2/source.png",
+          "source_sha256": "2eb8560e3d5aa40b162b9a6e49cbfe8d864e5e34e0b42820f92ece4eb08ed6b5",
+          "background_master": "graphics/levely/hrbitov/composition-v2/background-master.png",
+          "background_sha256": "c78c598b4e6ea313abd3f90a716a70ce0f79bbd79f87ab8a05a0bc5bd8788a10",
+          "source_size": [
+            1852,
+            849
+          ],
+          "master_size": [
+            1852,
+            849
+          ],
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 1852,
+            "height": 849
+          },
+          "resampled": false,
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Noční mapa; nespálení nepřátelé se znovu zvedají.",
+          "prompt": "graphics/levely/hrbitov/composition-v2/prompt.txt",
+          "generation_mode": "built-in image_gen",
+          "walk_line": {
+            "y": 0.7152885747938751,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "benzinka": {
+      "display_name": "Benzinka",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "benzinka",
+          "display_name": "Benzinka",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:22:23.266264+00:00",
+          "source": "graphics/levely/benzinka/concept-v1/source.png",
+          "source_sha256": "54ecd2d4c1bb409e66699647e87ce10f27e2a2a4827ea03e64b893203235de37",
+          "background_master": "graphics/levely/benzinka/concept-v1/background-master.png",
+          "background_sha256": "41de69f1425ab88c23c5bade222da625555c5869ef6c9e93ca3fd7c64e02a095",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Čtyři pumpy a cisterna; řetězové výbuchy.",
+          "walk_line": {
+            "y": 0.7105113636363611,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "sidliste": {
+      "display_name": "Sídliště",
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "schema_version": 1,
+          "level": "sidliste",
+          "display_name": "Sídliště",
+          "status": "alternative",
+          "generated_at": "2026-09-14T19:22:24.743341+00:00",
+          "source": "graphics/levely/sidliste/concept-v1/source.png",
+          "source_sha256": "7b94ec981220a7472dc2cb1a64297913532a4b50579f9de0246718c595a60b52",
+          "background_master": "graphics/levely/sidliste/concept-v1/background-master.png",
+          "background_sha256": "984b397e4a454b3cd75f6375a177c67b0fe3ace33107489d8457b5db1c10542f",
+          "source_size": [
+            1536,
+            1024
+          ],
+          "master_size": [
+            1536,
+            704
+          ],
+          "crop": {
+            "x": 0,
+            "y": 160,
+            "width": 1536,
+            "height": 704
+          },
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Fasádní kotvy, tři balkony, kanál a reakce sousedů.",
+          "walk_line": {
+            "y": 0.85,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        },
+        "composition-v2": {
+          "schema_version": 1,
+          "level": "sidliste",
+          "display_name": "Sídliště",
+          "variant": "composition-v2",
+          "title": "Sídliště zepředu — v2",
+          "description": "Čelní fasáda paneláku a rovná vodorovná ulice napříč celým obrazem.",
+          "status": "alternative",
+          "generated_at": "2026-09-15T09:04:04.033528+00:00",
+          "source": "graphics/levely/sidliste/composition-v2/source.png",
+          "source_sha256": "4b5ca1044c1740d1cc6a5f130028aad150aa74cec27ee6c7091b2371b9a7a9ab",
+          "background_master": "graphics/levely/sidliste/composition-v2/background-master.png",
+          "background_sha256": "b38594b7d836cf95a4392178ae95ef68dbd22d78eccfecc81157dd45a67055fc",
+          "source_size": [
+            1851,
+            849
+          ],
+          "master_size": [
+            1851,
+            849
+          ],
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 1851,
+            "height": 849
+          },
+          "resampled": false,
+          "layer_plan": {
+            "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+            "middle": "near scenery and map identity; parallax 0.3x",
+            "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+          },
+          "mechanic": "Fasádní kotvy, tři balkony, kanál a reakce sousedů.",
+          "prompt": "graphics/levely/sidliste/composition-v2/prompt.txt",
+          "generation_mode": "built-in image_gen",
+          "walk_line": {
+            "y": 0.8229093050647819,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    }
+  }
+}

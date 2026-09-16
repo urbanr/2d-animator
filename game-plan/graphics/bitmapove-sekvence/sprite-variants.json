@@ -1,0 +1,1119 @@
+{
+  "schema_version": 1,
+  "characters": {
+    "cernobylak": {
+      "display_name": "Černobylák",
+      "source_directory": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": "production-v1",
+      "variants": {
+        "production-v1": {
+          "title": "Černobylák — finální produkční verze",
+          "path": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x",
+          "profile": "enemy-production-v1",
+          "status": "production",
+          "description": "Finální produkční verze schválená podle zkoušky outline45-ink25."
+        }
+      }
+    },
+    "kopac": {
+      "display_name": "Kopáč",
+      "source_directory": "graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "production-v1-test": {
+          "title": "Kopáč — test produkčního profilu v1",
+          "path": "graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Kontrolní aplikace produkčního profilu; čeká na výtvarné potvrzení."
+        }
+      }
+    },
+    "loudac": {
+      "display_name": "Loudač",
+      "source_directory": "graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Loudač — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:31:56.597948+00:00"
+        }
+      }
+    },
+    "bezec": {
+      "display_name": "Běžec",
+      "source_directory": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Běžec — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:31:58.553445+00:00"
+        },
+        "phased-run-v2": {
+          "title": "Běžec — fázovaný sprint v2",
+          "path": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Nový osmifázový sprint: levý kontakt, stlačení, průchod, let; pravý kontakt, stlačení, průchod, let před návratem k prvnímu snímku. Stabilnější identita, čitelné protilehlé fáze a bezpečné mezery mezi buňkami.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T20:45:54.461349+00:00"
+        },
+        "alternating-run-v3": {
+          "title": "Běžec — střídání nohou v3",
+          "frame_order": [
+            1,
+            2,
+            3,
+            5,
+            4,
+            6,
+            7,
+            8
+          ],
+          "path": "graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Bližší noha v červené botě, vzdálenější v hnědé. Prohozené původní snímky 4 a 5: pořadí 1–2–3–5–4–6–7–8. Přechod 7 → 8 → 1 ještě vyžaduje doladění osmé pózy. Polohu nastaví uživatel v editoru.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T20:56:06.568913+00:00"
+        },
+        "wide-loop-v4": {
+          "title": "Běžec — větší buňky a nová osmá fáze v4",
+          "path": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Nově kreslená osmá fáze s pokrčenou nohou mezi 7 a 1. Prohození původních 4/5 zahrnuto v kresbě. Větší pracovní buňky a stejné měřítko všech snímků. Ruční posuny jsou nulové.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T21:12:42.778224+00:00"
+        },
+        "pose-walk-v1": {
+          "title": "Běžec — chůze podle uložených póz",
+          "path": "graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Pokus podle Chůze · přirozený krok v4. 8 fps, produkční filtry, bez automatického srovnávání výšek. ImageGen sleduje kostru přibližně; zdvih kolen a konec cyklu vyžadují posouzení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-15T20:09:47.832245+00:00",
+          "source_directory": "graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames",
+          "fps": 8
+        },
+        "pose-sprint-v1": {
+          "title": "Běžec — sprint podle uložených póz",
+          "path": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Pokus podle uloženého Sprintu · odraz a let v4. 12 fps, produkční filtry, ruční posuny dostupné. Kostra není dodržena přesně, zejména fáze 3 a otevřené dlaně ve 4 a 8.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-15T20:09:50.229769+00:00",
+          "source_directory": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames",
+          "fps": 12
+        },
+        "pose-zombie-v2": {
+          "title": "Běžec — zombie podle uložených póz",
+          "path": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Pokus podle aktuálně upravené Zombie · šouravá chůze v1. 6 fps, produkční filtry. Přibližná shoda s kostrou; ve snímku 5 generátor zaměnil barvu vzdálené boty. Výšky nesrovnávány.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-15T20:09:52.673117+00:00",
+          "source_directory": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames",
+          "fps": 6
+        }
+      }
+    },
+    "boxer": {
+      "display_name": "Boxer",
+      "source_directory": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Boxer — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:32:00.452407+00:00"
+        }
+      }
+    },
+    "stitonos": {
+      "display_name": "Štítonoš",
+      "source_directory": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Štítonoš — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:32:02.385692+00:00"
+        }
+      }
+    },
+    "lezec": {
+      "display_name": "Lezec",
+      "source_directory": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Lezec — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:35:49.629624+00:00"
+        }
+      }
+    },
+    "hazec": {
+      "display_name": "Házeč",
+      "source_directory": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Házeč — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:35:54.568485+00:00"
+        }
+      }
+    },
+    "puskar": {
+      "display_name": "Puškař",
+      "source_directory": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Puškař — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:35:58.864042+00:00"
+        }
+      }
+    },
+    "sebevrah-s-bombou": {
+      "display_name": "Sebevrah s bombou",
+      "source_directory": "graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Sebevrah s bombou — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:36:03.102058+00:00"
+        }
+      }
+    },
+    "zlodej": {
+      "display_name": "Zloděj",
+      "source_directory": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Zloděj — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:39:15.051404+00:00"
+        }
+      }
+    },
+    "vozik": {
+      "display_name": "Vozík",
+      "source_directory": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Vozík — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "rejected",
+          "description": "První pokus měl jediného jezdce. Podle návrhu hry má Vozík tři tlačiče; opraveno v generated-v2.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:39:19.355466+00:00"
+        },
+        "generated-v2": {
+          "title": "Vozík — tři tlačiči, opravený kandidát",
+          "path": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Opravená podoba podle návrhu hry; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:22:37.817461+00:00"
+        }
+      }
+    },
+    "rojnice": {
+      "display_name": "Rojnice",
+      "source_directory": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Rojnice — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "rejected",
+          "description": "Chybný pokus: vznikl nosič hmyzu, ale podle návrhu hry je Rojnice roj třiceti krys. Nahrazuje ho generated-v2.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:39:23.577631+00:00"
+        },
+        "generated-v2": {
+          "title": "Rojnice — 30 krys, opravený kandidát",
+          "path": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Správná podoba podle návrhu hry: kompaktní roj mutantních krys. Produkční profil v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:55:33.258827+00:00"
+        }
+      }
+    },
+    "saman": {
+      "display_name": "Šaman",
+      "source_directory": "graphics/bitmapove-sekvence/saman/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Šaman — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:39:27.789904+00:00"
+        }
+      }
+    },
+    "duchodce-s-holi": {
+      "display_name": "Důchodce s holí",
+      "source_directory": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Důchodce s holí — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:42:33.244741+00:00"
+        }
+      }
+    },
+    "nosic-zebriku": {
+      "display_name": "Nosič žebříku",
+      "source_directory": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Nosič žebříku — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:42:37.471917+00:00"
+        }
+      }
+    },
+    "hejno-holubu": {
+      "display_name": "Hejno holubů",
+      "source_directory": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Hejno holubů — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:42:41.729185+00:00"
+        }
+      }
+    },
+    "knez-zkazy": {
+      "display_name": "Kněz zkázy",
+      "source_directory": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Kněz zkázy — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:42:45.976847+00:00"
+        }
+      }
+    },
+    "chlap-s-traktorovou-pneumatikou": {
+      "display_name": "Chlap s traktorovou pneumatikou",
+      "source_directory": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Chlap s traktorovou pneumatikou — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:45:58.575685+00:00"
+        }
+      }
+    },
+    "prodavac": {
+      "display_name": "Prodavač",
+      "source_directory": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Prodavač — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:46:02.765312+00:00"
+        }
+      }
+    },
+    "ozrala": {
+      "display_name": "Ožrala",
+      "source_directory": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Ožrala — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:46:06.999051+00:00"
+        }
+      }
+    },
+    "fotograf": {
+      "display_name": "Fotograf",
+      "source_directory": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Fotograf — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:46:11.172816+00:00"
+        }
+      }
+    },
+    "spekoun": {
+      "display_name": "Špekoun",
+      "source_directory": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Špekoun — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:49:13.238003+00:00"
+        }
+      }
+    },
+    "sekta-zrcadel": {
+      "display_name": "Sekta zrcadel",
+      "source_directory": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Sekta zrcadel — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:49:17.360730+00:00"
+        }
+      }
+    },
+    "babka-dealerka": {
+      "display_name": "Babka dealerka",
+      "source_directory": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Babka dealerka — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:49:21.562632+00:00"
+        }
+      }
+    },
+    "chlap-v-bubline": {
+      "display_name": "Chlap v bublině",
+      "source_directory": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Chlap v bublině — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:49:25.503663+00:00"
+        }
+      }
+    },
+    "snehulak-z-popela": {
+      "display_name": "Sněhulák z popela",
+      "source_directory": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Sněhulák z popela — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:52:15.915613+00:00"
+        }
+      }
+    },
+    "krizenec-prasete-a-motorky": {
+      "display_name": "Kříženec prasete a motorky",
+      "source_directory": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Kříženec prasete a motorky — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:52:20.116188+00:00"
+        }
+      }
+    },
+    "zubar": {
+      "display_name": "Zubař",
+      "source_directory": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Zubař — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:52:24.368817+00:00"
+        }
+      }
+    },
+    "chlap-s-mikrovlnkou": {
+      "display_name": "Chlap s mikrovlnkou",
+      "source_directory": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Chlap s mikrovlnkou — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:52:28.588197+00:00"
+        }
+      }
+    },
+    "kolona-duchodcu-na-vozikach": {
+      "display_name": "Kolona důchodců na vozících",
+      "source_directory": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Kolona důchodců na vozících — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:55:20.418552+00:00"
+        }
+      }
+    },
+    "ex": {
+      "display_name": "Ex",
+      "source_directory": "graphics/bitmapove-sekvence/ex/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Ex — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:55:24.571045+00:00"
+        }
+      }
+    },
+    "vlk-v-prestrojeni-za-kutila": {
+      "display_name": "Vlk v přestrojení za Kutila",
+      "source_directory": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames",
+      "canvas_pixels": [
+        96,
+        96
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Vlk v přestrojení za Kutila — první produkční kandidát",
+          "path": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:55:28.775794+00:00"
+        }
+      }
+    },
+    "boss-babicka-s-valeckem": {
+      "display_name": "Babička s válečkem",
+      "source_directory": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Babička s válečkem — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:58:59.425653+00:00"
+        }
+      }
+    },
+    "boss-traktor": {
+      "display_name": "Traktor",
+      "source_directory": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Traktor — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:59:08.579432+00:00"
+        }
+      }
+    },
+    "boss-kolos-z-lednicek": {
+      "display_name": "Kolos z ledniček",
+      "source_directory": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Kolos z ledniček — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:59:18.017564+00:00"
+        }
+      }
+    },
+    "boss-byvaly-starosta": {
+      "display_name": "Bývalý starosta",
+      "source_directory": "graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Bývalý starosta — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T18:59:27.383976+00:00"
+        }
+      }
+    },
+    "boss-tchyne": {
+      "display_name": "Tchyně",
+      "source_directory": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Tchyně — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:02:53.320346+00:00"
+        }
+      }
+    },
+    "boss-zeppelin-z-matraci": {
+      "display_name": "Zeppelin z matrací",
+      "source_directory": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Zeppelin z matrací — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:03:02.666563+00:00"
+        }
+      }
+    },
+    "boss-dvojcata": {
+      "display_name": "Dvojčata",
+      "source_directory": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Dvojčata — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:03:11.783371+00:00"
+        }
+      }
+    },
+    "boss-matka-vsech-krys": {
+      "display_name": "Matka všech krys",
+      "source_directory": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Matka všech krys — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:03:20.746832+00:00"
+        }
+      }
+    },
+    "boss-retez": {
+      "display_name": "Řetěz",
+      "source_directory": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v3/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Řetěz — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "rejected",
+          "description": "Chybný pokus převzal siluetu referenčního kance. Správnou skupinu Loudačů spojených řetězem obsahuje generated-v2.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:05:47.010081+00:00"
+        },
+        "generated-v2": {
+          "title": "Řetěz — opravený boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Opravená podoba podle návrhu hry; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:22:33.645146+00:00"
+        }
+      }
+    },
+    "boss-soudruh-generalissimus": {
+      "display_name": "Soudruh Generalissimus",
+      "source_directory": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Soudruh Generalissimus — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:05:56.487304+00:00"
+        },
+        "phased-walk-v2": {
+          "title": "Soudruh Generalissimus — fázovaná chůze v2",
+          "path": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Nový osmifázový pokus: došlap, stlačení, průchod a zdvih na obě nohy; větší bezpečné mezery mezi buňkami. Poslední snímek je přechod před návratem k prvnímu, nikoli jeho kopie.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T20:22:20.289208+00:00"
+        }
+      }
+    },
+    "boss-profesor-relativita": {
+      "display_name": "Profesor Relativita",
+      "source_directory": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames",
+      "canvas_pixels": [
+        288,
+        360
+      ],
+      "texture_scale": 3,
+      "fit": "contain",
+      "anchor": "bottom-center",
+      "selected_variant": null,
+      "variants": {
+        "generated-v1": {
+          "title": "Profesor Relativita — první boss kandidát",
+          "path": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1",
+          "profile": "enemy-production-v1",
+          "status": "alternative",
+          "description": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
+          "parameter_overrides": [],
+          "created_at": "2026-09-14T19:06:06.586346+00:00"
+        }
+      }
+    }
+  }
+}

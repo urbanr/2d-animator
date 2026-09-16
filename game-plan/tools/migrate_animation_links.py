@@ -13,8 +13,8 @@ from pose_library import save_pose
 
 
 ROOT = Path(__file__).resolve().parents[1]
-POSES = ROOT / 'graphics/poses/poses.json'
-CHARACTERS = ROOT / 'graphics/characters2/game-characters.json'
+POSES = ROOT / 'graphics/kostry/skeletons.json'
+CHARACTERS = ROOT / 'graphics/postavy/game-characters.json'
 TRANSFORM_KEYS = ('offset', 'pivot_offset', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade')
 
 

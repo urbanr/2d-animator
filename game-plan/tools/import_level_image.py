@@ -16,7 +16,7 @@ from downscale_sprites import RgbaImage, read_rgba_png, write_rgba_png
 
 
 GAME_PLAN_ROOT = Path(__file__).resolve().parent.parent
-LEVELS_ROOT = GAME_PLAN_ROOT / "graphics" / "levels"
+LEVELS_ROOT = GAME_PLAN_ROOT / "graphics" / "levely"
 CATALOG = LEVELS_ROOT / "levels.json"
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 SOURCE_SIZE = (1536, 1024)

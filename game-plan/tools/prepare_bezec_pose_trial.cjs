@@ -1,7 +1,7 @@
 // Freeze the saved editable poses used for each ImageGen experiment.
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const R=require('../tool/pose-rig.js');
-const root=path.resolve(__dirname,'..'),library=JSON.parse(fs.readFileSync(path.join(root,'graphics/poses/poses.json')));
+const root=path.resolve(__dirname,'..'),library=JSON.parse(fs.readFileSync(path.join(root,'graphics/kostry/skeletons.json')));
 const modes=[['walk','Chůze · přirozený krok v4'],['sprint','Sprint · odraz a let v4'],['zombie','Zombie · šouravá chůze v1']];
 const args=process.argv.slice(2), chosen=args.includes('--mode')?args[args.indexOf('--mode')+1]:null;
 const version=args.includes('--version')?args[args.indexOf('--version')+1]:'v1';

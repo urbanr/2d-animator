@@ -140,8 +140,12 @@ class PoseTests(unittest.TestCase):
                                  'skin_id': 'bezec-zombie-v2', 'skeleton_id': 'pose-2', 'bitmap': bitmap}, path)['record']
             self.assertEqual(updated['skin_id'], 'bezec-zombie-v2')
             self.assertEqual(updated['skeleton_id'], 'pose-2')
+            detached = save_pose({'kind': 'finished_animation', 'mode': 'update', 'id': updated['id'], 'name': 'Hotová',
+                                  'expectedRecord': updated, 'frames': [frame] * 8, 'fps': 9,
+                                  'skin_id': 'bezec-zombie-v2', 'bitmap': bitmap}, path)['record']
+            self.assertNotIn('skeleton_id', detached)
             before = path.read_bytes()
-            for key, value in [('skin_id', '../bad'), ('skeleton_id', ''), ('skin_id', 4)]:
+            for key, value in [('skin_id', '../bad'), ('skeleton_id', '../bad'), ('skin_id', 4)]:
                 with self.assertRaises(ValueError):
                     save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8,
                                'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bitmap, key: value}, path)

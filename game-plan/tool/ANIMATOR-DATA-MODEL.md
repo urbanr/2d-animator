@@ -1,12 +1,23 @@
 # Animátor: datový model a pravidla
 
-Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, animací a herní postavou. Při změně editoru nebo ukládání se musí aktualizovat společně s kódem. Přechod na schéma 3 provedl jednorázový zálohovaný převod existujících vložených animací do společné knihovny.
+Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, animací a herní postavou. Při změně editoru nebo ukládání se musí aktualizovat společně s kódem.
+
+## Samostatné datové banky
+
+- `graphics/postavy/game-characters.json`: herní postavy a odkazy na animace.
+- `graphics/animace/animations.json`: hotové animace z Animátoru.
+- `graphics/bitmapove-sekvence/`: klasické snímkové animace tvořené hotovými bitmapami.
+- `graphics/bitmapove-predlohy/`: rozsekané zdrojové postavy pro kostrový Animátor.
+- `graphics/levely/`: levely, jejich varianty a herní export.
+- `graphics/kostry/skeletons.json`: banka pojmenovaných kosterních animací.
+
+Tyto katalogy se nesmějí znovu sloučit do jednoho souboru. Jednorázový převod `tools/reorganize_graphics_data.py` odstranil staré postavy, hotové animace, pózy, archivy i koše, zachoval tři pojmenované kosterní animace a jednu bitmapovou předlohu Běžce.
 
 ## Pojmy a vlastnictví dat
 
 ### Bitmapová předloha (`skin`)
 
-- Katalog je v `graphics/characters2/skins.json`, konkrétní předloha v adresáři postavy jako `skin.json`.
+- Katalog je v `graphics/bitmapove-predlohy/skins.json`, konkrétní předloha v adresáři postavy jako `skin.json`.
 - Obsahuje zdrojové soubory dílů, jejich rozměry, počáteční a koncový bod, výchozí ukotvení, pořadí vrstev a výchozí přechody průhlednosti.
 - `pelvis` a `shoulders` jsou pouze geometrické body kostry. Nemají vlastní vykreslovanou bitmapu.
 - Zdrojové cesty a kontrolní součty editor nikdy nepřepisuje z dat poslaných prohlížečem.
@@ -14,7 +25,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 
 ### Póza (`pose`)
 
-- Póza je jeden stavební snímek v `graphics/poses/poses.json`, kolekci `poses`. Je vidět v knihovně uvnitř editoru Koster, ale v Animátoru se už nevydává za celou kostru.
+- Póza je jeden stavební snímek v `graphics/kostry/skeletons.json`, kolekci `poses`. Je vidět v knihovně uvnitř editoru Koster, ale v Animátoru se už nevydává za celou kostru.
 - Póza ukládá polohu kloubů jednoho snímku (`frame`) a může nést také délky kostí (`rig_lengths`) a úhlové limity (`joint_limits`).
 - Výchozí kloubové limity jsou nyní maximální, −180° až +180°. Jsou připravené i pro budoucí fyziku, ale editor je zatím používá hlavně při tažení kloubů.
 - Délka jedné kosti je 5 až 250 jednotek kostry. Ramena a pánev mají pracovní šířku −300 až +300 %, aby šlo strany prohodit přes střed a použít až trojnásobný rozestup.
@@ -22,14 +33,16 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 
 ### Kostra / kosterní animace (`clip`)
 
-- Je v `graphics/poses/poses.json`, kolekce `clips`.
+- Je v `graphics/kostry/skeletons.json`, kolekce `clips`.
 - Obsahuje 2 až 32 póz, tempo, rychlost vpřed, délky kostí, limity kloubů a pouze kosterní výjimky snímků.
 - Stejný seznam `clips` ukazuje editor Koster i sekce Kostry v Animátoru. Bitmapová předloha se sem neukládá.
 
 ### Hotová animace (`finished_animation`)
 
-- Je v `graphics/poses/poses.json`, samostatná kolekce `finished_animations`.
-- Je to kombinace celé kosterní animace s bitmapovou předlohou, včetně bitmapových výjimek snímků a odkazů `skin_id` a `skeleton_id`.
+- Je v `graphics/animace/animations.json`, kolekce `finished_animations`.
+- Je to kombinace vlastního úplného snapshotu kostry a nastavení jedné bitmapové předlohy, včetně bitmapových výjimek snímků a povinného odkazu `skin_id`.
+- `skeleton_id` je volitelný. Je vyplněný jen tehdy, pokud interní kostra animace stále přesně odpovídá pojmenované kostře v bance. První změna kostry odkaz odstraní, ale uložená animace dál obsahuje všechny své snímky, délky a limity. Bitmapová změna odkaz na kostru neodpojuje.
+- Zdrojové PNG se do animace nekopírují. Animace ukládá jen pozice, deformace, měřítka, rotační středy, pořadí a masky průhlednosti bitmapových dílů.
 - Je to globální zásobník bez vlastnictví konkrétní postavou. Načtení nastaví uloženou bitmapovou předlohu i kosterní animaci a odpojí aktivní animaci postavy.
 
 ### Animace přiřazená postavě
@@ -41,7 +54,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 
 ### Herní postava (`character`)
 
-- Katalog je v `graphics/characters2/game-characters.json`; aktuální zapisované schéma je `schema_version: 3` a renderer `cutout-rig-v2`.
+- Katalog je v `graphics/postavy/game-characters.json`; aktuální zapisované schéma je `schema_version: 3` a renderer `cutout-rig-v2`.
 - Postava vlastní jméno, budoucí herní atributy, `motion.variation_percent`, `animation_ids` a `default_animation_id`.
 - Postava neobsahuje `skin`, `skin_id`, `animation` ani `animations`. Bitmapová předloha i její konkrétní nastavení se načtou z vybrané hotové animace.
 - Rozptyl rychlosti je 0 až 90 %. Je vlastností postavy, zatímco tempo a základní rychlost vpřed patří jednotlivé animaci.
@@ -65,15 +78,15 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 5. Disketa přepisuje vybranou položku se zálohou, plus vytváří novou položku a koš ji přesouvá do vratného koše.
 6. Výběr Kostry je začátek nové práce: po potvrzení načte všechny snímky vybrané kosterní animace, ponechá zvolenou bitmapovou předlohu a odpojí animaci vybranou u postavy.
 7. Jakákoli datová změna okamžitě odpojí hodnotu **Animace postavy**. Upravený pohyb lze k postavě uložit pouze jako novou animaci; původní zůstává beze změny, dokud ji uživatel samostatně nesmaže.
-8. Jakákoli datová změna v animačním panelu rozsvítí červenou hvězdičku za popisem pole Kostry i Hotové animace. Hvězdička není součást názvu ani položky seznamu.
+8. Změna kostry rozsvítí hvězdičku Kostry i Hotové animace a zruší `skeleton_id`. Změna bitmapového nastavení rozsvítí jen Hotovou animaci a případný platný `skeleton_id` ponechá. Hvězdička není součást názvu ani položky seznamu.
+9. Uložení aktuální interní kostry do banky nastaví nový `skeleton_id`; není však podmínkou pro uložení hotové animace.
 
 ## Kompatibilita a bezpečnost zápisu
 
-- Jednorázový nástroj `tools/migrate_animation_links.py` převedl stará pole `animation` a `animations` do `finished_animations`, včetně jejich konkrétního bitmapového snapshotu.
-- Před migrací vzniknou úplné kopie obou katalogů v `graphics/poses/history/` a `graphics/characters2/history/`. Opakované spuštění je beze změny.
+- Staré vložené animace, postavy, pózy, archivy a koše byly při schváleném čistém startu odstraněny; nejsou kompatibilní součástí nového modelu.
 - Kanonická vazba postavy je pouze `animation_ids` + `default_animation_id`; staré vložené kopie ani snapshot bitmapy se do postavy už nezapisují.
 - Každá změna postavy nebo její animace posílá `expectedRecord`. Pokud mezitím jiná karta záznam změnila, zápis se odmítne místo tichého přepsání.
-- Před přepsáním nebo smazáním se uloží záloha do `graphics/characters2/history/`. Katalog se zapisuje přes dočasný soubor a atomické přejmenování.
+- Před přepsáním se uloží záloha do `history/` uvnitř příslušné datové banky. Katalog se zapisuje přes dočasný soubor a atomické přejmenování.
 - Všechny akce Uložit, Uložit jako a Smazat vyžadují potvrzení uživatele.
 
 ## Ovládání panelu Úpravy

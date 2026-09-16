@@ -18,7 +18,7 @@ from downscale_sprites import MATTE_RGB, RgbaImage, read_rgba_png, write_rgba_pn
 
 TOOLS_ROOT = Path(__file__).resolve().parent
 GAME_PLAN_ROOT = TOOLS_ROOT.parent
-DEFAULT_CATALOG = GAME_PLAN_ROOT / "graphics" / "sprite-variants.json"
+DEFAULT_CATALOG = GAME_PLAN_ROOT / "graphics" / "bitmapove-sekvence" / "sprite-variants.json"
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 SHEET_SIZE = (1536, 1024)
 CELL_SIZE = (384, 512)
@@ -235,7 +235,7 @@ def import_sheet(
                 f"frame {index + 1}: artwork enters the {safe_margin}px safety zone ({details})"
             )
         prepared.append((transparent, removed, bounds, margins))
-    root = GAME_PLAN_ROOT / "graphics" / character / attempt
+    root = GAME_PLAN_ROOT / "graphics" / "bitmapove-sekvence" / character / attempt
     source_directory = root / "source"
     frames_directory = root / "frames"
     if frames_directory.exists() and list(frames_directory.glob("*.png")):

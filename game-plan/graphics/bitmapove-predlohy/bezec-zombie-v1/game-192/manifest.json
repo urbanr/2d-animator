@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "skin_id": "bezec-zombie-v1",
+  "profile": "enemy-production-v1",
+  "settings": {
+    "dark_strength": 0.72,
+    "lambda_value": 0.6,
+    "dark_threshold": 0.01,
+    "detail_floor": 0.03,
+    "photopea_brightness": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold": 128
+  },
+  "canvas_px": [
+    192,
+    210
+  ],
+  "rig_canvas": [
+    512,
+    560
+  ],
+  "coordinate_space": "original-source-pixels",
+  "description": "Textures only. Keep original attachment anchors, offsets and rig geometry.",
+  "parts": {
+    "farUpperArm": {
+      "file": "game-192/farUpperArm.png",
+      "size": [
+        12,
+        28
+      ],
+      "source_file": "parts/farUpperArm.png",
+      "source_size": [
+        111,
+        272
+      ],
+      "source_sha256": "0688e7039fdf13913bd8256d092568289a59a3bd8f72524ca8ec8107e60990d7",
+      "sha256": "f660ca9dc29c1429a91b2259b193f91ba866923033a9dfb8a1d7b745bbfedb3f"
+    },
+    "farForearm": {
+      "file": "game-192/farForearm.png",
+      "size": [
+        8,
+        22
+      ],
+      "source_file": "parts/farForearm.png",
+      "source_size": [
+        102,
+        280
+      ],
+      "source_sha256": "a90d2a4ed0ac5c71a71aaa4b268570aa392fb54e6abc0ea9978318bcdcc62a49",
+      "sha256": "8d3b372467a8734882e9c7f3fffc93a292a8054f78c4996bf5431e161203f858"
+    },
+    "farFoot": {
+      "file": "game-192/farFoot.png",
+      "size": [
+        14,
+        11
+      ],
+      "source_file": "parts/farFoot.png",
+      "source_size": [
+        226,
+        166
+      ],
+      "source_sha256": "23400cb5cd7c31934b2716e6399e7d5e5e0da5d795ed86b2dbd6ed46cb7701fe",
+      "sha256": "1bae5d0c1124cdb69401e3da8802f83f23173925c9c3ef96d8c867f217f55f1a"
+    },
+    "farThigh": {
+      "file": "game-192/farThigh.png",
+      "size": [
+        19,
+        41
+      ],
+      "source_file": "parts/farThigh.png",
+      "source_size": [
+        133,
+        285
+      ],
+      "source_sha256": "3f840d442293a3a10bae2abcfa9154e6bfacf0591f9780fe04e51ad5d31e08e9",
+      "sha256": "ce0856ef43955085ef975f43c6cffefa11c7aea746aa199e25748b6be481c5f6"
+    },
+    "farShin": {
+      "file": "game-192/farShin.png",
+      "size": [
+        20,
+        42
+      ],
+      "source_file": "parts/farShin.png",
+      "source_size": [
+        130,
+        277
+      ],
+      "source_sha256": "62c20dff763fc9b488c2e641ccac2782ff264ef678f136f7dc19e41a2b561cd3",
+      "sha256": "d5c53087ac42659621e24566cce53a90f34392e084b5328be8cbcafd0a1691cf"
+    },
+    "nearFoot": {
+      "file": "game-192/nearFoot.png",
+      "size": [
+        15,
+        10
+      ],
+      "source_file": "parts/nearFoot.png",
+      "source_size": [
+        246,
+        156
+      ],
+      "source_sha256": "8c9edbf67a7697057abe4234acc7e6d5b39d0a9029c7dbaa188d79d96b11e22f",
+      "sha256": "36531ff76c9b8d17a21c0de51c493695280c7da5c350f664ea04894fcbc4f085"
+    },
+    "nearThigh": {
+      "file": "game-192/nearThigh.png",
+      "size": [
+        23,
+        42
+      ],
+      "source_file": "parts/nearThigh.png",
+      "source_size": [
+        154,
+        282
+      ],
+      "source_sha256": "90f406eccc8cba03bef8d72cfe99ad264bb2589e95cb9b0acad103bb2d072d86",
+      "sha256": "cca2326c270d9140cabf10776eb991d3a7ed07e3ed3d23e85be21a386a2d8145"
+    },
+    "nearShin": {
+      "file": "game-192/nearShin.png",
+      "size": [
+        19,
+        43
+      ],
+      "source_file": "parts/nearShin.png",
+      "source_size": [
+        123,
+        281
+      ],
+      "source_sha256": "79a3618bcda80cd1967bb43f06002dd26e0bc35c9b22390eaf3f6aab9e0a2367",
+      "sha256": "549d9651701c309bcbc27ad2f26d201bd40547384d6969765b5a08aa9a5207b9"
+    },
+    "backpack": {
+      "file": "game-192/backpack.png",
+      "size": [
+        26,
+        34
+      ],
+      "source_file": "parts/backpack.png",
+      "source_size": [
+        211,
+        270
+      ],
+      "source_sha256": "47d7dcf8e14f9d898aa91140cd91a6f9ec5a510072602a6de66ad4fb2914e124",
+      "sha256": "9b1d6da04267c312c8e1550bc0a2a5394a1777e41bb669bb2d5cd62a92d46aa1"
+    },
+    "torso": {
+      "file": "game-192/torso.png",
+      "size": [
+        27,
+        56
+      ],
+      "source_file": "parts/torso-v2.png",
+      "source_size": [
+        490,
+        1010
+      ],
+      "source_sha256": "6637a223db9613b179411fd95f6049d1736d0a984d730c1f985220a0bad141fb",
+      "sha256": "90a1565c7804a4732a3302114f590d9c2f37604a2dd59c051ed8422bf80bc802"
+    },
+    "head": {
+      "file": "game-192/head.png",
+      "size": [
+        37,
+        33
+      ],
+      "source_file": "parts/head.png",
+      "source_size": [
+        289,
+        252
+      ],
+      "source_sha256": "d02d7bda2ece663918fc3bcc58656fcf6025d958846e13a98ffb63b6fd4efe00",
+      "sha256": "192c03270a9c8d503204354fd6012ca8ee6c4596fe360b2d299f96d49777ef6f"
+    },
+    "nearUpperArm": {
+      "file": "game-192/nearUpperArm.png",
+      "size": [
+        12,
+        26
+      ],
+      "source_file": "parts/nearUpperArm.png",
+      "source_size": [
+        117,
+        256
+      ],
+      "source_sha256": "de5ee450f359cfd875ade68d83041f1dfd6d45e2297b79360512a36128de5e5c",
+      "sha256": "a3114f5652fc9acbf4b04cc2e4464e552f0af4de674dcf97d1d5d01183151381"
+    },
+    "nearForearm": {
+      "file": "game-192/nearForearm.png",
+      "size": [
+        11,
+        23
+      ],
+      "source_file": "parts/nearForearm.png",
+      "source_size": [
+        130,
+        283
+      ],
+      "source_sha256": "bde3172ea1f8834f5880423886389d724f1ae18538e253b8bb41fbfc15a3e566",
+      "sha256": "9a3a5cdc08fbbd40b2f61b50ba2727a5d6bf34fae2ccc1eaf85565dadd040656"
+    }
+  }
+}

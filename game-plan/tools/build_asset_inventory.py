@@ -10,7 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GRAPHICS = ROOT / "graphics"
-OUTPUT = GRAPHICS / "asset-production-status.json"
+SEQUENCES = GRAPHICS / "bitmapove-sekvence"
+OUTPUT = SEQUENCES / "asset-production-status.json"
 
 REGULAR = [
     ("loudac", "Loudač"), ("bezec", "Běžec"), ("boxer", "Boxer"),
@@ -55,9 +56,9 @@ LEVELS = [
 
 
 def main() -> None:
-    catalog = json.loads((GRAPHICS / "sprite-variants.json").read_text(encoding="utf-8"))
+    catalog = json.loads((GRAPHICS / "bitmapove-sekvence" / "sprite-variants.json").read_text(encoding="utf-8"))
     characters = catalog["characters"]
-    level_catalog = json.loads((GRAPHICS / "levels" / "levels.json").read_text(encoding="utf-8"))
+    level_catalog = json.loads((GRAPHICS / "levely" / "levels.json").read_text(encoding="utf-8"))
 
     regular = []
     for slug, name in REGULAR:
@@ -76,7 +77,7 @@ def main() -> None:
                            "reason": "Vzniká za běhu jako kopie skutečné pevnosti z předchozí prohry."})
             continue
         if slug == "prerostly-kanec":
-            frames = sorted((GRAPHICS / slug / "rage-gray-v2" / "frames").glob("*.png"))
+            frames = sorted((SEQUENCES / slug / "rage-gray-v2" / "frames").glob("*.png"))
             bosses.append({"id": slug, "name": name, "generated": len(frames) == 8,
                            "review": "existing-candidate", "frames": len(frames)})
             continue

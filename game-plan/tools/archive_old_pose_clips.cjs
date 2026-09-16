@@ -1,6 +1,6 @@
 // User-requested seven exact clips. Run only while the local saving server is stopped.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const root=path.resolve(__dirname,'../graphics/poses'),file=path.join(root,'poses.json');
+const root=path.resolve(__dirname,'../graphics/kostry'),file=path.join(root,'skeletons.json');
 const targets={
   'walk-v1':'Chůze · výchozí','sprint-v1':'Sprint · výchozí',
   '9d762e0b-b171-4126-85a2-4e28d4c43096':'Chůze · ramena a pánev v2',

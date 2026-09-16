@@ -2,9 +2,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const rig = require('../tool/pose-rig.js');
-const root = path.resolve(__dirname, '../graphics/poses');
+const root = path.resolve(__dirname, '../graphics/kostry');
 fs.mkdirSync(root, {recursive:true});
-const file = path.join(root, 'poses.json');
+const file = path.join(root, 'skeletons.json');
 if (!fs.existsSync(file)) fs.writeFileSync(file, JSON.stringify(rig.presets(), null, 2)+'\n');
 const library = JSON.parse(fs.readFileSync(file, 'utf8'));
 fs.mkdirSync(path.join(root,'templates'),{recursive:true});

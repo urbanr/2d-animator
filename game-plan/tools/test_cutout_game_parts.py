@@ -8,7 +8,7 @@ from downscale_sprites import (ENEMY_PRODUCTION_V1,read_rgba_png,downscale,
 
 class GamePartsTests(unittest.TestCase):
     def test_generated_parts_match_approved_pipeline_and_sources(self):
-        root=Path(__file__).resolve().parents[1]/'graphics/characters2/bezec-zombie-v1'
+        root=Path(__file__).resolve().parents[1]/'graphics/bitmapove-predlohy/bezec-zombie-v1'
         skin=json.loads((root/'skin.json').read_text())
         manifest=json.loads((root/'game-192/manifest.json').read_text())
         self.assertEqual(manifest['settings'],ENEMY_PRODUCTION_V1)

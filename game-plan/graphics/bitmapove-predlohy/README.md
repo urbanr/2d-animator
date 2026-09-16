@@ -2,7 +2,7 @@
 
 Kanonický popis vlastnictví dat je v `../../tool/ANIMATOR-DATA-MODEL.md`. Hotová
 animace vlastní kombinaci kostry a konkrétního nastavení bitmapy. Herní postava
-v `game-characters.json` drží jen atributy a odkazy na hotové animace.
+v `../postavy/game-characters.json` drží jen atributy a odkazy na hotové animace.
 
 ## Detail a herní pixely
 
@@ -16,7 +16,7 @@ dark DPID 0,72 / lambda 0,60, jas +30 v sRGB, kontrast 1,4, Ztmavit 100 %, obrys
 0,45 a černota 0,25. Filtry se aplikují na zmenšené díly, nikoli znovu při renderu.
 U vnitřních spojů tedy mohou zvýraznit i okraj jednotlivého dílu.
 
-Reprodukce: `python3 tools/build_cutout_game_parts.py graphics/characters2/bezec-zombie-v1/skin.json --width 192`
+Reprodukce: `python3 tools/build_cutout_game_parts.py graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json --width 192`
 (z adresáře game-plan). Existující výstup se bez přepsání odmítne. Manifest
 obsahuje nastavení, rozměry i SHA-256 originálů a výsledků.
 
@@ -50,8 +50,8 @@ textur. Swift/iPhone přehrávač zatím tento cutout katalog nepřebírá.
   měřítko, přechody a snímkové výjimky do společné knihovny. Po úpravě animace
   přiřazené postavě se kvůli bezpečnosti vytváří nová animace; stará se nepřepisuje.
 - Přepisy kontrolují očekávaný předchozí záznam; konflikt z jiné karty nic
-  nepřepíše. Předchozí stav postavy se zálohuje do `history/`, animace do
-  `../poses/history/`. Název existujícího záznamu Uložit nemění.
+  nepřepíše. Předchozí stav postavy se zálohuje do `../postavy/history/`, animace do
+  `../animace/history/`. Název existujícího záznamu Uložit nemění.
 - Otevření `file://` přesměruje na místní server `http://127.0.0.1:8765`.
   Chyba spojení ponechá změny v editoru a vysvětlí, jakou adresu použít.
 - Změny ve staré otevřené kartě lze před obnovením zachránit přes **Stáhnout
@@ -61,14 +61,16 @@ textur. Swift/iPhone přehrávač zatím tento cutout katalog nepřebírá.
 
 Tyto možnosti nahrazují starší popis ukládání jen nových kombinací níže.
 
-Sekce je součástí společného `tool/preview.html?sekce=postavy2`.
+Sekce je součástí společného `tool/preview.html?sekce=animator`.
 
 - `skins.json`: nabídka bitmapových postav; zatím Zombie (Běžec).
-- `game-characters.json`: katalog postav ve schématu 3. Každá postava obsahuje
+- `../postavy/game-characters.json`: katalog postav ve schématu 3. Každá postava obsahuje
   `animation_ids` a `default_animation_id`; neobsahuje `skin`, `animation` ani
   `animations`.
-- `../poses/poses.json`: `clips` jsou kosterní animace a `finished_animations`
-  jsou hotové kombinace kostry a bitmapy. Odkaz z postavy míří právě sem.
+- `../kostry/skeletons.json`: banka pojmenovaných kosterních animací (`clips`).
+- `../animace/animations.json`: hotové kombinace interní kostry a nastavení bitmapy.
+  Odkaz z postavy míří právě sem. Odkaz hotové animace na bankovní kostru je
+  volitelný a po první úpravě kostry se odstraní.
 
 Bitmapové PNG se nekopírují; záznam na ně odkazuje. Nové výtvarné varianty
 proto patří do nové složky skinu, ne přes původní PNG. Tento katalog zatím

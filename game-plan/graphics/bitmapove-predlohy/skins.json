@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "skins": {
+    "bezec-zombie-v1": {"name": "Zombie (Běžec)", "path": "bezec-zombie-v1/skin.json", "game_textures": "game-192/manifest.json"}
+  }
+}

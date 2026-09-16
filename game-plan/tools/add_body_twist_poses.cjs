@@ -3,7 +3,7 @@ const R=require('../tool/pose-rig.js');
 const base='http://127.0.0.1:8765';
 const clips=process.argv.includes('--zombie')?R.zombieClips():process.argv.includes('--reference-gait')?R.referenceGaitClips():R.bodyTwistClips({softShoulders:process.argv.includes('--soft-shoulders')});
 (async()=>{
-  const response=await fetch(base+'/graphics/poses/poses.json');
+  const response=await fetch(base+'/graphics/kostry/skeletons.json');
   if(!response.ok)throw Error('Knihovna není dostupná.');
   const library=await response.json();
   for(const clip of clips) {
@@ -15,7 +15,7 @@ const clips=process.argv.includes('--zombie')?R.zombieClips():process.argv.inclu
     if(!saved.ok||!result.ok)throw Error(result.error||'Uložení selhalo.');
     console.log('Přidáno: '+result.record.name+' ('+result.record.id+')');
   }
-  const checked=await fetch(base+'/graphics/poses/poses.json');
+  const checked=await fetch(base+'/graphics/kostry/skeletons.json');
   if(!checked.ok)throw Error('Nelze ověřit uloženou knihovnu.');
   const after=await checked.json();
   for(const section of ['clips','poses'])for(const [id,record] of Object.entries(library[section]))

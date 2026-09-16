@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const C=require('./cutout-rig.js'),R=require('./pose-rig.js');
-const skin=JSON.parse(fs.readFileSync(path.join(__dirname,'../graphics/characters2/bezec-zombie-v1/skin.json')));
-const clips=Object.values(JSON.parse(fs.readFileSync(path.join(__dirname,'../graphics/poses/poses.json'))).clips);
+const skin=JSON.parse(fs.readFileSync(path.join(__dirname,'../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json')));
+const clips=Object.values(JSON.parse(fs.readFileSync(path.join(__dirname,'../graphics/kostry/skeletons.json'))).clips);
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
 const apply=(m,p)=>[m[0]*p[0]+m[2]*p[1]+m[4],m[1]*p[0]+m[3]*p[1]+m[5]];
 assert.equal(skin.layers.length,13);assert.equal(new Set(skin.layers).size,13);
@@ -13,7 +13,7 @@ for(const clip of clips){
  for(let t=0;t<8;t+=.125){
   const p=C.sample(clip,t),b=C.bones(p),g=R.points(p);
   for(const k of skin.layers){
-   assert.ok(fs.existsSync(path.join(__dirname,'../graphics/characters2/bezec-zombie-v1',skin.parts[k].file)));
+   assert.ok(fs.existsSync(path.join(__dirname,'../graphics/bitmapove-predlohy/bezec-zombie-v1',skin.parts[k].file)));
    const m=C.matrix(skin.parts[k],b[k]);
    for(const [i,anchor] of ['start','end'].entries()){
     const q=apply(m,skin.parts[k][anchor]);close(q[0],b[k][i].x);close(q[1],b[k][i].y);

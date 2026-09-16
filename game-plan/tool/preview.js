@@ -4,15 +4,16 @@
   if(location.protocol==='file:'){
     location.replace('http://127.0.0.1:8765/tool/preview.html'+location.search+location.hash);return;
   }
-  const pages={postavy:'gallery.html',levely:'levels.html',pozy:'poses.html',animator:'characters2.html'};
-  const names={postavy:'Postavy',levely:'Levely',pozy:'Kostry',animator:'Animátor'};
+  const pages={'bitmapove-sekvence':'gallery.html','bitmapove-predlohy':'bitmap-templates.html',levely:'levels.html',pozy:'poses.html',animator:'characters2.html'};
+  const names={'bitmapove-sekvence':'Bitmapové sekvence','bitmapove-predlohy':'Bitmapové předlohy',levely:'Levely',pozy:'Kostry',animator:'Animátor'};
   const panels=new Map();
   const routes=new Map();
   const messageOrigin=location.origin==='null'?'*':location.origin;
   const nav=[...document.querySelectorAll('[data-section]')];
   function show(section, extra=new URLSearchParams(), hash='', push=false) {
     if(section==='postavy2')section='animator';
-    if(!Object.hasOwn(pages,section))section='postavy';
+    if(section==='postavy')section='bitmapove-sekvence';
+    if(!Object.hasOwn(pages,section))section='bitmapove-sekvence';
     const url=new URL(location.href);url.search='';url.hash=hash;
     url.searchParams.set('sekce',section);
     for(const [key,value] of extra)if(!['sekce','embedded'].includes(key))url.searchParams.set(key,value);
@@ -47,6 +48,6 @@
     if(event.origin!==location.origin||![...panels.values()].some(p=>p.contentWindow===event.source))return;
     if(event.data?.type==='preview-navigate')show(event.data.section,new URLSearchParams(event.data.search||''),event.data.hash||'',true);
   });
-  const route=()=>{const query=new URLSearchParams(location.search);show(query.get('sekce')||'postavy',query,location.hash);};
+  const route=()=>{const query=new URLSearchParams(location.search);show(query.get('sekce')||'bitmapove-sekvence',query,location.hash);};
   window.addEventListener('popstate',route);route();
 })();

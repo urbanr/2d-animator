@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict');
 const C=require('./cutout-rig.js'),E=require('./cutout-editor.js'),R=require('./pose-rig.js');
 const part={size:[100,160],start:[50,40],end:[50,140],joint_fade:{start:{strength:1,radius:40,direction:'outward'}}};
-const sourceSkin=require('../graphics/characters2/bezec-zombie-v1/skin.json');
+const sourceSkin=require('../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json');
 for(const key of sourceSkin.layers.filter(C.canFade))for(const end of ['start','end']){
   const p=sourceSkin.parts[key],configured={...p,joint_fade:{[end]:{...C.fadeFor(p,end),strength:1}}};
   assert.equal(C.fadeAlpha(configured,...p[end==='start'?'end':'start']),1,`${key}: default fade never touches opposite joint`);

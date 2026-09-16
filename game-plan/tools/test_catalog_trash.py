@@ -21,7 +21,7 @@ class TrashTests(unittest.TestCase):
             handler.rfile = io.BytesIO(body)
             handler.do_POST()
             return responses[-1]
-        with patch.object(server, 'POSE_STORE', self.path):
+        with patch.object(server, 'SKELETON_STORE', self.path):
             status, result = post('/api/poses', self.request())
             self.assertEqual(status, 200)
             status, _ = post('/api/poses', self.request('restore', id=result['trash_id']))

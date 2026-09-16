@@ -35,7 +35,7 @@ assert.doesNotMatch(html,/#partsTools:has\(\.tool-body\[hidden\]\)/);
 assert.doesNotMatch(html,/\.edit-tools:has\(\.tool-body\[hidden\]\)/);
 assert.match(html,/data-mode="skeleton"[^>]*aria-label="Upravuji kostru/);
 assert.match(html,/class="icon-skeleton"[^>]*>[\s\S]*?<path d="M2 13 L9 7 L16 11">[\s\S]*?<circle cx="9" cy="7" r="2">/);
-assert.match(html,/class="icon-bitmap"[^>]*>[\s\S]*?<rect x="2\.5" y="4" width="13" height="10"/);
+assert.match(html,/class="icon-bitmap"[^>]*>[\s\S]*?<circle cx="4" cy="4" r="1\.2"\/>[\s\S]*?<circle cx="14" cy="14" r="1\.2"\/>/);
 assert.match(html,/data-mode="frame"[^>]*aria-label="Úprava platí pro tento snímek/);
 assert.match(html,/data-mode="rotate"[^>]*aria-label="Nástroj Rotace/);
 assert.doesNotMatch(js,/↔ X|↕ Y/);assert.match(js,/\[\['width','↔'\],\['height','↕'\]\]/);

@@ -5,7 +5,11 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-STORE = Path(__file__).resolve().parent.parent / 'graphics' / 'poses' / 'poses.json'
+GRAPHICS = Path(__file__).resolve().parent.parent / 'graphics'
+SKELETON_STORE = GRAPHICS / 'kostry' / 'skeletons.json'
+ANIMATION_STORE = GRAPHICS / 'animace' / 'animations.json'
+# Compatibility for older callers: the pose editor works with the skeleton bank.
+STORE = SKELETON_STORE
 LIMITS = {'bodyX': (-200, 200), 'bodyY': (-100, 100), 'bodyLean': (-180, 180), 'shoulders': (-180, 180), 'pelvis': (-180, 180),
           'shoulderWidth': (-300, 300), 'pelvisWidth': (-300, 300),
           'neck': (-180, 180), 'head': (-180, 180)}
@@ -163,7 +167,7 @@ def validate_frame(frame):
     return result
 
 
-def save_pose(payload, path=STORE):
+def save_pose(payload, path=None):
     name = payload.get('name')
     if not isinstance(name, str) or not 1 <= len(name.strip()) <= 100:
         raise ValueError('Zadej název do 100 znaků.')
@@ -194,16 +198,22 @@ def save_pose(payload, path=STORE):
         record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')), joint_limits=validate_joint_limits(payload.get('joint_limits')))
         if kind == 'finished_animation':
             record['skin_id'] = validate_reference(payload.get('skin_id'), 'bitmapovou předlohu')
-            record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kosterní animaci')
+            if payload.get('skeleton_id'):
+                record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kosterní animaci')
             record['bitmap'] = validate_bitmap(payload.get('bitmap'))
         record['frame_edits'] = validate_frame_edits(payload.get('frame_edits'), record['frames'], record['rig_lengths'])
         collection = 'clips' if kind == 'clip' else 'finished_animations'
     else:
         raise ValueError('Neznámý typ záznamu.')
+    path = Path(path) if path is not None else (ANIMATION_STORE if kind == 'finished_animation' else SKELETON_STORE)
     library = json.loads(path.read_text(encoding='utf-8'))
     library.setdefault(collection, {})
-    if kind == 'finished_animation' and record['skeleton_id'] not in library.get('clips', {}):
-        raise ValueError('Vybraná kosterní animace neexistuje.')
+    if kind == 'finished_animation' and 'skeleton_id' in record:
+        clips = library.get('clips', {})
+        if not clips and path != SKELETON_STORE and SKELETON_STORE.exists():
+            clips = json.loads(SKELETON_STORE.read_text(encoding='utf-8')).get('clips', {})
+        if record['skeleton_id'] not in clips:
+            raise ValueError('Vybraná kosterní animace neexistuje.')
     mode = payload.get('mode', 'create')
     backup = None
     if mode == 'update':
@@ -231,9 +241,13 @@ def save_pose(payload, path=STORE):
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
                   'joint_limits': record['joint_limits'] if 'joint_limits' in payload else validate_joint_limits(previous.get('joint_limits')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
-            for key in ('skin_id', 'skeleton_id', 'bitmap'):
+            for key in ('skin_id', 'bitmap'):
                 if key in updated:
                     record[key] = updated[key]
+            if kind == 'finished_animation':
+                record.pop('skeleton_id', None)
+                if 'skeleton_id' in updated:
+                    record['skeleton_id'] = updated['skeleton_id']
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
         backup_dir = path.parent / 'history'
         backup_dir.mkdir(exist_ok=True)

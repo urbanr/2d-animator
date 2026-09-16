@@ -12,9 +12,9 @@ class WalkLineTests(unittest.TestCase):
     def test_save_rebuild_and_reject_invalid_values(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            (root / 'graphics/levels').mkdir(parents=True)
+            (root / 'graphics/levely').mkdir(parents=True)
             (root / 'tool').mkdir()
-            path = root / 'graphics/levels/levels.json'
+            path = root / 'graphics/levely/levels.json'
             variant = {'background_master': 'image.png', 'source': 'source.png', 'master_size': [1536, 704]}
             path.write_text(json.dumps({'levels': {'test': {'display_name': 'Test', 'selected_variant': 'v1',
                 'variants': {'v1': dict(variant), 'v2': dict(variant)}}}}))
@@ -27,7 +27,7 @@ class WalkLineTests(unittest.TestCase):
             self.assertEqual(result['selected_variant'], 'v1')
             self.assertEqual(result['variants']['v1']['walk_line']['y'], 0.8)
             self.assertEqual(result['variants']['v2']['walk_line']['y'], 0.42)
-            exported = json.loads((root / 'graphics/levels/levels-game.generated.json').read_text())
+            exported = json.loads((root / 'graphics/levely/levels-game.generated.json').read_text())
             self.assertEqual(exported['levels']['test']['variants']['v2']['walk_line'], result['variants']['v2']['walk_line'])
             for y in [-1, 1.1, True, '0.4', None, float('nan'), float('inf')]:
                 before = path.read_bytes()

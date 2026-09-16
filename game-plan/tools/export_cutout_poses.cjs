@@ -1,9 +1,9 @@
 // Reproducible raster proof of the same bitmap attachment matrices as the browser.
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const C=require('../tool/cutout-rig.js');
-const base=path.resolve(__dirname,'../graphics/characters2/bezec-zombie-v1');
+const base=path.resolve(__dirname,'../graphics/bitmapove-predlohy/bezec-zombie-v1');
 const skin=JSON.parse(fs.readFileSync(path.join(base,'skin.json')));
-const library=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../graphics/poses/poses.json')));
+const library=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../graphics/kostry/skeletons.json')));
 const clip=library.clips[skin.default_clip];
 const suffix=process.argv[2]||'preview-snapshot';
 if(!/^preview-snapshot(?:-v[0-9]+)?$/.test(suffix))throw Error('Invalid snapshot name');

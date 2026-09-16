@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 from sprite_alignment import set_frame_offsets
 from level_walk_line import set_walk_line
 from build_level_gallery import build_level_data
-from pose_library import save_pose, STORE as POSE_STORE
+from pose_library import save_pose, SKELETON_STORE, ANIMATION_STORE
 from cutout_characters import save_character, ROOT as CHARACTER_ROOT
 from catalog_trash import change_trash
 from sprite_variants import (
@@ -81,7 +81,10 @@ class SpriteGalleryHandler(SimpleHTTPRequestHandler):
                     return
                 if endpoint == "/api/poses":
                     if payload.get('mode') in ('delete', 'restore'):
-                        result = change_trash(payload, POSE_STORE, {'clips', 'finished_animations', 'poses', 'rigs'})
+                        collection = payload.get('collection')
+                        store = ANIMATION_STORE if collection == 'finished_animations' else SKELETON_STORE
+                        allowed = {'finished_animations'} if store == ANIMATION_STORE else {'clips', 'poses', 'rigs'}
+                        result = change_trash(payload, store, allowed)
                         self._json_response(200, {"ok": True, **result})
                         return
                     result = save_pose(payload)

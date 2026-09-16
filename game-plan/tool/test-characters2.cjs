@@ -1,7 +1,7 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const R=require('./pose-rig.js'),C=require('./cutout-rig.js'),copy=v=>JSON.parse(JSON.stringify(v));
-const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-zombie-v1/skin.json'));
-const gameManifest=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-zombie-v1/game-192/manifest.json'));
+const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json'));
+const gameManifest=JSON.parse(fs.readFileSync(__dirname+'/../graphics/bitmapove-predlohy/bezec-zombie-v1/game-192/manifest.json'));
 const exportedSizes=[];
 const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
 const storedSkeleton={id:'pose-1',name:'Kostra test',frame:{...R.neutral(),bodyY:9},rig_lengths:{...R.defaultLengths(),nearShin:82},joint_limits:R.defaultJointLimits()};

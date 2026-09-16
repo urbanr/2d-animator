@@ -34,7 +34,7 @@ def build_level_data():
         write_catalog(CATALOG, catalog)
     (ROOT / "tool" / "level-variants.generated.js").write_text(
         "window.LEVEL_VARIANTS = " + json.dumps(items, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
-    write_catalog(ROOT / "graphics" / "levels" / "levels-game.generated.json", game)
+    write_catalog(ROOT / "graphics" / "levely" / "levels-game.generated.json", game)
     return len(items)
 
 

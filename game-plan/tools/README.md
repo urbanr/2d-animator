@@ -32,7 +32,7 @@ odmítne přepsat. Při dávkovém zpracování uloží do cílové složky tak�
 `migration.json` s parametry, rozměry a SHA-256 otisky vstupů a výstupů.
 
 Centrální lidsky čitelný stav všech postav je v
-`graphics/LOWRES-MIGRATION.md`. Po každém převodu je potřeba doplnit nebo
+`graphics/bitmapove-sekvence/LOWRES-MIGRATION.md`. Po každém převodu je potřeba doplnit nebo
 aktualizovat příslušný řádek; podrobná technická evidence vzniká automaticky.
 
 Schválené předzpracování běžných nepřátel je uložené jako pojmenovaný profil
@@ -61,7 +61,7 @@ python3 tools/downscale_sprites.py \
 
 `sprite_variants.py` udržuje odděleně zdrojové snímky, neměnné alternativy a
 produkční výběr. Nový pokus vytvoří ve `variants/<název>/`, zapíše ho do
-`graphics/sprite-variants.json` a obnoví seznam v galerii. Existující varianta
+`graphics/bitmapove-sekvence/sprite-variants.json` a obnoví seznam v galerii. Existující varianta
 se nikdy nepřepisuje; pro jiné parametry je nutný nový název.
 
 Příklad alternativy odvozené z produkčního profilu, ale s jinou černotou:
@@ -74,7 +74,7 @@ python3 tools/sprite_variants.py create kopac cernejsi-ink35 \
 ```
 
 Alternativa sama hru nepřepne. Teprve explicitní výběr ji označí jako
-produkční a zároveň přegeneruje `graphics/game-sprites.generated.json`:
+produkční a zároveň přegeneruje `graphics/bitmapove-sekvence/game-sprites.generated.json`:
 
 ```sh
 python3 tools/sprite_variants.py select kopac cernejsi-ink35
@@ -148,7 +148,7 @@ ne vypálit napevno do kolizí obrázku.
 python3 tools/build_asset_inventory.py
 ```
 
-Výsledek je `graphics/asset-production-status.json`. Přehled levelů pro
+Výsledek je `graphics/bitmapove-sekvence/asset-production-status.json`. Přehled levelů pro
 prohlížeč obnoví `python3 tools/build_level_gallery.py` a otevře se přes
 `tool/levels.html`.
 
@@ -156,8 +156,8 @@ prohlížeč obnoví `python3 tools/build_level_gallery.py` a otevře se přes
 
 Galerie umí každý snímek posunout nahoru, dolů, doleva a doprava bez změny
 zdrojového nebo zmenšeného PNG. Posuny jsou v pixelech daného PNG a ukládají
-se do `graphics/sprite-frame-offsets.json`. Galerie i generovaný herní soubor
-`graphics/game-sprites.generated.json` čtou stejná data.
+se do `graphics/bitmapove-sekvence/sprite-frame-offsets.json`. Galerie i generovaný herní soubor
+`graphics/bitmapove-sekvence/game-sprites.generated.json` čtou stejná data.
 
 Ukládací režim galerie spustí lokální server, který naslouchá pouze na tomto
 počítači:

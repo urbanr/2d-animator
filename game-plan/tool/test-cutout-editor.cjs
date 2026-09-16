@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const R=require('./pose-rig.js'),C=require('./cutout-rig.js'),E=require('./cutout-editor.js');
 const copy=v=>JSON.parse(JSON.stringify(v)),near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 const source=copy({...R.zombieClips()[0],rig_lengths:R.defaultLengths()}),original=copy(source);
-const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-zombie-v1/skin.json'));
+const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json'));
 skin.layers=skin.layers.filter(k=>!['shoulders','pelvis'].includes(k));
 for(const key of ['nearShoulder','farElbow','nearHip','farKnee','nearFoot']){
   const h=R.handles(C.sample(source,0,false)).find(h=>h.key===key),bone=E.boneForHandle(key),size=source.rig_lengths[bone];

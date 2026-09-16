@@ -4,7 +4,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATALOG = ROOT / "graphics" / "levels" / "levels.json"
+CATALOG = ROOT / "graphics" / "levely" / "levels.json"
 
 
 def default_walk_line(slug, variant):

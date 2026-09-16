@@ -5,7 +5,7 @@ from pathlib import Path
 from downscale_sprites import RgbaImage, read_rgba_png, write_rgba_png
 from import_sprite_sheet import remove_connected_gray_background, visible_bounds, sha256
 
-ROOT=Path(__file__).resolve().parents[1]/'graphics/characters2/bezec-zombie-v1'
+ROOT=Path(__file__).resolve().parents[1]/'graphics/bitmapove-predlohy/bezec-zombie-v1'
 # Rectangles and joints are authored for this specific 1254px atlas, not auto-fitted per pose.
 PARTS=[
  ('head','Hlava a krk',[0,0,355,320],[177,266],[177,204]),

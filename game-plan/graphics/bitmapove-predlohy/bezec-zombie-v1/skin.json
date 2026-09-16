@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "id": "bezec-zombie-v1",
+  "name": "Běžec · zombie cutout v1",
+  "status": "experiment",
+  "rig": "pose-rig-v1",
+  "game_textures": "game-192/manifest.json",
+  "facing": "left",
+  "default_clip": "6a4fa087-fbbf-42cd-82ae-49b53a510bf5",
+  "source_sha256": "c8c2d16a7d1573b4ec0707c6e27d80c61f5f1d68c2e3c1567b2c0877d6f70d79",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "background": "preserved-generated-alpha",
+  "layers": [
+    "farUpperArm",
+    "farForearm",
+    "farFoot",
+    "farThigh",
+    "farShin",
+    "nearFoot",
+    "nearThigh",
+    "nearShin",
+    "backpack",
+    "torso",
+    "head",
+    "nearUpperArm",
+    "nearForearm"
+  ],
+  "parts": {
+    "head": {
+      "label": "Hlava a krk",
+      "file": "parts/head.png",
+      "size": [
+        289,
+        252
+      ],
+      "start": [
+        140,
+        228
+      ],
+      "end": [
+        140,
+        166
+      ],
+      "source_rect": [
+        37,
+        38,
+        289,
+        252
+      ],
+      "sha256": "d02d7bda2ece663918fc3bcc58656fcf6025d958846e13a98ffb63b6fd4efe00"
+    },
+    "torso": {
+      "label": "Trup bez přikreslené paže",
+      "file": "parts/torso-v2.png",
+      "size": [
+        490,
+        1010
+      ],
+      "start": [
+        271.0,
+        155.0
+      ],
+      "end": [
+        286.0,
+        795.0
+      ],
+      "source_rect": [
+        204,
+        305,
+        490,
+        1010
+      ],
+      "source": "source/torso-v2-generated.png",
+      "source_sha256": "4691a367299e83f597d918b67a018b117286f06f28db45c18bb486441711e006",
+      "sha256": "6637a223db9613b179411fd95f6049d1736d0a984d730c1f985220a0bad141fb"
+    },
+    "pelvis": {
+      "label": "Pánev",
+      "file": "parts/pelvis.png",
+      "size": [
+        254,
+        217
+      ],
+      "start": [
+        78,
+        34
+      ],
+      "end": [
+        78,
+        124
+      ],
+      "source_rect": [
+        657,
+        98,
+        254,
+        217
+      ],
+      "sha256": "ab7512e5c4923d9b079b3c8022406e9a996e422fe13c9fdd63d1230f3baafdeb"
+    },
+    "backpack": {
+      "label": "Nádrž",
+      "file": "parts/backpack.png",
+      "size": [
+        211,
+        270
+      ],
+      "start": [
+        108,
+        88
+      ],
+      "end": [
+        108,
+        376
+      ],
+      "source_rect": [
+        997,
+        44,
+        211,
+        270
+      ],
+      "sha256": "47d7dcf8e14f9d898aa91140cd91a6f9ec5a510072602a6de66ad4fb2914e124"
+    },
+    "nearUpperArm": {
+      "label": "Bližší paže",
+      "file": "parts/nearUpperArm.png",
+      "size": [
+        117,
+        256
+      ],
+      "start": [
+        58,
+        32
+      ],
+      "end": [
+        63,
+        205
+      ],
+      "source_rect": [
+        110,
+        335,
+        117,
+        256
+      ],
+      "sha256": "de5ee450f359cfd875ade68d83041f1dfd6d45e2297b79360512a36128de5e5c"
+    },
+    "nearForearm": {
+      "label": "Bližší předloktí a ruka",
+      "file": "parts/nearForearm.png",
+      "size": [
+        130,
+        283
+      ],
+      "start": [
+        82,
+        31
+      ],
+      "end": [
+        73,
+        240
+      ],
+      "source_rect": [
+        391,
+        335,
+        130,
+        283
+      ],
+      "sha256": "bde3172ea1f8834f5880423886389d724f1ae18538e253b8bb41fbfc15a3e566"
+    },
+    "farUpperArm": {
+      "label": "Vzdálenější paže",
+      "file": "parts/farUpperArm.png",
+      "size": [
+        111,
+        272
+      ],
+      "start": [
+        67,
+        39
+      ],
+      "end": [
+        67,
+        212
+      ],
+      "source_rect": [
+        713,
+        335,
+        111,
+        272
+      ],
+      "sha256": "0688e7039fdf13913bd8256d092568289a59a3bd8f72524ca8ec8107e60990d7"
+    },
+    "farForearm": {
+      "label": "Vzdálenější předloktí a ruka",
+      "file": "parts/farForearm.png",
+      "size": [
+        102,
+        280
+      ],
+      "start": [
+        61,
+        30
+      ],
+      "end": [
+        43,
+        242
+      ],
+      "source_rect": [
+        1039,
+        333,
+        102,
+        280
+      ],
+      "sha256": "a90d2a4ed0ac5c71a71aaa4b268570aa392fb54e6abc0ea9978318bcdcc62a49"
+    },
+    "nearThigh": {
+      "label": "Bližší stehno",
+      "file": "parts/nearThigh.png",
+      "size": [
+        154,
+        282
+      ],
+      "start": [
+        91,
+        29
+      ],
+      "end": [
+        64,
+        205
+      ],
+      "source_rect": [
+        75,
+        641,
+        154,
+        282
+      ],
+      "sha256": "90f406eccc8cba03bef8d72cfe99ad264bb2589e95cb9b0acad103bb2d072d86"
+    },
+    "nearShin": {
+      "label": "Bližší lýtko",
+      "file": "parts/nearShin.png",
+      "size": [
+        123,
+        281
+      ],
+      "start": [
+        58,
+        57
+      ],
+      "end": [
+        63,
+        241
+      ],
+      "source_rect": [
+        415,
+        640,
+        123,
+        281
+      ],
+      "sha256": "79a3618bcda80cd1967bb43f06002dd26e0bc35c9b22390eaf3f6aab9e0a2367"
+    },
+    "farThigh": {
+      "label": "Vzdálenější stehno",
+      "file": "parts/farThigh.png",
+      "size": [
+        133,
+        285
+      ],
+      "start": [
+        62,
+        32
+      ],
+      "end": [
+        78,
+        218
+      ],
+      "source_rect": [
+        717,
+        640,
+        133,
+        285
+      ],
+      "sha256": "3f840d442293a3a10bae2abcfa9154e6bfacf0591f9780fe04e51ad5d31e08e9"
+    },
+    "farShin": {
+      "label": "Vzdálenější lýtko",
+      "file": "parts/farShin.png",
+      "size": [
+        130,
+        277
+      ],
+      "start": [
+        72,
+        54
+      ],
+      "end": [
+        80,
+        239
+      ],
+      "source_rect": [
+        1028,
+        640,
+        130,
+        277
+      ],
+      "sha256": "62c20dff763fc9b488c2e641ccac2782ff264ef678f136f7dc19e41a2b561cd3"
+    },
+    "nearFoot": {
+      "label": "Bližší červená bota",
+      "file": "parts/nearFoot.png",
+      "size": [
+        246,
+        156
+      ],
+      "start": [
+        198,
+        33
+      ],
+      "end": [
+        43,
+        33
+      ],
+      "source_rect": [
+        39,
+        1007,
+        246,
+        156
+      ],
+      "sha256": "8c9edbf67a7697057abe4234acc7e6d5b39d0a9029c7dbaa188d79d96b11e22f"
+    },
+    "farFoot": {
+      "label": "Vzdálenější hnědá bota",
+      "file": "parts/farFoot.png",
+      "size": [
+        226,
+        166
+      ],
+      "start": [
+        177,
+        37
+      ],
+      "end": [
+        22,
+        37
+      ],
+      "source_rect": [
+        364,
+        1003,
+        226,
+        166
+      ],
+      "sha256": "23400cb5cd7c31934b2716e6399e7d5e5e0da5d795ed86b2dbd6ed46cb7701fe"
+    }
+  }
+}

@@ -22,8 +22,9 @@ from sprite_alignment import (
 
 TOOLS_ROOT = Path(__file__).resolve().parent
 GAME_PLAN_ROOT = TOOLS_ROOT.parent
-DEFAULT_CATALOG = GAME_PLAN_ROOT / "graphics" / "sprite-variants.json"
-DEFAULT_GAME_DATA = GAME_PLAN_ROOT / "graphics" / "game-sprites.generated.json"
+SEQUENCE_ROOT = GAME_PLAN_ROOT / "graphics" / "bitmapove-sekvence"
+DEFAULT_CATALOG = SEQUENCE_ROOT / "sprite-variants.json"
+DEFAULT_GAME_DATA = SEQUENCE_ROOT / "game-sprites.generated.json"
 DEFAULT_GALLERY_DATA = GAME_PLAN_ROOT / "tool" / "sprite-variants.generated.js"
 VARIANT_ID = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 REQUIRED_SETTINGS = {
@@ -79,7 +80,11 @@ def load_profile(profile: str, overrides: list[str]) -> tuple[dict[str, object],
 
 
 def game_plan_root_for(catalog_path: Path) -> Path:
-    return catalog_path.resolve().parent.parent
+    resolved = catalog_path.resolve()
+    for parent in resolved.parents:
+        if parent.name == "graphics":
+            return parent.parent
+    return resolved.parent.parent
 
 
 def relative_to_game_plan(path: Path, game_plan_root: Path = GAME_PLAN_ROOT) -> str:

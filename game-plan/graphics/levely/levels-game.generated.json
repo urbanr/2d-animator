@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "levels": {
+    "benzinka": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/benzinka/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.7105113636363611,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "hrbitov": {
+      "selected_variant": null,
+      "variants": {
+        "composition-v2": {
+          "background_master": "graphics/levely/hrbitov/composition-v2/background-master.png",
+          "master_size": [
+            1852,
+            849
+          ],
+          "walk_line": {
+            "y": 0.7152885747938751,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "concept-v1": {
+          "background_master": "graphics/levely/hrbitov/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.7143181818181816,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "kolotoc-z-pouti": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/kolotoc-z-pouti/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.5585227272727205,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "most-pres-propast": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/most-pres-propast/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.317045454545448,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "prehrada": {
+      "selected_variant": null,
+      "variants": {
+        "composition-v2": {
+          "background_master": "graphics/levely/prehrada/composition-v2/background-master.png",
+          "master_size": [
+            1852,
+            849
+          ],
+          "walk_line": {
+            "y": 0.48,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "concept-v1": {
+          "background_master": "graphics/levely/prehrada/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.48,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        }
+      }
+    },
+    "rovina-u-dalnice": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/rovina-u-dalnice/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.6096590909090855,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "sidliste": {
+      "selected_variant": null,
+      "variants": {
+        "composition-v2": {
+          "background_master": "graphics/levely/sidliste/composition-v2/background-master.png",
+          "master_size": [
+            1851,
+            849
+          ],
+          "walk_line": {
+            "y": 0.8229093050647819,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "concept-v1": {
+          "background_master": "graphics/levely/sidliste/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.85,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        }
+      }
+    },
+    "skladka": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/skladka/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.6963068181818153,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "strecha-panelaku": {
+      "selected_variant": null,
+      "variants": {
+        "composition-v2": {
+          "background_master": "graphics/levely/strecha-panelaku/composition-v2/background-master.png",
+          "master_size": [
+            1855,
+            848
+          ],
+          "walk_line": {
+            "y": 0.5882075471698117,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        },
+        "concept-v1": {
+          "background_master": "graphics/levely/strecha-panelaku/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.5772727272727266,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "svah": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/svah/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.7275568181818162,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "telocvicna": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/telocvicna/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.8,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": false
+          }
+        }
+      }
+    },
+    "tunel-metra": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/tunel-metra/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.8511363636363651,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "vrakoviste-aut": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/vrakoviste-aut/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.5883522727272668,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    },
+    "zamrzly-rybnik": {
+      "selected_variant": null,
+      "variants": {
+        "concept-v1": {
+          "background_master": "graphics/levely/zamrzly-rybnik/concept-v1/background-master.png",
+          "master_size": [
+            1536,
+            704
+          ],
+          "walk_line": {
+            "y": 0.567045454545448,
+            "coordinate_system": "normalized-top-down",
+            "reviewed": true
+          }
+        }
+      }
+    }
+  }
+}

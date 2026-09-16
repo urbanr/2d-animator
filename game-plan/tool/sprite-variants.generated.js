@@ -56,16 +56,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-00.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-01.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-02.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-03.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-04.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-05.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-06.png",
-      "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-07.png"
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-00.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-01.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-02.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-03.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-04.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-05.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-06.png",
+      "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/babka-dealerka-walk-07.png"
     ],
-    "link": "../graphics/babka-dealerka/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Běžec",
@@ -124,16 +124,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-00.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-01.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-02.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-03.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-04.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-05.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-06.png",
-      "../graphics/bezec/rage-gray-v2/variants/generated-v1/bezec-run-07.png"
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-00.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-01.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-02.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-03.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-04.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-05.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-06.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/bezec-run-07.png"
     ],
-    "link": "../graphics/bezec/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/bezec/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Běžec",
@@ -192,16 +192,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Nový osmifázový sprint: levý kontakt, stlačení, průchod, let; pravý kontakt, stlačení, průchod, let před návratem k prvnímu snímku. Stabilnější identita, čitelné protilehlé fáze a bezpečné mezery mezi buňkami.",
     "frames": [
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-00.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-01.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-02.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-03.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-04.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-05.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-06.png",
-      "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-07.png"
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-00.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-01.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-02.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-03.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-04.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-05.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-06.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-07.png"
     ],
-    "link": "../graphics/bezec/rage-gray-v3/variants/phased-run-v2/"
+    "link": "../graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/"
   },
   {
     "displayName": "Běžec",
@@ -260,16 +260,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Bližší noha v červené botě, vzdálenější v hnědé. Prohozené původní snímky 4 a 5: pořadí 1–2–3–5–4–6–7–8. Přechod 7 → 8 → 1 ještě vyžaduje doladění osmé pózy. Polohu nastaví uživatel v editoru.",
     "frames": [
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-00.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-01.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-02.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-03.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-04.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-05.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-06.png",
-      "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-07.png"
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-00.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-01.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-02.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-03.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-04.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-05.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-06.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/bezec-run-07.png"
     ],
-    "link": "../graphics/bezec/rage-gray-v4/variants/alternating-run-v3/"
+    "link": "../graphics/bitmapove-sekvence/bezec/rage-gray-v4/variants/alternating-run-v3/"
   },
   {
     "displayName": "Běžec",
@@ -328,16 +328,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Nově kreslená osmá fáze s pokrčenou nohou mezi 7 a 1. Prohození původních 4/5 zahrnuto v kresbě. Větší pracovní buňky a stejné měřítko všech snímků. Ruční posuny jsou nulové.",
     "frames": [
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-00.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-01.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-02.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-03.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-04.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-05.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-06.png",
-      "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-07.png"
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-00.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-01.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-02.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-03.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-04.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-05.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-06.png",
+      "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/bezec-run-07.png"
     ],
-    "link": "../graphics/bezec/rage-gray-v5/variants/wide-loop-v4/"
+    "link": "../graphics/bitmapove-sekvence/bezec/rage-gray-v5/variants/wide-loop-v4/"
   },
   {
     "displayName": "Běžec",
@@ -396,16 +396,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Pokus podle Chůze · přirozený krok v4. 8 fps, produkční filtry, bez automatického srovnávání výšek. ImageGen sleduje kostru přibližně; zdvih kolen a konec cyklu vyžadují posouzení.",
     "frames": [
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-00.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-01.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-02.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-03.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-04.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-05.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-06.png",
-      "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-07.png"
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-00.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-01.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-02.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-03.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-04.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-05.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-06.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-07.png"
     ],
-    "link": "../graphics/bezec/pose-walk-v1/variants/pose-walk-v1/"
+    "link": "../graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/"
   },
   {
     "displayName": "Běžec",
@@ -464,16 +464,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Pokus podle uloženého Sprintu · odraz a let v4. 12 fps, produkční filtry, ruční posuny dostupné. Kostra není dodržena přesně, zejména fáze 3 a otevřené dlaně ve 4 a 8.",
     "frames": [
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-00.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-01.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-02.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-03.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-04.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-05.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-06.png",
-      "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-07.png"
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-00.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-01.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-02.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-03.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-04.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-05.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-06.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/bezec-sprint-07.png"
     ],
-    "link": "../graphics/bezec/pose-sprint-v1/variants/pose-sprint-v1/"
+    "link": "../graphics/bitmapove-sekvence/bezec/pose-sprint-v1/variants/pose-sprint-v1/"
   },
   {
     "displayName": "Běžec",
@@ -532,16 +532,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Pokus podle aktuálně upravené Zombie · šouravá chůze v1. 6 fps, produkční filtry. Přibližná shoda s kostrou; ve snímku 5 generátor zaměnil barvu vzdálené boty. Výšky nesrovnávány.",
     "frames": [
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-00.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-01.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-02.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-03.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-04.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-05.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-06.png",
-      "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-07.png"
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-00.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-01.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-02.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-03.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-04.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-05.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-06.png",
+      "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-07.png"
     ],
-    "link": "../graphics/bezec/pose-zombie-v2/variants/pose-zombie-v2/"
+    "link": "../graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/"
   },
   {
     "displayName": "Babička s válečkem",
@@ -600,16 +600,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-00.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-01.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-02.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-03.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-04.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-05.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-06.png",
-      "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/boss-babicka-march-07.png"
     ],
-    "link": "../graphics/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Bývalý starosta",
@@ -668,16 +668,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-00.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-01.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-02.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-03.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-04.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-05.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-06.png",
-      "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-07.png"
     ],
-    "link": "../graphics/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Dvojčata",
@@ -736,16 +736,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-00.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-01.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-02.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-03.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-04.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-05.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-06.png",
-      "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-07.png"
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-00.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-01.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-02.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-03.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-04.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-05.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-06.png",
+      "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/boss-dvojcata-run-07.png"
     ],
-    "link": "../graphics/boss-dvojcata/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Kolos z ledniček",
@@ -804,16 +804,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-00.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-01.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-02.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-03.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-04.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-05.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-06.png",
-      "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-07.png"
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-00.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-01.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-02.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-03.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-04.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-05.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-06.png",
+      "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/boss-kolos-walk-07.png"
     ],
-    "link": "../graphics/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Matka všech krys",
@@ -872,16 +872,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-00.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-01.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-02.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-03.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-04.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-05.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-06.png",
-      "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-07.png"
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-00.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-01.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-02.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-03.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-04.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-05.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-06.png",
+      "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-07.png"
     ],
-    "link": "../graphics/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Profesor Relativita",
@@ -940,16 +940,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-00.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-01.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-02.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-03.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-04.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-05.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-06.png",
-      "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-07.png"
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-00.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-01.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-02.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-03.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-04.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-05.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-06.png",
+      "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-07.png"
     ],
-    "link": "../graphics/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Řetěz",
@@ -1008,16 +1008,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Chybný pokus převzal siluetu referenčního kance. Správnou skupinu Loudačů spojených řetězem obsahuje generated-v2.",
     "frames": [
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-00.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-01.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-02.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-03.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-04.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-05.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-06.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-07.png"
     ],
-    "link": "../graphics/boss-retez/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Řetěz",
@@ -1076,16 +1076,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Opravená podoba podle návrhu hry; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-00.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-01.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-02.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-03.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-04.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-05.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-06.png",
-      "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/boss-retez-march-07.png"
     ],
-    "link": "../graphics/boss-retez/rage-gray-v2/variants/generated-v2/"
+    "link": "../graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v2/"
   },
   {
     "displayName": "Soudruh Generalissimus",
@@ -1144,16 +1144,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-00.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-01.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-02.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-03.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-04.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-05.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-06.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/boss-soudruh-march-07.png"
     ],
-    "link": "../graphics/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Soudruh Generalissimus",
@@ -1212,16 +1212,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Nový osmifázový pokus: došlap, stlačení, průchod a zdvih na obě nohy; větší bezpečné mezery mezi buňkami. Poslední snímek je přechod před návratem k prvnímu, nikoli jeho kopie.",
     "frames": [
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-00.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-01.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-02.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-03.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-04.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-05.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-06.png",
-      "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-07.png"
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-00.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-01.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-02.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-03.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-04.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-05.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-06.png",
+      "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/boss-soudruh-walk-07.png"
     ],
-    "link": "../graphics/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/"
+    "link": "../graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/variants/phased-walk-v2/"
   },
   {
     "displayName": "Tchyně",
@@ -1280,16 +1280,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-00.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-01.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-02.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-03.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-04.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-05.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-06.png",
-      "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-07.png"
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-00.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-01.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-02.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-03.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-04.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-05.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-06.png",
+      "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/boss-tchyne-march-07.png"
     ],
-    "link": "../graphics/boss-tchyne/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Traktor",
@@ -1348,16 +1348,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-00.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-01.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-02.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-03.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-04.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-05.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-06.png",
-      "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-07.png"
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-00.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-01.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-02.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-03.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-04.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-05.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-06.png",
+      "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/boss-traktor-drive-07.png"
     ],
-    "link": "../graphics/boss-traktor/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Zeppelin z matrací",
@@ -1416,16 +1416,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 120,
     "note": "Automaticky vygenerovaný boss ve větším herním měřítku 288 × 360 px @3×; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-00.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-01.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-02.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-03.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-04.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-05.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-06.png",
-      "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-07.png"
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-00.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-01.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-02.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-03.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-04.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-05.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-06.png",
+      "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/boss-zeppelin-fly-07.png"
     ],
-    "link": "../graphics/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Boxer",
@@ -1484,16 +1484,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-00.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-01.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-02.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-03.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-04.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-05.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-06.png",
-      "../graphics/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-07.png"
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-00.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-01.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-02.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-03.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-04.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-05.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-06.png",
+      "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/boxer-shuffle-07.png"
     ],
-    "link": "../graphics/boxer/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/boxer/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Černobylák",
@@ -1552,16 +1552,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Finální produkční verze schválená podle zkoušky outline45-ink25.",
     "frames": [
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-00.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-01.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-02.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-03.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-04.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-05.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-06.png",
-      "../graphics/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-07.png"
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-00.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-01.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-02.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-03.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-04.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-05.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-06.png",
+      "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/cernobylak-scuttle-07.png"
     ],
-    "link": "../graphics/cernobylak/rage-gray-v2/frames-production@3x/"
+    "link": "../graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-production@3x/"
   },
   {
     "displayName": "Chlap s mikrovlnkou",
@@ -1620,16 +1620,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-00.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-01.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-02.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-03.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-04.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-05.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-06.png",
-      "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-07.png"
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-00.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-01.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-02.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-03.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-04.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-05.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-06.png",
+      "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-07.png"
     ],
-    "link": "../graphics/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Chlap s traktorovou pneumatikou",
@@ -1688,16 +1688,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-00.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-01.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-02.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-03.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-04.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-05.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-06.png",
-      "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-07.png"
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-00.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-01.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-02.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-03.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-04.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-05.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-06.png",
+      "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/pneumatika-march-07.png"
     ],
-    "link": "../graphics/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Chlap v bublině",
@@ -1756,16 +1756,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-00.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-01.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-02.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-03.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-04.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-05.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-06.png",
-      "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-07.png"
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-00.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-01.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-02.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-03.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-04.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-05.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-06.png",
+      "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-07.png"
     ],
-    "link": "../graphics/chlap-v-bubline/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Důchodce s holí",
@@ -1824,16 +1824,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-00.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-01.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-02.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-03.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-04.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-05.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-06.png",
-      "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-07.png"
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-00.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-01.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-02.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-03.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-04.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-05.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-06.png",
+      "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/duchodce-shuffle-07.png"
     ],
-    "link": "../graphics/duchodce-s-holi/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Ex",
@@ -1892,16 +1892,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-00.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-01.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-02.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-03.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-04.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-05.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-06.png",
-      "../graphics/ex/rage-gray-v2/variants/generated-v1/ex-walk-07.png"
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-00.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-01.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-02.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-03.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-04.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-05.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-06.png",
+      "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/ex-walk-07.png"
     ],
-    "link": "../graphics/ex/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/ex/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Fotograf",
@@ -1960,16 +1960,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-00.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-01.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-02.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-03.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-04.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-05.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-06.png",
-      "../graphics/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-07.png"
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-00.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-01.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-02.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-03.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-04.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-05.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-06.png",
+      "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-07.png"
     ],
-    "link": "../graphics/fotograf/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Házeč",
@@ -2028,16 +2028,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-00.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-01.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-02.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-03.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-04.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-05.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-06.png",
-      "../graphics/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-07.png"
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-00.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-01.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-02.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-03.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-04.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-05.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-06.png",
+      "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/hazec-walk-07.png"
     ],
-    "link": "../graphics/hazec/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/hazec/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Hejno holubů",
@@ -2096,16 +2096,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-00.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-01.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-02.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-03.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-04.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-05.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-06.png",
-      "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-07.png"
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-00.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-01.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-02.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-03.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-04.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-05.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-06.png",
+      "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-07.png"
     ],
-    "link": "../graphics/hejno-holubu/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Kněz zkázy",
@@ -2164,16 +2164,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-00.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-01.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-02.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-03.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-04.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-05.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-06.png",
-      "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-07.png"
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-00.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-01.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-02.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-03.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-04.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-05.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-06.png",
+      "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/knez-zkazy-walk-07.png"
     ],
-    "link": "../graphics/knez-zkazy/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Kolona důchodců na vozících",
@@ -2232,16 +2232,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-00.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-01.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-02.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-03.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-04.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-05.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-06.png",
-      "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-07.png"
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-00.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-01.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-02.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-03.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-04.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-05.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-06.png",
+      "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/kolona-voziky-roll-07.png"
     ],
-    "link": "../graphics/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Kopáč",
@@ -2300,16 +2300,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Kontrolní aplikace produkčního profilu; čeká na výtvarné potvrzení.",
     "frames": [
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-00.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-01.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-02.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-03.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-04.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-05.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-06.png",
-      "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-07.png"
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-00.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-01.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-02.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-03.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-04.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-05.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-06.png",
+      "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/kopac-walk-07.png"
     ],
-    "link": "../graphics/kopac/rage-gray-v2/frames-production@3x-candidate/"
+    "link": "../graphics/bitmapove-sekvence/kopac/rage-gray-v2/frames-production@3x-candidate/"
   },
   {
     "displayName": "Kříženec prasete a motorky",
@@ -2368,16 +2368,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-00.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-01.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-02.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-03.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-04.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-05.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-06.png",
-      "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-07.png"
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-00.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-01.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-02.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-03.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-04.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-05.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-06.png",
+      "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-07.png"
     ],
-    "link": "../graphics/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Lezec",
@@ -2436,16 +2436,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-00.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-01.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-02.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-03.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-04.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-05.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-06.png",
-      "../graphics/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-07.png"
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-00.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-01.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-02.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-03.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-04.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-05.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-06.png",
+      "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-07.png"
     ],
-    "link": "../graphics/lezec/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Loudač",
@@ -2504,16 +2504,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-00.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-01.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-02.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-03.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-04.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-05.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-06.png",
-      "../graphics/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-07.png"
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-00.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-01.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-02.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-03.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-04.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-05.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-06.png",
+      "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-07.png"
     ],
-    "link": "../graphics/loudac/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Nosič žebříku",
@@ -2572,16 +2572,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-00.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-01.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-02.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-03.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-04.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-05.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-06.png",
-      "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-07.png"
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-00.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-01.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-02.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-03.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-04.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-05.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-06.png",
+      "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-07.png"
     ],
-    "link": "../graphics/nosic-zebriku/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Ožrala",
@@ -2640,16 +2640,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-00.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-01.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-02.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-03.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-04.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-05.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-06.png",
-      "../graphics/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-07.png"
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-00.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-01.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-02.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-03.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-04.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-05.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-06.png",
+      "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-07.png"
     ],
-    "link": "../graphics/ozrala/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Prodavač",
@@ -2708,16 +2708,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-00.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-01.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-02.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-03.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-04.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-05.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-06.png",
-      "../graphics/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-07.png"
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-00.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-01.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-02.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-03.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-04.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-05.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-06.png",
+      "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-07.png"
     ],
-    "link": "../graphics/prodavac/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Puškař",
@@ -2776,16 +2776,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-00.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-01.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-02.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-03.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-04.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-05.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-06.png",
-      "../graphics/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-07.png"
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-00.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-01.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-02.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-03.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-04.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-05.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-06.png",
+      "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-07.png"
     ],
-    "link": "../graphics/puskar/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Rojnice",
@@ -2844,16 +2844,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Chybný pokus: vznikl nosič hmyzu, ale podle návrhu hry je Rojnice roj třiceti krys. Nahrazuje ho generated-v2.",
     "frames": [
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-00.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-01.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-02.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-03.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-04.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-05.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-06.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-07.png"
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-00.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-01.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-02.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-03.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-04.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-05.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-06.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/rojnice-walk-07.png"
     ],
-    "link": "../graphics/rojnice/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Rojnice",
@@ -2912,16 +2912,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Správná podoba podle návrhu hry: kompaktní roj mutantních krys. Produkční profil v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-00.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-01.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-02.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-03.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-04.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-05.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-06.png",
-      "../graphics/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-07.png"
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-00.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-01.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-02.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-03.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-04.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-05.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-06.png",
+      "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-07.png"
     ],
-    "link": "../graphics/rojnice/rage-gray-v2/variants/generated-v2/"
+    "link": "../graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/"
   },
   {
     "displayName": "Šaman",
@@ -2980,16 +2980,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-00.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-01.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-02.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-03.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-04.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-05.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-06.png",
-      "../graphics/saman/rage-gray-v2/variants/generated-v1/saman-march-07.png"
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-00.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-01.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-02.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-03.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-04.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-05.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-06.png",
+      "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/saman-march-07.png"
     ],
-    "link": "../graphics/saman/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/saman/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Sebevrah s bombou",
@@ -3048,16 +3048,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-00.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-01.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-02.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-03.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-04.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-05.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-06.png",
-      "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-07.png"
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-00.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-01.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-02.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-03.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-04.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-05.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-06.png",
+      "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/sebevrah-run-07.png"
     ],
-    "link": "../graphics/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/sebevrah-s-bombou/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Sekta zrcadel",
@@ -3116,16 +3116,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-00.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-01.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-02.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-03.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-04.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-05.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-06.png",
-      "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-07.png"
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-00.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-01.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-02.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-03.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-04.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-05.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-06.png",
+      "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/sekta-zrcadel-march-07.png"
     ],
-    "link": "../graphics/sekta-zrcadel/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Sněhulák z popela",
@@ -3184,16 +3184,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-00.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-01.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-02.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-03.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-04.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-05.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-06.png",
-      "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-07.png"
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-00.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-01.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-02.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-03.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-04.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-05.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-06.png",
+      "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/snehulak-z-popela-walk-07.png"
     ],
-    "link": "../graphics/snehulak-z-popela/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Špekoun",
@@ -3252,16 +3252,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-00.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-01.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-02.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-03.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-04.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-05.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-06.png",
-      "../graphics/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-07.png"
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-00.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-01.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-02.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-03.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-04.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-05.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-06.png",
+      "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-07.png"
     ],
-    "link": "../graphics/spekoun/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Štítonoš",
@@ -3320,16 +3320,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-00.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-01.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-02.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-03.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-04.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-05.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-06.png",
-      "../graphics/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-07.png"
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-00.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-01.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-02.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-03.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-04.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-05.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-06.png",
+      "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-07.png"
     ],
-    "link": "../graphics/stitonos/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Vlk v přestrojení za Kutila",
@@ -3388,16 +3388,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-00.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-01.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-02.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-03.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-04.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-05.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-06.png",
-      "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-07.png"
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-00.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-01.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-02.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-03.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-04.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-05.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-06.png",
+      "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-07.png"
     ],
-    "link": "../graphics/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Vozík",
@@ -3456,16 +3456,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "První pokus měl jediného jezdce. Podle návrhu hry má Vozík tři tlačiče; opraveno v generated-v2.",
     "frames": [
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-00.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-01.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-02.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-03.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-04.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-05.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-06.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-07.png"
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-00.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-01.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-02.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-03.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-04.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-05.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-06.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-07.png"
     ],
-    "link": "../graphics/vozik/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Vozík",
@@ -3524,16 +3524,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Opravená podoba podle návrhu hry; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-00.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-01.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-02.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-03.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-04.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-05.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-06.png",
-      "../graphics/vozik/rage-gray-v2/variants/generated-v2/vozik-push-07.png"
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-00.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-01.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-02.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-03.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-04.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-05.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-06.png",
+      "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/vozik-push-07.png"
     ],
-    "link": "../graphics/vozik/rage-gray-v2/variants/generated-v2/"
+    "link": "../graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v2/"
   },
   {
     "displayName": "Zloděj",
@@ -3592,16 +3592,16 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-00.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-01.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-02.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-03.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-04.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-05.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-06.png",
-      "../graphics/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-07.png"
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-00.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-01.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-02.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-03.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-04.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-05.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-06.png",
+      "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/zlodej-sneak-07.png"
     ],
-    "link": "../graphics/zlodej/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/zlodej/rage-gray-v2/variants/generated-v1/"
   },
   {
     "displayName": "Zubař",
@@ -3660,15 +3660,15 @@ window.SPRITE_VARIANTS = [
     "gameHeight": 32,
     "note": "Automaticky vygenerováno a zpracováno produkčním profilem enemy-production-v1; čeká na výtvarné schválení.",
     "frames": [
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-00.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-01.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-02.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-03.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-04.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-05.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-06.png",
-      "../graphics/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-07.png"
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-00.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-01.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-02.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-03.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-04.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-05.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-06.png",
+      "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-07.png"
     ],
-    "link": "../graphics/zubar/rage-gray-v2/variants/generated-v1/"
+    "link": "../graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/"
   }
 ];

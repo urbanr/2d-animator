@@ -13,7 +13,7 @@ class LevelImportTests(unittest.TestCase):
     def test_alternative_preserves_selection_pixels_and_mechanic(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
-            levels = base / "graphics" / "levels"
+            levels = base / "graphics" / "levely"
             levels.mkdir(parents=True)
             catalog = levels / "levels.json"
             original = {"mechanic": "existing mechanic", "source": "untouched.png"}

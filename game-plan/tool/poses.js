@@ -135,7 +135,7 @@
     const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   try {
-    const response=await fetch('../graphics/poses/poses.json');if(!response.ok)throw Error('Knihovna není dostupná.');
+    const response=await fetch('../graphics/kostry/skeletons.json');if(!response.ok)throw Error('Knihovna není dostupná.');
     data=await response.json();
     const initial=Object.values(data.clips).find(clip=>clip.name==='Zombie · šouravá chůze v1')?.id||Object.values(data.clips).find(clip=>clip.name==='Chůze · přirozený krok v4')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · jemnější ramena v3')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · ramena a pánev v2')?.id||(data.clips['sprint-v1']?'sprint-v1':Object.keys(data.clips)[0]||'');
     controls();clipOptions(initial);selectClip(initial);drawLibrary();status('Připraveno. Úpravy se ukládají až příslušným tlačítkem.');

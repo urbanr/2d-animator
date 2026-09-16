@@ -6,8 +6,8 @@ import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone
 
-ROOT=Path(__file__).resolve().parents[1]/'graphics/characters2'
-ANIMATION_STORE=Path(__file__).resolve().parents[1]/'graphics/poses/poses.json'
+ROOT=Path(__file__).resolve().parents[1]/'graphics/postavy'
+ANIMATION_STORE=Path(__file__).resolve().parents[1]/'graphics/animace/animations.json'
 
 
 def name_key(name):

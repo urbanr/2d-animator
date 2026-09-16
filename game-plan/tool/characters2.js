@@ -1,7 +1,7 @@
 (async function(){
   'use strict';
   const R=window.PoseRig,C=window.CutoutRig,E=window.CutoutEditor,M=window.MotionPreview,$=id=>document.getElementById(id),copy=v=>JSON.parse(JSON.stringify(v));
-  let skinURL=new URL('../graphics/characters2/bezec-zombie-v1/skin.json',location.href),skinCatalog,gameCatalog;
+  let skinURL=new URL('../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json',location.href),skinCatalog,gameCatalog;
   const stage=$('stage'),ctx=stage.getContext('2d'),mini=$('mini'),images={},hitMasks={};
   const gameImages={},gameMasks={},pixelFrame=document.createElement('canvas');
   let gameManifest=null;
@@ -18,6 +18,7 @@
     if(options.skeleton)drawRig(context,skin,images,pose,{...options,skeletonOnly:true});
   }
   let skin,library,clip,phase=0,playing=false,visible=true,last=0,dirty=false,skeletonDirty=false,animationDirty=false,drag=null,history=[],future=[],saving=false;
+  let skeletonTrash={},animationTrash={};
   let distance=0;
   const DEFAULT_ZOOM=.69,defaultPan=()=>({x:0,y:(M.GROUND_Y-280)*(1-DEFAULT_ZOOM)});
   let zoom=DEFAULT_ZOOM;
@@ -69,8 +70,14 @@
       if(custom)$('scopeNote').textContent+=` Dřívější výjimky tohoto dílu (${custom} snímků) zůstávají. Přepnutí je nesjednotí.`;
     }
   }
-  function mark(){
-    dirty=true;animationDirty=true;skeletonDirty=true;
+  function mark(kind='animation'){
+    dirty=true;animationDirty=true;
+    if(kind==='skeleton'){
+      skeletonDirty=true;
+      // The animation now owns a private rig snapshot instead of claiming that
+      // it still equals a named entry in the skeleton bank.
+      skeletonId='';
+    }
     if(characterAnimationId){characterAnimationId='';characterAnimationOptions('');}
     options(finishedAnimationId);skeletonOptions();status('Neuložené změny');syncTools();saveButtons();
   }
@@ -86,7 +93,7 @@
   function changeFade(values,record=true){
     const key=$('layerOrder').value;if(!C.canFade(key))return;
     freeze();const result=E.fadeChange(clip,skin,index(),key,$('fadeEnd').value||'start',values,scope());
-    if(record)remember();({clip,skin}=result);skinDirty=true;mark();thumbnails();draw();
+    if(record)remember();({clip,skin}=result);skinDirty=true;mark('bitmap');thumbnails();draw();
   }
   $('fadeEnd').onchange=()=>draw();
   let fadeSliding=false;
@@ -228,7 +235,7 @@
   }
   async function loadSkin(id,snapshot){
     const entry=skinCatalog.skins[id];if(!entry)throw Error('Neznámá bitmapová předloha');
-    skinURL=new URL('../graphics/characters2/'+entry.path,location.href);skin=copy(snapshot||await getJSON(skinURL));skin.layers=skin.layers.filter(k=>!['pelvis','shoulders'].includes(k));skinDirty=false;
+    skinURL=new URL('../graphics/bitmapove-predlohy/'+entry.path,location.href);skin=copy(snapshot||await getJSON(skinURL));skin.layers=skin.layers.filter(k=>!['pelvis','shoulders'].includes(k));skinDirty=false;
     if(!snapshot)for(const key of skin.layers.filter(C.canFade))for(const end of ['start','end']){const part=skin.parts[key];part.joint_fade??={};part.joint_fade[end]??={...C.fadeFor(part,end),strength:.65};}
     $('parts').replaceChildren();for(const key of Object.keys(images)){delete images[key];delete hitMasks[key];delete gameImages[key];delete gameMasks[key];}
     gameManifest=null;
@@ -305,7 +312,11 @@
     try{
       const response=await fetch(collection==='characters'?'/api/game-characters':'/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:copy(record)})});
       const result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Operace koše selhala.');
-      catalog.trash=result.trash;
+      if(collection==='characters')gameCatalog.trash=result.trash;
+      else{
+        if(collection==='finished_animations')animationTrash=result.trash;else skeletonTrash=result.trash;
+        library.trash={...skeletonTrash,...animationTrash};
+      }
       if(restore)catalog[collection][result.id]=result.record;
       else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';characterAnimationId='';skinDirty=true;dirty=true;}else if(collection==='clips'&&skeletonId===id){skeletonId='';skeletonDirty=true;dirty=true;}else if(collection==='finished_animations'&&finishedAnimationId===id){finishedAnimationId='';animationDirty=true;clip.id='';dirty=true;}}
       gameOptions(characterId);options(finishedAnimationId);skeletonOptions();trashOptions();draw();
@@ -314,7 +325,7 @@
   }
 
   function skeletonOptions(){
-    $('skeletonSelect').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='—';$('skeletonSelect').append(blank);
+    $('skeletonSelect').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Vlastní nepojmenovaná kostra';$('skeletonSelect').append(blank);
     for(const r of Object.values(library.clips||{})){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('skeletonSelect').append(o);}
     $('skeletonSelect').value=library.clips?.[skeletonId]?skeletonId:'';$('skeletonCount').textContent=`Automaticky načteno: ${Object.keys(library.clips||{}).length} kosterních animací.`;
   }
@@ -358,12 +369,15 @@
       if(!changed)loadClip(result.record,{source:result.record.skeleton_id||skeletonId,finished:result.record.id,message:overwrite?'Hotová animace aktualizována':'Hotová animace přidána',skeletonClean:!skeletonDirty});else{finishedAnimationId=result.record.id;options(finishedAnimationId);saveButtons();status('Animace byla uložena, novější rozpracované změny zůstaly v editoru.');}
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
-  function finishedPayload(name){return {kind:'finished_animation',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:copy(clip.frame_edits||{}),skin_id:$('skinSelect').value,skeleton_id:skeletonId,bitmap:bitmapSnapshot()};}
+  function finishedPayload(name){const payload={kind:'finished_animation',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:copy(clip.frame_edits||{}),skin_id:$('skinSelect').value,bitmap:bitmapSnapshot()};if(skeletonId)payload.skeleton_id=skeletonId;return payload;}
   $('updateFinishedAnimation').onclick=()=>saveFinished(true);$('saveFinishedAnimation').onclick=()=>saveFinished(false);$('deleteFinishedAnimation').onclick=()=>catalogAction('finished_animations');
   $('deleteCharacter').onclick=()=>catalogAction('characters');
   $('restoreDeleted').onclick=()=>catalogAction(null,true);
   try{
-    [skinCatalog,library,gameCatalog]=await Promise.all([getJSON('../graphics/characters2/skins.json'),getJSON('../graphics/poses/poses.json'),getJSON('../graphics/characters2/game-characters.json')]);library.finished_animations??={};
+    const [skeletonCatalog,animationCatalog]=await Promise.all([getJSON('../graphics/kostry/skeletons.json'),getJSON('../graphics/animace/animations.json')]);
+    [skinCatalog,gameCatalog]=await Promise.all([getJSON('../graphics/bitmapove-predlohy/skins.json'),getJSON('../graphics/postavy/game-characters.json')]);
+    skeletonTrash=skeletonCatalog.trash||{};animationTrash=animationCatalog.trash||{};
+    library={...skeletonCatalog,finished_animations:animationCatalog.finished_animations||{},trash:{...skeletonTrash,...animationTrash}};
     bitmapOptions();
     await loadSkin(Object.keys(skinCatalog.skins)[0]);gameOptions();skeletonOptions();
     skeletonId=library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]||'';
@@ -381,13 +395,13 @@
   stage.oncontextmenu=e=>e.preventDefault(); // Ctrl-drag is an edit, including on macOS.
   $('zoomOut').onclick=()=>setZoom(zoom/1.2);$('zoomIn').onclick=()=>setZoom(zoom*1.2);$('zoomReset').onclick=()=>{pan=defaultPan();zoom=DEFAULT_ZOOM;draw();};
   $('renderMode').onchange=()=>{stage.style.imageRendering='auto';thumbnails();draw();};
-  $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);mark();thumbnails();draw();}catch(e){status(e.message,true);}};
+  $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);mark('bitmap');thumbnails();draw();}catch(e){status(e.message,true);}};
   $('layerOrder').onchange=()=>{layerOptions();cursor();draw();};
-  function reorder(step){const key=$('layerOrder').value,i=skin.layers.indexOf(key),j=i+step;if(i<0||j<0||j>=skin.layers.length)return;remember();[skin.layers[i],skin.layers[j]]=[skin.layers[j],skin.layers[i]];skinDirty=true;mark();layerOptions(key);thumbnails();draw();}
+  function reorder(step){const key=$('layerOrder').value,i=skin.layers.indexOf(key),j=i+step;if(i<0||j<0||j>=skin.layers.length)return;remember();[skin.layers[i],skin.layers[j]]=[skin.layers[j],skin.layers[i]];skinDirty=true;mark('bitmap');layerOptions(key);thumbnails();draw();}
   $('layerBack').onclick=()=>reorder(-1);$('layerFront').onclick=()=>reorder(1);
-  $('anchorReset').onclick=()=>{stop();const key=$('layerOrder').value;remember();({clip,skin}=E.partChange(clip,skin,index(),key,{offset:[0,0]},scope()));skinDirty=true;mark();thumbnails();draw();};
+  $('anchorReset').onclick=()=>{stop();const key=$('layerOrder').value;remember();({clip,skin}=E.partChange(clip,skin,index(),key,{offset:[0,0]},scope()));skinDirty=true;mark('bitmap');thumbnails();draw();};
   $('spread').value=spread;
-  $('spread').onchange=()=>{remember();spread=R.clamp(Number($('spread').value)||0,0,90);$('spread').value=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').min=-spread;$('rateDelta').max=spread;$('rateDelta').value=delta;skinDirty=true;mark();draw();};
+  $('spread').onchange=()=>{remember();spread=R.clamp(Number($('spread').value)||0,0,90);$('spread').value=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').min=-spread;$('rateDelta').max=spread;$('rateDelta').value=delta;mark('animation');draw();};
   $('rateDelta').oninput=()=>{delta=R.clamp(Number($('rateDelta').value)||0,-spread,spread);draw();};
   $('randomRate').onclick=()=>{delta=M.variation(spread);$('rateDelta').value=delta;draw();};
   const characterNameKey=name=>name.normalize('NFC').trim().replace(/\s+/gu,' ').toLowerCase();
@@ -400,7 +414,7 @@
     try{
       if(!overwrite){
         // Refresh before resolving names: another tab may have saved a character.
-        const fresh=await getJSON('../graphics/characters2/game-characters.json');
+        const fresh=await getJSON('../graphics/postavy/game-characters.json');
         gameCatalog=fresh;gameOptions(characterId);
         let proposed=name||'Běžec – zombie';
         while(true){
@@ -563,7 +577,7 @@
       {offset:C.moveAttachment(part,C.bones(pose)[selected],key==='a'?-step:key==='d'?step:0,key==='w'?-step:key==='s'?step:0).offset};
     const token=[key,e.shiftKey,selected,index(),scope()].join(':');
     if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;
-    ({clip,skin}=E.partChange(clip,skin,index(),selected,values,scope()));skinDirty=true;mark();thumbnails();draw();
+    ({clip,skin}=E.partChange(clip,skin,index(),selected,values,scope()));skinDirty=true;mark('bitmap');thumbnails();draw();
   });
   window.addEventListener('keyup',e=>{keyboardEdit=null;cursor(e);});window.addEventListener('blur',()=>{keyboardEdit=null;cursor();});cursor();
   const travelX=()=>$('travel').checked?M.offset(distance,-1):0;
@@ -623,7 +637,7 @@
       else values={scale:drag.part.scale*Math.hypot(point.x-drag.pivot.x,point.y-drag.pivot.y)/Math.max(1,Math.hypot(drag.grab.x-drag.pivot.x,drag.grab.y-drag.pivot.y))};
       const result=drag.tool==='pivot'?E.pivotChange(drag.clip,drag.skin,drag.index,drag.key,values.pivot_offset,drag.scope):drag.tool==='fade'?E.fadeChange(drag.clip,drag.skin,drag.index,drag.key,$('fadeEnd').value||'start',values,drag.scope):E.partChange(drag.clip,drag.skin,drag.index,drag.key,values,drag.scope);
       if(JSON.stringify(result)===JSON.stringify({clip,skin}))return;
-      if(!drag.changed){remember();drag.changed=true;}({clip,skin}=result);skinDirty=true;mark();thumbnails();draw();return;
+      if(!drag.changed){remember();drag.changed=true;}({clip,skin}=result);skinDirty=true;mark('bitmap');thumbnails();draw();return;
     }
     const p=pointer(e),end={x:drag.start.x+p.x-drag.grab.x,y:drag.start.y+p.y-drag.grab.y};
     const updated=E.dragSkeleton(drag.clip,drag.index,drag.key,drag.start,end,drag);
@@ -695,7 +709,7 @@
       for(const [key,v] of Object.entries(c.rig_lengths||{}))if(!(key in R.defaultLengths())||!Number.isFinite(v)||v<5||v>250)throw Error('Neplatné délky v záloze.');
       const allowedLimits=R.defaultJointLimits();for(const [key,pair] of Object.entries(c.joint_limits||{}))if(!(key in allowedLimits)||!Array.isArray(pair)||pair.length!==2||pair.some(v=>!Number.isFinite(v)||v<-180||v>180)||pair[0]>pair[1])throw Error('Neplatné limity kloubů v záloze.');
       c.joint_limits=R.jointLimitsFor(c);
-      const base=await getJSON(new URL('../graphics/characters2/'+skinCatalog.skins[s.id].path,location.href));
+      const base=await getJSON(new URL('../graphics/bitmapove-predlohy/'+skinCatalog.skins[s.id].path,location.href));
       const keys=base.layers.filter(k=>!['pelvis','shoulders'].includes(k)),layers=s.layers.filter(k=>!['pelvis','shoulders'].includes(k));
       if(layers.length!==keys.length||new Set(layers).size!==keys.length||layers.some(k=>!keys.includes(k)))throw Error('Neplatné pořadí dílů.');
       base.layers=layers;
@@ -713,12 +727,12 @@
       if(dirty&&!confirm('Nahradit rozpracované změny zálohou?'))return;
       stop();await loadSkin(s.id,base);characterId='';gameOptions();
       spread=R.clamp(Number(d.motion?.variation_percent)||0,0,90);delta=0;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;$('rateDelta').value=0;
-      loadClip({...copy(c),id:'character:import',source_clip_id:c.id},{message:'Načtená rozpracovaná záloha'});skinDirty=true;mark();status('Záloha načtena. Ulož ji jako postavu nebo hotovou animaci; původní soubory se nezměnily.');
+      loadClip({...copy(c),id:'character:import',source_clip_id:c.id},{message:'Načtená rozpracovaná záloha'});skinDirty=true;mark('bitmap');status('Záloha načtena. Ulož ji jako postavu nebo hotovou animaci; původní soubory se nezměnily.');
     }catch(e){status(e.message,true);}finally{$('importDraft').value='';}
   };
   $('exportFrame').onclick=()=>{const c=document.createElement('canvas');c.width=pixelMode()?pixelFrame.width:512;c.height=pixelMode()?pixelFrame.height:560;const x=c.getContext('2d');x.scale(c.width/512,c.height/560);x.imageSmoothingEnabled=true;x.imageSmoothingQuality='low';drawRig(x,skin,activeImages(),C.sample(clip,phase,$('smooth').checked));exportCanvas(c,pixelMode()?'postava-game-192.png':'postava-detail.png');};
   $('exportSheet').onclick=()=>{const c=document.createElement('canvas'),w=pixelMode()?pixelFrame.width:512,h=pixelMode()?pixelFrame.height:560;c.width=4*w;c.height=Math.ceil(clip.frames.length/4)*h;const x=c.getContext('2d');x.imageSmoothingEnabled=true;x.imageSmoothingQuality='low';clip.frames.forEach((p,i)=>{x.save();x.translate(i%4*w,Math.floor(i/4)*h);x.scale(w/512,h/560);drawRig(x,skin,activeImages(),C.sample(clip,i,false));x.restore();});exportCanvas(c,pixelMode()?'postava-game-192-sheet.png':'postava-detail-sheet.png');};
-  $('exportRig').onclick=()=>download(new Blob([JSON.stringify({schema_version:1,skin,asset_base:'graphics/characters2/'+skinCatalog.skins[$('skinSelect').value].path.replace(/[^/]+$/,''),clip:{...copy(clip),rig_lengths:R.lengthsFor(clip),move_speed_pt_s:M.speed(clip)},motion:{variation_percent:spread,coupled_cadence:true,sample_once_per_actor:true},rig_units_per_game_point:M.UNITS_PER_POINT,interpolation:'shortest-angle',frames_include_endpoint_duplicate:false},null,2)],{type:'application/json'}),'postava-cutout.json');
+  $('exportRig').onclick=()=>download(new Blob([JSON.stringify({schema_version:1,skin,asset_base:'graphics/bitmapove-predlohy/'+skinCatalog.skins[$('skinSelect').value].path.replace(/[^/]+$/,''),clip:{...copy(clip),rig_lengths:R.lengthsFor(clip),move_speed_pt_s:M.speed(clip)},motion:{variation_percent:spread,coupled_cadence:true,sample_once_per_actor:true},rig_units_per_game_point:M.UNITS_PER_POINT,interpolation:'shortest-angle',frames_include_endpoint_duplicate:false},null,2)],{type:'application/json'}),'postava-cutout.json');
   window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
   window.addEventListener('message',e=>{if(e.source===parent&&e.origin===location.origin&&e.data?.type==='preview-visibility'){visible=Boolean(e.data.visible);last=0;}});
   function tick(now){const dt=last?Math.min(.1,(now-last)/1000):0;last=now;if(visible&&!document.hidden&&playing){const rates=M.rates(clip,delta);phase=(phase+dt*rates.fps)%clip.frames.length;if($('travel').checked)distance=(distance+rates.speed*dt)%48;draw();}requestAnimationFrame(tick);}requestAnimationFrame(tick);

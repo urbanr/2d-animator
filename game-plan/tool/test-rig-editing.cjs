@@ -36,7 +36,7 @@ const locked=R.dragClip(original,0,grip.key,grip.point,turned,{resize:false,ctrl
 assert.deepEqual(locked.rig_lengths,R.defaultLengths());
 assert.notEqual(locked.frames[0].nearShoulder,original.frames[0].nearShoulder);
 assert.deepEqual(locked.frames.slice(1),original.frames.slice(1));
-const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-zombie-v1/skin.json'));
+const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json'));
 for(const side of ['near','far'])assert.ok(skin.layers.indexOf(side+'Shin')>skin.layers.indexOf(side+'Thigh'));
 assert.equal(JSON.stringify(original),snapshot);
 console.log('PASS: 10 shared bone lengths, all frames, independent Ctrl roots, zoom coordinates, shin Z order, immutable source.');
