@@ -1,4 +1,8 @@
-# Postavy2: díly + kostra = herní postava
+# Animátor: bitmapová předloha + kostra = hotová animace
+
+Kanonický popis vlastnictví dat je v `../../tool/ANIMATOR-DATA-MODEL.md`. Hotová
+animace vlastní kombinaci kostry a konkrétního nastavení bitmapy. Herní postava
+v `game-characters.json` drží jen atributy a odkazy na hotové animace.
 
 ## Detail a herní pixely
 
@@ -28,13 +32,13 @@ pro výběr Option tahem.
 Malý kontrolní náhled má nově 192 × 210 pixelů. PNG export respektuje režim:
 detail 512 × 560, herní 192 × 210, list osmi herních snímků 768 × 420. Zoom,
 pomocná kostra a podlaha do exportu nevstupují. Režim zobrazení nepřepisuje
-pózy ani již uložené postavy; uložený skin obsahuje odkaz na manifest herních
+pózy ani již uložené animace; uložená animace obsahuje odkaz na manifest herních
 textur. Swift/iPhone přehrávač zatím tento cutout katalog nepřebírá.
 
 ## Aktuální ukládání
 
-- **Postava: Uložit** aktualizuje vybranou herní postavu se stejným ID, včetně
-  dílů, pořadí, uchycení, pohybu a rozptylu rychlosti. **Uložit jako…** se zeptá
+- **Postava: Uložit** aktualizuje vybranou herní postavu se stejným ID, její
+  atributy a odkazy na animace. Bitmapové díly ani kostru do postavy nekopíruje. **Uložit jako…** se zeptá
   na název a vytvoří novou. U dosud neuložené postavy je Uložit neaktivní.
 - Pokud zadaný název už existuje, **Uložit jako…** nabídne přepsání se zálohou.
   OK přepíše existující ID; Zrušit vrátí zadání názvu bez ztráty rozpracovaných
@@ -42,8 +46,9 @@ textur. Swift/iPhone přehrávač zatím tento cutout katalog nepřebírá.
   duplicitách stejného názvu se přepisuje vybraná postava, pokud patří mezi ně;
   jinak editor požádá o konkrétní položku. Katalog se před kontrolou obnoví,
   server navíc odmítne vytvoření další duplicity z jiné souběžné karty.
-- **Animace: Uložit** aktualizuje vybranou animaci ve společné knihovně.
-  **Uložit jako…** vytvoří novou animaci. Samotné díly tím nejsou uložené.
+- **Hotová animace** ukládá kostru, bitmapovou předlohu, pořadí, uchycení,
+  měřítko, přechody a snímkové výjimky do společné knihovny. Po úpravě animace
+  přiřazené postavě se kvůli bezpečnosti vytváří nová animace; stará se nepřepisuje.
 - Přepisy kontrolují očekávaný předchozí záznam; konflikt z jiné karty nic
   nepřepíše. Předchozí stav postavy se zálohuje do `history/`, animace do
   `../poses/history/`. Název existujícího záznamu Uložit nemění.
@@ -59,13 +64,11 @@ Tyto možnosti nahrazují starší popis ukládání jen nových kombinací ní�
 Sekce je součástí společného `tool/preview.html?sekce=postavy2`.
 
 - `skins.json`: nabídka bitmapových postav; zatím Zombie (Běžec).
-- `game-characters.json`: samostatný katalog uložených kombinací. Tlačítko
-  „Uložit díly + kostru jako herní postavu“ přidá nový záznam s unikátním ID.
-- Každý záznam obsahuje kopii popisu skinu, cestu k bitmapám, kopii snímků,
-  tempo, rychlost v herních bodech za sekundu a společné délky kostí.
-  Původní knihovna `../poses/poses.json` se tím nemění.
-- Uloženou kombinaci lze znovu vybrat v editoru, upravit a uložit jako další.
-  Změna zdrojové animace nezmění její dříve uloženou kopii.
+- `game-characters.json`: katalog postav ve schématu 3. Každá postava obsahuje
+  `animation_ids` a `default_animation_id`; neobsahuje `skin`, `animation` ani
+  `animations`.
+- `../poses/poses.json`: `clips` jsou kosterní animace a `finished_animations`
+  jsou hotové kombinace kostry a bitmapy. Odkaz z postavy míří právě sem.
 
 Bitmapové PNG se nekopírují; záznam na ně odkazuje. Nové výtvarné varianty
 proto patří do nové složky skinu, ne přes původní PNG. Tento katalog zatím
@@ -121,9 +124,9 @@ bitmapy nemění; změny respektují rozsah a historii. Offset je v původních 
 kosti; rotace/velikost bitmapy nemění jeho význam. Renderer interpoluje i
 délky a bitmapové výjimky včetně přechodu poslední→první snímek.
 
-Animace ukládá snímkové výjimky; pro úplnou kombinaci se společnými bitmapovými
-úpravami je nutné uložit **Postavu**. JSON záloha, import a PNG export výjimky
-respektují. Starší záznamy bez nových polí fungují beze změny.
+Hotová animace ukládá snímkové výjimky i společné bitmapové úpravy jako jeden
+celek. JSON záloha, import a PNG export výjimky respektují. Starší vložené
+kombinace převedl jednorázový migrační nástroj do společné knihovny.
 
 ### Společné vlastnosti a starší editor Póz
 
@@ -143,8 +146,8 @@ respektují. Starší záznamy bez nových polí fungují beze změny.
 ### Postavy2: uchycení, pořadí, posun pohledu a rychlost
 
 - Seznam dílů je **zezadu dopředu**. Vyber díl a tlačítky ↑ Dozadu / ↓ Dopředu
-  změň pořadí. Pořadí se nepřetáčí přes konec seznamu a ukládá se do skinu
-  konkrétní herní postavy, nikoli do společné kostry.
+  změň pořadí. Pořadí se nepřetáčí přes konec seznamu a ukládá se do bitmapového
+  snapshotu hotové animace, nikoli do postavy ani společné kostry.
 - Nástroj Posun v bitmapovém režimu (nebo Option ze zvoleného režimu kostry)
   uchopí **viditelnou bitmapu přímo pod kurzorem** a posouvá
   ji vůči její kosti. Prochází skutečné pořadí vrstev od přední dozadu a ignoruje
@@ -173,8 +176,8 @@ respektují. Starší záznamy bez nových polí fungují beze změny.
   náhledu je v `motion-preview.js`; Swift prototyp tento nový katalog zatím
   nepřehrává, takže nejde o již nasazené chování na iPhonu.
 
-Uložení samotné animace neukládá úpravy skinu: ty zůstávají označené jako
-neuložené, dokud se neuloží celá herní postava. Zpět vrací také uchycení a pořadí.
+Uložení hotové animace ukládá i všechny společné a snímkové úpravy bitmapy.
+Uložení postavy bitmapu nemění. Zpět vrací také uchycení a pořadí v rozpracované animaci.
 
 ## Pořadí bitmap (zezadu dopředu)
 
@@ -222,8 +225,8 @@ Po jednorázové migraci existujících postav se další uložená vypnutí zac
   Při nevhodném poloměru nebo chybějícím překryvu
   se může ukázat mezera — maska nepřikresluje chybějící materiál.
 - Změny respektují **Celá animace / snímek**, Zpět a Znovu. Nastavení celé
-  postavy ulož přes **Postava → Uložit / Uložit jako**; samotná Animace
-  uchovává jen snímkové výjimky, nikoli společné nastavení bitmap.
+  animace ulož přes **Hotová animace → Uložit / Uložit jako**. Postava si uloží
+  jen odkaz na výslednou hotovou animaci.
 
 Data: `skin.parts[key].joint_fade.start/end = {strength, radius, direction, offset, angle}`.
 Síla je 0–1, poloměr 1–2000, směr `outward`/`inward`. Snímkové výjimky mají

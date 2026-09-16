@@ -8,7 +8,7 @@ V **Pózách a krocích** lze táhnout kruhové úchyty myší nebo dotykem. Kol
 
 ## Animátor – ovládání náhledu
 
-Jedna uložená postava může mít více animací. Horní řádek obsahuje výběr postavy a pouze její přiřazené animace. Disketa přepisuje vybranou položku, plus vytváří další variantu a koš maže postavu nebo odebírá animaci pouze z této postavy; každá operace vyžaduje potvrzení. Samostatně se volí **Bitmapová předloha**, jedna ze všech automaticky načtených celých **Kosterních animací** (`clips`) a kombinace ze zásobníku **Hotové animace** (`finished_animations`). Jednotlivé pózy (`poses`) jsou stavební snímky editoru Koster a v seznamu Koster Animátoru se nezobrazují. Disketa, plus a koš u koster i hotových animací vždy pracují s jejich vlastní globální knihovnou a seznam po změně hned obnoví.
+Jedna uložená postava může mít více animací. Horní řádek obsahuje výběr postavy a pouze odkazy na její přiřazené hotové animace. Koš u animace postavy odebere jen odkaz; globální animaci nesmaže. Samostatně se volí **Bitmapová předloha**, jedna ze všech automaticky načtených celých **Kosterních animací** (`clips`) a kombinace ze zásobníku **Hotové animace** (`finished_animations`). Jednotlivé pózy (`poses`) jsou stavební snímky editoru Koster a v seznamu Koster Animátoru se nezobrazují. Disketa, plus a koš u koster i hotových animací vždy pracují s jejich vlastní globální knihovnou a seznam po změně hned obnoví.
 
 Výběr Kostry se vždy potvrzuje a načte všechny její snímky; animace vybraná u postavy se odpojí. Hotová animace ukládá také použitou Bitmapovou předlohu a Kosterní animaci. Jakákoli další datová úprava odpojí hodnotu Animace postavy a rozsvítí červenou hvězdičku za popisem pole Kostry i Hotové animace. Upravenou animaci postavy lze z bezpečnostních důvodů uložit jen jako novou; původní uživatel případně smaže samostatně.
 
@@ -16,7 +16,7 @@ Výběr Kostry se vždy potvrzuje a načte všechny její snímky; animace vybra
 
 Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu, **Rotace** otáčí trup kolem pánve a **Velikost** mění jeho délku. Ctrl + tah také mění délku, pokud jsou změny délek povolené. Rozsah Snímek / Animace platí i pro tyto úpravy.
 
-Kostra ukládá délky i `joint_limits`. Starší kostry bez tohoto údaje dostanou při načtení maximální výchozí limity −180° až +180°. Stejné limity se kopírují do animace a herní postavy, aby je později mohl použít editor i fyzika.
+Kostra ukládá délky i `joint_limits`. Starší kostry bez tohoto údaje dostanou při načtení maximální výchozí limity −180° až +180°. Stejné limity přebírá hotová animace, aby je později mohl použít editor i fyzika; postava drží pouze odkaz na animaci.
 
 U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
 

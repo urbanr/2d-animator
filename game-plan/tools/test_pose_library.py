@@ -127,22 +127,29 @@ class PoseTests(unittest.TestCase):
     def test_finished_animation_keeps_bitmap_and_skeleton_references(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'poses.json'
-            path.write_text(json.dumps({'clips': {}, 'poses': {}}))
             frame = dict.fromkeys(LIMITS, 0)
+            skeleton = {'id': 'pose-1', 'name': 'Kostra', 'frames': [frame] * 8, 'fps': 8}
+            path.write_text(json.dumps({'clips': {'pose-1': skeleton, 'pose-2': {**skeleton, 'id': 'pose-2'}}, 'poses': {}, 'finished_animations': {}}))
+            bitmap = {'layers': ['head'], 'parts': {'head': {'offset': [0, 0], 'rotation': 0, 'scale': 1, 'scale_x': 1, 'scale_y': 1}}}
             original = save_pose({'kind': 'finished_animation', 'name': 'Hotová', 'frames': [frame] * 8, 'fps': 8,
-                                  'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1'}, path)['record']
+                                  'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bitmap}, path)['record']
             self.assertEqual(original['skin_id'], 'bezec-zombie-v1')
             self.assertEqual(original['skeleton_id'], 'pose-1')
             updated = save_pose({'kind': 'finished_animation', 'mode': 'update', 'id': original['id'], 'name': 'Hotová',
                                  'expectedRecord': original, 'frames': [frame] * 8, 'fps': 9,
-                                 'skin_id': 'bezec-zombie-v2', 'skeleton_id': 'pose-2'}, path)['record']
+                                 'skin_id': 'bezec-zombie-v2', 'skeleton_id': 'pose-2', 'bitmap': bitmap}, path)['record']
             self.assertEqual(updated['skin_id'], 'bezec-zombie-v2')
             self.assertEqual(updated['skeleton_id'], 'pose-2')
             before = path.read_bytes()
             for key, value in [('skin_id', '../bad'), ('skeleton_id', ''), ('skin_id', 4)]:
                 with self.assertRaises(ValueError):
-                    save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8, key: value}, path)
+                    save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8,
+                               'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bitmap, key: value}, path)
                 self.assertEqual(path.read_bytes(), before)
+            for bad in [None, {'layers': ['head'], 'parts': {}}, {'layers': ['head', 'head'], 'parts': {'head': {}}}]:
+                with self.assertRaises(ValueError):
+                    save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8,
+                               'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bad}, path)
 
 
 if __name__ == '__main__': unittest.main()

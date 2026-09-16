@@ -35,6 +35,18 @@ def validate_reference(value, label):
     return value
 
 
+def validate_bitmap(value):
+    if not isinstance(value, dict) or set(value) != {'layers', 'parts'}:
+        raise ValueError('Animace musí obsahovat bitmapovou předlohu.')
+    layers = value.get('layers')
+    parts = value.get('parts')
+    if (not isinstance(layers, list) or not layers or len(layers) != len(set(layers)) or
+            any(not isinstance(key, str) or not key for key in layers) or not isinstance(parts, dict) or
+            set(parts) != set(layers)):
+        raise ValueError('Neplatná bitmapová předloha animace.')
+    return {'layers': list(layers), 'parts': {key: validate_part_transform(parts[key]) for key in layers}}
+
+
 def validate_joint_fade(value):
     if not isinstance(value, dict) or set(value)-{'start', 'end'}:
         raise ValueError('Neplatný přechod spoje.')
@@ -180,16 +192,18 @@ def save_pose(payload, path=STORE):
         if isinstance(speed, bool) or not isinstance(speed, (int, float)) or not math.isfinite(speed) or not 0 <= speed <= 1000:
             raise ValueError('Rychlost pohybu musí být 0 až 1000 herních bodů/s.')
         record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')), joint_limits=validate_joint_limits(payload.get('joint_limits')))
-        if kind == 'finished_animation' and 'skin_id' in payload:
+        if kind == 'finished_animation':
             record['skin_id'] = validate_reference(payload.get('skin_id'), 'bitmapovou předlohu')
-        if kind == 'finished_animation' and 'skeleton_id' in payload:
             record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kosterní animaci')
+            record['bitmap'] = validate_bitmap(payload.get('bitmap'))
         record['frame_edits'] = validate_frame_edits(payload.get('frame_edits'), record['frames'], record['rig_lengths'])
         collection = 'clips' if kind == 'clip' else 'finished_animations'
     else:
         raise ValueError('Neznámý typ záznamu.')
     library = json.loads(path.read_text(encoding='utf-8'))
     library.setdefault(collection, {})
+    if kind == 'finished_animation' and record['skeleton_id'] not in library.get('clips', {}):
+        raise ValueError('Vybraná kosterní animace neexistuje.')
     mode = payload.get('mode', 'create')
     backup = None
     if mode == 'update':
@@ -217,7 +231,7 @@ def save_pose(payload, path=STORE):
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
                   'joint_limits': record['joint_limits'] if 'joint_limits' in payload else validate_joint_limits(previous.get('joint_limits')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
-            for key in ('skin_id', 'skeleton_id'):
+            for key in ('skin_id', 'skeleton_id', 'bitmap'):
                 if key in updated:
                     record[key] = updated[key]
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])

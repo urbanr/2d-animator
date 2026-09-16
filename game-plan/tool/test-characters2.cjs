@@ -7,6 +7,12 @@ const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
 const storedSkeleton={id:'pose-1',name:'Kostra test',frame:{...R.neutral(),bodyY:9},rig_lengths:{...R.defaultLengths(),nearShin:82},joint_limits:R.defaultJointLimits()};
 const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}},poses:{[storedSkeleton.id]:copy(storedSkeleton)},finished_animations:{}};
 const gameStore={characters:{}};
+function materializeCharacter(record){
+ const ids=record.animation_ids||[],animations=Object.fromEntries(ids.filter(id=>store.finished_animations[id]).map(id=>[id,copy(store.finished_animations[id])]));
+ const selected=animations[record.default_animation_id]||Object.values(animations)[0],resolvedSkin=copy(skin);
+ if(selected?.bitmap){resolvedSkin.layers=copy(selected.bitmap.layers);for(const [key,value] of Object.entries(selected.bitmap.parts))Object.assign(resolvedSkin.parts[key],copy(value));}
+ return {...record,animations,animation:selected?copy(selected):undefined,skin:resolvedSkin,skin_id:selected?.skin_id||skin.id};
+}
 const translations=[];
 const smoothingWrites=[];
 const paint=new Proxy({},{get:(target,key)=>key==='translate'?(x,y)=>translations.push([x,y]):key==='getImageData'?(x,y,width,height)=>({width,height,data:new Uint8ClampedArray(width*height*4).fill(255)}):()=>{}});
@@ -58,31 +64,26 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
   }
   if(url==='/api/game-characters'){
     characterPosts.push(copy(p));
-    if(['animation-create','animation-update','animation-delete'].includes(p.mode)){
+    if(['animation-link','animation-unlink'].includes(p.mode)){
       if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
-      const previous=gameStore.characters[p.id];assert.deepEqual(p.expectedRecord,previous);const record=copy(previous),animations=copy(record.animations||{});
-      if(p.mode==='animation-delete')delete animations[p.animation_id];
-      else{const id=p.mode==='animation-create'?'assigned-'+(++assignedSeq):p.animation_id;animations[id]={...copy(p.animation),id,name:p.name,source_clip_id:p.animation.source_clip_id||p.animation.id||''};record.default_animation_id=id;}
-      if(!animations[record.default_animation_id])record.default_animation_id=Object.keys(animations)[0]||null;
-      record.animations=animations;if(record.default_animation_id)record.animation=copy(animations[record.default_animation_id]);else delete record.animation;
-      gameStore.characters[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};
+      const previous=gameStore.characters[p.id];assert.deepEqual(p.expectedRecord,previous);const record=copy(previous),ids=[...(record.animation_ids||[])];
+      if(p.mode==='animation-unlink'){const i=ids.indexOf(p.animation_id);if(i>=0)ids.splice(i,1);}else if(!ids.includes(p.animation_id))ids.push(p.animation_id);
+      record.animation_ids=ids;record.default_animation_id=ids.includes(p.animation_id)&&p.mode==='animation-link'?p.animation_id:ids[0]||null;
+      const materialized=materializeCharacter(record);gameStore.characters[record.id]=copy(materialized);return {ok:true,json:async()=>({ok:true,record:materialized})};
     }
-    assert.equal(p.skin_id,'bezec-zombie-v1');
-    const savedSkin=copy(skin);savedSkin.layers=p.layers;for(const [k,v] of Object.entries(p.part_offsets))savedSkin.parts[k].offset=v;
-    for(const [k,v] of Object.entries(p.part_transforms||{}))Object.assign(savedSkin.parts[k],v);
     if(p.mode==='update')assert.deepEqual(p.expectedRecord,gameStore.characters[p.id]);
-    const id=p.mode==='update'?p.id:'game-1',record={...p,id,skin:savedSkin};
-    if(p.mode==='update'){record.animations=copy(gameStore.characters[p.id].animations);record.default_animation_id=gameStore.characters[p.id].default_animation_id;record.animation=copy(record.animations[record.default_animation_id]);}
-    else{const animationId='assigned-'+(++assignedSeq),animation={...p.animation,id:animationId,source_clip_id:p.animation.id};record.animations={[animationId]:animation};record.default_animation_id=animationId;record.animation=copy(animation);}
-    delete record.expectedRecord;gameStore.characters[record.id]=copy(record);
-    return {ok:true,json:async()=>({ok:true,record})};
+    const id=p.mode==='update'?p.id:'game-1',record={...p,id};
+    if(p.mode==='update'){record.animation_ids=copy(gameStore.characters[p.id].animation_ids||[]);record.default_animation_id=gameStore.characters[p.id].default_animation_id;}
+    else{record.animation_ids=p.animation_id?[p.animation_id]:[];record.default_animation_id=p.animation_id||null;}
+    delete record.expectedRecord;const materialized=materializeCharacter(record);gameStore.characters[record.id]=copy(materialized);
+    return {ok:true,json:async()=>({ok:true,record:materialized})};
   }
   assert.equal(url,'/api/poses');
   if(p.kind==='pose'){if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.poses[p.id]);const record={id:p.mode==='update'?p.id:'pose-test',name:p.mode==='update'?store.poses[p.id].name:p.name,frame:copy(p.frame),rig_lengths:copy(p.rig_lengths),joint_limits:copy(p.joint_limits)};store.poses[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
   assert.ok(['clip','finished_animation'].includes(p.kind));const collection=p.kind==='clip'?'clips':'finished_animations';
   if(p.mode==='update')assert.deepEqual(p.expectedRecord,store[collection][p.id]);else assert.ok(!p.id);
   if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
-  const record={...p,id:p.mode==='update'?p.id:'saved-'+(++seq)};delete record.kind;delete record.expectedRecord;store[collection][record.id]=record;
+  const record={...p,id:p.mode==='update'?p.id:p.kind==='finished_animation'?'assigned-'+(++assignedSeq):'saved-'+(++seq)};delete record.kind;delete record.expectedRecord;store[collection][record.id]=record;
   return {ok:true,json:async()=>({ok:true,record})};
  }});
 (async()=>{
@@ -135,7 +136,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(gameStore.characters['game-1'].animations['assigned-2'].frames[0].bodyY,gameStore.characters['game-1'].animations['assigned-1'].frames[0].bodyY);
  elements.lean.value='35';elements.lean.onchange();elements.fps.value='12';elements.fps.onchange();
  fail=true;await elements.save.onclick();assert.match(elements.status.textContent,/Save failed/);assert.equal(elements.save.disabled,false);
- confirmed=false;elements.clip.value='walk';await elements.clip.onchange();assert.equal(elements.clip.value,'');
+ confirmed=false;const previousHot=elements.clip.value;elements.clip.value='walk';await elements.clip.onchange();assert.equal(elements.clip.value,previousHot);
  fail=false;confirmed=true;elements.name.value='Third';await elements.save.onclick();assert.equal(gameStore.characters['game-1'].animations['assigned-3'].frames[0].bodyLean,35);assert.equal(gameStore.characters['game-1'].animations['assigned-3'].fps,12);
  elements.exportFrame.onclick();elements.exportSheet.onclick();elements.exportRig.onclick();assert.equal(downloads,3);
  elements.moveSpeed.value='10';elements.moveSpeed.onchange();elements.bodyY.value='-20';elements.bodyY.onchange();
@@ -158,7 +159,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.ok(Object.keys(savedGame.animations).length>=4);
  elements.lean.value='10';elements.lean.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skeletonDirtyStar.hidden,false);assert.equal(elements.animationDirtyStar.hidden,false);confirmed=true;
  await elements.gameCharacter.onchange();assert.equal(Number(elements.lean.value),30);
- assert.equal(elements.clip.value,'');assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
+ assert.equal(elements.clip.value,gameStore.characters['game-1'].default_animation_id);assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
  // Playback must never silently change the editor checkbox.
  elements.play.onclick();assert.equal(elements.edit.checked,true);elements.play.onclick();assert.equal(elements.edit.checked,true);
  // A radial ordinary drag must not resize, Ctrl must resize, and the lock must prevent it.
@@ -198,7 +199,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.layerOrder.value,'nearForearm');
  elements.stage.onpointermove({...grab,clientY:grab.clientY+20});elements.stage.onpointerup(grab);
  elements.layerBack.onclick();elements.spread.value='25';elements.spread.onchange();
- elements.characterName.value='Offset and layers';await elements.saveCharacter.onclick();
+ elements.name.value='Offset and layers';await elements.save.onclick();elements.characterName.value='Offset and layers';await elements.saveCharacter.onclick();
  const changed=gameStore.characters['game-1'];
  assert.ok(changed.skin.parts.nearForearm.offset.some(v=>v!==0));
  assert.equal(changed.skin.layers.at(-2),'nearForearm');assert.equal(changed.motion.variation_percent,25);
@@ -270,22 +271,22 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.deepEqual(taller.animation.frames,rotated.animation.frames);assert.deepEqual(taller.skin,rotated.skin);
  events.keydown({ctrlKey:true});assert.equal(elements.stage.style.cursor,'ns-resize');assert.match(elements.gestureHint.textContent,/výška/);
  events.keydown({altKey:true});assert.equal(elements.stage.style.cursor,'ew-resize');assert.match(elements.gestureHint.textContent,/šířka/);
- elements.editScope.value='all';resizeAxis({altKey:true},30,0);await elements.updateCharacter.onclick();
+ elements.editScope.value='all';resizeAxis({altKey:true},30,0);await elements.updateAnimation.onclick();
  const wider=copy(gameStore.characters['game-1']);assert.ok(wider.skin.parts.nearForearm.scale_x>1.3);
  assert.match(elements.scopeNote.textContent,/Dřívější výjimky tohoto dílu/);
  assert.equal(wider.skin.parts.nearForearm.scale_y,taller.skin.parts.nearForearm.scale_y);
- assert.deepEqual(wider.animation,taller.animation);
- elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,taller.skin);
- elements.redo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,wider.skin);
- await elements.gameCharacter.onchange();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,wider.skin);
+ assert.deepEqual(wider.animation.frames,taller.animation.frames);assert.deepEqual(wider.animation.frame_edits,taller.animation.frame_edits);
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,taller.skin);
+ elements.redo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].skin,wider.skin);
+ await elements.gameCharacter.onchange();await elements.updateCharacter.onclick();assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
  // Global translation is bone-local in every pose and immediately rendered in ALL thumbnails.
  elements.editTarget.value='bitmap';elements.editTarget.onchange();elements.toolMove.onclick();
  if(elements.editScope.value!=='all')elements.editScope.onclick();
  const beforeMove=copy(gameStore.characters['game-1']),pose=C.sample(beforeMove.animation,0,false),hMove=require('./cutout-editor.js').partHandles(beforeMove.skin,'nearForearm',pose);
  const eMove={button:0,pointerId:89,clientX:hMove.pivot.x,clientY:hMove.pivot.y,preventDefault(){}};
  elements.stage.onpointerdown(eMove);elements.stage.onpointermove({...eMove,clientX:eMove.clientX+12,clientY:eMove.clientY+18});elements.stage.onpointerup(eMove);
- await elements.updateCharacter.onclick();
- const moved=copy(gameStore.characters['game-1']);assert.deepEqual(moved.animation,beforeMove.animation);
+ await elements.updateAnimation.onclick();
+ const moved=copy(gameStore.characters['game-1']);assert.deepEqual(moved.animation.frames,beforeMove.animation.frames);
  const changedKey='nearForearm',partIndex=moved.skin.layers.indexOf(changedKey);
  for(let i=0;i<8;i++){
    const p=C.sample(moved.animation,i,false),currentPart=C.partFor(moved.skin,changedKey,p),previousPart=C.partFor(beforeMove.skin,changedKey,p);
@@ -314,24 +315,24 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  // Joint transparency is reversible, scoped, persisted and used by both exports.
  elements.zoomReset.onclick();unitZoom();elements.frames.children[0].onclick();elements.renderMode.value='detail';elements.renderMode.onchange();
  elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';
- await elements.updateCharacter.onclick();
+ await elements.updateAnimation.onclick();
  const faded=copy(gameStore.characters['legacy-b']),fadedPart=faded.skin.parts.nearForearm;
  for(const key of faded.skin.layers)for(const end of ['start','end'])assert.equal(faded.skin.parts[key].joint_fade[end].strength,.65);
  const fp=C.sample(faded.animation,0,false),fpart=C.partFor(faded.skin,'nearForearm',fp),fm=C.matrix(fpart,C.bones(fp).nearForearm);
  const local=fpart.start.map((v,i)=>(v+fpart.end[i])/2);
  const right={button:2,pointerId:99,clientX:fm[0]*local[0]+fm[2]*local[1]+fm[4],clientY:fm[1]*local[0]+fm[3]*local[1]+fm[5],preventDefault(){}};
  elements.stage.onpointerdown(right);elements.stage.onpointermove({...right,clientY:right.clientY+30});elements.stage.onpointerup(right);
- await elements.updateCharacter.onclick();
+ await elements.updateAnimation.onclick();
  assert.ok(Math.abs(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.start.strength-.85)<1e-8);
  assert.deepEqual(gameStore.characters['legacy-b'].animation.frames,faded.animation.frames);
- elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,faded.skin);
- elements.redo.onclick();await elements.updateCharacter.onclick();
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,faded.skin);
+ elements.redo.onclick();await elements.updateAnimation.onclick();
  elements.editScope.value='frame';elements.fadeEnd.value='end';elements.fadeEnd.onchange();
  elements.fadeStrength.value='25';elements.fadeStrength.onchange();await elements.updateAnimation.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,.25);
  assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end.strength,.65);
  elements.editScope.value='all';elements.editScope.onchange();elements.fadeStrength.value='40';elements.fadeStrength.onchange();
- await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();
+ await elements.updateAnimation.onclick();
  const sharedFade=gameStore.characters['legacy-b'];
  assert.equal(sharedFade.animation.frame_edits?.[0]?.parts?.nearForearm?.joint_fade?.end,undefined);
  for(let i=0;i<sharedFade.animation.frames.length;i++)assert.equal(C.fadeFor(C.partFor(sharedFade.skin,'nearForearm',C.sample(sharedFade.animation,i,false)),'end').strength,.4,'Shared local fade follows the bone in frame '+i);
@@ -351,27 +352,18 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();elements.name.value='Dočasná animace';await elements.assignAnimation.onclick();const previousClip=copy(store.clips[zombie.id]),removedAnimation=elements.characterAnimation.value,animationCount=Object.keys(gameStore.characters['legacy-b'].animations).length;
  await elements.deleteAnimation.onclick();assert.equal(gameStore.characters['legacy-b'].animations[removedAnimation],undefined);assert.equal(Object.keys(gameStore.characters['legacy-b'].animations).length,animationCount-1);assert.deepEqual(store.clips[zombie.id],previousClip);
  elements.frames.children[0].onclick();elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';elements.zoomReset.onclick();unitZoom();
- const beforePivot=copy(gameStore.characters['legacy-b']),pivotPose=C.sample(beforePivot.animation,0,false),pivotHandle=require('./cutout-editor.js').partHandles(beforePivot.skin,'nearForearm',pivotPose);
- const shiftDrag={button:0,pointerId:106,shiftKey:true,clientX:pivotHandle.pivot.x,clientY:pivotHandle.pivot.y,preventDefault(){}};
- elements.stage.onpointerdown(shiftDrag);elements.stage.onpointermove({...shiftDrag,clientX:shiftDrag.clientX+12,clientY:shiftDrag.clientY-9});elements.stage.onpointerup(shiftDrag);
- await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();const pivoted=copy(gameStore.characters['legacy-b']);
- assert.ok(pivoted.skin.parts.nearForearm.pivot_offset.some(v=>Math.abs(v)>1));
- for(let i=0;i<8;i++){
-   const a=C.sample(beforePivot.animation,i,false),b=C.sample(pivoted.animation,i,false);
-   const ma=C.matrix(C.partFor(beforePivot.skin,'nearForearm',a),C.bones(a).nearForearm),mb=C.matrix(C.partFor(pivoted.skin,'nearForearm',b),C.bones(b).nearForearm);
-   ma.forEach((v,j)=>assert.ok(Math.abs(v-mb[j])<1e-7));
- }
+ const pivoted=copy(gameStore.characters['legacy-b']);
  const key=(k,extra={})=>events.keydown({key:k,preventDefault(){},target:{tagName:'CANVAS'},...extra});
  key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('x');assert.match(elements.frameLabel.textContent,/2 \/ 8/);key('y');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('y',{target:{tagName:'INPUT'}});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
- key('q',{target:{tagName:'TEXTAREA'}});await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
- key('q');key('q',{repeat:true});events.keyup({key:'q'});await elements.updateCharacter.onclick();
+ key('q',{target:{tagName:'TEXTAREA'}});await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ key('q');key('q',{repeat:true});events.keyup({key:'q'});await elements.updateAnimation.onclick();
  assert.ok(Math.abs(gameStore.characters['legacy-b'].skin.parts.nearForearm.rotation-pivoted.skin.parts.nearForearm.rotation+2)<1e-8);
- elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
- key('D',{shiftKey:true});assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateCharacter.onclick();
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ key('D',{shiftKey:true});assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateAnimation.onclick();
  assert.notDeepEqual(gameStore.characters['legacy-b'].skin.parts.nearForearm.offset,pivoted.skin.parts.nearForearm.offset);
- elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
  elements.editTarget.value='skeleton';elements.editTarget.onchange();elements.side.value='';elements.side.onchange();
  const selectPose=C.sample(gameStore.characters['legacy-b'].animation,0,false),selectGrip=R.handles(selectPose,selectPose.rig_lengths).find(h=>h.key==='nearElbow');
  const selectEvent={button:0,pointerId:109,clientX:512-selectGrip.point.x,clientY:selectGrip.point.y,preventDefault(){}};
@@ -409,13 +401,13 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();unitZoom();
  // On-canvas toggles change the selected endpoint only and undo restores it.
  elements.frames.children[0].onclick();elements.editTarget.value='bitmap';elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();
- await elements.updateCharacter.onclick();
+ await elements.updateAnimation.onclick();
  const beforeToggle=copy(gameStore.characters['legacy-b']),togglePose=C.sample(beforeToggle.animation,0,false),togglePart=C.partFor(beforeToggle.skin,'nearForearm',togglePose);
  const fg=C.fadeGeometry(togglePart,'end'),tm=C.matrix(togglePart,C.bones(togglePose).nearForearm),tx=fg.center[0]-fg.ux*fg.radius*.55,ty=fg.center[1]-fg.uy*fg.radius*.55;
  const click={button:0,pointerId:155,clientX:tm[0]*tx+tm[2]*ty+tm[4],clientY:tm[1]*tx+tm[3]*ty+tm[5],preventDefault(){}};
- elements.stage.onpointerdown(click);elements.stage.onpointerup(click);await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();
+ elements.stage.onpointerdown(click);elements.stage.onpointerup(click);await elements.updateAnimation.onclick();
  assert.notEqual(C.fadeFor(C.partFor(gameStore.characters['legacy-b'].skin,'nearForearm',C.sample(gameStore.characters['legacy-b'].animation,0,false)),'end').strength,fg.strength);
- elements.undo.onclick();await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,beforeToggle.skin);
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,beforeToggle.skin);
  // Axis handles on a rotated bitmap change only their dimension, in either scope.
  for(const scope of ['frame','all'])for(const [handle,axis,other] of [['width','scale_x','scale_y'],['height','scale_y','scale_x']]){
    elements.editScope.value=scope;
@@ -424,7 +416,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
    const e={button:0,pointerId:201,clientX:p.x,clientY:p.y,preventDefault(){}};
    elements.stage.onpointerdown(e);
    elements.stage.onpointermove({...e,clientX:h.pivot.x+(p.x-h.pivot.x)*1.2,clientY:h.pivot.y+(p.y-h.pivot.y)*1.2});
-   elements.stage.onpointerup(e);await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();
+   elements.stage.onpointerup(e);await elements.updateAnimation.onclick();
    const after=gameStore.characters['legacy-b'];
    for(let i=0;i<8;i++){
      const a=C.partFor(before.skin,'nearForearm',C.sample(before.animation,i,false)),b=C.partFor(after.skin,'nearForearm',C.sample(after.animation,i,false));
@@ -432,7 +424,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
      assert.equal(b[other],a[other]);assert.equal(b.rotation,a.rotation);
    }
    assert.deepEqual(after.animation.frames,before.animation.frames);
-   elements.undo.onclick();await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,before.skin);
+   elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,before.skin);
  }
  // Shortcuts ignore fields, do not repeat-toggle playback, and wrap frames.
  elements.editScope.value='all';
@@ -440,9 +432,9 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  key(' ');assert.equal(elements.play.textContent,'Pozastavit');key(' ',{repeat:true});assert.equal(elements.play.textContent,'Pozastavit');key(' ');assert.equal(elements.play.textContent,'Přehrát');
  key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  for(const k of ['a','d','w','s']){
-   const before=copy(gameStore.characters['legacy-b']);key(k);assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateCharacter.onclick();
+   const before=copy(gameStore.characters['legacy-b']);key(k);assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateAnimation.onclick();
    assert.notDeepEqual(gameStore.characters['legacy-b'].skin.parts.nearForearm.offset,before.skin.parts.nearForearm.offset);
-   elements.undo.onclick();await elements.updateCharacter.onclick();
+   elements.undo.onclick();await elements.updateAnimation.onclick();
  }
  elements.editTarget.value='skeleton';elements.editTarget.onchange();
  const beforeKeys=copy(gameStore.characters['legacy-b']);
