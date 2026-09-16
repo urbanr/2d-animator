@@ -31,7 +31,7 @@ const endOnly={...part,joint_fade:{end:{strength:1,radius:20,direction:'outward'
 assert.equal(C.fadeAlpha(endOnly,50,40),1);assert.equal(C.fadeAlpha(endOnly,50,160),0);
 const skin={layers:['nearForearm','torso'],parts:{nearForearm:{...part,joint_fade:{}},torso:part}};
 const clip={frames:[R.neutral(),R.neutral()],fps:6};
-assert.equal(C.fadeAlpha(C.partFor(skin,'torso',{}),50,0),1,'Torso excluded even in imported data');
+assert.equal(C.fadeAlpha(C.partFor(skin,'torso',{}),50,0),0,'Torso fades render too');
 let changed=E.fadeChange(clip,skin,0,'nearForearm','start',{strength:.6},'frame');
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,0))).strength,.6);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1))).strength,0);
@@ -43,7 +43,16 @@ E.validateEdits(changed.clip,changed.skin);
 const reset=E.resetFrame(changed.clip,0);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(reset,0))).strength,.2);
 assert.deepEqual(clip,{frames:[R.neutral(),R.neutral()],fps:6});assert.deepEqual(skin.parts.nearForearm.joint_fade,{});
-assert.deepEqual(E.fadeChange(clip,skin,0,'torso','start',{strength:1},'all'),{clip,skin});
+for(const key of sourceSkin.layers){
+  assert.ok(C.canFade(key),`${key}: every bitmap part supports fades`);
+  for(const end of ['start','end'])for(const scope of ['frame','all']){
+    const result=E.fadeChange(clip,sourceSkin,0,key,end,{strength:.7},scope);
+    assert.equal(C.fadeFor(C.partFor(result.skin,key,C.sample(result.clip,0)),end).strength,.7);
+    assert.equal(C.fadeFor(C.partFor(result.skin,key,C.sample(result.clip,1)),end).strength,scope==='all'?.7:C.fadeFor(sourceSkin.parts[key],end).strength);
+    const other=end==='start'?'end':'start';
+    assert.deepEqual(C.fadeFor(result.skin.parts[key],other),C.fadeFor(sourceSkin.parts[key],other));
+  }
+}
 for(const bad of [null,[],{x:{}},{start:{strength:NaN,radius:4,direction:'outward'}},{start:{strength:.5,radius:0,direction:'outward'}}])assert.throws(()=>C.validateFade(bad));
 // Actual RGBA multiplication, original retained, bounded cache, detail and game coordinates.
 function surface(w,h){let pixels;return {width:w,height:h,getContext:()=>({drawImage(){},getImageData:()=>({data:new Uint8ClampedArray(w*h*4).fill(255)}),putImageData:d=>{pixels=d.data;}}),get pixels(){return pixels;}};}

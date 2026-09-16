@@ -7,7 +7,7 @@
   const mirror=p=>({x:512-p.x,y:p.y});
   const angleKeys=new Set(R.fields.filter(f=>f[4]==='°').map(f=>f[0]));
   const wrap=v=>((v+180)%360+360)%360-180;
-  const canFade=key=>key==='head'||/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.test(key);
+  const canFade=key=>['head','torso','backpack'].includes(key)||/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.test(key);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function fadeFor(part,end='start'){
     const length=part.start&&part.end?Math.hypot(part.end[0]-part.start[0],part.end[1]-part.start[1]):100;

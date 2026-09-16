@@ -88,10 +88,11 @@
   $('fadePreset').onclick=()=>{
     freeze();remember();
     for(const key of skin.layers.filter(C.canFade)){
-      const part=skin.parts[key];part.joint_fade??={};part.joint_fade.start={...C.fadeFor(part),strength:.65,direction:'outward'};
+      const part=skin.parts[key];part.joint_fade??={};
+      for(const end of ['start','end'])part.joint_fade[end]={...C.fadeFor(part,end),strength:.65,direction:'outward'};
     }
     $('editTarget').value='bitmap';$('fadeEnd').value='start';skinDirty=true;mark();thumbnails();draw();
-    status('Přechody spojů nastavené. U předloktí jen loket směrem do paže; ruka se nemění. Změnu můžeš vrátit přes Zpět nebo uložit jako novou postavu.');
+    status('Přechody nastavené na obou koncích všech bitmapových dílů. Každý konec můžeš samostatně upravit nebo vypnout. Změnu můžeš vrátit přes Zpět nebo uložit jako novou postavu.');
   };
   function layerOptions(selected=$('layerOrder').value){
     $('layerOrder').replaceChildren();for(const [i,key] of skin.layers.entries()){
@@ -399,7 +400,7 @@
       const key=endHit||grip?selected:C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,point,{ignoreFade:right});
       if(endHit)$('fadeEnd').value=endHit.end;
       if(key){
-        if(right&&!C.canFade(key)){e.preventDefault();status('Tělo ani doplněk nemají přechody spojů. Vyber ruku, nohu nebo hlavu.');return;}
+        if(right&&!C.canFade(key)){e.preventDefault();return;}
         freeze();layerOptions(key);$('editTarget').value='bitmap';
         const frozen=C.sample(clip,index(),false),h=E.partHandles(skin,key,frozen);
         const tool=right?'fade':bitmapMode&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';

@@ -201,16 +201,17 @@ uživatelské animace a ruční posuny zůstávají zachované.
 
 Pod zobrazením Detail / Herní pixely je **Varianta: průhlednost spojů**.
 Původní i uložené postavy bez nastavení mají efekt vypnutý. Tlačítko
-**Zkusit přechody na všech spojích** nastaví 65% zeslabení společného základu
-u uchycení končetin a hlavy s krkem. Trup, nádrž, pánev a ramena vynechává.
-U předloktí jde o loket směrem do paže, nikoliv konec u ruky.
+**Zkusit přechody na všech koncích** nastaví 65% zeslabení společného základu
+na obou koncích všech bitmapových dílů, včetně trupu a doplňku/nádrže.
+Každý konec lze samostatně upravit nebo vypnout. Pánev a ramena jsou jen
+vodítka kostry bez vlastní bitmapy, proto nemají vlastní masku.
 Dosavadní snímkové výjimky se zachovávají; tlačítko není destruktivní reset.
 
 - **Pravý tah na bitmapě dolů** zesílí průhlednost, nahoru ji odstraní.
   150 jednotek náhledu odpovídá celému rozsahu. Není to štětec: mění se celý
   zvolený půlkruhový přechod. Průhledné místo lze znovu uchopit podle původní
   bitmapy. Seznam vždy ukazuje vybraný díl.
-- **Konec** vybírá uchycení nebo druhý konec, ten je standardně beze změny.
+- **Konec** vybírá uchycení nebo druhý konec; bez nastavení jsou oba vypnuté.
   **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
   následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
 - Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny.

@@ -261,8 +261,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';
  elements.fadePreset.onclick();await elements.updateCharacter.onclick();
  const faded=copy(gameStore.characters['legacy-b']),fadedPart=faded.skin.parts.nearForearm;
- assert.equal(fadedPart.joint_fade.start.strength,.65);assert.equal(fadedPart.joint_fade.end,undefined);
- assert.equal(faded.skin.parts.torso.joint_fade,undefined);assert.equal(faded.skin.parts.backpack.joint_fade,undefined);
+ for(const key of faded.skin.layers)for(const end of ['start','end'])assert.equal(faded.skin.parts[key].joint_fade[end].strength,.65);
  const fp=C.sample(faded.animation,0,false),fpart=C.partFor(faded.skin,'nearForearm',fp),fm=C.matrix(fpart,C.bones(fp).nearForearm);
  const local=fpart.start.map((v,i)=>(v+fpart.end[i])/2);
  const right={button:2,pointerId:99,clientX:fm[0]*local[0]+fm[2]*local[1]+fm[4],clientY:fm[1]*local[0]+fm[3]*local[1]+fm[5],preventDefault(){}};
@@ -275,7 +274,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.editScope.value='frame';elements.fadeEnd.value='end';elements.fadeEnd.onchange();
  elements.fadeStrength.value='25';elements.fadeStrength.onchange();await elements.updateCharacter.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,.25);
- assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end,undefined);
+ assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end.strength,.65);
  elements.exportFrame.onclick();elements.exportSheet.onclick();
  elements.renderMode.value='game';elements.renderMode.onchange();elements.exportFrame.onclick();elements.exportSheet.onclick();
  elements.fadeClear.onclick();await elements.updateCharacter.onclick();
