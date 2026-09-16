@@ -169,7 +169,7 @@ def save_pose(payload, path=STORE):
         record['rig_lengths'] = validate_lengths(payload.get('rig_lengths'))
         record['joint_limits'] = validate_joint_limits(payload.get('joint_limits'))
         collection = 'rigs'
-    elif kind == 'clip':
+    elif kind in ('clip', 'finished_animation'):
         frames = payload.get('frames')
         fps = payload.get('fps')
         if not isinstance(frames, list) or not 2 <= len(frames) <= 32:
@@ -180,12 +180,12 @@ def save_pose(payload, path=STORE):
         if isinstance(speed, bool) or not isinstance(speed, (int, float)) or not math.isfinite(speed) or not 0 <= speed <= 1000:
             raise ValueError('Rychlost pohybu musí být 0 až 1000 herních bodů/s.')
         record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')), joint_limits=validate_joint_limits(payload.get('joint_limits')))
-        if 'skin_id' in payload:
+        if kind == 'finished_animation' and 'skin_id' in payload:
             record['skin_id'] = validate_reference(payload.get('skin_id'), 'bitmapovou předlohu')
-        if 'skeleton_id' in payload:
-            record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kostru')
+        if kind == 'finished_animation' and 'skeleton_id' in payload:
+            record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kosterní animaci')
         record['frame_edits'] = validate_frame_edits(payload.get('frame_edits'), record['frames'], record['rig_lengths'])
-        collection = 'clips'
+        collection = 'clips' if kind == 'clip' else 'finished_animations'
     else:
         raise ValueError('Neznámý typ záznamu.')
     library = json.loads(path.read_text(encoding='utf-8'))
@@ -193,7 +193,7 @@ def save_pose(payload, path=STORE):
     mode = payload.get('mode', 'create')
     backup = None
     if mode == 'update':
-        if kind not in ('pose', 'clip', 'rig'):
+        if kind not in ('pose', 'clip', 'finished_animation', 'rig'):
             raise ValueError('Tento typ položky nelze přepsat.')
         target = payload.get('id')
         if not isinstance(target, str) or target not in library[collection]:

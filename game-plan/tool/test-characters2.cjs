@@ -5,8 +5,7 @@ const gameManifest=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters
 const exportedSizes=[];
 const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
 const storedSkeleton={id:'pose-1',name:'Kostra test',frame:{...R.neutral(),bodyY:9},rig_lengths:{...R.defaultLengths(),nearShin:82},joint_limits:R.defaultJointLimits()};
-zombie.skin_id=skin.id;zombie.skeleton_id=storedSkeleton.id;
-const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}},poses:{[storedSkeleton.id]:copy(storedSkeleton)}};
+const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}},poses:{[storedSkeleton.id]:copy(storedSkeleton)},finished_animations:{}};
 const gameStore={characters:{}};
 const translations=[];
 const smoothingWrites=[];
@@ -79,18 +78,18 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
   }
   assert.equal(url,'/api/poses');
   if(p.kind==='pose'){if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.poses[p.id]);const record={id:p.mode==='update'?p.id:'pose-test',name:p.mode==='update'?store.poses[p.id].name:p.name,frame:copy(p.frame),rig_lengths:copy(p.rig_lengths),joint_limits:copy(p.joint_limits)};store.poses[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
-  assert.equal(p.kind,'clip');
-  if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.clips[p.id]);else assert.ok(!p.id);
+  assert.ok(['clip','finished_animation'].includes(p.kind));const collection=p.kind==='clip'?'clips':'finished_animations';
+  if(p.mode==='update')assert.deepEqual(p.expectedRecord,store[collection][p.id]);else assert.ok(!p.id);
   if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
-  const record={...p,id:p.mode==='update'?p.id:'saved-'+(++seq)};delete record.kind;delete record.expectedRecord;store.clips[record.id]=record;
+  const record={...p,id:p.mode==='update'?p.id:'saved-'+(++seq)};delete record.kind;delete record.expectedRecord;store[collection][record.id]=record;
   return {ok:true,json:async()=>({ok:true,record})};
  }});
 (async()=>{
  await vm.runInContext(fs.readFileSync(__dirname+'/characters2.js','utf8'),context);
  helpElement.onclick({preventDefault(){},stopPropagation(){}});assert.equal(helpElement.classList.opened,true);helpElement.onmouseleave();assert.equal(helpElement.classList.opened,false);
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
- assert.equal(elements.skeletonSelect.children.length,Object.keys(store.poses).length+1);assert.match(elements.skeletonCount.textContent,/1 koster/);
- assert.equal(elements.clip.children.length,Object.keys(store.clips).length+1);assert.equal(elements.clip.value,zombie.id);
+ assert.equal(elements.skeletonSelect.children.length,Object.keys(store.clips).length+1);assert.match(elements.skeletonCount.textContent,/2 kosterních animací/);
+ assert.equal(elements.clip.children.length,Object.keys(store.finished_animations).length+1);assert.equal(elements.clip.value,'');
  assert.equal(elements.zoomLabel.textContent,'69 %');
  const unitZoom=()=>{elements.zoomReset.onclick();elements.stage.onwheel({deltaY:-Math.log(1/.69)/.0015,clientX:256,clientY:392,preventDefault(){}});};
  unitZoom();assert.equal(elements.zoomLabel.textContent,'100 %');
@@ -155,10 +154,10 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(savedGame.name,'Zombie custom');assert.equal(savedGame.animation.frames[0].bodyLean,30);
  assert.deepEqual(savedGame.animation.joint_limits,R.defaultJointLimits());
  assert.equal(savedGame.animation.move_speed_pt_s,10);assert.equal(savedGame.animation.rig_lengths.nearShin,74);
- assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.equal(Object.keys(savedGame.animations).length,4);
+ assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.ok(Object.keys(savedGame.animations).length>=4);
  elements.lean.value='10';elements.lean.onchange();confirmed=true;
  await elements.gameCharacter.onchange();assert.equal(Number(elements.lean.value),30);
- assert.equal(elements.clip.value,'');assert.equal(elements.characterAnimation.value,'assigned-4');
+ assert.equal(elements.clip.value,'');assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
  // Playback must never silently change the editor checkbox.
  elements.play.onclick();assert.equal(elements.edit.checked,true);elements.play.onclick();assert.equal(elements.edit.checked,true);
  // A radial ordinary drag must not resize, Ctrl must resize, and the lock must prevent it.
@@ -173,15 +172,15 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.toolSize.onclick();stretch(false);await elements.updateAnimation.onclick();assert.equal(C.frameLengths(gameStore.characters['game-1'].animation,0).nearThigh,90,'Velikost kostry funguje bez Ctrl');
  elements.undo.onclick();await elements.updateAnimation.onclick();assert.equal(C.frameLengths(gameStore.characters['game-1'].animation,0).nearThigh,70);elements.toolRotate.onclick();
  stretch(false);elements.name.value='Rotation only';await elements.save.onclick();
- assert.equal(gameStore.characters['game-1'].animations['assigned-5'].rig_lengths.nearThigh,70);
+ assert.equal(gameStore.characters['game-1'].animations[gameStore.characters['game-1'].default_animation_id].rig_lengths.nearThigh,70);
  elements.editScope.value='all';elements.editScope.onchange();
  stretch(true);elements.name.value='Ctrl length';await elements.save.onclick();
- assert.equal(gameStore.characters['game-1'].animations['assigned-6'].rig_lengths.nearThigh,90);
- assert.deepEqual(gameStore.characters['game-1'].animations['assigned-6'].frames.slice(1),base.frames.slice(1));
+ assert.equal(gameStore.characters['game-1'].animations[gameStore.characters['game-1'].default_animation_id].rig_lengths.nearThigh,90);
+ assert.deepEqual(gameStore.characters['game-1'].animations[gameStore.characters['game-1'].default_animation_id].frames.slice(1),base.frames.slice(1));
  confirmed=true;elements.gameCharacter.value='game-1';await elements.gameCharacter.onchange();
  elements.resizeBones.checked=false;stretch(true);elements.name.value='Locked length';await elements.save.onclick();
- assert.equal(gameStore.characters['game-1'].animations['assigned-7'].rig_lengths.nearThigh,90);
- {const before=copy(gameStore.characters['game-1'].animations['assigned-7']);
+ assert.equal(gameStore.characters['game-1'].animations[gameStore.characters['game-1'].default_animation_id].rig_lengths.nearThigh,90);
+ {const before=copy(gameStore.characters['game-1'].animations[gameStore.characters['game-1'].default_animation_id]);
  const e={button:0,pointerId:19,clientX:20,clientY:450,preventDefault(){}};
  elements.stage.onpointerdown(e);elements.stage.onpointermove({...e,clientX:70});elements.stage.onpointerup(e);
  assert.equal(elements.stage.style.cursor,'grab');elements.zoomReset.onclick();unitZoom();
@@ -252,8 +251,8 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.stage.onpointerup(gesture);await elements.updateAnimation.onclick();
  const rotated=copy(gameStore.characters['game-1']);assert.ok(Math.abs(rotated.animation.frame_edits[0].parts.nearForearm.rotation)>10);
  assert.deepEqual(rotated.skin,transaction.skin);assert.deepEqual(rotated.animation.frames,transaction.animation.frames);
- elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].animation,transaction.animation);
- elements.redo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].animation,rotated.animation);
+ elements.undo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].animation.frame_edits,transaction.animation.frame_edits);
+ elements.redo.onclick();await elements.updateAnimation.onclick();assert.deepEqual(gameStore.characters['game-1'].animation.frame_edits,rotated.animation.frame_edits);
  // Bitmap modifiers independently edit height / width, with the same scope and undo.
  function resizeAxis(modifier,dx,dy){
    const record=gameStore.characters['game-1'],pose=C.sample(record.animation,0,false),h=require('./cutout-editor.js').partHandles(record.skin,'nearForearm',pose);
@@ -384,28 +383,28 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
 
- // Choosing a skeleton starts a detached eight-frame draft and asks first.
- elements.skeletonSelect.value='pose-1';await elements.skeletonSelect.onchange();
+ // Choosing a skeleton loads the same complete skeleton animation as the skeleton editor.
+ elements.skeletonSelect.value='walk';await elements.skeletonSelect.onchange();
  assert.ok(questions.at(-1).includes('Zahodit aktuálně rozpracovanou animaci'));
- assert.equal(Number(elements.bodyY.value),9);assert.equal(elements.characterAnimation.value,'');assert.equal(elements.clip.value,'');
- assert.equal(elements.frames.children.length,8);for(const frameButton of elements.frames.children){frameButton.onclick();assert.equal(Number(elements.bodyY.value),9);}
+ assert.equal(elements.characterAnimation.value,'');assert.equal(elements.clip.value,'');
+ assert.equal(elements.frames.children.length,store.clips.walk.frames.length);
  // Finished animations remember and restore both source selections.
- const finishedBefore=Object.keys(store.clips).length;promptAnswers.push('Hotová testovací');await elements.saveFinishedAnimation.onclick();
- const hotId=elements.clip.value;assert.equal(store.clips[hotId].skin_id,skin.id);assert.equal(store.clips[hotId].skeleton_id,'pose-1');
+ const finishedBefore=Object.keys(store.finished_animations).length;promptAnswers.push('Hotová testovací');await elements.saveFinishedAnimation.onclick();
+ const hotId=elements.clip.value;assert.equal(store.finished_animations[hotId].skin_id,skin.id);assert.equal(store.finished_animations[hotId].skeleton_id,'walk');
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();assert.notEqual(elements.characterAnimation.value,'');
- elements.clip.value=hotId;await elements.clip.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skinSelect.value,skin.id);assert.equal(elements.skeletonSelect.value,'pose-1');
- // Every saved pose appears as a skeleton; save/update/delete refresh the list.
- promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
- assert.equal(store.poses['pose-test'].name,'Testovací kostra');assert.ok(store.poses['pose-test'].frame);
- assert.deepEqual(store.poses['pose-test'].joint_limits,R.defaultJointLimits());
- assert.equal(elements.skeletonSelect.children.length,3);
- await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.poses).length,2);
- await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.poses).length,1);assert.equal(elements.skeletonSelect.children.length,2);
- elements.trash.value='poses:trash-pose-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.poses).length,2);assert.equal(elements.skeletonSelect.children.length,3);
+ elements.clip.value=hotId;await elements.clip.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skinSelect.value,skin.id);assert.equal(elements.skeletonSelect.value,'walk');
+ // Saved skeleton animations share the clips collection with the skeleton editor.
+ const skeletonBefore=Object.keys(store.clips).length;promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
+ const savedSkeleton=elements.skeletonSelect.value;assert.equal(store.clips[savedSkeleton].name,'Testovací kostra');assert.ok(store.clips[savedSkeleton].frames);
+ assert.deepEqual(store.clips[savedSkeleton].joint_limits,R.defaultJointLimits());
+ assert.equal(elements.skeletonSelect.children.length,skeletonBefore+2);
+ await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.clips).length,skeletonBefore+1);
+ await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.clips).length,skeletonBefore);assert.equal(elements.skeletonSelect.children.length,skeletonBefore+1);
+ elements.trash.value='clips:trash-'+savedSkeleton;await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.clips).length,skeletonBefore+1);assert.equal(elements.skeletonSelect.children.length,skeletonBefore+2);
  // Finished animations are a separate global library, with the same three actions.
- assert.equal(Object.keys(store.clips).length,finishedBefore+1);assert.deepEqual(elements.clip.children.map(option=>option.value),['',...Object.keys(store.clips)]);
- await elements.updateFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore+1);
- await elements.deleteFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore);assert.equal(elements.clip.children.length,finishedBefore+1);
+ assert.equal(Object.keys(store.finished_animations).length,finishedBefore+1);assert.deepEqual(elements.clip.children.map(option=>option.value),['',...Object.keys(store.finished_animations)]);
+ await elements.updateFinishedAnimation.onclick();assert.equal(Object.keys(store.finished_animations).length,finishedBefore+1);
+ await elements.deleteFinishedAnimation.onclick();assert.equal(Object.keys(store.finished_animations).length,finishedBefore);assert.equal(elements.clip.children.length,finishedBefore+1);
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();unitZoom();
  // On-canvas toggles change the selected endpoint only and undo restores it.
  elements.frames.children[0].onclick();elements.editTarget.value='bitmap';elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();

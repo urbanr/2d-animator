@@ -12,20 +12,25 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 - Zdrojové cesty a kontrolní součty editor nikdy nepřepisuje z dat poslaných prohlížečem.
 - Herní postava si ukládá vlastní snapshot předlohy. Díky tomu může mít jiné pořadí, ukotvení, rotační středy, natočení, měřítko a přechody než jiná postava ze stejného zdroje.
 
-### Kostra (`pose`)
+### Póza (`pose`)
 
-- Uživatelský pojem **Kostra** znamená jednu uloženou pózu v `graphics/poses/poses.json`, kolekci `poses`. Editor automaticky načítá všechny její položky.
-- Kostra ukládá polohu kloubů jednoho snímku (`frame`) a nově může nést také společné délky kostí (`rig_lengths`) a úhlové limity (`joint_limits`). Starší kostry bez těchto dvou údajů zůstávají platné.
+- Póza je jeden stavební snímek v `graphics/poses/poses.json`, kolekci `poses`. Je vidět v knihovně uvnitř editoru Koster, ale v Animátoru se už nevydává za celou kostru.
+- Póza ukládá polohu kloubů jednoho snímku (`frame`) a může nést také délky kostí (`rig_lengths`) a úhlové limity (`joint_limits`).
 - Výchozí kloubové limity jsou nyní maximální, −180° až +180°. Jsou připravené i pro budoucí fyziku, ale editor je zatím používá hlavně při tažení kloubů.
 - Délka jedné kosti je 5 až 250 jednotek kostry. Ramena a pánev mají pracovní šířku −300 až +300 %, aby šlo strany prohodit přes střed a použít až trojnásobný rozestup.
-- Kostra neobsahuje obrázky, pořadí vrstev ani rychlost pohybu postavy.
+- Póza neobsahuje obrázky, pořadí vrstev ani rychlost pohybu postavy.
 
-### Hotová animace (`clip`)
+### Kostra / kosterní animace (`clip`)
 
 - Je v `graphics/poses/poses.json`, kolekce `clips`.
-- Obsahuje 2 až 32 póz, tempo 1 až 30 snímků/s, rychlost vpřed 0 až 1000 herních bodů/s, délky kostí, limity kloubů, případné výjimky snímků a odkazy `skin_id` / `skeleton_id` na použitou bitmapovou předlohu a výchozí kostru.
-- Je to globální zásobník hotových animací bez vlastnictví konkrétní postavou. Slouží jako znovupoužitelný zdroj. Přiřazení nebo úprava animace postavy globální hotovou animaci nemění.
-- Načtení hotové animace přepne její bitmapovou předlohu i kostru a zruší aktivní výběr animace postavy. Starší hotové animace bez odkazů zůstávají platné; použijí aktuální bitmapovou předlohu a kostra se zkusí rozpoznat shodou prvního snímku.
+- Obsahuje 2 až 32 póz, tempo, rychlost vpřed, délky kostí, limity kloubů a pouze kosterní výjimky snímků.
+- Stejný seznam `clips` ukazuje editor Koster i sekce Kostry v Animátoru. Bitmapová předloha se sem neukládá.
+
+### Hotová animace (`finished_animation`)
+
+- Je v `graphics/poses/poses.json`, samostatná kolekce `finished_animations`.
+- Je to kombinace celé kosterní animace s bitmapovou předlohou, včetně bitmapových výjimek snímků a odkazů `skin_id` a `skeleton_id`.
+- Je to globální zásobník bez vlastnictví konkrétní postavou. Načtení nastaví uloženou bitmapovou předlohu i kosterní animaci a odpojí aktivní animaci postavy.
 
 ### Animace postavy
 
@@ -58,7 +63,9 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 3. Rozpracovaný pohyb lze uložit do globálního zásobníku **Hotové animace** nebo ho zvláštním tlačítkem přiřadit vybrané herní postavě.
 4. Seznam koster i hotových animací se po uložení, uložení jako, smazání a obnovení ihned znovu sestaví z aktuálního katalogu.
 5. Disketa přepisuje vybranou položku se zálohou, plus vytváří novou položku a koš ji přesouvá do vratného koše.
-6. Výběr Kostry je začátek nové práce: po potvrzení zahodí rozpracovaný pohyb, vytvoří osm shodných výchozích snímků, ponechá zvolenou bitmapovou předlohu a odpojí animaci vybranou u postavy.
+6. Výběr Kostry je začátek nové práce: po potvrzení načte všechny snímky vybrané kosterní animace, ponechá zvolenou bitmapovou předlohu a odpojí animaci vybranou u postavy.
+7. Jakákoli datová změna okamžitě odpojí hodnotu **Animace postavy**. Upravený pohyb lze k postavě uložit pouze jako novou animaci; původní zůstává beze změny, dokud ji uživatel samostatně nesmaže.
+8. Hvězdička u Kostry nebo Hotové animace označuje rozpracované neuložené změny příslušné vrstvy.
 
 ## Kompatibilita a bezpečnost zápisu
 

@@ -9,7 +9,7 @@ class PoseTests(unittest.TestCase):
     def test_shared_lengths_and_legacy_update(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'poses.json'
-            path.write_text(json.dumps({'clips': {}, 'poses': {}}))
+            path.write_text(json.dumps({'clips': {}, 'poses': {}, 'finished_animations': {}}))
             frame = dict.fromkeys(LIMITS, 0)
             frame['farShoulderOffsetX'] = 13
             payload = {'kind': 'clip', 'name': 'Lengths', 'frames': [frame]*8, 'fps': 8,
@@ -129,11 +129,11 @@ class PoseTests(unittest.TestCase):
             path = Path(tmp) / 'poses.json'
             path.write_text(json.dumps({'clips': {}, 'poses': {}}))
             frame = dict.fromkeys(LIMITS, 0)
-            original = save_pose({'kind': 'clip', 'name': 'Hotová', 'frames': [frame] * 8, 'fps': 8,
+            original = save_pose({'kind': 'finished_animation', 'name': 'Hotová', 'frames': [frame] * 8, 'fps': 8,
                                   'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1'}, path)['record']
             self.assertEqual(original['skin_id'], 'bezec-zombie-v1')
             self.assertEqual(original['skeleton_id'], 'pose-1')
-            updated = save_pose({'kind': 'clip', 'mode': 'update', 'id': original['id'], 'name': 'Hotová',
+            updated = save_pose({'kind': 'finished_animation', 'mode': 'update', 'id': original['id'], 'name': 'Hotová',
                                  'expectedRecord': original, 'frames': [frame] * 8, 'fps': 9,
                                  'skin_id': 'bezec-zombie-v2', 'skeleton_id': 'pose-2'}, path)['record']
             self.assertEqual(updated['skin_id'], 'bezec-zombie-v2')
@@ -141,7 +141,7 @@ class PoseTests(unittest.TestCase):
             before = path.read_bytes()
             for key, value in [('skin_id', '../bad'), ('skeleton_id', ''), ('skin_id', 4)]:
                 with self.assertRaises(ValueError):
-                    save_pose({'kind': 'clip', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8, key: value}, path)
+                    save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8, key: value}, path)
                 self.assertEqual(path.read_bytes(), before)
 
 

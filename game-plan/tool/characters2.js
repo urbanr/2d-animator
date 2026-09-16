@@ -17,7 +17,7 @@
     context.save();context.imageSmoothingEnabled=true;context.imageSmoothingQuality='low';context.drawImage(pixelFrame,0,0,512,560);context.restore();
     if(options.skeleton)drawRig(context,skin,images,pose,{...options,skeletonOnly:true});
   }
-  let skin,library,clip,phase=0,playing=false,visible=true,last=0,dirty=false,drag=null,history=[],future=[],saving=false;
+  let skin,library,clip,phase=0,playing=false,visible=true,last=0,dirty=false,skeletonDirty=false,animationDirty=false,drag=null,history=[],future=[],saving=false;
   let distance=0;
   const DEFAULT_ZOOM=.69,defaultPan=()=>({x:0,y:(M.GROUND_Y-280)*(1-DEFAULT_ZOOM)});
   let zoom=DEFAULT_ZOOM;
@@ -30,25 +30,25 @@
     help.onmouseleave=()=>help.classList.remove('help-open');
   }
   const toolChoices={editTool:{toolMove:'move',toolRotate:'rotate',toolSize:'size'}};
-  const sourceClipId=()=>clip?.source_clip_id||(!clip?.id?.startsWith('character:')&&library?.clips?.[clip?.id]?clip.id:'');
+  const sourceClipId=()=>skeletonId||clip?.source_clip_id||(!clip?.id?.startsWith('character:')&&library?.clips?.[clip?.id]?clip.id:'');
   function saveButtons(){
     const busy=saving||characterSaving;
     $('saveCharacter').disabled=busy;$('save').disabled=busy||!characterId;
     $('updateCharacter').disabled=busy||!characterId;
     $('updateAnimation').disabled=busy||!characterId||!characterAnimationId;
     $('assignAnimation').disabled=busy||!characterId;
-    $('saveSkeleton').disabled=busy;$('updateSkeleton').disabled=busy||!library?.poses?.[skeletonId];$('deleteSkeleton').disabled=busy||!library?.poses?.[skeletonId];
-    $('saveFinishedAnimation').disabled=busy;$('updateFinishedAnimation').disabled=busy||!library?.clips?.[finishedAnimationId];$('deleteFinishedAnimation').disabled=busy||!library?.clips?.[finishedAnimationId];
+    $('saveSkeleton').disabled=busy;$('updateSkeleton').disabled=busy||!library?.clips?.[skeletonId];$('deleteSkeleton').disabled=busy||!library?.clips?.[skeletonId];
+    $('saveFinishedAnimation').disabled=busy;$('updateFinishedAnimation').disabled=busy||!library?.finished_animations?.[finishedAnimationId];$('deleteFinishedAnimation').disabled=busy||!library?.finished_animations?.[finishedAnimationId];
     $('deleteCharacter').disabled=busy||!characterId;
     $('deleteAnimation').disabled=busy||!characterId||!characterAnimationId;
-    $('animationName').textContent=clip?.name||'';
+    $('animationName').textContent=(clip?.name||'')+(animationDirty?' *':'');
   }
   function saveError(e){status(e instanceof TypeError||e.message==='Failed to fetch'?'Nelze se spojit s ukládáním. Použij http://127.0.0.1:8765/tool/preview.html?sekce=animator. Rozpracované změny zůstávají v editoru; můžeš stáhnout data jako zálohu.':e.message,true);}
   const status=(s,error=false)=>{$('status').textContent=s;$('status').classList.toggle('error',error);};
   async function getJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('Nelze načíst '+url);return r.json();}
   const index=()=>Math.floor(phase)%clip.frames.length;
   const scope=()=>$('editScope').value==='all'?'all':'frame';
-  const snapshot=()=>copy({clip,skin,skinDirty,spread,skeletonId,finishedAnimationId,index:index(),selected:$('layerOrder').value,selectedSkeleton});
+  const snapshot=()=>copy({clip,skin,skinDirty,skeletonDirty,animationDirty,spread,skeletonId,finishedAnimationId,index:index(),selected:$('layerOrder').value,selectedSkeleton});
   function remember(){history.push(snapshot());future=[];if(history.length>60)history.shift();}
   function syncTools(){
     syncFade();
@@ -69,7 +69,11 @@
       if(custom)$('scopeNote').textContent+=` Dřívější výjimky tohoto dílu (${custom} snímků) zůstávají. Přepnutí je nesjednotí.`;
     }
   }
-  function mark(){dirty=true;status('Neuložené změny');syncTools();}
+  function mark(kind='animation'){
+    dirty=true;animationDirty=true;if(kind==='skeleton')skeletonDirty=true;
+    if(characterAnimationId){characterAnimationId='';characterAnimationOptions('');}
+    options(finishedAnimationId);skeletonOptions();status('Neuložené změny');syncTools();saveButtons();
+  }
   function syncFade(){
     const key=$('layerOrder').value,allowed=C.canFade(key)&&Boolean(skin.parts[key]);
     for(const id of ['fadeStrength','fadeRadius','fadeRadius2','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
@@ -187,9 +191,9 @@
     });
   }
   function options(selected){
-    $('clip').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Rozpracovaná / z postavy';$('clip').append(blank);
-    for(const c of Object.values(library.clips||{})){const o=document.createElement('option');o.value=c.id;o.textContent=c.name;$('clip').append(o);}
-    $('clip').value=library.clips?.[selected]?selected:'';
+    $('clip').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Rozpracovaná / z postavy'+(animationDirty?' *':'');$('clip').append(blank);
+    for(const c of Object.values(library.finished_animations||{})){const o=document.createElement('option');o.value=c.id;o.textContent=c.name+(animationDirty&&c.id===selected?' *':'');$('clip').append(o);}
+    $('clip').value=library.finished_animations?.[selected]?selected:'';
   }
   function characterAnimations(record){
     if(record?.animations&&typeof record.animations==='object')return record.animations;
@@ -197,28 +201,27 @@
     return {};
   }
   function selectedCharacterAnimation(record){const animations=characterAnimations(record);return record?.default_animation_id&&animations[record.default_animation_id]?record.default_animation_id:Object.keys(animations)[0]||'';}
-  function loadClip(record,{source='',assigned='',finished='',message='Načteno'}={}){
-    stop();clip=copy(record||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});clip.joint_limits=R.jointLimitsFor(clip);characterAnimationId=assigned;finishedAnimationId=finished;phase=0;dirty=skinDirty;history=[];future=[];options(finishedAnimationId);
+  function loadClip(record,{source='',assigned='',finished='',message='Načteno',skeletonClean=true,animationClean=true}={}){
+    stop();clip=copy(record||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});if(source)clip.source_clip_id=source;clip.joint_limits=R.jointLimitsFor(clip);characterAnimationId=assigned;finishedAnimationId=finished;skeletonDirty=!skeletonClean;animationDirty=!animationClean;phase=0;dirty=skinDirty||skeletonDirty||animationDirty;history=[];future=[];options(finishedAnimationId);skeletonOptions();
     $('fps').value=clip.fps;$('undo').disabled=true;saveButtons();
     $('moveSpeed').value=M.speed(clip);
     characterAnimationOptions(assigned);thumbnails();draw();status(message+': '+clip.name+'.');
   }
   function skeletonForClip(record){
-    if(library.poses?.[record?.skeleton_id])return record.skeleton_id;
-    const frame=record?.frames?.[0];if(!frame)return '';
-    return Object.values(library.poses||{}).find(p=>JSON.stringify(p.frame)===JSON.stringify(frame))?.id||'';
+    if(library.clips?.[record?.skeleton_id])return record.skeleton_id;
+    return '';
   }
   async function select(id,{confirmDiscard=true,syncAssets=true}={}){
-    const record=library.clips?.[id];if(!record)return false;
+    const record=library.finished_animations?.[id];if(!record)return false;
     if(confirmDiscard&&!confirm(`Zahodit aktuálně rozpracovanou animaci a načíst hotovou animaci „${record.name}“?\nBitmapová předloha a kostra se přepnou podle uložené animace. Animace vybraná u postavy se odpojí.`))return false;
     stop();
     try{
       if(syncAssets){const targetSkin=skinCatalog.skins?.[record.skin_id]?record.skin_id:$('skinSelect').value;if(targetSkin)await loadSkin(targetSkin);}
       skeletonId=skeletonForClip(record);skeletonOptions();
-      loadClip(record,{source:id,finished:id,message:'Načtená hotová animace'});return true;
+      loadClip(record,{source:record.skeleton_id||'',finished:id,message:'Načtená hotová animace'});return true;
     }catch(e){saveError(e);return false;}
   }
-  function change(fn){stop();const p={...R.neutral(),...clip.frames[index()]};fn(p);remember();clip=E.poseChange(clip,index(),p,scope());mark();thumbnails();draw();}
+  function change(fn){stop();const p={...R.neutral(),...clip.frames[index()]};fn(p);remember();clip=E.poseChange(clip,index(),p,scope());mark('skeleton');thumbnails();draw();}
   function download(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
   function exportCanvas(canvas,name){canvas.toBlob(blob=>{if(blob)download(blob,name);else status('Export PNG se nezdařil.',true);},'image/png');}
   function bitmapOptions(selected=''){
@@ -271,84 +274,89 @@
   function loadCharacterAnimation(id){
     const record=gameCatalog.characters[characterId],animation=characterAnimations(record)[id];if(!animation)return;
     const source=library.clips[animation.source_clip_id]?animation.source_clip_id:'';
-    loadClip({...copy(animation),id:'character:'+characterId+':'+id},{source,assigned:id,message:'Načtená animace postavy'});
+    skeletonId=source;skeletonOptions();loadClip({...copy(animation),id:'character:'+characterId+':'+id},{source,assigned:id,message:'Načtená animace postavy'});
   }
   function trashOptions(){
     const selected=$('trash').value;$('trash').replaceChildren();
-    for(const [source,catalog] of [['characters',gameCatalog],['clips',library],['poses',library]])for(const [id,item] of Object.entries(catalog?.trash||{})){
+    for(const [source,catalog] of [['characters',gameCatalog],['clips',library],['finished_animations',library],['poses',library]])for(const [id,item] of Object.entries(catalog?.trash||{})){
       if(item.collection!==source)continue;
-      const o=document.createElement('option');o.value=source+':'+id;o.textContent=(source==='characters'?'Postava: ':source==='poses'?'Kostra: ':'Animace: ')+item.record.name;$('trash').append(o);
+      const o=document.createElement('option');o.value=source+':'+id;o.textContent=(source==='characters'?'Postava: ':source==='clips'?'Kosterní animace: ':source==='poses'?'Póza: ':'Hotová animace: ')+item.record.name;$('trash').append(o);
     }
     $('trash').value=[...$('trash').children].some(o=>o.value===selected)?selected:$('trash').children[0]?.value||'';
     $('restoreDeleted').disabled=!$('trash').children.length||saving||characterSaving;
   }
   async function catalogAction(collection,restore=false){
     if(saving||characterSaving)return;
-    let id=collection==='characters'?characterId:collection==='poses'?skeletonId:finishedAnimationId,catalog=collection==='characters'?gameCatalog:library;
+    let id=collection==='characters'?characterId:collection==='clips'?skeletonId:finishedAnimationId,catalog=collection==='characters'?gameCatalog:library;
     if(restore){const selection=$('trash').value.split(':');collection=selection[0];id=selection[1];catalog=collection==='characters'?gameCatalog:library;}
     const record=restore?catalog.trash?.[id]?.record:catalog[collection]?.[id];if(!record)return;
-    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='characters'?'postavu':collection==='poses'?'kostru':'animaci'} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. ${restore?'':'Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.'}`))return;
+    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='characters'?'postavu':collection==='clips'?'kosterní animaci':collection==='poses'?'pózu':'hotovou animaci'} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. ${restore?'':'Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.'}`))return;
     stop();characterSaving=true;saveButtons();
     try{
       const response=await fetch(collection==='characters'?'/api/game-characters':'/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:copy(record)})});
       const result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Operace koše selhala.');
       catalog.trash=result.trash;
       if(restore)catalog[collection][result.id]=result.record;
-      else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';characterAnimationId='';skinDirty=true;dirty=true;}else if(collection==='poses'&&skeletonId===id){skeletonId='';}else if(collection==='clips'&&finishedAnimationId===id){finishedAnimationId='';clip.id='';dirty=true;}}
+      else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';characterAnimationId='';skinDirty=true;dirty=true;}else if(collection==='clips'&&skeletonId===id){skeletonId='';skeletonDirty=true;dirty=true;}else if(collection==='finished_animations'&&finishedAnimationId===id){finishedAnimationId='';animationDirty=true;clip.id='';dirty=true;}}
       gameOptions(characterId);options(finishedAnimationId);skeletonOptions();trashOptions();draw();
       status(restore?'Položka obnovena z koše.':'Položka je v koši. Rozpracovaná kopie zůstala v editoru; můžeš ji Uložit jako novou.');
     }catch(e){saveError(e);}finally{characterSaving=false;saveButtons();trashOptions();}
   }
 
   function skeletonOptions(){
-    $('skeletonSelect').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Vlastní / neuložená kostra';$('skeletonSelect').append(blank);
-    for(const r of Object.values(library.poses||{})){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('skeletonSelect').append(o);}
-    $('skeletonSelect').value=library.poses?.[skeletonId]?skeletonId:'';$('skeletonCount').textContent=`Automaticky načteno: ${Object.keys(library.poses||{}).length} koster.`;
+    $('skeletonSelect').replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Vlastní / neuložená kosterní animace'+(skeletonDirty?' *':'');$('skeletonSelect').append(blank);
+    for(const r of Object.values(library.clips||{})){const o=document.createElement('option');o.value=r.id;o.textContent=r.name+(skeletonDirty&&r.id===skeletonId?' *':'');$('skeletonSelect').append(o);}
+    $('skeletonSelect').value=library.clips?.[skeletonId]?skeletonId:'';$('skeletonCount').textContent=`Automaticky načteno: ${Object.keys(library.clips||{}).length} kosterních animací.`;
+  }
+  function skeletonEdits(){
+    const edits={};for(const [i,edit] of Object.entries(clip.frame_edits||{})){
+      const clean={};if(edit.pose_base)clean.pose_base=copy(edit.pose_base);if(edit.lengths)clean.lengths=copy(edit.lengths);
+      if(Object.keys(clean).length)edits[i]=clean;
+    }return edits;
   }
   async function saveSkeleton(overwrite){
     if(saving||characterSaving)return;
-    let previous=library.poses?.[skeletonId],name=previous?.name||'Moje kostra';
+    let previous=library.clips?.[skeletonId],name=previous?.name||'Moje kosterní animace';
     if(overwrite&&!previous)return;
-    if(!overwrite){name=prompt('Název kostry',name)?.trim();if(!name)return;previous=Object.values(library.poses||{}).find(r=>characterNameKey(r.name)===characterNameKey(name));}
-    if(previous&&!confirm('Přepsat kostru „'+previous.name+'“ se zálohou?'))return;
-    const pose=C.sample(clip,index(),false),frame=Object.fromEntries(R.fields.map(([key])=>[key,pose[key]]));
-    const payload={kind:'pose',name,frame,rig_lengths:R.lengthsFor(clip,index()),joint_limits:R.jointLimitsFor(clip)};
+    if(!overwrite){name=prompt('Název kosterní animace',name)?.trim();if(!name)return;previous=Object.values(library.clips||{}).find(r=>characterNameKey(r.name)===characterNameKey(name));}
+    if(previous&&!confirm('Přepsat kosterní animaci „'+previous.name+'“ se zálohou?'))return;
+    const payload={kind:'clip',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:skeletonEdits()};
     if(previous)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
     saving=true;saveButtons();
     try{const r=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await r.json();if(!r.ok||!result.ok)throw Error(result.error||'Uložení kostry se nezdařilo.');
-      library.poses??={};library.poses[result.record.id]=result.record;skeletonId=result.record.id;skeletonOptions();status('Kostra uložená: '+result.record.name+'. Bitmapová předloha ani celá animace se do ní neukládají.');
+      library.clips??={};library.clips[result.record.id]=result.record;skeletonId=result.record.id;skeletonDirty=false;dirty=skinDirty||animationDirty;skeletonOptions();saveButtons();status('Kosterní animace uložená: '+result.record.name+'. Bitmapová předloha se do ní neukládá.');
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
   $('saveSkeleton').onclick=()=>saveSkeleton(false);$('updateSkeleton').onclick=()=>saveSkeleton(true);
-  $('deleteSkeleton').onclick=()=>catalogAction('poses');
+  $('deleteSkeleton').onclick=()=>catalogAction('clips');
   $('skeletonSelect').onchange=async()=>{
-    const previous=skeletonId,next=$('skeletonSelect').value,record=library.poses?.[next];if(!record){skeletonId='';saveButtons();return;}
-    if(!confirm(`Zahodit aktuálně rozpracovanou animaci a začít novou z kostry „${record.name}“?\nKostra se použije do všech osmi snímků. Bitmapová předloha zůstane vybraná a animace postavy se odpojí.`)){$('skeletonSelect').value=previous;return;}
-    const frame=copy(record.frame),draft={id:'',name:'Nová animace · '+record.name,fps:6,move_speed_pt_s:8,frames:Array.from({length:8},()=>copy(frame)),rig_lengths:record.rig_lengths?R.lengthsFor(record):R.lengthsFor(clip),joint_limits:record.joint_limits?R.jointLimitsFor(record):R.jointLimitsFor(clip),frame_edits:{},skin_id:$('skinSelect').value,skeleton_id:next};
-    skeletonId=next;loadClip(draft,{message:'Nová rozpracovaná animace z kostry'});skeletonOptions();mark();status('Nová rozpracovaná animace používá kostru „'+record.name+'“ ve všech 8 snímcích. Animace postavy byla odpojena.');
+    const previous=skeletonId,next=$('skeletonSelect').value,record=library.clips?.[next];if(!record){skeletonId='';saveButtons();return;}
+    if(!confirm(`Zahodit aktuálně rozpracovanou animaci a načíst kosterní animaci „${record.name}“?\nBitmapová předloha zůstane vybraná a animace postavy se odpojí.`)){$('skeletonSelect').value=previous;return;}
+    skeletonId=next;loadClip({...copy(record),id:'',name:'Nová hotová animace · '+record.name},{source:next,message:'Načtená kosterní animace',skeletonClean:true,animationClean:false});skeletonOptions();characterAnimationId='';characterAnimationOptions('');status('Kosterní animace „'+record.name+'“ načtena. Kombinace s bitmapou je rozpracovaná (*).');
   };
   async function saveFinished(overwrite){
     if(saving||characterSaving)return;
-    const previous=library.clips?.[finishedAnimationId];if(overwrite&&!previous){status('Nejprve vyber uloženou hotovou animaci nebo použij plus.',true);return;}
+    const previous=library.finished_animations?.[finishedAnimationId];if(overwrite&&!previous){status('Nejprve vyber uloženou hotovou animaci nebo použij plus.',true);return;}
     const name=overwrite?previous.name:prompt('Název hotové animace',clip.name||'Moje animace')?.trim();if(!name)return;
     if(!confirm(overwrite?`Přepsat hotovou animaci „${previous.name}“ se zálohou?`:`Přidat do knihovny hotovou animaci „${name}“?`))return;
-    const payload={kind:'clip',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:copy(clip.frame_edits||{}),skin_id:$('skinSelect').value};
+    const payload={kind:'finished_animation',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:copy(clip.frame_edits||{}),skin_id:$('skinSelect').value};
     if(skeletonId)payload.skeleton_id=skeletonId;
     if(overwrite)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
     const snapshot=JSON.stringify(clip);saving=true;saveButtons();
     try{const response=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Uložení hotové animace se nezdařilo.');
-      library.clips[result.record.id]=result.record;const changed=snapshot!==JSON.stringify(clip);
-      if(!changed)loadClip(result.record,{source:result.record.id,finished:result.record.id,message:overwrite?'Hotová animace aktualizována':'Hotová animace přidána'});else{finishedAnimationId=result.record.id;options(finishedAnimationId);saveButtons();status('Animace byla uložena, novější rozpracované změny zůstaly v editoru.');}
+      library.finished_animations??={};library.finished_animations[result.record.id]=result.record;const changed=snapshot!==JSON.stringify(clip);
+      if(!changed)loadClip(result.record,{source:result.record.skeleton_id||skeletonId,finished:result.record.id,message:overwrite?'Hotová animace aktualizována':'Hotová animace přidána',skeletonClean:!skeletonDirty});else{finishedAnimationId=result.record.id;options(finishedAnimationId);saveButtons();status('Animace byla uložena, novější rozpracované změny zůstaly v editoru.');}
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
-  $('updateFinishedAnimation').onclick=()=>saveFinished(true);$('saveFinishedAnimation').onclick=()=>saveFinished(false);$('deleteFinishedAnimation').onclick=()=>catalogAction('clips');
+  $('updateFinishedAnimation').onclick=()=>saveFinished(true);$('saveFinishedAnimation').onclick=()=>saveFinished(false);$('deleteFinishedAnimation').onclick=()=>catalogAction('finished_animations');
   $('deleteCharacter').onclick=()=>catalogAction('characters');
   $('restoreDeleted').onclick=()=>catalogAction(null,true);
   try{
-    [skinCatalog,library,gameCatalog]=await Promise.all([getJSON('../graphics/characters2/skins.json'),getJSON('../graphics/poses/poses.json'),getJSON('../graphics/characters2/game-characters.json')]);
+    [skinCatalog,library,gameCatalog]=await Promise.all([getJSON('../graphics/characters2/skins.json'),getJSON('../graphics/poses/poses.json'),getJSON('../graphics/characters2/game-characters.json')]);library.finished_animations??={};
     bitmapOptions();
     await loadSkin(Object.keys(skinCatalog.skins)[0]);gameOptions();skeletonOptions();
-    await select(library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0],{confirmDiscard:false,syncAssets:false});
+    skeletonId=library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]||'';
+    loadClip(library.clips[skeletonId],{source:skeletonId,message:'Načtená kosterní animace',animationClean:false});
     for(const id of ['skinSelect','saveCharacter','play','previous','next','clip','fps','moveSpeed','bodyY','up','down','lean','exportFrame','exportSheet','exportRig'])$(id).disabled=false;
     saveButtons();
     playing=true;$('play').textContent='Pozastavit';
@@ -362,7 +370,7 @@
   stage.oncontextmenu=e=>e.preventDefault(); // Ctrl-drag is an edit, including on macOS.
   $('zoomOut').onclick=()=>setZoom(zoom/1.2);$('zoomIn').onclick=()=>setZoom(zoom*1.2);$('zoomReset').onclick=()=>{pan=defaultPan();zoom=DEFAULT_ZOOM;draw();};
   $('renderMode').onchange=()=>{stage.style.imageRendering='auto';thumbnails();draw();};
-  $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);thumbnails();draw();}catch(e){status(e.message,true);}};
+  $('skinSelect').onchange=async()=>{if(skinDirty&&!confirm('Zahodit neuložené úpravy bitmapových dílů?')){$('skinSelect').value=skin.id;return;}stop();try{await loadSkin($('skinSelect').value);mark();thumbnails();draw();}catch(e){status(e.message,true);}};
   $('layerOrder').onchange=()=>{layerOptions();cursor();draw();};
   function reorder(step){const key=$('layerOrder').value,i=skin.layers.indexOf(key),j=i+step;if(i<0||j<0||j>=skin.layers.length)return;remember();[skin.layers[i],skin.layers[j]]=[skin.layers[j],skin.layers[i]];skinDirty=true;mark();layerOptions(key);thumbnails();draw();}
   $('layerBack').onclick=()=>reorder(-1);$('layerFront').onclick=()=>reorder(1);
@@ -422,7 +430,7 @@
   $('gameCharacter').onchange=async()=>{
     const r=gameCatalog.characters[$('gameCharacter').value];if(!r){characterId='';characterAnimationId='';characterAnimationOptions();saveButtons();return;}
     if(dirty&&!confirm('Načíst postavu a zahodit neuložené úpravy?')){$('gameCharacter').value=characterId;return;}
-    stop();try{await loadSkin(r.skin_id,r.skin);spread=r.motion?.variation_percent||0;delta=0;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;$('rateDelta').value=0;characterId=r.id;characterAnimationId=selectedCharacterAnimation(r);gameOptions(characterId);if(characterAnimationId)loadCharacterAnimation(characterAnimationId);else await select(library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0],{confirmDiscard:false,syncAssets:false});}catch(e){status(e.message,true);}
+    stop();try{await loadSkin(r.skin_id,r.skin);spread=r.motion?.variation_percent||0;delta=0;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;$('rateDelta').value=0;characterId=r.id;characterAnimationId=selectedCharacterAnimation(r);gameOptions(characterId);if(characterAnimationId)loadCharacterAnimation(characterAnimationId);else{const source=library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]||'';skeletonId=source;loadClip(library.clips[source],{source,message:'Načtená kosterní animace',animationClean:false});}}catch(e){status(e.message,true);}
   };
   $('characterAnimation').onchange=()=>{const next=$('characterAnimation').value;if(!next)return;if(dirty&&!confirm('Načíst jinou animaci postavy a zahodit neuložené úpravy animace?')){$('characterAnimation').value=characterAnimationId;return;}loadCharacterAnimation(next);};
   $('play').onclick=()=>{if(playing)stop();else{playing=true;$('play').textContent='Pozastavit';}draw();};
@@ -431,17 +439,17 @@
   for(const id of ['smooth','bones','side'])$(id).onchange=draw;
   $('edit').onchange=()=>{if($('edit').checked)stop();draw();};
   $('clip').onchange=async()=>{const previous=finishedAnimationId,next=$('clip').value;if(!next){finishedAnimationId='';saveButtons();return;}if(!await select(next))$('clip').value=previous;};
-  $('fps').onchange=()=>{stop();remember();clip.fps=Math.max(1,Math.min(30,Math.round(Number($('fps').value)||6)));$('fps').value=clip.fps;mark();draw();};
-  $('moveSpeed').onchange=()=>{stop();remember();const value=Number($('moveSpeed').value);clip.move_speed_pt_s=Number.isFinite(value)?R.clamp(value,0,1000):M.DEFAULT_SPEED;$('moveSpeed').value=clip.move_speed_pt_s;mark();draw();};
+  $('fps').onchange=()=>{stop();remember();clip.fps=Math.max(1,Math.min(30,Math.round(Number($('fps').value)||6)));$('fps').value=clip.fps;mark('skeleton');draw();};
+  $('moveSpeed').onchange=()=>{stop();remember();const value=Number($('moveSpeed').value);clip.move_speed_pt_s=Number.isFinite(value)?R.clamp(value,0,1000):M.DEFAULT_SPEED;$('moveSpeed').value=clip.move_speed_pt_s;mark('skeleton');draw();};
   $('travel').onchange=()=>{distance=0;draw();};
   $('up').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)-(e.shiftKey?10:1),-100,100));
   $('down').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)+(e.shiftKey?10:1),-100,100));
   $('lean').onchange=()=>change(p=>p.bodyLean=Number($('lean').value));
   $('bodyY').onchange=()=>change(p=>p.bodyY=R.clamp(Number($('bodyY').value)||0,-100,100));
-  function restore(old){stop();skeletonId=old.skeletonId||'';finishedAnimationId=old.finishedAnimationId||'';skeletonOptions();options(finishedAnimationId);clip=old.clip;clip.joint_limits=R.jointLimitsFor(clip);skin=old.skin;skinDirty=old.skinDirty;spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);mark();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
+  function restore(old){stop();skeletonId=old.skeletonId||'';finishedAnimationId=old.finishedAnimationId||'';clip=old.clip;clip.joint_limits=R.jointLimitsFor(clip);skin=old.skin;skinDirty=old.skinDirty;skeletonDirty=old.skeletonDirty;animationDirty=true;dirty=true;characterAnimationId='';spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);characterAnimationOptions('');skeletonOptions();options(finishedAnimationId);status('Neuložené změny');syncTools();saveButtons();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
   $('undo').onclick=()=>{if(!history.length||drag)return;const old=history.pop();future.push({...snapshot(),index:old.index});restore(old);};
   $('redo').onclick=()=>{if(!future.length||drag)return;const next=future.pop();history.push({...snapshot(),index:next.index});restore(next);};
-  $('resetFrame').onclick=()=>{if(!clip.frame_edits?.[index()])return;stop();remember();clip=E.resetFrame(clip,index());mark();thumbnails();draw();};
+  $('resetFrame').onclick=()=>{if(!clip.frame_edits?.[index()])return;stop();remember();clip=E.resetFrame(clip,index());mark('skeleton');thumbnails();draw();};
   for(const id of ['editTarget','editScope','editTool'])$(id).onchange=()=>{cursor();draw();};
   for(const [group,choices] of Object.entries(toolChoices))for(const [id,value] of Object.entries(choices))$(id).onclick=()=>{$(group).value=value;$(group).onchange();};
   $('editScope').onclick=()=>{$('editScope').value=scope()==='all'?'frame':'all';$('editScope').onchange();};
@@ -535,7 +543,7 @@
       const next=E.dragSkeleton(clip,index(),h.key,h.point,end,{scope:scope(),tool:rotate?'rotate':'move'});
       if(JSON.stringify(next)===JSON.stringify(clip))return;
       const token=[key,e.shiftKey,h.key,index(),scope()].join(':');
-      if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;clip=next;mark();thumbnails();draw();return;
+      if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;clip=next;mark('skeleton');thumbnails();draw();return;
     }
     const step=e.shiftKey?10:1;
     const values=rotate?{rotation:part.rotation+(key==='q'?-1:1)*(e.shiftKey?10:1)}:
@@ -608,7 +616,7 @@
     const updated=E.dragSkeleton(drag.clip,drag.index,drag.key,drag.start,end,drag);
     if(JSON.stringify(updated)===JSON.stringify(clip))return;
     if(!drag.changed){remember();drag.changed=true;}
-    clip=updated;mark();thumbnails();draw();
+    clip=updated;mark('skeleton');thumbnails();draw();
   };
   function finish(e){if(!drag||drag.id!==e.pointerId)return;drag=null;if(stage.hasPointerCapture(e.pointerId))stage.releasePointerCapture(e.pointerId);cursor(e);thumbnails();draw();}
   stage.onpointerup=finish;stage.onpointercancel=finish;stage.onlostpointercapture=finish;
@@ -640,8 +648,8 @@
   async function saveCharacterAnimation(overwrite=false,special=false){
     if(saving||characterSaving)return;
     const previous=gameCatalog.characters[characterId];if(!previous){status('Nejprve vyber nebo vytvoř postavu.',true);return;}
-    const assigned=characterAnimations(previous)[characterAnimationId];
-    if(overwrite&&!assigned){status('Animaci nejprve přiřaď postavě nebo použij plus.',true);return;}
+    let assigned=characterAnimations(previous)[characterAnimationId];
+    if(overwrite&&!assigned){overwrite=false;assigned=null;}
     const name=overwrite?assigned.name:prompt(special?'Název animace přiřazené postavě':'Název nové animace postavy',clip.name)?.trim();if(!name)return;
     const question=overwrite?`Přepsat animaci „${assigned.name}“ u postavy „${previous.name}“?`:`${special?'Přiřadit':'Uložit jako další'} animaci „${name}“ k postavě „${previous.name}“?`;
     if(!confirm(question))return;
@@ -650,7 +658,7 @@
       const animation={...snapshot,id:source,source_clip_id:source,name,rig_lengths:R.lengthsFor(snapshot),joint_limits:R.jointLimitsFor(snapshot),move_speed_pt_s:M.speed(snapshot)};
       const payload={mode:overwrite?'animation-update':'animation-create',id:characterId,animation_id:overwrite?characterAnimationId:undefined,name,animation,expectedRecord:copy(previous)};
       const r=await fetch('/api/game-characters',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await r.json();if(!r.ok||!result.ok)throw Error(result.error||'Uložení animace se nezdařilo.');
-      gameCatalog.characters[result.record.id]=result.record;characterAnimationId=overwrite?characterAnimationId:result.record.default_animation_id;finishedAnimationId='';clip.id='character:'+characterId+':'+characterAnimationId;clip.name=name;clip.source_clip_id=source;gameOptions(characterId);options('');dirty=skinDirty;thumbnails();draw();
+      gameCatalog.characters[result.record.id]=result.record;characterAnimationId=overwrite?characterAnimationId:result.record.default_animation_id;finishedAnimationId='';clip.id='character:'+characterId+':'+characterAnimationId;clip.name=name;clip.source_clip_id=source;animationDirty=false;gameOptions(characterId);options('');dirty=skinDirty||skeletonDirty;thumbnails();draw();
       status((overwrite?'Animace uložená':'Animace přiřazená k postavě')+'. Předchozí stav postavy je v záloze.');
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
@@ -659,7 +667,7 @@
     if(!confirm(`Odebrat animaci „${assigned.name}“ z postavy „${previous.name}“?\nGlobální předloha zůstane beze změny.`))return;
     stop();saving=true;saveButtons();
     try{const payload={mode:'animation-delete',id:characterId,animation_id:characterAnimationId,expectedRecord:copy(previous)},r=await fetch('/api/game-characters',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await r.json();if(!r.ok||!result.ok)throw Error(result.error||'Odebrání animace se nezdařilo.');
-      gameCatalog.characters[result.record.id]=result.record;characterAnimationId=selectedCharacterAnimation(result.record);gameOptions(characterId);if(characterAnimationId)loadCharacterAnimation(characterAnimationId);else await select(library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0],{confirmDiscard:false,syncAssets:false});status('Animace byla z postavy odebrána. Předchozí stav je v záloze.');
+      gameCatalog.characters[result.record.id]=result.record;characterAnimationId=selectedCharacterAnimation(result.record);gameOptions(characterId);if(characterAnimationId)loadCharacterAnimation(characterAnimationId);else{const source=library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]||'';skeletonId=source;loadClip(library.clips[source],{source,message:'Načtená kosterní animace',animationClean:false});}status('Animace byla z postavy odebrána. Předchozí stav je v záloze.');
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
   $('save').onclick=()=>saveCharacterAnimation(false);$('updateAnimation').onclick=()=>saveCharacterAnimation(true);$('assignAnimation').onclick=()=>saveCharacterAnimation(false,true);$('deleteAnimation').onclick=deleteCharacterAnimation;

@@ -51,7 +51,7 @@ assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width
 assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
 const skeletonSection=html.match(/<details id="skeletonSection">([\s\S]*?)<\/details>/)[1];
 for(const id of ['skeletonSelect','updateSkeleton','saveSkeleton','deleteSkeleton','skeletonCount'])assert.ok(skeletonSection.includes(`id="${id}"`));
-assert.match(skeletonSection,/Všechny uložené kostry se načítají automaticky/);
+assert.match(skeletonSection,/stejné celé kosterní animace jako v editoru Koster/);
 const animationSection=html.match(/<details id="animationSection">([\s\S]*?)<\/details>/)[1];
 assert.match(animationSection,/<summary><span>Hotové animace<\/span>/);
 for(const id of ['clip','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation','assignAnimation'])assert.ok(animationSection.includes(`id="${id}"`));
