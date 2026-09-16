@@ -6,15 +6,21 @@ for(const key of sourceSkin.layers.filter(C.canFade))for(const end of ['start','
   const p=sourceSkin.parts[key],configured={...p,joint_fade:{[end]:{...C.fadeFor(p,end),strength:1}}};
   assert.equal(C.fadeAlpha(configured,...p[end==='start'?'end':'start']),1,`${key}: default fade never touches opposite joint`);
 }
-assert.equal(C.fadeAlpha(part,50,40),0,'Painted attachment must visibly fade');
+assert.equal(C.fadeAlpha(part,50,40),1,'Attachment is the opaque circle center, not its arc');
 assert.equal(C.fadeAlpha(part,50,80),1,'Opaque one radius inside bitmap');
 assert.equal(C.fadeAlpha(part,50,0),0,'Transparent at outward curved edge');
-assert.ok(C.fadeAlpha(part,50,60)>0&&C.fadeAlpha(part,50,60)<1);
+assert.ok(C.fadeAlpha(part,50,20)>0&&C.fadeAlpha(part,50,20)<1);
 assert.equal(C.fadeAlpha(part,50,140),1,'Hand untouched');
 const movedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,20],angle:0}}};
-assert.equal(C.fadeAlpha(movedMask,50,60),0,'Mask offset changes painted pixels, not bone');
+assert.equal(C.fadeAlpha(movedMask,50,60),1,'Offset moves the circle center');
+assert.ok(C.fadeAlpha(movedMask,50,40)<C.fadeAlpha(part,50,40));
 const rotatedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,0],angle:90}}};
-assert.notEqual(C.fadeAlpha(rotatedMask,50,70),C.fadeAlpha(part,50,70));
+assert.notEqual(C.fadeAlpha(rotatedMask,70,60),C.fadeAlpha(part,70,60));
+for(const end of ['start','end'])for(const radius of [10,40,100])for(const angle of [-90,0,110]){
+  const p={...part,joint_fade:{[end]:{strength:1,radius,angle,offset:[7,-9],direction:'outward'}}},g=C.fadeGeometry(p,end);
+  assert.deepEqual(g.center,[p[end][0]+7,p[end][1]-9]);assert.deepEqual(g.center,g.anchor);
+  assert.equal(C.fadeAlpha(p,...g.center),1);
+}
 assert.equal(C.fadeAlpha(part,0,120),1,'Whole inward half untouched');
 const inverse={...part,joint_fade:{start:{...part.joint_fade.start,direction:'inward'}}};
 assert.equal(C.fadeAlpha(inverse,50,0),1);assert.equal(C.fadeAlpha(inverse,50,80),0);

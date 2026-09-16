@@ -45,6 +45,16 @@
     return out;
   }
   function boneForHandle(key){const m=/^(near|far)(Shoulder|Elbow|Hip|Knee|Foot)$/.exec(key);return m?m[1]+{Shoulder:'UpperArm',Elbow:'Forearm',Hip:'Thigh',Knee:'Shin',Foot:'Foot'}[m[2]]:null;}
+  function handleForBone(key){
+    if(key==='head')return 'head';if(key==='torso'||key==='backpack')return 'bodyY';
+    const m=/^(near|far)(UpperArm|Forearm|Thigh|Shin|Foot)$/.exec(key);
+    return m?m[1]+{UpperArm:'Shoulder',Forearm:'Elbow',Thigh:'Hip',Shin:'Knee',Foot:'Foot'}[m[2]]:null;
+  }
+  function selectedHandleKeys(pose,key){
+    const handles=R.handles(pose,pose.rig_lengths),selected=handles.find(h=>h.key===key);
+    if(!selected)return [];
+    return handles.filter(h=>[selected.point,selected.pivot].filter(Boolean).some(p=>Math.hypot(p.x-h.point.x,p.y-h.point.y)<1e-6)).map(h=>h.key);
+  }
   function dragSkeleton(clip,index,key,start,end,{scope='frame',tool='rotate',ctrlKey=false,resize=true}={}){
     const p=C.sample(clip,index,false),bone=boneForHandle(key);
     const root={shoulders:['near','Shoulder'],farShoulderRoot:['far','Shoulder'],pelvis:['near','Hip'],farHipRoot:['far','Hip']}[key];
@@ -165,5 +175,5 @@
       }
     }
   }
-  return {poseChange,lengthChange,boneForHandle,dragSkeleton,partChange,pivotChange,fadeChange,resetFrame,partHandles,validateEdits};
+  return {poseChange,lengthChange,boneForHandle,handleForBone,selectedHandleKeys,dragSkeleton,partChange,pivotChange,fadeChange,resetFrame,partHandles,validateEdits};
 });

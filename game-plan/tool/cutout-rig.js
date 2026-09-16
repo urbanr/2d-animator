@@ -27,8 +27,9 @@
     const f=fadeFor(part,end),a=part[end],b=part[end==='start'?'end':'start'];
     const angle=Math.atan2(b[1]-a[1],b[0]-a[0])+f.angle*Math.PI/180+(f.direction==='inward'?Math.PI:0);
     const ux=Math.cos(angle),uy=Math.sin(angle),anchor=[a[0]+f.offset[0],a[1]+f.offset[1]];
-    // Move the cap inward one radius: the painted joint end, not empty padding, fades.
-    return {...f,anchor,center:[anchor[0]+ux*f.radius,anchor[1]+uy*f.radius],ux,uy,angle};
+    // Attachment is the circle center / midpoint of the flat diameter, never the arc.
+    // Radius and angle only change the cap around this fixed center.
+    return {...f,anchor,center:[...anchor],ux,uy,angle};
   }
   function fadeAlpha(part,x,y,geometry){
     if(!part.joint_fade)return 1;

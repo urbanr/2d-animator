@@ -10,7 +10,7 @@ const translations=[];
 const paint=new Proxy({},{get:(target,key)=>key==='translate'?(x,y)=>translations.push([x,y]):key==='getImageData'?(x,y,width,height)=>({width,height,data:new Uint8ClampedArray(width*height*4).fill(255)}):()=>{}});
 function element(){return {children:[],style:{},value:'',textContent:'',disabled:false,checked:false,classList:{toggle(){}},
  append(...a){this.children.push(...a);},replaceChildren(){this.children=[];},setAttribute(k,v){this[k]=v;},
- getContext(){const owner=this;return new Proxy(paint,{get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
+ getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
  setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(){this.capture=null;},
  toBlob(fn){exportedSizes.push([this.width,this.height]);fn(new Blob(['png']));},click(){}};}
 const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','gameCharacter','characterName','saveCharacter','undo','play','previous','next','reload','up','down','save','exportFrame','exportSheet','exportRig','parts'];
@@ -308,5 +308,16 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  key('D',{shiftKey:true});assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateCharacter.onclick();
  assert.notDeepEqual(gameStore.characters['legacy-b'].skin.parts.nearForearm.offset,pivoted.skin.parts.nearForearm.offset);
  elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
- console.log('PASS: cutout editor, pivot drag without jumping, keyboard focus/repeat/wrap, transparency, trash, saves and PNG exports.');
+ elements.editTarget.value='skeleton';elements.editTarget.onchange();elements.side.value='';elements.side.onchange();
+ const selectPose=C.sample(gameStore.characters['legacy-b'].animation,0,false),selectGrip=R.handles(selectPose,selectPose.rig_lengths).find(h=>h.key==='nearElbow');
+ const selectEvent={button:0,pointerId:109,clientX:512-selectGrip.point.x,clientY:selectGrip.point.y,preventDefault(){}};
+ elements.stage.onpointerdown(selectEvent);elements.stage.onpointerup(selectEvent);
+ assert.equal(elements.layerOrder.value,'nearForearm');
+ function yellowEndpoints(frame){
+   const pose=C.sample(gameStore.characters['legacy-b'].animation,frame,false),h=R.handles(pose,pose.rig_lengths).find(h=>h.key==='nearElbow');
+   for(const p of [h.point,h.pivot])assert.ok(elements.stage.fills.some(f=>f.color==='#ffdc60'&&Math.hypot(f.arc[0]-(512-p.x),f.arc[1]-p.y)<1e-7),'Both selected bone handles have solid yellow fill');
+ }
+ yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
+ elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
+ console.log('PASS: cutout editor, persistent solid-yellow skeleton selection, pivot, keyboard, transparency, trash and exports.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

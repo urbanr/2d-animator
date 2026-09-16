@@ -22,6 +22,7 @@
   let zoom=1;
   let pan={x:0,y:0},skinDirty=false,spread=15,delta=0;
   let characterId='',characterSaving=false;
+  let selectedSkeleton='';
   $('editTarget').value='skeleton';$('editTool').value='rotate';$('editScope').value='frame';
   const toolChoices={editTool:{toolMove:'move',toolRotate:'rotate',toolSize:'size'}};
   const animationId=()=>clip?.id?.startsWith('character:')?(library.clips[clip.source_clip_id]?clip.source_clip_id:null):clip?.id;
@@ -39,7 +40,7 @@
   async function getJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('Nelze načíst '+url);return r.json();}
   const index=()=>Math.floor(phase)%clip.frames.length;
   const scope=()=>$('editScope').value==='all'?'all':'frame';
-  const snapshot=()=>copy({clip,skin,skinDirty,spread,index:index(),selected:$('layerOrder').value});
+  const snapshot=()=>copy({clip,skin,skinDirty,spread,index:index(),selected:$('layerOrder').value,selectedSkeleton});
   function remember(){history.push(snapshot());future=[];if(history.length>60)history.shift();}
   function syncTools(){
     syncFade();
@@ -98,6 +99,7 @@
       const o=document.createElement('option');o.value=key;o.textContent=`${i+1}. ${skin.parts[key].label}`;$('layerOrder').append(o);
     }
     $('layerOrder').value=skin.layers.includes(selected)?selected:skin.layers[skin.layers.length-1];
+    selectedSkeleton=E.handleForBone($('layerOrder').value)||'';
     const i=skin.layers.indexOf($('layerOrder').value);$('layerBack').disabled=i<=0;$('layerFront').disabled=i>=skin.layers.length-1;
   }
   function stop(){playing=false;phase=Math.floor(phase);distance=0;last=0;$('play').textContent='Přehrát';}
@@ -110,8 +112,9 @@
     const bitmap=$('editTarget').value==='bitmap'||drag?.mode==='bitmap';
     paintCharacter(ctx,pose,{skeleton:$('bones').checked||$('edit').checked&&!bitmap});
     if($('edit').checked&&!bitmap){
+      const active=new Set(E.selectedHandleKeys(pose,selectedSkeleton));
       for(const h of handles(pose)){
-        ctx.beginPath();ctx.arc(512-h.point.x,h.point.y,7,0,Math.PI*2);ctx.fillStyle='#17251e';ctx.fill();ctx.strokeStyle=h.color;ctx.lineWidth=2;ctx.stroke();
+        ctx.beginPath();ctx.arc(512-h.point.x,h.point.y,7,0,Math.PI*2);ctx.fillStyle=active.has(h.key)?'#ffdc60':'#17251e';ctx.fill();ctx.strokeStyle=h.color;ctx.lineWidth=2;ctx.stroke();
       }
     }
     if($('edit').checked&&bitmap){
@@ -330,7 +333,7 @@
   $('down').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)+(e.shiftKey?10:1),-100,100));
   $('lean').onchange=()=>change(p=>p.bodyLean=Number($('lean').value));
   $('bodyY').onchange=()=>change(p=>p.bodyY=R.clamp(Number($('bodyY').value)||0,-100,100));
-  function restore(old){stop();clip=old.clip;skin=old.skin;skinDirty=old.skinDirty;spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);mark();layerOptions(old.selected);thumbnails();draw();}
+  function restore(old){stop();clip=old.clip;skin=old.skin;skinDirty=old.skinDirty;spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);mark();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
   $('undo').onclick=()=>{if(!history.length||drag)return;const old=history.pop();future.push({...snapshot(),index:old.index});restore(old);};
   $('redo').onclick=()=>{if(!future.length||drag)return;const next=future.pop();history.push({...snapshot(),index:next.index});restore(next);};
   $('resetFrame').onclick=()=>{if(!clip.frame_edits?.[index()])return;stop();remember();clip=E.resetFrame(clip,index());mark();thumbnails();draw();};
@@ -407,7 +410,8 @@
     const p=pointer(e),visiblePoint={x:p.x+travelX(),y:p.y};
     const h=handles(C.sample(clip,phase,$('smooth').checked)).map(h=>({...h,d:Math.hypot(h.point.x-visiblePoint.x,h.point.y-visiblePoint.y)})).sort((a,b)=>a.d-b.d)[0];
     if(bitmap||!$('edit').checked||!h||h.d>14/zoom){if(e.ctrlKey||e.altKey)return;e.preventDefault();drag={mode:'pan',id:e.pointerId,grab:screen(e),pan:{...pan}};stage.setPointerCapture(e.pointerId);cursor(e);return;}
-    freeze();e.preventDefault();drag={mode:'skeleton',id:e.pointerId,key:h.key,index:index(),start:handles().find(v=>v.key===h.key).point,grab:p,clip:copy(clip),scope:scope(),tool:$('editTool').value||'rotate',ctrlKey:e.ctrlKey,resize:$('resizeBones').checked,changed:false};stage.setPointerCapture(e.pointerId);draw();
+    freeze();const part=E.boneForHandle(h.key)||{head:'head',neck:'head',bodyY:'torso'}[h.key];if(part)layerOptions(part);selectedSkeleton=h.key;
+    e.preventDefault();drag={mode:'skeleton',id:e.pointerId,key:h.key,index:index(),start:handles().find(v=>v.key===h.key).point,grab:p,clip:copy(clip),scope:scope(),tool:$('editTool').value||'rotate',ctrlKey:e.ctrlKey,resize:$('resizeBones').checked,changed:false};stage.setPointerCapture(e.pointerId);draw();
   };
   stage.onpointermove=e=>{
     cursor(e);

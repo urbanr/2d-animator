@@ -212,9 +212,10 @@ Dosavadní snímkové výjimky se zachovávají; tlačítko není destruktivní 
   **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
   následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
 - Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny.
-  Od 16. 9. je střed půlkruhu posunutý o poloměr dovnitř dílu: maska zasahuje
-  skutečně namalované pixely u kloubu, ne jen prázdný přesah za ním. Střed
-  půlkruhu zůstává neprůhledný. Výchozí poloměr je nejvýše 45 % délky kosti,
+  Konec dílu (plus ruční X/Y posun masky) je **střed pomyslného kruhu**, tedy
+  střed rovné hrany půlkruhu. Není na oblouku: žádný automatický posun o
+  poloměr dovnitř dílu se nepřičítá. Poloměr ani úhel neposouvají střed.
+  Střed půlkruhu zůstává neprůhledný. Výchozí poloměr je nejvýše 45 % délky kosti,
   aby např. přechod krátkého krku nezprůhlednil celý obličej.
   Při nevhodném poloměru nebo chybějícím překryvu
   se může ukázat mezera — maska nepřikresluje chybějící materiál.
@@ -268,6 +269,10 @@ vrstev jsou pod **?** (najetí nebo fokus/kliknutí, na telefonu spodní bublina
 Panel nad plátnem má dva přepínače ve stylu iOS: vlevo Kostra / vpravo Bitmapa
 a vlevo Snímek / vpravo Animace. Zelená poloha znamená pravou volbu. Posun,
 rotace a velikost zůstávají samostatné nástroje.
+Vybraná kost má plně žlutou výplň svých existujících koncových úchytů;
+barevné obrysy dál rozlišují stranu. Výběr zůstává při přepínání snímků
+i po puštění myši a přenáší se mezi kostrou a odpovídajícím bitmapovým dílem.
+Bitmapový výběr dál používá původní obdélníkový rámeček.
 
 Postavy2 nabízí **Smazat vybranou postavu / animaci** a **Koš postav a animací**.
 Editor Pózy má **Smazat vybranou animaci** a **Smazat pózu** u každé karty.
