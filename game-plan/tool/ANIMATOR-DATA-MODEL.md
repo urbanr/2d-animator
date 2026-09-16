@@ -71,7 +71,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 - `1` nebo `+`: Kostra / Bitmapa.
 - `2` nebo `ě`: tento Snímek / celá Animace.
 - `3` nebo `š`: Posun → Rotace → Velikost → Posun.
-- Mezerník: přehrát nebo pozastavit. `Y` / `C`: předchozí / další snímek. `WASD`: posun. `Q` / `E`: rotace.
+- Mezerník: přehrát nebo pozastavit. `Y`: předchozí snímek. `X` nebo `C`: další snímek. `WASD`: posun. `Q` / `E`: rotace.
 - Zkratky neplatí při psaní do pole, výběru nebo textové oblasti. Přepínače v záhlaví a uvnitř rozbaleného panelu ovládají stejný stav.
 
 ## Známá omezení a další záměry

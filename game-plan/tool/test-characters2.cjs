@@ -93,7 +93,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const defaultHeight=elements.stageWrap.style.height,defaultWidth=elements.stageWrap.style.width,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
  elements.stageResize.onpointerdown(resizeEvent);elements.stageResize.onpointermove({...resizeEvent,clientY:350});elements.stageResize.onpointerup(resizeEvent);
  assert.notEqual(elements.stageWrap.style.height,defaultHeight);assert.equal(elements.stageResize.capture,null);
- assert.equal(elements.stageWrap.style.width,defaultWidth);assert.ok(parseFloat(elements.stageWrap.style.height)>=parseFloat(defaultWidth)*392/512-1e-8);
+ assert.equal(elements.stageWrap.style.width,defaultWidth);assert.ok(parseFloat(elements.stageWrap.style.height)>=parseFloat(defaultWidth)*294/512-1e-8);
  elements.stageResize.ondblclick();assert.equal(elements.stageWrap.style.height,defaultHeight);
  const markers=()=>elements.stage.arcs.filter(a=>a[3]===Math.PI&&a[4]===Math.PI*2);
  assert.ok(markers().length>0);assert.ok(markers().every(a=>a[2]<=4));
@@ -359,6 +359,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  }
  const key=(k,extra={})=>events.keydown({key:k,preventDefault(){},target:{tagName:'CANVAS'},...extra});
  key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('x');assert.match(elements.frameLabel.textContent,/2 \/ 8/);key('y');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('y',{target:{tagName:'INPUT'}});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('q',{target:{tagName:'TEXTAREA'}});await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
  key('q');key('q',{repeat:true});events.keyup({key:'q'});await elements.updateCharacter.onclick();

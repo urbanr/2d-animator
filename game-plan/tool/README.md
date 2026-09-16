@@ -20,9 +20,9 @@ U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Mal
 
 Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou malé úchyty **↔** (šířka) a **↕** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
 
-Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y/C** přepne předchozí/další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
+Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y** přepne na předchozí a **X** nebo **C** na další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
 
-Náhled vždy využije celou volnou šířku. Plátno si zachovává proporce a proměnná výška pouze ořezává spodní prostor pod zemí; výchozí stav ukazuje polovinu původní podlahy. Tažením pravého dolního rohu lze výšku měnit, dvojklik vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
+Náhled vždy využije celou volnou šířku. Plátno se interně vykresluje v rozlišení odpovídajícím skutečné šířce a hustotě pixelů displeje, takže se pevný logický prostor 512 × 560 při zvětšení nerozpixeluje. Proměnná výška pouze ořezává spodní část; její minimum je 294 logických bodů, tedy o 25 % méně než dříve. Tažením pravého dolního rohu lze výšku měnit, dvojklik vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
 
 Režimy **Kostra** a **Bitmapa** jsou výlučné. Kliknutí na postavu může vybrat odpovídající díl nebo kloub, ale režim nikdy nepřepne; to dělá pouze přepínač Upravuji.
 

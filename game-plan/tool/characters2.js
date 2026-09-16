@@ -114,6 +114,7 @@
     return ['start','end'].map(end=>{const f=C.fadeGeometry(part,end),x=f.center[0]-f.ux*f.radius*.55,y=f.center[1]-f.uy*f.radius*.55;return {key,end,strength:f.strength,x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]};});
   }
   function draw(){
+    const renderScale=stage.width/512;ctx.setTransform(renderScale,0,0,renderScale,0,0);
     const pose=C.sample(clip,phase,$('smooth').checked);
     ctx.clearRect(0,0,512,560);ctx.fillStyle='#505050';ctx.fillRect(0,0,512,560);
     ctx.save();ctx.translate(256+pan.x,280+pan.y);ctx.scale(zoom,zoom);ctx.translate(-256,-280);
@@ -458,12 +459,19 @@
 
 
   let stageHeight=null,stageDrag=null;
+  function syncStageResolution(cssWidth){
+    const size=window.EditorView.backingSize(cssWidth,window.devicePixelRatio||1);
+    if(stage.width===size.width&&stage.height===size.height)return false;
+    stage.width=size.width;stage.height=size.height;return true;
+  }
   function fitStage(height=stageHeight){
     const parent=$('stageWrap').parentElement?.getBoundingClientRect(),available=Math.max(1,(parent?.width||stage.getBoundingClientRect().width)-36);
     const size=window.EditorView.stageSize(height,available,window.innerHeight||900);
     $('stageWrap').style.width=size.width+'px';$('stageWrap').style.height=size.height+'px';
+    const resolutionChanged=syncStageResolution(size.width);
     placePanel(parseFloat($('editTools').style.left)||8,parseFloat($('editTools').style.top)||8);
     placeParts(parseFloat($('partsTools').style.left)||266,parseFloat($('partsTools').style.top)||8);
+    if(resolutionChanged&&clip)draw();
   }
   $('stageResize').onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();e.stopPropagation();stageDrag={id:e.pointerId,y:e.clientY,height:$('stageWrap').getBoundingClientRect().height};$('stageResize').setPointerCapture(e.pointerId);};
   $('stageResize').onpointermove=e=>{if(stageDrag?.id!==e.pointerId)return;e.preventDefault();stageHeight=stageDrag.height+e.clientY-stageDrag.y;fitStage(stageHeight);};
@@ -479,7 +487,7 @@
     $('gestureHint').textContent=tool==='height'?'Ctrl + tah dolů/nahoru: výška bitmapy · šířka a kostra se nemění':tool==='width'?'Option + tah doprava/doleva: šířka bitmapy · výška a kostra se nemění':bitmap?'Bitmapa: Ctrl = výška · Option = šířka · Ctrl+Option = obojí · posun: nástroj Posun':'Ctrl: délka kosti · Option: posun bitmapy · Ctrl+Option: velikost bitmapy';
     $('gestureHint').textContent+=' · Pravý tah ↓/↑: zprůhlednit / zneprůhlednit spoj';
     if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed · ↔ / ↕: šířka / výška';
-    $('gestureHint').textContent+=' · 1/+: kostra/bitmapa · 2/Ě: snímek/animace · 3/Š: nástroj · Mezerník: přehrát/pauza · Y/C: snímky · WASD: posun · Q/E: rotace';
+    $('gestureHint').textContent+=' · 1/+: kostra/bitmapa · 2/Ě: snímek/animace · 3/Š: nástroj · Mezerník: přehrát/pauza · Y: zpět · X/C: vpřed · WASD: posun · Q/E: rotace';
   }
   let keyboardEdit=null;
   window.addEventListener('keydown',e=>{
@@ -493,7 +501,7 @@
     if(['2','ě'].includes(key)){e.preventDefault();if(!e.repeat)$('headerScope').onclick();keyboardEdit=null;return;}
     if(['3','š'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTool').onclick();keyboardEdit=null;return;}
     if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
-    if(['y','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
+    if(['y','x','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
     const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
     if(!move&&!rotate)return;
     e.preventDefault();
