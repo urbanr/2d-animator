@@ -1,5 +1,6 @@
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const html=fs.readFileSync(__dirname+'/characters2.html','utf8');
+const js=fs.readFileSync(__dirname+'/characters2.js','utf8');
 for(const tag of html.matchAll(/<details\b[^>]*>/g))assert.ok(!/\sopen(?:\s|=|>)/.test(tag[0]),'All disclosure sections start collapsed');
 for(const [button,body] of [['toolCollapse','toolBody'],['partsCollapse','partsBody']]){
   assert.match(html,new RegExp(`id="${button}"[^>]*aria-expanded="false"`));
@@ -24,6 +25,15 @@ assert.match(html,/id="moveSpeed"[^>]*max="1000"[^>]*step="0.1"/);
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
 for(const help of ['helpFade','helpSpeed','helpTravel'])assert.match(html,new RegExp(`<summary>(?:(?!</summary>)[\\s\\S])*id="${help}"`));
 for(const [header,help] of [['toolGrip','helpControls'],['partsGrip','helpLayers']])assert.match(html,new RegExp(`<header id="${header}">(?:(?!</header>)[\\s\\S])*id="${help}"`));
+const toolHeader=html.match(/<header id="toolGrip">([\s\S]*?)<\/header>/)[1];
+for(const id of ['helpControls','headerTarget','headerScope','headerTool','toolCollapse'])assert.ok(toolHeader.includes(`id="${id}"`));
+assert.doesNotMatch(toolHeader,/přetáhni panel/);
+assert.match(html,/#partsTools:has\(\.tool-body\[hidden\]\)\{width:max-content\}/);
+assert.doesNotMatch(html,/\.edit-tools:has\(\.tool-body\[hidden\]\)/);
+assert.match(html,/data-mode="skeleton"[^>]*aria-label="Upravuji kostru/);
+assert.match(html,/data-mode="frame"[^>]*aria-label="Úprava platí pro tento snímek/);
+assert.match(html,/data-mode="rotate"[^>]*aria-label="Nástroj Rotace/);
+assert.doesNotMatch(js,/↔ X|↕ Y/);assert.match(js,/\[\['width','↔'\],\['height','↕'\]\]/);
 assert.match(html,/id="stageResize"[^>]*aria-label="Změnit výšku náhledu"/);
 const aside=html.split('<aside class="panel">')[1];
 assert.deepEqual([...aside.matchAll(/<details id="([^"]+)"/g)].slice(0,3).map(m=>m[1]),['motionSection','switchesSection','fadePanel']);
@@ -34,4 +44,4 @@ assert.match(html,/#fadePanel input\[type=number\]\{width:40px/);
 assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesNotMatch(html,/\.help:hover \.help-text/);
 assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
 assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
-console.log('PASS: Animator title, compact character/animation row, icon actions, speed row and collapsed panels.');
+console.log('PASS: Animator title, compact character/animation row, header mode icons, speed row and collapsed panels.');

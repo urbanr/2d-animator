@@ -18,6 +18,7 @@ const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit',
 ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta','randomRate','rateInfo');
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode','characterAnimation','assignAnimation');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
+ids.push('headerTarget','headerScope','headerTool');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
 ids.push('stageResize');
 ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
@@ -103,6 +104,15 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.undo.onclick();assert.equal(elements.stage.ellipses.length,2);
  elements.toolMove.onclick();assert.equal(elements.editTool.value,'move');assert.equal(elements.toolMove['aria-pressed'],'true');
  elements.toolSize.onclick();assert.equal(elements.editTool.value,'size');assert.equal(elements.toolMove['aria-pressed'],'false');
+ const shortcut=(key,extra={})=>events.keydown({key,target:{tagName:'CANVAS'},preventDefault(){},...extra});
+ shortcut('+');assert.equal(elements.editTarget.value,'skeleton');assert.equal(elements.headerTarget['data-mode'],'skeleton');
+ shortcut('1');assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.headerTarget['data-mode'],'bitmap');
+ shortcut('2');assert.equal(elements.editScope.value,'all');assert.equal(elements.headerScope['data-mode'],'all');
+ shortcut('ě');assert.equal(elements.editScope.value,'frame');assert.equal(elements.headerScope['data-mode'],'frame');
+ shortcut('3');assert.equal(elements.editTool.value,'move');assert.equal(elements.headerTool['data-mode'],'move');
+ shortcut('š');assert.equal(elements.editTool.value,'rotate');assert.equal(elements.headerTool['data-mode'],'rotate');
+ shortcut('š',{repeat:true});assert.equal(elements.editTool.value,'rotate','Opakování klávesy nesmí přeskočit několik nástrojů');
+ events.keydown({key:'1',target:{tagName:'INPUT'},preventDefault(){throw Error('Zkratka nesmí zasáhnout psaní');}});assert.equal(elements.editTarget.value,'bitmap');
  elements.editTarget.onclick();elements.toolRotate.onclick();
  elements.previous.onclick();assert.match(elements.frameLabel.textContent,/8 \/ 8/);
  elements.next.onclick();assert.match(elements.frameLabel.textContent,/1 \/ 8/);

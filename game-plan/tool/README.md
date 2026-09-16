@@ -10,15 +10,17 @@ V **Pózách a krocích** lze táhnout kruhové úchyty myší nebo dotykem. Kol
 
 Jedna uložená postava může mít více animací. Horní řádek obsahuje výběr postavy a pouze její přiřazené animace. Disketa přepisuje vybranou položku, plus vytváří další variantu a koš maže postavu nebo odebírá animaci pouze z této postavy; každá operace vyžaduje potvrzení. Globální pohybovou předlohu lze načíst ve sbalovací části **Animace postavy** a zvláštním tlačítkem ji k postavě přiřadit. Staré záznamy s jediným polem `animation` se při prvním zápisu bezpečně převedou na kolekci `animations`.
 
+Úplný popis vlastnictví dat, ukládání, kompatibility a omezení je v [ANIMATOR-DATA-MODEL.md](ANIMATOR-DATA-MODEL.md). Tento dokument je nutné aktualizovat při každé změně modelu postavy, animace, kostry nebo bitmapové předlohy.
+
 Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu, **Rotace** otáčí trup kolem pánve a **Velikost** mění jeho délku. Ctrl + tah také mění délku, pokud jsou změny délek povolené. Rozsah Snímek / Animace platí i pro tyto úpravy.
 
 Kostra ukládá délky i `joint_limits`. Starší kostry bez tohoto údaje dostanou při načtení maximální výchozí limity −180° až +180°. Stejné limity se kopírují do animace a herní postavy, aby je později mohl použít editor i fyzika.
 
 U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
 
-Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou úchyty **↔ X** (šířka) a **↕ Y** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
+Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou malé úchyty **↔** (šířka) a **↕** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
 
-Mimo vstupní pole: **mezerník** přehraje/pozastaví, **Y/C** přepne předchozí/další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní.
+Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y/C** přepne předchozí/další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
 
 Náhled vždy využije celou volnou šířku. Plátno si zachovává proporce a proměnná výška pouze ořezává spodní prostor pod zemí; výchozí stav ukazuje polovinu původní podlahy. Tažením pravého dolního rohu lze výšku měnit, dvojklik vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
 

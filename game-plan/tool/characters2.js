@@ -53,6 +53,10 @@
     for(const [group,choices] of Object.entries(toolChoices))for(const [id,value] of Object.entries(choices))$(id).setAttribute('aria-pressed',String($(group).value===value));
     $('editScope').setAttribute('aria-checked',String(scope()==='all'));
     $('editTarget').setAttribute('aria-checked',String($('editTarget').value==='bitmap'));
+    const targetMode=$('editTarget').value==='bitmap'?'bitmap':'skeleton',scopeMode=scope()==='all'?'all':'frame',toolMode=$('editTool').value||'rotate';
+    $('headerTarget').setAttribute('data-mode',targetMode);$('headerTarget').title=(targetMode==='bitmap'?'Bitmapa':'Kostra')+' · 1 nebo +';$('headerTarget').setAttribute('aria-label',targetMode==='bitmap'?'Upravuji bitmapu; přepnout na kostru':'Upravuji kostru; přepnout na bitmapu');
+    $('headerScope').setAttribute('data-mode',scopeMode);$('headerScope').title=(scopeMode==='all'?'Animace':'Snímek')+' · 2 nebo Ě';$('headerScope').setAttribute('aria-label',scopeMode==='all'?'Úprava platí pro celou animaci; přepnout na snímek':'Úprava platí pro tento snímek; přepnout na animaci');
+    const toolNames={move:'Posun',rotate:'Rotace',size:'Velikost'};$('headerTool').setAttribute('data-mode',toolMode);$('headerTool').title=toolNames[toolMode]+' · 3 nebo Š';$('headerTool').setAttribute('aria-label','Nástroj '+toolNames[toolMode]+'; přepnout na další nástroj');
     const [leanMin,leanMax]=R.rangeFor(clip,'bodyLean');$('lean').min=leanMin;$('lean').max=leanMax;
     $('undo').disabled=!history.length;$('redo').disabled=!future.length;
     $('resetFrame').disabled=!clip.frame_edits?.[index()]||!Object.keys(clip.frame_edits[index()]).length;
@@ -128,13 +132,13 @@
         h.corners.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.stroke();ctx.setLineDash([]);
         ctx.beginPath();ctx.moveTo(h.pivot.x,h.pivot.y);ctx.lineTo(h.rotate.x,h.rotate.y);ctx.stroke();
         for(const key of ['pivot','rotate','size']){
-          const p=h[key],r=6/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
+          const p=h[key],r=3/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
           ctx.fillStyle=key==='pivot'?'#26332c':'#ffe08b';ctx.fill();ctx.stroke();
         }
-        for(const [axis,label] of [['width','↔ X'],['height','↕ Y']]){
-          const p=h[axis],r=10/zoom;ctx.fillStyle='#26332c';ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;
+        for(const [axis,label] of [['width','↔'],['height','↕']]){
+          const p=h[axis],r=5/zoom;ctx.fillStyle='#26332c';ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;
           ctx.beginPath();ctx.rect(p.x-r*1.4,p.y-r,r*2.8,r*2);ctx.fill();ctx.stroke();
-          ctx.fillStyle='#ffe08b';ctx.font=`${11/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,p.x,p.y);
+          ctx.fillStyle='#ffe08b';ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,p.x,p.y);
         }
         const key=$('layerOrder').value,part=C.partFor(skin,key,pose);
         for(const end of ['start','end']){
@@ -147,8 +151,8 @@
     }
     if($('edit').checked&&bitmap){
       for(const t of fadeToggles(pose)){
-        ctx.beginPath();ctx.arc(t.x,t.y,7/zoom,0,Math.PI*2);ctx.fillStyle='#18373d';ctx.fill();ctx.strokeStyle='#80e6ff';ctx.lineWidth=1/zoom;ctx.stroke();
-        ctx.fillStyle='#80e6ff';ctx.font=`${12/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t.strength?'×':'+',t.x,t.y);
+        ctx.beginPath();ctx.arc(t.x,t.y,4/zoom,0,Math.PI*2);ctx.fillStyle='#18373d';ctx.fill();ctx.strokeStyle='#80e6ff';ctx.lineWidth=1/zoom;ctx.stroke();
+        ctx.fillStyle='#80e6ff';ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t.strength?'×':'+',t.x,t.y);
       }
     }
     if($('bones').checked||$('edit').checked&&!bitmap){
@@ -408,6 +412,9 @@
   for(const [group,choices] of Object.entries(toolChoices))for(const [id,value] of Object.entries(choices))$(id).onclick=()=>{$(group).value=value;$(group).onchange();};
   $('editScope').onclick=()=>{$('editScope').value=scope()==='all'?'frame':'all';$('editScope').onchange();};
   $('editTarget').onclick=()=>{$('editTarget').value=$('editTarget').value==='bitmap'?'skeleton':'bitmap';$('editTarget').onchange();};
+  $('headerTarget').onclick=()=>$('editTarget').onclick();
+  $('headerScope').onclick=()=>$('editScope').onclick();
+  $('headerTool').onclick=()=>{const order=['move','rotate','size'],next=order[(order.indexOf($('editTool').value)+1)%order.length],button={move:'toolMove',rotate:'toolRotate',size:'toolSize'}[next];$(button).onclick();};
   let panelDrag=null;
   function placePanel(x,y){
     const box=$('stageWrap').getBoundingClientRect(),p=$('editTools').getBoundingClientRect();
@@ -452,8 +459,8 @@
     stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='pivot'?'crosshair':tool==='fade'||tool==='height'||tool==='heightHandle'?'ns-resize':tool==='width'||tool==='widthHandle'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
     $('gestureHint').textContent=tool==='height'?'Ctrl + tah dolů/nahoru: výška bitmapy · šířka a kostra se nemění':tool==='width'?'Option + tah doprava/doleva: šířka bitmapy · výška a kostra se nemění':bitmap?'Bitmapa: Ctrl = výška · Option = šířka · Ctrl+Option = obojí · posun: nástroj Posun':'Ctrl: délka kosti · Option: posun bitmapy · Ctrl+Option: velikost bitmapy';
     $('gestureHint').textContent+=' · Pravý tah ↓/↑: zprůhlednit / zneprůhlednit spoj';
-    if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed · ↔ X / ↕ Y: šířka / výška';
-    $('gestureHint').textContent+=' · Mezerník: přehrát/pauza · Y/C: snímky · WASD: posun · Q/E: rotace';
+    if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed · ↔ / ↕: šířka / výška';
+    $('gestureHint').textContent+=' · 1/+: kostra/bitmapa · 2/Ě: snímek/animace · 3/Š: nástroj · Mezerník: přehrát/pauza · Y/C: snímky · WASD: posun · Q/E: rotace';
   }
   let keyboardEdit=null;
   window.addEventListener('keydown',e=>{
@@ -463,6 +470,9 @@
     if(key==='escape'){target?.blur?.();keyboardEdit=null;return;}
     if((e.metaKey||e.ctrlKey)&&key==='z'){e.preventDefault();(e.shiftKey?$('redo'):$('undo')).onclick();keyboardEdit=null;return;}
     if(e.metaKey||e.ctrlKey||e.altKey||drag||!visible)return;
+    if(['+','1'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTarget').onclick();keyboardEdit=null;return;}
+    if(['2','ě'].includes(key)){e.preventDefault();if(!e.repeat)$('headerScope').onclick();keyboardEdit=null;return;}
+    if(['3','š'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTool').onclick();keyboardEdit=null;return;}
     if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
     if(['y','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
     const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
