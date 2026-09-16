@@ -26,7 +26,9 @@ const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor
     }
     const collection=payload.kind==='pose'?'poses':'clips';const id=payload.mode==='update'?payload.id:'saved-'+(++sequence);
     if(payload.mode==='update')assert.deepEqual(payload.expectedRecord,stored.clips[id]);
-    const record=payload.kind==='pose'?{id,name:payload.name,frame:payload.frame}:{id,name:payload.name,frames:payload.frames,fps:payload.fps,move_speed_pt_s:payload.move_speed_pt_s,rig_lengths:payload.rig_lengths};
+    const record=payload.kind==='pose'
+      ?{id,name:payload.name,frame:payload.frame}
+      :{id,name:payload.name,frames:payload.frames,fps:payload.fps,move_speed_pt_s:payload.move_speed_pt_s,rig_lengths:payload.rig_lengths,joint_limits:payload.joint_limits};
     stored[collection][id]=record;return {ok:true,json:async()=>({ok:true,collection,record})};
   }});
 (async()=>{
@@ -42,7 +44,7 @@ const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor
   const head=elements.controls.children[0].children.find(row=>row.children?.[1]?.id==='head-number').children[1];
   head.valueAsNumber=200;head.onchange();
   elements.poseName.value='Head clamp';await elements.savePose.onclick();
-  assert.equal(stored.poses['saved-2'].frame.head,30);
+  assert.equal(stored.poses['saved-2'].frame.head,180);
   elements.swapLeft.onclick();assert.match(elements.frameLabel.textContent,/8 \/ 8/);
   elements.undo.onclick();assert.match(elements.frameLabel.textContent,/1 \/ 8/);
   // Pointer capture stays on the container while its SVG is rebuilt.
@@ -64,6 +66,7 @@ const context=vm.createContext({window:{PoseRig:rig,EditorView:require('./editor
   assert.equal(Object.keys(stored.clips).length,3);
   assert.equal(elements.dirty.textContent,'');
   assert.equal(stored.clips['saved-3'].frames[0].bodyY,stored.poses['saved-2'].frame.bodyY);
+  assert.deepEqual(stored.clips['saved-3'].joint_limits.bodyLean,[-180,180]);
   assert.deepEqual(stored.clips['sprint-v1'],rig.presets().clips['sprint-v1']);
   const existing=clone(stored.clips['saved-3']);
   elements.down.onclick({shiftKey:true});elements.clipName.value='Not a rename';

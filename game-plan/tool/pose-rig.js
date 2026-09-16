@@ -9,13 +9,13 @@
   const fields = [
     ['bodyX','Posun celé postavy',-200,200,'px','Tělo'],
     ['bodyY','Výška celé postavy',-100,100,'px','Tělo'],
-    ['bodyLean','Předklon trupu',-45,45,'°','Tělo'],
-    ['shoulders','Náklon ramen',-20,20,'°','Tělo'],
+    ['bodyLean','Předklon trupu',-180,180,'°','Tělo'],
+    ['shoulders','Náklon ramen',-180,180,'°','Tělo'],
     ['shoulderWidth','Rozestup ramen (− = prohozené strany)',-100,100,'%','Tělo'],
-    ['pelvis','Náklon pánve',-20,20,'°','Tělo'],
+    ['pelvis','Náklon pánve',-180,180,'°','Tělo'],
     ['pelvisWidth','Rozestup pánve (− = prohozené strany)',-100,100,'%','Tělo'],
     ['neck','Natočení krku',-180,180,'°','Tělo'],
-    ['head','Náklon hlavy vůči krku',-30,30,'°','Tělo'],
+    ['head','Náklon hlavy vůči krku',-180,180,'°','Tělo'],
     ['nearShoulder','Ramenní kloub',-180,180,'°','Bližší · červená'],
     ['nearElbow','Loket',-180,180,'°','Bližší · červená'],
     ['nearHip','Kyčel',-180,180,'°','Bližší · červená'],
@@ -30,6 +30,14 @@
   for(const side of ['near','far'])for(const joint of ['Shoulder','Hip'])for(const axis of ['X','Y'])
     fields.push([side+joint+'Offset'+axis,`${side==='near'?'Bližší':'Vzdálenější'} ${joint==='Hip'?'kyčel':'rameno'} · ${axis}`,-100,100,'px','Samostatné úchyty']);
   for(const joint of ['head','neck'])for(const axis of ['X','Y'])fields.push([joint+'Offset'+axis,`${joint==='head'?'Hlava':'Krk'} · ${axis}`,-100,100,'px','Tělo']);
+  const angleKeys=fields.filter(([, , , ,unit])=>unit==='°').map(([key])=>key);
+  const defaultJointLimits=()=>Object.fromEntries(angleKeys.map(key=>[key,[-180,180]]));
+  const jointLimitsFor=source=>{
+    const result=defaultJointLimits();
+    for(const [key,value] of Object.entries(source?.joint_limits||{}))if(key in result&&Array.isArray(value)&&value.length===2&&value.every(Number.isFinite)&&value[0]<=value[1])result[key]=[...value];
+    return result;
+  };
+  const rangeFor=(source,key)=>jointLimitsFor(source)[key]||fields.find(field=>field[0]===key)?.slice(2,4);
   const defaultLengths=()=>({head:21,neck:18,torso:94,...Object.fromEntries(['near','far'].flatMap(s=>Object.entries({UpperArm:46,Forearm:44,Thigh:70,Shin:74,Foot:25}).map(([k,v])=>[s+k,v])))});
   const lengthsFor=(clip,index)=>{
     const lengths={...defaultLengths(),...(clip?.rig_lengths||{})};
@@ -159,7 +167,7 @@
       return dragPose(pose,key==='farShoulderRoot'?'shoulders':'pelvis',
         {x:2*pivot.x-start.x,y:2*pivot.y-start.y},{x:2*pivot.x-end.x,y:2*pivot.y-end.y},options);
     }
-    const h=handles(pose,options.lengths).find(h=>h.key===key), field=fields.find(f=>f[0]===key);
+    const h=handles(pose,options.lengths).find(h=>h.key===key), field=fields.find(f=>f[0]===key),range=options.limits?.[key]||field?.slice(2,4);
     if(!h||!field)return {...pose};
     if(key==='shoulders'||key==='pelvis') {
       const width=key==='shoulders'?'shoulderWidth':'pelvisWidth', half=key==='shoulders'?22:15;
@@ -167,7 +175,7 @@
       // Keep the initial grab offset, including when the bar is fully collapsed.
       const x=h.point.x-h.pivot.x+end.x-start.x, y=h.point.y-h.pivot.y+end.y-start.y;
       const sign=x<0?-1:1;
-      const angle=Math.abs(x)<0.001?(pose[key]||0):clamp(deg(Math.atan2(sign*y,sign*x)),field[2],field[3]);
+      const angle=Math.abs(x)<0.001?(pose[key]||0):clamp(deg(Math.atan2(sign*y,sign*x)),range[0],range[1]);
       return {...pose,[key]:Math.round(angle*10)/10,
         [width]:Math.round(clamp(x/(half*Math.cos(rad(angle)))*100,-100,100)*10)/10};
     }
@@ -180,8 +188,8 @@
       if(atCenter||Math.hypot(start.x-h.pivot.x,start.y-h.pivot.y)<2)delta=0;
       if(!['shoulders','pelvis'].includes(key)&&!key.endsWith('Foot')&&key!=='bodyLean')delta=-delta;
     }
-    const result={...pose,[key]:Math.round(clamp((pose[key]||0)+delta,field[2],field[3])*10)/10};
-    if(key.endsWith('Foot'))result[key]=Math.round(wrapAngle((pose[key]||0)+delta)*10)/10;
+    const result={...pose,[key]:Math.round(clamp((pose[key]||0)+delta,range[0],range[1])*10)/10};
+    if(key.endsWith('Foot')&&range[0]===-180&&range[1]===180)result[key]=Math.round(wrapAngle((pose[key]||0)+delta)*10)/10;
     // Feet are stored as world angles, so carry them along with either leg bone.
     if(key.endsWith('Hip')||key.endsWith('Knee')) {
       const foot=key.startsWith('near')?'nearFoot':'farFoot';
@@ -191,7 +199,7 @@
   }
   function dragClip(clip,index,key,start,end,options={}){
     const lengths=lengthsFor(clip,index),shared=lengthsFor(clip),p=clip.frames[index];
-    const next=dragPose(p,key,start,end,{...options,lengths});
+    const next=dragPose(p,key,start,end,{...options,lengths,limits:jointLimitsFor(clip)});
     const match=/^(near|far)(Shoulder|Elbow|Hip|Knee|Foot)$/.exec(key);
     const bone=match?match[1]+({Shoulder:'UpperArm',Elbow:'Forearm',Hip:'Thigh',Knee:'Shin',Foot:'Foot'}[match[2]]):{head:'head',neck:'neck',bodyLean:'torso'}[key];
     if(bone&&options.resize!==false){
@@ -296,5 +304,5 @@
     });
     return [{name:'Zombie · šouravá chůze v1',fps:6,frames}];
   }
-  return {fields,neutral,points,generateFrame,svg,presets,NEAR,FAR,clamp,handles,dragPose,dragClip,defaultLengths,lengthsFor,bodyTwistClips,referenceGaitClips,zombieClips};
+  return {fields,neutral,points,generateFrame,svg,presets,NEAR,FAR,clamp,handles,dragPose,dragClip,defaultLengths,lengthsFor,defaultJointLimits,jointLimitsFor,rangeFor,bodyTwistClips,referenceGaitClips,zombieClips};
 });

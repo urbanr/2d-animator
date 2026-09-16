@@ -6,9 +6,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 STORE = Path(__file__).resolve().parent.parent / 'graphics' / 'poses' / 'poses.json'
-LIMITS = {'bodyX': (-200, 200), 'bodyY': (-100, 100), 'bodyLean': (-45, 45), 'shoulders': (-20, 20), 'pelvis': (-20, 20),
+LIMITS = {'bodyX': (-200, 200), 'bodyY': (-100, 100), 'bodyLean': (-180, 180), 'shoulders': (-180, 180), 'pelvis': (-180, 180),
           'shoulderWidth': (-100, 100), 'pelvisWidth': (-100, 100),
-          'neck': (-180, 180), 'head': (-30, 30)}
+          'neck': (-180, 180), 'head': (-180, 180)}
 for side in ('near', 'far'):
     for joint in ('Shoulder', 'Elbow', 'Hip', 'Knee'):
         LIMITS[side + joint] = (-180, 180)
@@ -16,6 +16,8 @@ for side in ('near', 'far'):
 ROOT_OFFSETS = {side+joint+'Offset'+axis: (-100, 100) for side in ('near','far') for joint in ('Shoulder','Hip') for axis in ('X','Y')}
 ROOT_OFFSETS.update({joint+'Offset'+axis: (-100,100) for joint in ('head','neck') for axis in ('X','Y')})
 LIMITS.update(ROOT_OFFSETS)
+ANGLE_KEYS = {key for key, bounds in LIMITS.items() if bounds == (-180, 180)}
+DEFAULT_JOINT_LIMITS = {key: [-180, 180] for key in ANGLE_KEYS}
 DEFAULT_LENGTHS = {side+bone: length for side in ('near','far') for bone,length in {'UpperArm':46,'Forearm':44,'Thigh':70,'Shin':74,'Foot':25}.items()}
 PART_KEYS = set(DEFAULT_LENGTHS) | {'head', 'torso', 'backpack'}
 DEFAULT_LENGTHS.update(head=21, neck=18, torso=94)
@@ -110,6 +112,24 @@ def validate_lengths(value=None):
     return result
 
 
+def validate_joint_limits(value=None):
+    if value is None:
+        return {key: list(bounds) for key, bounds in DEFAULT_JOINT_LIMITS.items()}
+    if not isinstance(value, dict) or set(value)-ANGLE_KEYS:
+        raise ValueError('Neplatné limity kloubů.')
+    result = validate_joint_limits()
+    for key, pair in value.items():
+        if not isinstance(pair, list) or len(pair) != 2:
+            raise ValueError('Limit kloubu musí obsahovat minimum a maximum.')
+        low, high = pair
+        low = bounded(low, -180, 180)
+        high = bounded(high, -180, 180)
+        if low > high:
+            raise ValueError('Minimum kloubu nesmí být větší než maximum.')
+        result[key] = [low, high]
+    return result
+
+
 def validate_frame(frame):
     # Legacy saved poses retain their original full-width geometry.
     if isinstance(frame, dict):
@@ -137,6 +157,7 @@ def save_pose(payload, path=STORE):
         collection = 'poses'
     elif kind == 'rig':
         record['rig_lengths'] = validate_lengths(payload.get('rig_lengths'))
+        record['joint_limits'] = validate_joint_limits(payload.get('joint_limits'))
         collection = 'rigs'
     elif kind == 'clip':
         frames = payload.get('frames')
@@ -148,7 +169,7 @@ def save_pose(payload, path=STORE):
         speed = payload.get('move_speed_pt_s', 8)
         if isinstance(speed, bool) or not isinstance(speed, (int, float)) or not math.isfinite(speed) or not 0 <= speed <= 1000:
             raise ValueError('Rychlost pohybu musí být 0 až 1000 herních bodů/s.')
-        record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')))
+        record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')), joint_limits=validate_joint_limits(payload.get('joint_limits')))
         record['frame_edits'] = validate_frame_edits(payload.get('frame_edits'), record['frames'], record['rig_lengths'])
         collection = 'clips'
     else:
@@ -167,11 +188,12 @@ def save_pose(payload, path=STORE):
         if payload.get('expectedRecord') != previous:
             raise ValueError('Animace se mezitím změnila v jiné kartě. Nic se nepřepsalo. Ulož úpravy jako novou variantu nebo načti aktuální stav.')
         if kind == 'rig':
-            record = {**previous, 'rig_lengths': record['rig_lengths'], 'updated_at': datetime.now(timezone.utc).isoformat()}
+            record = {**previous, 'rig_lengths': record['rig_lengths'], 'joint_limits': record['joint_limits'], 'updated_at': datetime.now(timezone.utc).isoformat()}
         else:
             record = {**previous, 'frames': record['frames'], 'fps': record['fps'],
                   'move_speed_pt_s': record['move_speed_pt_s'] if 'move_speed_pt_s' in payload else previous.get('move_speed_pt_s', 8),
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
+                  'joint_limits': record['joint_limits'] if 'joint_limits' in payload else validate_joint_limits(previous.get('joint_limits')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
         backup_dir = path.parent / 'history'

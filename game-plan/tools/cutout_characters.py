@@ -5,7 +5,7 @@ import uuid
 import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone
-from pose_library import validate_frame, validate_lengths, validate_frame_edits, validate_part_transform, bounded
+from pose_library import validate_frame, validate_lengths, validate_joint_limits, validate_frame_edits, validate_part_transform, bounded
 
 ROOT=Path(__file__).resolve().parents[1]/'graphics/characters2'
 
@@ -59,6 +59,7 @@ def save_character(payload, root=ROOT):
         raise ValueError('Neplatná rychlost.')
     animation={'name':str(clip.get('name','Kostra'))[:100],'source_clip_id':str(clip.get('id',''))[:100],
                'fps':fps,'move_speed_pt_s':speed,'rig_lengths':validate_lengths(clip.get('rig_lengths')),
+               'joint_limits':validate_joint_limits(clip.get('joint_limits')),
                'frames':[validate_frame(f) for f in frames]}
     animation['frame_edits']=validate_frame_edits(clip.get('frame_edits'),animation['frames'],animation['rig_lengths'])
     for edit in animation['frame_edits'].values():

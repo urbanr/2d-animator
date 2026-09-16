@@ -10,13 +10,19 @@ V **Pózách a krocích** lze táhnout kruhové úchyty myší nebo dotykem. Kol
 
 Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu, **Rotace** otáčí trup kolem pánve a **Velikost** mění jeho délku. Ctrl + tah také mění délku, pokud jsou změny délek povolené. Rozsah Snímek / Animace platí i pro tyto úpravy.
 
+Kostra ukládá délky i `joint_limits`. Starší kostry bez tohoto údaje dostanou při načtení maximální výchozí limity −180° až +180°. Stejné limity se kopírují do animace a herní postavy, aby je později mohl použít editor i fyzika.
+
 U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
 
 Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou úchyty **↔ X** (šířka) a **↕ Y** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
 
 Mimo vstupní pole: **mezerník** přehraje/pozastaví, **Y/C** přepne předchozí/další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní.
 
-Náhled začíná přibližně na 66 % dostupné šířky; výška je omezená na 800 px a 82 % okna. Tažením pravého dolního rohu lze měnit výšku při zachování proporcí. Dvojklik na roh vrací výchozí velikost. Změna velikosti náhledu neovlivňuje uloženou postavu.
+Náhled vždy využije celou volnou šířku. Plátno si zachovává proporce a proměnná výška pouze ořezává spodní prostor pod zemí; výchozí stav ukazuje polovinu původní podlahy. Tažením pravého dolního rohu lze výšku měnit, dvojklik vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
+
+Režimy **Kostra** a **Bitmapa** jsou výlučné. Kliknutí na postavu může vybrat odpovídající díl nebo kloub, ale režim nikdy nepřepne; to dělá pouze přepínač Upravuji.
+
+Nápovědy s otazníkem se otevřou jen kliknutím a zavřou po odjetí ukazatele z nápovědy.
 
 ## Přehrávač spritů – podklady
 

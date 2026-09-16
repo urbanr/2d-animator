@@ -11,9 +11,13 @@ class SkeletonTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'poses.json'
             path.write_text(json.dumps({'clips': {}, 'poses': {}}))
-            payload = {'kind': 'rig', 'name': 'Kostra', 'rig_lengths': {'head': 30, 'neck': 25, 'torso': 110}}
+            payload = {'kind': 'rig', 'name': 'Kostra', 'rig_lengths': {'head': 30, 'neck': 25, 'torso': 110}, 'joint_limits': {'bodyLean': [-180, 180]}}
             original = save_pose(payload, path)['record']
             self.assertNotIn('frames', original)
+            self.assertEqual(original['joint_limits']['bodyLean'], [-180, 180])
+            for limits in ({'unknown': [-180, 180]}, {'bodyLean': [-181, 180]}, {'bodyLean': [20, -20]}):
+                with self.assertRaises(ValueError):
+                    save_pose({**payload, 'joint_limits': limits}, path)
             result = save_pose({**payload, 'mode': 'update', 'id': original['id'], 'expectedRecord': original, 'rig_lengths': {'head': 35}}, path)
             self.assertEqual(result['record']['rig_lengths']['head'], 35)
             self.assertEqual(json.loads((path.parent / result['backup']).read_text())['record'], original)

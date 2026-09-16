@@ -27,4 +27,7 @@ assert.ok(!html.split('<aside class="panel">')[0].includes('id="fadePanel"'));
 assert.match(html,/id="helpFade" role="tooltip">Vyber bitmapový díl/);
 assert.match(html,/#fadePanel label\{display:flex;flex-direction:column/);
 assert.match(html,/#fadePanel input\[type=number\]\{width:40px/);
+assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesNotMatch(html,/\.help:hover \.help-text/);
+assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
+assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
 console.log('PASS: compact speed row, single-line heading, separate controls and all panels collapsed.');

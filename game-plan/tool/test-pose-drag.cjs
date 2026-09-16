@@ -29,7 +29,7 @@ for(const side of ['near','far']) {
   assert.equal(moved[foot],-160);
   close(distance(R.points(moved)[side].ankle,R.points(moved)[side].toe),25);
 }
-assert.equal(rotate(p,'head',80).head, -30);
+assert.equal(rotate(p,'head',80).head, -80);
 const translated=R.dragPose(p,'bodyY',{x:256,y:200},{x:350,y:230});
 assert.equal(translated.bodyY,30);
 assert.equal(R.points(translated).near.toe.y,R.points(p).near.toe.y+30);

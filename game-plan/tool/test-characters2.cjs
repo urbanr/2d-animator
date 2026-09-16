@@ -24,6 +24,7 @@ ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','ske
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
+const helpElement={classList:{opened:false,add(){this.opened=true;},remove(){this.opened=false;}}};
 elements.toolBody.hidden=true;elements.partsBody.hidden=true;
 elements.editScope.value='frame';elements.editTarget.value='skeleton';elements.editTool.value='rotate';
 elements.edit.checked=true;elements.resizeBones.checked=true;
@@ -36,7 +37,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  location:new URL('http://127.0.0.1:8765/tool/characters2.html'),parent:{},
  requestAnimationFrame:fn=>{raf=fn;},
  window:{PoseRig:R,CutoutRig:C,CutoutEditor:require('./cutout-editor.js'),EditorView:require('./editor-view.js'),MotionPreview:require('./motion-preview.js'),addEventListener:(type,fn)=>events[type]=fn},
- document:{getElementById:id=>elements[id],createElement:element},
+ document:{getElementById:id=>elements[id],createElement:element,querySelectorAll:selector=>selector==='.help'?[helpElement]:[]},
  fetch:async(url,options)=>{
   if(!options||!options.method)return {ok:true,json:async()=>copy(String(url).endsWith('manifest.json')?gameManifest:String(url).endsWith('skins.json')?{skins:{'bezec-zombie-v1':{name:'Zombie',path:'bezec-zombie-v1/skin.json'}}}:String(url).endsWith('game-characters.json')?gameStore:String(url).endsWith('skin.json')?skin:store)};
   const p=JSON.parse(options.body);
@@ -61,7 +62,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
     return {ok:true,json:async()=>({ok:true,record})};
   }
   assert.equal(url,'/api/poses');
-  if(p.kind==='rig'){store.rigs??={};if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.rigs[p.id]);const record={id:p.id||'rig-test',name:p.name,rig_lengths:p.rig_lengths};store.rigs[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
+  if(p.kind==='rig'){store.rigs??={};if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.rigs[p.id]);const record={id:p.id||'rig-test',name:p.name,rig_lengths:p.rig_lengths,joint_limits:p.joint_limits};store.rigs[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
   assert.equal(p.kind,'clip');
   if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.clips[p.id]);else assert.ok(!p.id);
   if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
@@ -70,11 +71,12 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  }});
 (async()=>{
  await vm.runInContext(fs.readFileSync(__dirname+'/characters2.js','utf8'),context);
+ helpElement.onclick({preventDefault(){},stopPropagation(){}});assert.equal(helpElement.classList.opened,true);helpElement.onmouseleave();assert.equal(helpElement.classList.opened,false);
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
- const defaultHeight=elements.stageWrap.style.height,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
+ const defaultHeight=elements.stageWrap.style.height,defaultWidth=elements.stageWrap.style.width,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
  elements.stageResize.onpointerdown(resizeEvent);elements.stageResize.onpointermove({...resizeEvent,clientY:350});elements.stageResize.onpointerup(resizeEvent);
  assert.notEqual(elements.stageWrap.style.height,defaultHeight);assert.equal(elements.stageResize.capture,null);
- assert.ok(Math.abs(parseFloat(elements.stageWrap.style.width)/parseFloat(elements.stageWrap.style.height)-512/560)<1e-8);
+ assert.equal(elements.stageWrap.style.width,defaultWidth);assert.ok(parseFloat(elements.stageWrap.style.height)>=parseFloat(defaultWidth)*392/512-1e-8);
  elements.stageResize.ondblclick();assert.equal(elements.stageWrap.style.height,defaultHeight);
  const markers=()=>elements.stage.arcs.filter(a=>a[3]===Math.PI&&a[4]===Math.PI*2);
  assert.ok(markers().length>0);assert.ok(markers().every(a=>a[2]<=4));
@@ -97,6 +99,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.stage.onpointerdown(e);elements.stage.onpointermove({...e,clientY:e.clientY+20});elements.stage.onpointerup(e);
  assert.equal(elements.stage.capture,null);elements.name.value='New zombie';await elements.save.onclick();
  assert.ok(Math.abs(store.clips['saved-1'].frames[0].bodyY-zombie.frames[0].bodyY-20)<1e-8);
+ assert.deepEqual(store.clips['saved-1'].joint_limits,R.defaultJointLimits());
  assert.deepEqual(store.clips[zombie.id],zombie);
  elements.up.onclick({shiftKey:true});elements.undo.onclick();elements.name.value='Undo proof';await elements.save.onclick();
  assert.equal(store.clips['saved-2'].frames[0].bodyY,store.clips['saved-1'].frames[0].bodyY);
@@ -121,6 +124,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.characterName.value='Zombie custom';await elements.saveCharacter.onclick();
  const savedGame=gameStore.characters['game-1'];
  assert.equal(savedGame.name,'Zombie custom');assert.equal(savedGame.animation.frames[0].bodyLean,30);
+ assert.deepEqual(savedGame.animation.joint_limits,R.defaultJointLimits());
  assert.equal(savedGame.animation.move_speed_pt_s,10);assert.equal(savedGame.animation.rig_lengths.nearShin,74);
  assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);
  elements.lean.value='10';elements.lean.onchange();confirmed=true;
@@ -153,10 +157,13 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.stage.style.cursor,'grab');elements.zoomReset.onclick();
  events.keydown({altKey:true});assert.equal(elements.stage.style.cursor,'move');
  events.keydown({ctrlKey:true});assert.equal(elements.stage.style.cursor,'ew-resize');
+ // Clicking the canvas cannot switch from skeleton to bitmap; only the target switch can.
+ elements.stage.onpointerdown({...e,altKey:true,clientX:0,clientY:0});assert.equal(elements.editTarget.value,'skeleton');assert.equal(elements.stage.capture,null);
+ elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');
  // List selection must not override the visible bitmap under the pointer.
  elements.stage.onpointerdown({...e,altKey:true,clientX:0,clientY:0});assert.equal(elements.stage.capture,null);
  const m=C.matrix(skin.parts.nearForearm,C.bones(before.frames[0],before.rig_lengths).nearForearm);
- const grab={...e,altKey:true,clientX:m[0]*80+m[2]*130+m[4],clientY:m[1]*80+m[3]*130+m[5]};
+ elements.toolMove.onclick();const grab={...e,clientX:m[0]*80+m[2]*130+m[4],clientY:m[1]*80+m[3]*130+m[5]};
  elements.layerOrder.value='head';elements.stage.onpointerdown(grab);
  assert.equal(elements.layerOrder.value,'nearForearm');
  elements.stage.onpointermove({...grab,clientY:grab.clientY+20});elements.stage.onpointerup(grab);
@@ -334,7 +341,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const selectPose=C.sample(gameStore.characters['legacy-b'].animation,0,false),selectGrip=R.handles(selectPose,selectPose.rig_lengths).find(h=>h.key==='nearElbow');
  const selectEvent={button:0,pointerId:109,clientX:512-selectGrip.point.x,clientY:selectGrip.point.y,preventDefault(){}};
  elements.stage.onpointerdown(selectEvent);elements.stage.onpointerup(selectEvent);
- assert.equal(elements.layerOrder.value,'nearForearm');
+ assert.equal(elements.layerOrder.value,'nearForearm');assert.equal(elements.editTarget.value,'skeleton');
  function yellowEndpoints(frame){
    const pose=C.sample(gameStore.characters['legacy-b'].animation,frame,false),h=R.handles(pose,pose.rig_lengths).find(h=>h.key==='nearElbow');
    for(const p of [h.point,h.pivot])assert.ok(elements.stage.fills.some(f=>f.color==='#ffdc60'&&Math.hypot(f.arc[0]-(512-p.x),f.arc[1]-p.y)<1e-7),'Both selected bone handles have solid yellow fill');
@@ -342,9 +349,10 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
 
- // Separate skeleton library persists only dimensions and supports overwrite/trash/restore.
+ // Separate skeleton library persists dimensions and maximal joint limits.
  promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
  assert.equal(store.rigs['rig-test'].name,'Testovací kostra');assert.equal(store.rigs['rig-test'].frames,undefined);
+ assert.deepEqual(store.rigs['rig-test'].joint_limits,R.defaultJointLimits());
  await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,1);
  await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,0);
  elements.trash.value='rigs:trash-rig-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.rigs).length,1);

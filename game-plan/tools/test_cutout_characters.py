@@ -118,6 +118,7 @@ class CharacterTests(unittest.TestCase):
         self.assertEqual(first['animation']['frames'][0]['bodyY'], 0)
         self.assertEqual(first['animation']['rig_lengths']['nearShin'], 94)
         self.assertEqual(first['animation']['rig_lengths']['farShin'], 74)
+        self.assertEqual(first['animation']['joint_limits']['bodyLean'], [-180, 180])
         self.assertEqual(first['animation']['move_speed_pt_s'], 13.5)
         self.assertEqual(first['asset_base'], 'graphics/characters2/zombie/')
 
@@ -128,6 +129,7 @@ class CharacterTests(unittest.TestCase):
         invalid = [{**self.payload, 'name': ''}, {**self.payload, 'skin_id': '../elsewhere'},
                    {**self.payload, 'animation': None}]
         for key, values in {'rig_lengths': [{'nearShin': 0}, {'unknown': 42}, {'nearShin': True}],
+                            'joint_limits': [{'unknown': [-180, 180]}, {'bodyLean': [-181, 180]}, {'bodyLean': [30, -30]}],
                             'fps': [True, 0, 31], 'frames': [[]],
                             'move_speed_pt_s': [-1, True, float('nan')]}.items():
             invalid += [{**self.payload, 'animation': {**self.payload['animation'], key: value}} for value in values]

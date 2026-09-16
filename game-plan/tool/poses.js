@@ -9,7 +9,7 @@
   let drag=null, saving=false;
   const status=(message,error=false)=>{$('status').textContent=message;$('status').classList.toggle('error',error);};
   function stop() { clearInterval(timer); playing=false;distance=0;frameTime=0;lastTime=0; $('play').textContent='▶ Přehrát'; }
-  function remember() { history.push({frames:clone(current.frames),frame_edits:clone(current.frame_edits||{}),index,fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current)}); if(history.length>80)history.shift(); }
+  function remember() { history.push({frames:clone(current.frames),frame_edits:clone(current.frame_edits||{}),index,fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current),joint_limits:R.jointLimitsFor(current)}); if(history.length>80)history.shift(); }
   function mark() {dirty=true;$('dirty').textContent='Neuložené změny animace';}
   function draw() {
     $('updateClip').disabled=saving||!data.clips[current.id];$('deleteClip').disabled=saving||!data.clips[current.id];
@@ -30,8 +30,8 @@
   }
   function updateFrame(key,value,record=true) {
     stop(); if(record)remember();
-    const field=R.fields.find(f=>f[0]===key);
-    current.frames[index][key]=Math.round(R.clamp(value,field[2],field[3])*10)/10;
+    const [low,high]=R.rangeFor(current,key);
+    current.frames[index][key]=Math.round(R.clamp(value,low,high)*10)/10;
     mark();frameStrip();draw();
   }
   function controls() {
@@ -63,7 +63,7 @@
     $('clip').value=selected;
   }
   function selectClip(id) {
-    stop();current=clone(data.clips[id]||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});baseline=clone(current.frames);index=0;history=[];dirty=false;
+    stop();current=clone(data.clips[id]||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});current.joint_limits=R.jointLimitsFor(current);baseline=clone(current.frames);index=0;history=[];dirty=false;
     $('dirty').textContent='';$('fps').value=current.fps;$('clipName').value=current.name+' · moje verze';
     $('moveSpeed').value=M.speed(current);
     frameStrip();draw();
@@ -108,7 +108,7 @@
     const name=overwrite?current.name:$(kind==='pose'?'poseName':'clipName').value.trim();
     if(!name){status('Nejdřív napiš název.',true);return;}
     if(overwrite&&!confirm(`Uložit změny do animace „${current.name}“? Předchozí stav se zazálohuje. Ostatní animace zůstanou beze změny.`))return;
-    const payload=kind==='pose'?{kind,name,frame:clone(current.frames[index])}:{kind,name,frames:clone(current.frames),fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current)};
+    const payload=kind==='pose'?{kind,name,frame:clone(current.frames[index])}:{kind,name,frames:clone(current.frames),fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current),joint_limits:R.jointLimitsFor(current)};
     if(kind==='clip')payload.frame_edits=clone(current.frame_edits||{});
     if(overwrite)Object.assign(payload,{mode:'update',id:current.id,expectedRecord:clone(data.clips[current.id])});
     const snapshot=JSON.stringify(current);
@@ -194,7 +194,7 @@
   function swap(direction) {stop();remember();const next=(index+direction+current.frames.length)%current.frames.length;[current.frames[index],current.frames[next]]=[current.frames[next],current.frames[index]];if(current.frame_edits){const edits=current.frame_edits,a=edits[index],b=edits[next];delete edits[index];delete edits[next];if(a)edits[next]=a;if(b)edits[index]=b;}index=next;mark();frameStrip();draw();}
   $('swapLeft').onclick=()=>swap(-1);$('swapRight').onclick=()=>swap(1);
   $('restore').onclick=()=>{stop();remember();current.frames[index]=clone(baseline[index]);mark();frameStrip();draw();};
-  $('undo').onclick=()=>{stop();const previous=history.pop();if(previous){current.frames=previous.frames;current.frame_edits=previous.frame_edits;current.fps=previous.fps;current.rig_lengths=previous.rig_lengths;current.move_speed_pt_s=previous.move_speed_pt_s;$('fps').value=current.fps;$('moveSpeed').value=M.speed(current);index=previous.index;mark();frameStrip();draw();}};
+  $('undo').onclick=()=>{stop();const previous=history.pop();if(previous){current.frames=previous.frames;current.frame_edits=previous.frame_edits;current.fps=previous.fps;current.rig_lengths=previous.rig_lengths;current.joint_limits=R.jointLimitsFor(previous);current.move_speed_pt_s=previous.move_speed_pt_s;$('fps').value=current.fps;$('moveSpeed').value=M.speed(current);index=previous.index;mark();frameStrip();draw();}};
   $('savePose').onclick=()=>save('pose');$('saveClip').onclick=()=>save('clip');$('search').oninput=drawLibrary;
   $('updateClip').onclick=()=>save('clip',true);
   $('exportFrame').onclick=()=>download(R.svg(current.frames[index],{lengths:R.lengthsFor(current,index)}),`pose-${index+1}.svg`);

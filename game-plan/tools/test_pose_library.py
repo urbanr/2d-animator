@@ -103,7 +103,7 @@ class PoseTests(unittest.TestCase):
             self.assertEqual(len(loaded['clips'][clip['record']['id']]['frames']), 8)
             before = path.read_bytes()
             with self.assertRaises(ValueError):
-                save_pose({'kind': 'pose', 'name': 'Bad', 'frame': {**frame, 'head': 31}}, path)
+                save_pose({'kind': 'pose', 'name': 'Bad', 'frame': {**frame, 'head': 181}}, path)
             self.assertEqual(path.read_bytes(), before)
 
 

@@ -12,12 +12,12 @@
     const out=copy(clip),neutral=R.neutral();
     for(const [key,wanted] of Object.entries(values)){
       const f=fields[key];if(!f||!Number.isFinite(wanted))continue;
-      const current=clip.frames[index][key]??neutral[key],cyclic=f[4]==='°'&&f[2]===-180;
+      const range=R.rangeFor(clip,key),current=clip.frames[index][key]??neutral[key],cyclic=f[4]==='°'&&range[0]===-180&&range[1]===180;
       let delta=cyclic?wrap(wanted-current):wanted-current;
       const indices=scope==='all'?clip.frames.map((_,i)=>i):[index];
       if(!cyclic){
         const values=indices.flatMap(i=>[clip.frames[i][key]??neutral[key],...(scope==='all'&&clip.frame_edits?.[i]?.pose_base?.[key]!==undefined?[clip.frame_edits[i].pose_base[key]]:[])]);
-        delta=R.clamp(delta,Math.max(...values.map(v=>f[2]-v)),Math.min(...values.map(v=>f[3]-v)));
+        delta=R.clamp(delta,Math.max(...values.map(v=>range[0]-v)),Math.min(...values.map(v=>range[1]-v)));
       }
       if(Math.abs(delta)<1e-9)continue;
       for(const i of indices){
@@ -89,7 +89,7 @@
       const prefix=root?root.join(''):key.slice(0,key.startsWith('near')?4:3)+(key.includes('Shoulder')||key.includes('Elbow')?'Shoulder':'Hip');
       return poseChange(clip,index,{[prefix+'OffsetX']:p[prefix+'OffsetX']+dx,[prefix+'OffsetY']:p[prefix+'OffsetY']+dy},scope);
     }
-    const next=R.dragPose(p,key,start,end,{lengths:p.rig_lengths});
+    const next=R.dragPose(p,key,start,end,{lengths:p.rig_lengths,limits:R.jointLimitsFor(clip)});
     if(root){next.shoulderWidth=p.shoulderWidth;next.pelvisWidth=p.pelvisWidth;}
     return poseChange(clip,index,Object.fromEntries(R.fields.filter(([k])=>next[k]!==p[k]).map(([k])=>[k,next[k]])),scope);
   }
