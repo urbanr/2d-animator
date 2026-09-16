@@ -12,6 +12,10 @@ Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu,
 
 U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
 
+Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou úchyty **↔ X** (šířka) a **↕ Y** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
+
+Mimo vstupní pole: **mezerník** přehraje/pozastaví, **Y/C** přepne předchozí/další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní.
+
 Náhled začíná přibližně na 66 % dostupné šířky; výška je omezená na 800 px a 82 % okna. Tažením pravého dolního rohu lze měnit výšku při zachování proporcí. Dvojklik na roh vrací výchozí velikost. Změna velikosti náhledu neovlivňuje uloženou postavu.
 
 ## Přehrávač spritů – podklady

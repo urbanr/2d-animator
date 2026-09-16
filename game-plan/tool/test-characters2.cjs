@@ -321,8 +321,8 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
    ma.forEach((v,j)=>assert.ok(Math.abs(v-mb[j])<1e-7));
  }
  const key=(k,extra={})=>events.keydown({key:k,preventDefault(){},target:{tagName:'CANVAS'},...extra});
- key('a');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('d');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
- key('a',{target:{tagName:'INPUT'}});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('y',{target:{tagName:'INPUT'}});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('q',{target:{tagName:'TEXTAREA'}});await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,pivoted.skin);
  key('q');key('q',{repeat:true});events.keyup({key:'q'});await elements.updateCharacter.onclick();
  assert.ok(Math.abs(gameStore.characters['legacy-b'].skin.parts.nearForearm.rotation-pivoted.skin.parts.nearForearm.rotation+2)<1e-8);
@@ -357,5 +357,39 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.stage.onpointerdown(click);elements.stage.onpointerup(click);await elements.updateCharacter.onclick();
  assert.notEqual(C.fadeFor(C.partFor(gameStore.characters['legacy-b'].skin,'nearForearm',C.sample(gameStore.characters['legacy-b'].animation,0,false)),'end').strength,fg.strength);
  elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,beforeToggle.skin);
+ // Axis handles on a rotated bitmap change only their dimension, in either scope.
+ for(const scope of ['frame','all'])for(const [handle,axis,other] of [['width','scale_x','scale_y'],['height','scale_y','scale_x']]){
+   elements.editScope.value=scope;
+   const before=copy(gameStore.characters['legacy-b']),pose=C.sample(before.animation,0,false),part=C.partFor(before.skin,'nearForearm',pose);
+   const h=require('./cutout-editor.js').partHandles(before.skin,'nearForearm',pose),p=h[handle];
+   const e={button:0,pointerId:201,clientX:p.x,clientY:p.y,preventDefault(){}};
+   elements.stage.onpointerdown(e);
+   elements.stage.onpointermove({...e,clientX:h.pivot.x+(p.x-h.pivot.x)*1.2,clientY:h.pivot.y+(p.y-h.pivot.y)*1.2});
+   elements.stage.onpointerup(e);await elements.updateCharacter.onclick();
+   const after=gameStore.characters['legacy-b'];
+   for(let i=0;i<8;i++){
+     const a=C.partFor(before.skin,'nearForearm',C.sample(before.animation,i,false)),b=C.partFor(after.skin,'nearForearm',C.sample(after.animation,i,false));
+     assert.ok(Math.abs(b[axis]/a[axis]-(scope==='all'||i===0?1.2:1))<1e-7,handle+' scope '+scope);
+     assert.equal(b[other],a[other]);assert.equal(b.rotation,a.rotation);
+   }
+   assert.deepEqual(after.animation.frames,before.animation.frames);
+   elements.undo.onclick();await elements.updateCharacter.onclick();assert.deepEqual(gameStore.characters['legacy-b'].skin,before.skin);
+ }
+ // Shortcuts ignore fields, do not repeat-toggle playback, and wrap frames.
+ elements.editScope.value='all';
+ const playLabel=elements.play.textContent;key(' ',{target:{tagName:'INPUT'}});assert.equal(elements.play.textContent,playLabel);
+ key(' ');assert.equal(elements.play.textContent,'Pozastavit');key(' ',{repeat:true});assert.equal(elements.play.textContent,'Pozastavit');key(' ');assert.equal(elements.play.textContent,'Přehrát');
+ key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ for(const k of ['a','d','w','s']){
+   const before=copy(gameStore.characters['legacy-b']);key(k);assert.match(elements.frameLabel.textContent,/1 \/ 8/);await elements.updateCharacter.onclick();
+   assert.notDeepEqual(gameStore.characters['legacy-b'].skin.parts.nearForearm.offset,before.skin.parts.nearForearm.offset);
+   elements.undo.onclick();await elements.updateCharacter.onclick();
+ }
+ elements.editTarget.value='skeleton';elements.editTarget.onchange();
+ const beforeKeys=copy(gameStore.characters['legacy-b']);
+ key('d');await elements.updateCharacter.onclick();assert.notDeepEqual(gameStore.characters['legacy-b'].animation,beforeKeys.animation);
+ assert.deepEqual(gameStore.characters['legacy-b'].skin,beforeKeys.skin);elements.undo.onclick();await elements.updateCharacter.onclick();
+ key('e');await elements.updateCharacter.onclick();assert.notDeepEqual(gameStore.characters['legacy-b'].animation,beforeKeys.animation);
+ elements.undo.onclick();await elements.updateCharacter.onclick();
  console.log('PASS: cutout editor, persistent solid-yellow skeleton selection, pivot, keyboard, transparency, trash and exports.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

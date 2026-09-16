@@ -125,6 +125,11 @@
           const p=h[key],r=6/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
           ctx.fillStyle=key==='pivot'?'#26332c':'#ffe08b';ctx.fill();ctx.stroke();
         }
+        for(const [axis,label] of [['width','↔ X'],['height','↕ Y']]){
+          const p=h[axis],r=10/zoom;ctx.fillStyle='#26332c';ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;
+          ctx.beginPath();ctx.rect(p.x-r*1.4,p.y-r,r*2.8,r*2);ctx.fill();ctx.stroke();
+          ctx.fillStyle='#ffe08b';ctx.font=`${11/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,p.x,p.y);
+        }
         const key=$('layerOrder').value,part=C.partFor(skin,key,pose);
         for(const end of ['start','end']){
           const f=C.fadeFor(part,end);if(!C.canFade(key)||!f.strength)continue;
@@ -415,10 +420,11 @@
   function cursor(e={}){
     const bitmap=$('editTarget').value==='bitmap';
     const tool=drag?.mode==='bitmap'?drag.tool:bitmap&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmap&&e.ctrlKey?'height':bitmap&&e.altKey?'width':e.altKey?'move':e.ctrlKey?'length':$('editTool').value;
-    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='pivot'?'crosshair':tool==='fade'||tool==='height'?'ns-resize':tool==='width'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
+    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='pivot'?'crosshair':tool==='fade'||tool==='height'||tool==='heightHandle'?'ns-resize':tool==='width'||tool==='widthHandle'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
     $('gestureHint').textContent=tool==='height'?'Ctrl + tah dolů/nahoru: výška bitmapy · šířka a kostra se nemění':tool==='width'?'Option + tah doprava/doleva: šířka bitmapy · výška a kostra se nemění':bitmap?'Bitmapa: Ctrl = výška · Option = šířka · Ctrl+Option = obojí · posun: nástroj Posun':'Ctrl: délka kosti · Option: posun bitmapy · Ctrl+Option: velikost bitmapy';
     $('gestureHint').textContent+=' · Pravý tah ↓/↑: zprůhlednit / zneprůhlednit spoj';
-    if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed';
+    if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed · ↔ X / ↕ Y: šířka / výška';
+    $('gestureHint').textContent+=' · Mezerník: přehrát/pauza · Y/C: snímky · WASD: posun · Q/E: rotace';
   }
   let keyboardEdit=null;
   window.addEventListener('keydown',e=>{
@@ -428,14 +434,32 @@
     if(key==='escape'){target?.blur?.();keyboardEdit=null;return;}
     if((e.metaKey||e.ctrlKey)&&key==='z'){e.preventDefault();(e.shiftKey?$('redo'):$('undo')).onclick();keyboardEdit=null;return;}
     if(e.metaKey||e.ctrlKey||e.altKey||drag||!visible)return;
-    if(!e.shiftKey&&['a','d'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='a'?'previous':'next').onclick();return;}
-    const move=e.shiftKey&&['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
+    if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
+    if(['y','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
+    const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
     if(!move&&!rotate)return;
     e.preventDefault();
-    if($('editTarget').value!=='bitmap'||!$('edit').checked){status('Pro úpravu dílu klávesami zapni Bitmapu a úpravy myší.');return;}
+    if(!$('edit').checked){status('Pro úpravu dílu klávesami zapni úpravy myší.');return;}
     freeze();const selected=$('layerOrder').value,pose=C.sample(clip,index(),false),part=C.partFor(skin,selected,pose);
+    if($('editTarget').value==='skeleton'){
+      const selectedHandle=selectedSkeleton||E.handleForBone(selected),h=handles(pose).find(h=>h.key===selectedHandle);
+      if(!h)return;
+      const step=e.shiftKey?10:1;
+      let end={x:h.point.x+(key==='a'?step:key==='d'?-step:0),y:h.point.y+(key==='w'?-step:key==='s'?step:0)};
+      if(rotate){
+        const pivot=h.key==='bodyY'?R.points(pose,pose.rig_lengths).hipCenter:h.pivot;
+        if(!pivot)return;
+        const a=(key==='q'?1:-1)*step*Math.PI/180,dx=h.point.x-pivot.x,dy=h.point.y-pivot.y;
+        end={x:pivot.x+dx*Math.cos(a)-dy*Math.sin(a),y:pivot.y+dx*Math.sin(a)+dy*Math.cos(a)};
+      }
+      const next=E.dragSkeleton(clip,index(),h.key,h.point,end,{scope:scope(),tool:rotate?'rotate':'move'});
+      if(JSON.stringify(next)===JSON.stringify(clip))return;
+      const token=[key,e.shiftKey,h.key,index(),scope()].join(':');
+      if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;clip=next;mark();thumbnails();draw();return;
+    }
+    const step=e.shiftKey?10:1;
     const values=rotate?{rotation:part.rotation+(key==='q'?-1:1)*(e.shiftKey?10:1)}:
-      {offset:C.moveAttachment(part,C.bones(pose)[selected],key==='a'?-1:key==='d'?1:0,key==='w'?-1:key==='s'?1:0).offset};
+      {offset:C.moveAttachment(part,C.bones(pose)[selected],key==='a'?-step:key==='d'?step:0,key==='w'?-step:key==='s'?step:0).offset};
     const token=[key,e.shiftKey,selected,index(),scope()].join(':');
     if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;
     ({clip,skin}=E.partChange(clip,skin,index(),selected,values,scope()));skinDirty=true;mark();thumbnails();draw();
@@ -445,13 +469,13 @@
   function freeze(){const d=distance;phase=Math.round(phase)%clip.frames.length;stop();distance=d;}
   stage.onpointerdown=e=>{
     if(![0,2].includes(e.button)||drag)return;
-    if(e.button===0&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&$('edit').checked&&$('editTarget').value==='bitmap'){const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked),t=fadeToggles(pose).find(t=>Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y)<9/zoom);const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,$('layerOrder').value,pose):null,gripHit=grips&&['rotate','size','pivot'].some(k=>Math.hypot(grips[k].x-(512-p.x-travelX()),grips[k].y-p.y)<12/zoom);if(t&&!gripHit){e.preventDefault();$('fadeEnd').value=t.end;changeFade({strength:t.strength?0:.65});return;}}
+    if(e.button===0&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&$('edit').checked&&$('editTarget').value==='bitmap'){const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked),t=fadeToggles(pose).find(t=>Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y)<9/zoom);const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,$('layerOrder').value,pose):null,gripHit=grips&&['rotate','size','width','height','pivot'].some(k=>Math.hypot(grips[k].x-(512-p.x-travelX()),grips[k].y-p.y)<Math.min(12/zoom,t?Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y):Infinity));if(t&&!gripHit){e.preventDefault();$('fadeEnd').value=t.end;changeFade({strength:t.strength?0:.65});return;}}
     const right=e.button===2,bitmapMode=$('editTarget').value==='bitmap',bitmap=right||e.altKey||bitmapMode;
     if(bitmap&&$('edit').checked){
       const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked);
       const point={x:512-p.x-travelX(),y:p.y},selected=$('layerOrder').value;
       const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,selected,pose):null;
-      const grip=grips&&!right?['rotate','size','pivot'].find(k=>Math.hypot(point.x-grips[k].x,point.y-grips[k].y)<12/zoom):null;
+      const grip=grips&&!right?['rotate','size','width','height','pivot'].map(k=>({k,d:Math.hypot(point.x-grips[k].x,point.y-grips[k].y)})).sort((a,b)=>a.d-b.d).find(v=>v.d<12/zoom)?.k:null;
       let endHit=null;
       if(right&&bitmapMode&&C.canFade(selected)){
         const part=C.partFor(skin,selected,pose),m=C.matrix(part,C.bones(pose)[selected]);
@@ -463,7 +487,7 @@
         if(right&&!C.canFade(key)){e.preventDefault();return;}
         freeze();layerOptions(key);$('editTarget').value='bitmap';
         const frozen=C.sample(clip,index(),false),h=E.partHandles(skin,key,frozen);
-        const tool=right?'fade':bitmapMode&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
+        const tool=right?'fade':bitmapMode&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='width'?'widthHandle':grip==='height'?'heightHandle':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
         e.preventDefault();drag={mode:'bitmap',tool,scope:scope(),index:index(),id:e.pointerId,key,grab:point,part:C.partFor(skin,key,frozen),bone:C.bones(frozen)[key],pivot:h.pivot,clip:copy(clip),skin:copy(skin),changed:false};stage.setPointerCapture(e.pointerId);cursor(e);draw();return;
       }
     }
@@ -488,6 +512,11 @@
       else if(drag.tool==='pivot')values={pivot_offset:C.movePivot(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y)};
       else if(drag.tool==='move')values={offset:C.moveAttachment(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y).offset};
       else if(drag.tool==='rotate')values={rotation:drag.part.rotation+(Math.atan2(point.y-drag.pivot.y,point.x-drag.pivot.x)-Math.atan2(drag.grab.y-drag.pivot.y,drag.grab.x-drag.pivot.x))*180/Math.PI};
+      else if(drag.tool==='widthHandle'||drag.tool==='heightHandle'){
+        const axis=drag.tool==='widthHandle'?'scale_x':'scale_y',m=C.matrix(drag.part,drag.bone),i=axis==='scale_x'?0:2;
+        const projection=p=>(p.x-drag.pivot.x)*m[i]+(p.y-drag.pivot.y)*m[i+1],before=projection(drag.grab);
+        values={[axis]:drag.part[axis]*R.clamp(Math.abs(before)>1e-8?projection(point)/before:1,.05,20)};
+      }
       else if(drag.tool==='height')values={scale_y:drag.part.scale_y*Math.exp(R.clamp((point.y-drag.grab.y)/100,-10,10))};
       else if(drag.tool==='width')values={scale_x:drag.part.scale_x*Math.exp(R.clamp((point.x-drag.grab.x)/100,-10,10))};
       else values={scale:drag.part.scale*Math.hypot(point.x-drag.pivot.x,point.y-drag.pivot.y)/Math.max(1,Math.hypot(drag.grab.x-drag.pivot.x,drag.grab.y-drag.pivot.y))};

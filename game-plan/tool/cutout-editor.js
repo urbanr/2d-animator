@@ -163,7 +163,13 @@
     const bone=C.bones(pose)[key];if(!bone||!skin.parts[key])return null;
     const part=C.partFor(skin,key,pose),m=C.matrix(part,bone),at=(x,y)=>({x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]});
     const [w,h]=part.size;
-    return {pivot:at(part.start[0]+part.pivot_offset[0],part.start[1]+part.pivot_offset[1]),attachment:at(...part.start),rotate:at(w/2,-20),size:at(w,h),corners:[[0,0],[w,0],[w,h],[0,h]].map(p=>at(...p))};
+    const pivot=at(part.start[0]+part.pivot_offset[0],part.start[1]+part.pivot_offset[1]),rotate=at(w/2,-20),size=at(w,h);
+    const occupied=[pivot,rotate,size,...['start','end'].map(end=>{const f=C.fadeGeometry(part,end);return at(f.center[0]-f.ux*f.radius*.55,f.center[1]-f.uy*f.radius*.55);})];
+    const freeEdge=points=>points.map(p=>({p,space:Math.min(...occupied.map(o=>Math.hypot(p.x-o.x,p.y-o.y)))})).sort((a,b)=>b.space-a.space)[0].p;
+    const width=freeEdge([.25,.5,.75].map(t=>at(part.start[0]+part.pivot_offset[0]>w/2?0:w,h*t)));
+    occupied.push(width);
+    const height=freeEdge([.25,.5,.75].map(t=>at(w*t,part.start[1]+part.pivot_offset[1]>h/2?0:h)));
+    return {pivot,attachment:at(...part.start),rotate,size,width,height,corners:[[0,0],[w,0],[w,h],[0,h]].map(p=>at(...p))};
   }
   function validateEdits(clip,skin){
     const object=v=>v&&typeof v==='object'&&!Array.isArray(v);

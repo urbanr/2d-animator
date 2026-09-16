@@ -21,4 +21,10 @@ const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Se
 for(const help of ['helpFade','helpSpeed','helpTravel'])assert.match(html,new RegExp(`<summary>(?:(?!</summary>)[\\s\\S])*id="${help}"`));
 for(const [header,help] of [['toolGrip','helpControls'],['partsGrip','helpLayers']])assert.match(html,new RegExp(`<header id="${header}">(?:(?!</header>)[\\s\\S])*id="${help}"`));
 assert.match(html,/id="stageResize"[^>]*aria-label="Změnit výšku náhledu"/);
+const aside=html.split('<aside class="panel">')[1];
+assert.deepEqual([...aside.matchAll(/<details id="([^"]+)"/g)].slice(0,3).map(m=>m[1]),['motionSection','switchesSection','fadePanel']);
+assert.ok(!html.split('<aside class="panel">')[0].includes('id="fadePanel"'));
+assert.match(html,/id="helpFade" role="tooltip">Vyber bitmapový díl/);
+assert.match(html,/#fadePanel label\{display:flex;flex-direction:column/);
+assert.match(html,/#fadePanel input\[type=number\]\{width:40px/);
 console.log('PASS: compact speed row, single-line heading, separate controls and all panels collapsed.');
