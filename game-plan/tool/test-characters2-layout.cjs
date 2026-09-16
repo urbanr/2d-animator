@@ -19,6 +19,8 @@ const selection=html.match(/<div class="selection-bar"[\s\S]*?<\/div>\s*<main>/)
 for(const id of ['gameCharacter','characterAnimation','updateCharacter','saveCharacter','deleteCharacter','updateAnimation','save','deleteAnimation'])assert.ok(selection.includes(`id="${id}"`));
 assert.match(html,/\.selection-bar\{display:grid;grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/);
 assert.match(html,/id="assignAnimation"[^>]*>↳ Přiřadit k postavě/);
+assert.match(html,/<details id="characterSection"><summary><span>Bitmapová předloha<\/span>/);
+assert.doesNotMatch(html,/<details id="characterSection"><summary><span>Postava<\/span>/);
 assert.match(html,/width:calc\(2ch \+ 18px\)/);
 // Compact display does not narrow the accepted values or lose existing controls.
 assert.match(html,/id="moveSpeed"[^>]*max="1000"[^>]*step="0.1"/);

@@ -10,7 +10,9 @@ assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,0))).
 assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,1))).radius2,10);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,.5))).radius2,17.5);
 changed=E.fadeChange(changed.clip,changed.skin,1,'head','start',{radius2:20},'all');
-assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,0))).radius2,35);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,0))).radius2,20);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'head',C.sample(changed.clip,1))).radius2,20);
+assert.equal(changed.clip.frame_edits,undefined);
 const legacy={...part,joint_fade:{start:{strength:1,radius:40,direction:'outward'}}};
 const legacyClip={...clip,frame_edits:{0:{parts:{head:{joint_fade:{start:{strength:1,radius:20,direction:'outward'}}}}}}};
 assert.equal(C.fadeFor(C.partFor({parts:{head:legacy}},'head',C.sample(legacyClip,0))).radius2,20);

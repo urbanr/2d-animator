@@ -26,6 +26,10 @@ Náhled vždy využije celou volnou šířku. Plátno si zachovává proporce a 
 
 Režimy **Kostra** a **Bitmapa** jsou výlučné. Kliknutí na postavu může vybrat odpovídající díl nebo kloub, ale režim nikdy nepřepne; to dělá pouze přepínač Upravuji.
 
+Pravá sbalovací část se jmenuje **Bitmapová předloha**. Tímto názvem se označuje vzhled postavy tvořený bitmapovými díly, jejich pořadím, ukotvením, měřítkem a přechody průhlednosti; není to samostatná herní postava.
+
+Při úpravě průhlednosti v rozsahu **Animace** vznikne jedna společná maska v místních souřadnicích bitmapového dílu. Ve všech snímcích proto sleduje příslušnou kost a vypadá stejně relativně ke kloubu. Starší snímkové výjimky vybraného konce se odstraní; výjimky druhého konce a jiné úpravy zůstanou zachované.
+
 Nápovědy s otazníkem se otevřou jen kliknutím a zavřou po odjetí ukazatele z nápovědy.
 
 ## Přehrávač spritů – podklady

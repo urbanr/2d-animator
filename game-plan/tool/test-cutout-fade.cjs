@@ -37,8 +37,9 @@ assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.cli
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1))).strength,0);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1.5))).strength,.3,'Last to first fade interpolation');
 changed=E.fadeChange(changed.clip,changed.skin,1,'nearForearm','start',{strength:.2},'all');
-assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,0))).strength,.8);
+assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,0))).strength,.2);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(changed.clip,1))).strength,.2);
+assert.equal(changed.clip.frame_edits,undefined,'Global fade removes the selected endpoint override');
 E.validateEdits(changed.clip,changed.skin);
 const reset=E.resetFrame(changed.clip,0);
 assert.equal(C.fadeFor(C.partFor(changed.skin,'nearForearm',C.sample(reset,0))).strength,.2);

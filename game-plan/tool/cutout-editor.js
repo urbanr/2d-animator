@@ -138,18 +138,18 @@
     const effective=C.fadeFor(C.partFor(skin,key,C.sample(clip,index,false)),end);
     const wanted={...effective,...values};C.validateFade({[end]:wanted});
     if(scope==='all'){
-      // Apply the same delta to existing exceptions, retaining their differences.
-      const change=old=>({...old,
-        strength:R.clamp(old.strength+wanted.strength-effective.strength,0,1),
-        radius:R.clamp(old.radius+wanted.radius-effective.radius,1,2000),
-        radius2:R.clamp((old.radius2??old.radius)+wanted.radius2-effective.radius2,1,2000),
-        offset:[0,1].map(i=>R.clamp((old.offset?.[i]||0)+wanted.offset[i]-effective.offset[i],-2000,2000)),
-        angle:wrap((old.angle||0)+wrap(wanted.angle-effective.angle)),
-        direction:values.direction??old.direction});
-      s.parts[key].joint_fade??={};s.parts[key].joint_fade[end]=change(C.fadeFor(skin.parts[key],end));
-      for(const edit of Object.values(out.frame_edits||{}))if(edit.parts?.[key]?.joint_fade?.[end]){
-        edit.parts[key].joint_fade[end]=change(edit.parts[key].joint_fade[end]);
+      // One local mask follows the bone in every frame. Old overrides of this
+      // endpoint would keep frames visually different, so remove only them.
+      s.parts[key].joint_fade??={};s.parts[key].joint_fade[end]=wanted;
+      for(const [frame,edit] of Object.entries(out.frame_edits||{})){
+        const part=edit.parts?.[key],fades=part?.joint_fade;if(!fades||fades[end]===undefined)continue;
+        delete fades[end];
+        if(!Object.keys(fades).length)delete part.joint_fade;
+        if(!Object.keys(part).length)delete edit.parts[key];
+        if(!Object.keys(edit.parts).length)delete edit.parts;
+        if(!Object.keys(edit).length)delete out.frame_edits[frame];
       }
+      if(out.frame_edits&&!Object.keys(out.frame_edits).length)delete out.frame_edits;
     }else{
       const e=editAt(out,index);e.parts??={};e.parts[key]??={};e.parts[key].joint_fade??={};e.parts[key].joint_fade[end]=wanted;
     }

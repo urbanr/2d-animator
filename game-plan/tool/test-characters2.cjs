@@ -322,8 +322,14 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.fadeStrength.value='25';elements.fadeStrength.onchange();await elements.updateAnimation.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,.25);
  assert.equal(gameStore.characters['legacy-b'].skin.parts.nearForearm.joint_fade.end.strength,.65);
+ elements.editScope.value='all';elements.editScope.onchange();elements.fadeStrength.value='40';elements.fadeStrength.onchange();
+ await elements.updateCharacter.onclick();await elements.updateAnimation.onclick();
+ const sharedFade=gameStore.characters['legacy-b'];
+ assert.equal(sharedFade.animation.frame_edits?.[0]?.parts?.nearForearm?.joint_fade?.end,undefined);
+ for(let i=0;i<sharedFade.animation.frames.length;i++)assert.equal(C.fadeFor(C.partFor(sharedFade.skin,'nearForearm',C.sample(sharedFade.animation,i,false)),'end').strength,.4,'Shared local fade follows the bone in frame '+i);
  elements.exportFrame.onclick();elements.exportSheet.onclick();
  elements.renderMode.value='game';elements.renderMode.onchange();elements.exportFrame.onclick();elements.exportSheet.onclick();
+ elements.editScope.value='frame';elements.editScope.onchange();
  elements.fadeStrength.value='0';elements.fadeStrength.onchange();await elements.updateAnimation.onclick();
  assert.equal(gameStore.characters['legacy-b'].animation.frame_edits[0].parts.nearForearm.joint_fade.end.strength,0);
  elements.fadeX.value='12';elements.fadeX.onchange();elements.fadeAngle.value='45';elements.fadeAngle.onchange();await elements.updateAnimation.onclick();
