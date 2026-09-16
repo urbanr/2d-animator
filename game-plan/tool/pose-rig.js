@@ -128,7 +128,7 @@
     const g=points(pose,lengths), result=[];
     const add=(key,point,pivot,label,color=BODY)=>result.push({key,point,pivot,label,color,
       side:key.startsWith('near')||key==='shoulders'||key==='pelvis'?'near':key.startsWith('far')?'far':null});
-    add('bodyY',{x:(g.hipCenter.x+g.shoulderCenter.x)/2,y:(g.hipCenter.y+g.shoulderCenter.y)/2},null,'Posunout celou postavu nahoru/dolů');
+    add('bodyY',{x:(g.hipCenter.x+g.shoulderCenter.x)/2,y:(g.hipCenter.y+g.shoulderCenter.y)/2},null,'Trup: posun / rotace / délka podle nástroje');
     add('shoulders',g.shoulders.near,g.shoulderCenter,'Ramena: otáčet / zúžit; Ctrl: jen bližší úchyt',NEAR);
     add('pelvis',g.hips.near,g.hipCenter,'Pánev: otáčet / zúžit; Ctrl: jen bližší úchyt',NEAR);
     add('farShoulderRoot',g.shoulders.far,g.shoulderCenter,'Ctrl: samostatně vzdálenější rameno',FAR);

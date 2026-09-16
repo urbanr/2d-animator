@@ -6,7 +6,15 @@ Původní odkazy (`gallery.html`, `levels.html`, `poses.html`, `index.html`) se 
 
 V **Pózách a krocích** lze táhnout kruhové úchyty myší nebo dotykem. Koleno otáčí stehno v kyčli, kotník lýtko v koleni, loket paži v rameni a ruka předloktí v lokti. Potomci se pohybují s rodičem při zachování délek kostí a limitů kloubů. Střed trupu posouvá celou postavu svisle. Výběr červených/zelených úchytů zpřístupní překryté končetiny. Jeden tah tvoří jeden krok Zpět; změny se ukládají stávajícími tlačítky pro pózu nebo celou animaci. Exportované SVG neobsahuje úchyty.
 
-## Přehrávač spritů
+## Postavy2 – ovládání náhledu
+
+Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu, **Rotace** otáčí trup kolem pánve a **Velikost** mění jeho délku. Ctrl + tah také mění délku, pokud jsou změny délek povolené. Rozsah Snímek / Animace platí i pro tyto úpravy.
+
+U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
+
+Náhled začíná přibližně na 66 % dostupné šířky; výška je omezená na 800 px a 82 % okna. Tažením pravého dolního rohu lze měnit výšku při zachování proporcí. Dvojklik na roh vrací výchozí velikost. Změna velikosti náhledu neovlivňuje uloženou postavu.
+
+## Přehrávač spritů – podklady
 
 Rozestup ramen a pánve má rozsah −100 až +100 % původní šířky. Bílý koncový úchyt lze táhnout plynule přes střed: +100 % původní polohy, 0 % společný střed, −100 % prohozené polohy červeného/zeleného konce vlevo/vpravo. Barvy zůstávají přiřazené stejným končetinám; nejde o změnu pořadí vrstev vůči kameře. Náklon má nadále limit ±20°. Střed ramen pod krkem ani střed pánve se neposouvá. Končetiny následují své úchyty bez změny délky kostí. Staré záznamy bez `shoulderWidth` a `pelvisWidth` se interpretují jako 100 %; nic se hromadně nepřepisuje.
 

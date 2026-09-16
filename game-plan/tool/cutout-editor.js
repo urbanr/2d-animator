@@ -57,6 +57,15 @@
   }
   function dragSkeleton(clip,index,key,start,end,{scope='frame',tool='rotate',ctrlKey=false,resize=true}={}){
     const p=C.sample(clip,index,false),bone=boneForHandle(key)||({head:'head',neck:'neck',bodyLean:'torso'}[key]);
+    // The center handle belongs to the torso too: honor the chosen tool.
+    if(key==='bodyY'&&(tool!=='move'||ctrlKey)){
+      const pivot=R.points(p,p.rig_lengths).hipCenter;
+      const distance=v=>Math.hypot(v.x-pivot.x,v.y-pivot.y),before=distance(start);
+      if(before<1)return copy(clip);
+      if(tool==='size'||ctrlKey)return resize?lengthChange(clip,index,'torso',p.rig_lengths.torso*distance(end)/before,scope):copy(clip);
+      const angle=v=>Math.atan2(v.y-pivot.y,v.x-pivot.x)*180/Math.PI;
+      return poseChange(clip,index,{bodyLean:p.bodyLean+wrap(angle(end)-angle(start))},scope);
+    }
     const root={shoulders:['near','Shoulder'],farShoulderRoot:['far','Shoulder'],pelvis:['near','Hip'],farHipRoot:['far','Hip']}[key];
     if(ctrlKey&&root){
       const prefix=root.join('');return poseChange(clip,index,{[prefix+'OffsetX']:p[prefix+'OffsetX']+end.x-start.x,[prefix+'OffsetY']:p[prefix+'OffsetY']+end.y-start.y},scope);

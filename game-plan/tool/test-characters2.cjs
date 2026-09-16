@@ -11,7 +11,7 @@ const smoothingWrites=[];
 const paint=new Proxy({},{get:(target,key)=>key==='translate'?(x,y)=>translations.push([x,y]):key==='getImageData'?(x,y,width,height)=>({width,height,data:new Uint8ClampedArray(width*height*4).fill(255)}):()=>{}});
 function element(){return {children:[],style:{},value:'',textContent:'',disabled:false,checked:false,classList:{toggle(){}},
  append(...a){this.children.push(...a);},replaceChildren(){this.children=[];},setAttribute(k,v){this[k]=v;},
- getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='imageSmoothingEnabled'||key==='imageSmoothingQuality'){owner[key]=value;smoothingWrites.push([key,value]);}if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
+ getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='imageSmoothingEnabled'||key==='imageSmoothingQuality'){owner[key]=value;smoothingWrites.push([key,value]);}if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];owner.ellipses=[];owner.arcs=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;owner.arcs??=[];owner.arcs.push(arc);}:key==='ellipse'?(...ellipse)=>{owner.ellipses??=[];owner.ellipses.push(ellipse);}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
  setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(){this.capture=null;},
  toBlob(fn){exportedSizes.push([this.width,this.height]);fn(new Blob(['png']));},click(){}};}
 const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','gameCharacter','characterName','saveCharacter','undo','play','previous','next','reload','up','down','save','exportFrame','exportSheet','exportRig','parts'];
@@ -19,6 +19,7 @@ ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
+ids.push('stageResize');
 ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
@@ -70,16 +71,28 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
 (async()=>{
  await vm.runInContext(fs.readFileSync(__dirname+'/characters2.js','utf8'),context);
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
+ const defaultHeight=elements.stageWrap.style.height,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
+ elements.stageResize.onpointerdown(resizeEvent);elements.stageResize.onpointermove({...resizeEvent,clientY:350});elements.stageResize.onpointerup(resizeEvent);
+ assert.notEqual(elements.stageWrap.style.height,defaultHeight);assert.equal(elements.stageResize.capture,null);
+ assert.ok(Math.abs(parseFloat(elements.stageWrap.style.width)/parseFloat(elements.stageWrap.style.height)-512/560)<1e-8);
+ elements.stageResize.ondblclick();assert.equal(elements.stageWrap.style.height,defaultHeight);
+ const markers=()=>elements.stage.arcs.filter(a=>a[3]===Math.PI&&a[4]===Math.PI*2);
+ assert.ok(markers().length>0);assert.ok(markers().every(a=>a[2]<=4));
+ const markerRadii=markers().map(a=>a[2]);elements.zoomIn.onclick();assert.deepEqual(markers().map(a=>a[2]),markerRadii);elements.zoomReset.onclick();
  assert.equal(elements.editScope['aria-checked'],'false');
  elements.editScope.onclick();assert.equal(elements.editScope.value,'all');assert.equal(elements.editScope['aria-checked'],'true');
  elements.editScope.onclick();assert.equal(elements.editScope.value,'frame');
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.editTarget['aria-checked'],'true');
+ assert.equal(elements.stage.ellipses.length,2,'Both active endpoint guides appear immediately');
+ elements.fadeEnd.value='start';elements.fadeStrength.value='0';elements.fadeStrength.onchange();
+ assert.equal(elements.stage.ellipses.length,1,'Other endpoint remains visible even when selected start is disabled');
+ elements.undo.onclick();assert.equal(elements.stage.ellipses.length,2);
  elements.toolMove.onclick();assert.equal(elements.editTool.value,'move');assert.equal(elements.toolMove['aria-pressed'],'true');
  elements.toolSize.onclick();assert.equal(elements.editTool.value,'size');assert.equal(elements.toolMove['aria-pressed'],'false');
  elements.editTarget.onclick();elements.toolRotate.onclick();
  elements.previous.onclick();assert.match(elements.frameLabel.textContent,/8 \/ 8/);
  elements.next.onclick();assert.match(elements.frameLabel.textContent,/1 \/ 8/);
- elements.edit.checked=true;elements.edit.onchange();
+ elements.edit.checked=true;elements.edit.onchange();elements.toolMove.onclick();
  const h=R.handles(zombie.frames[0]).find(h=>h.key==='bodyY'),e={button:0,pointerId:7,clientX:512-h.point.x,clientY:h.point.y,preventDefault(){}};
  elements.stage.onpointerdown(e);elements.stage.onpointermove({...e,clientY:e.clientY+20});elements.stage.onpointerup(e);
  assert.equal(elements.stage.capture,null);elements.name.value='New zombie';await elements.save.onclick();
@@ -117,6 +130,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  // Playback must never silently change the editor checkbox.
  elements.play.onclick();assert.equal(elements.edit.checked,true);elements.play.onclick();assert.equal(elements.edit.checked,true);
  // A radial ordinary drag must not resize, Ctrl must resize, and the lock must prevent it.
+ elements.toolRotate.onclick();
  const base=copy(savedGame.animation),root=R.handles(base.frames[0],base.rig_lengths).find(h=>h.key==='nearHip');
  function stretch(ctrlKey){
    const e={button:0,pointerId:11,ctrlKey,clientX:512-root.point.x,clientY:root.point.y,preventDefault(){}};

@@ -18,4 +18,7 @@ assert.match(html,/width:calc\(2ch \+ 18px\)/);
 // Compact display does not narrow the accepted values or lose existing controls.
 assert.match(html,/id="moveSpeed"[^>]*max="1000"[^>]*step="0.1"/);
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
+for(const help of ['helpFade','helpSpeed','helpTravel'])assert.match(html,new RegExp(`<summary>(?:(?!</summary>)[\\s\\S])*id="${help}"`));
+for(const [header,help] of [['toolGrip','helpControls'],['partsGrip','helpLayers']])assert.match(html,new RegExp(`<header id="${header}">(?:(?!</header>)[\\s\\S])*id="${help}"`));
+assert.match(html,/id="stageResize"[^>]*aria-label="Změnit výšku náhledu"/);
 console.log('PASS: compact speed row, single-line heading, separate controls and all panels collapsed.');

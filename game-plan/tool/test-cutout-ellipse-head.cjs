@@ -31,4 +31,24 @@ const h=R.handles(p).find(h=>h.key==='head'),moved=E.dragSkeleton(clip,0,'head',
 assert.equal(moved.frames[0].headOffsetX,12);assert.equal(moved.frames[0].headOffsetY,8);
 assert.equal(moved.frames[0].bodyY,0);assert.deepEqual(moved.frames[1],clip.frames[1]);
 assert.deepEqual(R.points(moved.frames[0]).near,R.points(p).near,'Head move leaves limbs intact');
+const torso=R.handles(p).find(h=>h.key==='bodyY'),hip=R.points(p).hipCenter;
+for(const scope of ['frame','all']){
+  const longer={x:torso.point.x,y:hip.y+(torso.point.y-hip.y)*1.3};
+  for(const settings of [{tool:'size'},{tool:'rotate',ctrlKey:true}]){
+    const out=E.dragSkeleton(clip,0,'bodyY',torso.point,longer,{...settings,scope});
+    assert.ok(Math.abs(C.frameLengths(out,0).torso-94*1.3)<1e-6);
+    assert.equal(out.frames[0].bodyY,0);assert.equal(out.frames[0].bodyLean,0);
+    assert.ok(Math.abs(C.frameLengths(out,1).torso-94*(scope==='all'?1.3:1))<1e-6);
+  }
+  const out=E.dragSkeleton(clip,0,'bodyY',torso.point,{x:torso.point.x+10,y:torso.point.y},{tool:'rotate',scope});
+  assert.ok(out.frames[0].bodyLean>0);assert.equal(out.frames[0].bodyY,0);assert.equal(out.frames[0].bodyX,0);
+  assert.equal(out.frames[1].bodyLean,scope==='all'?out.frames[0].bodyLean:0);
+}
+assert.deepEqual(E.dragSkeleton(clip,0,'bodyY',torso.point,{x:250,y:150},{tool:'size',resize:false}),clip);
+const view=require('./editor-view.js');
+assert.ok(Math.abs(view.stageSize(null,900,1400).width-900*.66)<1e-6);
+for(const width of [250,600,1600])for(const height of [300,800,1600])for(const wanted of [null,10,2000]){
+  const size=view.stageSize(wanted,width,height);assert.ok(size.width<=width+1e-7);assert.ok(size.height<=Math.min(800,height*.82)+1e-7);
+  assert.ok(Math.abs(size.width/size.height-512/560)<1e-7);
+}
 console.log('PASS: bounded ellipses, legacy circles, scoped axes, independent head/neck and torso manipulation.');
