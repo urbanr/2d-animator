@@ -5,6 +5,7 @@ const gameManifest=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters
 const exportedSizes=[];
 const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
 const storedSkeleton={id:'pose-1',name:'Kostra test',frame:{...R.neutral(),bodyY:9},rig_lengths:{...R.defaultLengths(),nearShin:82},joint_limits:R.defaultJointLimits()};
+zombie.skin_id=skin.id;zombie.skeleton_id=storedSkeleton.id;
 const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}},poses:{[storedSkeleton.id]:copy(storedSkeleton)}};
 const gameStore={characters:{}};
 const translations=[];
@@ -90,6 +91,9 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
  assert.equal(elements.skeletonSelect.children.length,Object.keys(store.poses).length+1);assert.match(elements.skeletonCount.textContent,/1 koster/);
  assert.equal(elements.clip.children.length,Object.keys(store.clips).length+1);assert.equal(elements.clip.value,zombie.id);
+ assert.equal(elements.zoomLabel.textContent,'69 %');
+ const unitZoom=()=>{elements.zoomReset.onclick();elements.stage.onwheel({deltaY:-Math.log(1/.69)/.0015,clientX:256,clientY:392,preventDefault(){}});};
+ unitZoom();assert.equal(elements.zoomLabel.textContent,'100 %');
  const defaultHeight=elements.stageWrap.style.height,defaultWidth=elements.stageWrap.style.width,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
  elements.stageResize.onpointerdown(resizeEvent);elements.stageResize.onpointermove({...resizeEvent,clientY:350});elements.stageResize.onpointerup(resizeEvent);
  assert.notEqual(elements.stageWrap.style.height,defaultHeight);assert.equal(elements.stageResize.capture,null);
@@ -97,7 +101,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.stageResize.ondblclick();assert.equal(elements.stageWrap.style.height,defaultHeight);
  const markers=()=>elements.stage.arcs.filter(a=>a[3]===Math.PI&&a[4]===Math.PI*2);
  assert.ok(markers().length>0);assert.ok(markers().every(a=>a[2]<=4));
- const markerRadii=markers().map(a=>a[2]);elements.zoomIn.onclick();assert.deepEqual(markers().map(a=>a[2]),markerRadii);elements.zoomReset.onclick();
+ const markerRadii=markers().map(a=>a[2]);elements.zoomIn.onclick();assert.deepEqual(markers().map(a=>a[2]),markerRadii);elements.zoomReset.onclick();unitZoom();
  assert.equal(elements.editScope['aria-checked'],'false');
  elements.editScope.onclick();assert.equal(elements.editScope.value,'all');assert.equal(elements.editScope['aria-checked'],'true');
  elements.editScope.onclick();assert.equal(elements.editScope.value,'frame');
@@ -131,7 +135,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(gameStore.characters['game-1'].animations['assigned-2'].frames[0].bodyY,gameStore.characters['game-1'].animations['assigned-1'].frames[0].bodyY);
  elements.lean.value='35';elements.lean.onchange();elements.fps.value='12';elements.fps.onchange();
  fail=true;await elements.save.onclick();assert.match(elements.status.textContent,/Save failed/);assert.equal(elements.save.disabled,false);
- confirmed=false;elements.clip.value='walk';elements.clip.onchange();assert.equal(elements.clip.value,'');
+ confirmed=false;elements.clip.value='walk';await elements.clip.onchange();assert.equal(elements.clip.value,'');
  fail=false;confirmed=true;elements.name.value='Third';await elements.save.onclick();assert.equal(gameStore.characters['game-1'].animations['assigned-3'].frames[0].bodyLean,35);assert.equal(gameStore.characters['game-1'].animations['assigned-3'].fps,12);
  elements.exportFrame.onclick();elements.exportSheet.onclick();elements.exportRig.onclick();assert.equal(downloads,3);
  elements.moveSpeed.value='10';elements.moveSpeed.onchange();elements.bodyY.value='-20';elements.bodyY.onchange();
@@ -145,7 +149,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.play.onclick();assert.deepEqual(store.clips[zombie.id],zombie);
  elements.zoomIn.onclick();assert.equal(elements.zoomLabel.textContent,'120 %');
  elements.stage.onwheel({deltaY:-300,preventDefault(){}});assert.notEqual(elements.zoomLabel.textContent,'120 %');
- elements.zoomReset.onclick();assert.equal(elements.zoomLabel.textContent,'100 %');
+ elements.zoomReset.onclick();assert.equal(elements.zoomLabel.textContent,'69 %');unitZoom();
  elements.frames.children[0].onclick();elements.edit.checked=true;elements.edit.onchange();elements.lean.value='30';elements.lean.onchange();await elements.updateAnimation.onclick();
  const savedGame=gameStore.characters['game-1'];
  assert.equal(savedGame.name,'Zombie custom');assert.equal(savedGame.animation.frames[0].bodyLean,30);
@@ -180,7 +184,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  {const before=copy(gameStore.characters['game-1'].animations['assigned-7']);
  const e={button:0,pointerId:19,clientX:20,clientY:450,preventDefault(){}};
  elements.stage.onpointerdown(e);elements.stage.onpointermove({...e,clientX:70});elements.stage.onpointerup(e);
- assert.equal(elements.stage.style.cursor,'grab');elements.zoomReset.onclick();
+ assert.equal(elements.stage.style.cursor,'grab');elements.zoomReset.onclick();unitZoom();
  events.keydown({altKey:true});assert.equal(elements.stage.style.cursor,'move');
  events.keydown({ctrlKey:true});assert.equal(elements.stage.style.cursor,'ew-resize');
  // Clicking the canvas cannot switch from skeleton to bitmap; only the target switch can.
@@ -205,7 +209,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.stage.onpointerdown({...e,pointerType:'touch',pointerId:22,clientX:200,clientY:100});
  elements.stage.onpointermove({...e,pointerType:'touch',pointerId:22,clientX:300,clientY:100});
  assert.equal(elements.zoomLabel.textContent,'200 %');
- elements.stage.onpointerup({...e,pointerId:22});elements.stage.onpointerup({...e,pointerId:21});elements.zoomReset.onclick();}
+ elements.stage.onpointerup({...e,pointerId:22});elements.stage.onpointerup({...e,pointerId:21});elements.zoomReset.onclick();unitZoom();}
  const charCount=Object.keys(gameStore.characters).length,clipCount=Object.keys(store.clips).length;
  elements.up.onclick({shiftKey:false});await elements.updateCharacter.onclick();
  assert.equal(Object.keys(gameStore.characters).length,charCount);
@@ -308,7 +312,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  promptAnswers.push('Starší duplicita','2');confirmAnswers.push(true);await elements.saveCharacter.onclick();
  assert.equal(characterPosts.at(-1).id,'legacy-b');assert.deepEqual(gameStore.characters['legacy-a'],untouched);
  // Joint transparency is reversible, scoped, persisted and used by both exports.
- elements.zoomReset.onclick();elements.frames.children[0].onclick();elements.renderMode.value='detail';elements.renderMode.onchange();
+ elements.zoomReset.onclick();unitZoom();elements.frames.children[0].onclick();elements.renderMode.value='detail';elements.renderMode.onchange();
  elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';
  await elements.updateCharacter.onclick();
  const faded=copy(gameStore.characters['legacy-b']),fadedPart=faded.skin.parts.nearForearm;
@@ -346,7 +350,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.restoreDeleted.disabled,false);await elements.restoreDeleted.onclick();assert.deepEqual(gameStore.characters['legacy-b'],toDelete);
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();elements.name.value='Dočasná animace';await elements.assignAnimation.onclick();const previousClip=copy(store.clips[zombie.id]),removedAnimation=elements.characterAnimation.value,animationCount=Object.keys(gameStore.characters['legacy-b'].animations).length;
  await elements.deleteAnimation.onclick();assert.equal(gameStore.characters['legacy-b'].animations[removedAnimation],undefined);assert.equal(Object.keys(gameStore.characters['legacy-b'].animations).length,animationCount-1);assert.deepEqual(store.clips[zombie.id],previousClip);
- elements.frames.children[0].onclick();elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';elements.zoomReset.onclick();
+ elements.frames.children[0].onclick();elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();elements.editScope.value='all';elements.zoomReset.onclick();unitZoom();
  const beforePivot=copy(gameStore.characters['legacy-b']),pivotPose=C.sample(beforePivot.animation,0,false),pivotHandle=require('./cutout-editor.js').partHandles(beforePivot.skin,'nearForearm',pivotPose);
  const shiftDrag={button:0,pointerId:106,shiftKey:true,clientX:pivotHandle.pivot.x,clientY:pivotHandle.pivot.y,preventDefault(){}};
  elements.stage.onpointerdown(shiftDrag);elements.stage.onpointermove({...shiftDrag,clientX:shiftDrag.clientX+12,clientY:shiftDrag.clientY-9});elements.stage.onpointerup(shiftDrag);
@@ -380,9 +384,17 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
 
+ // Choosing a skeleton starts a detached eight-frame draft and asks first.
+ elements.skeletonSelect.value='pose-1';await elements.skeletonSelect.onchange();
+ assert.ok(questions.at(-1).includes('Zahodit aktuálně rozpracovanou animaci'));
+ assert.equal(Number(elements.bodyY.value),9);assert.equal(elements.characterAnimation.value,'');assert.equal(elements.clip.value,'');
+ assert.equal(elements.frames.children.length,8);for(const frameButton of elements.frames.children){frameButton.onclick();assert.equal(Number(elements.bodyY.value),9);}
+ // Finished animations remember and restore both source selections.
+ const finishedBefore=Object.keys(store.clips).length;promptAnswers.push('Hotová testovací');await elements.saveFinishedAnimation.onclick();
+ const hotId=elements.clip.value;assert.equal(store.clips[hotId].skin_id,skin.id);assert.equal(store.clips[hotId].skeleton_id,'pose-1');
+ elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();assert.notEqual(elements.characterAnimation.value,'');
+ elements.clip.value=hotId;await elements.clip.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skinSelect.value,skin.id);assert.equal(elements.skeletonSelect.value,'pose-1');
  // Every saved pose appears as a skeleton; save/update/delete refresh the list.
- elements.skeletonSelect.value='pose-1';elements.skeletonSelect.onchange();
- assert.equal(Number(elements.bodyY.value),9);
  promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
  assert.equal(store.poses['pose-test'].name,'Testovací kostra');assert.ok(store.poses['pose-test'].frame);
  assert.deepEqual(store.poses['pose-test'].joint_limits,R.defaultJointLimits());
@@ -391,10 +403,10 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.poses).length,1);assert.equal(elements.skeletonSelect.children.length,2);
  elements.trash.value='poses:trash-pose-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.poses).length,2);assert.equal(elements.skeletonSelect.children.length,3);
  // Finished animations are a separate global library, with the same three actions.
- const finishedBefore=Object.keys(store.clips).length;promptAnswers.push('Hotová testovací');await elements.saveFinishedAnimation.onclick();
  assert.equal(Object.keys(store.clips).length,finishedBefore+1);assert.deepEqual(elements.clip.children.map(option=>option.value),['',...Object.keys(store.clips)]);
  await elements.updateFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore+1);
  await elements.deleteFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore);assert.equal(elements.clip.children.length,finishedBefore+1);
+ elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();unitZoom();
  // On-canvas toggles change the selected endpoint only and undo restores it.
  elements.frames.children[0].onclick();elements.editTarget.value='bitmap';elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();
  await elements.updateCharacter.onclick();

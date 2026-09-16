@@ -23,8 +23,9 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 ### Hotová animace (`clip`)
 
 - Je v `graphics/poses/poses.json`, kolekce `clips`.
-- Obsahuje 2 až 32 póz, tempo 1 až 30 snímků/s, rychlost vpřed 0 až 1000 herních bodů/s, délky kostí, limity kloubů a případné výjimky snímků.
+- Obsahuje 2 až 32 póz, tempo 1 až 30 snímků/s, rychlost vpřed 0 až 1000 herních bodů/s, délky kostí, limity kloubů, případné výjimky snímků a odkazy `skin_id` / `skeleton_id` na použitou bitmapovou předlohu a výchozí kostru.
 - Je to globální zásobník hotových animací bez vlastnictví konkrétní postavou. Slouží jako znovupoužitelný zdroj. Přiřazení nebo úprava animace postavy globální hotovou animaci nemění.
+- Načtení hotové animace přepne její bitmapovou předlohu i kostru a zruší aktivní výběr animace postavy. Starší hotové animace bez odkazů zůstávají platné; použijí aktuální bitmapovou předlohu a kostra se zkusí rozpoznat shodou prvního snímku.
 
 ### Animace postavy
 
@@ -57,6 +58,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 3. Rozpracovaný pohyb lze uložit do globálního zásobníku **Hotové animace** nebo ho zvláštním tlačítkem přiřadit vybrané herní postavě.
 4. Seznam koster i hotových animací se po uložení, uložení jako, smazání a obnovení ihned znovu sestaví z aktuálního katalogu.
 5. Disketa přepisuje vybranou položku se zálohou, plus vytváří novou položku a koš ji přesouvá do vratného koše.
+6. Výběr Kostry je začátek nové práce: po potvrzení zahodí rozpracovaný pohyb, vytvoří osm shodných výchozích snímků, ponechá zvolenou bitmapovou předlohu a odpojí animaci vybranou u postavy.
 
 ## Kompatibilita a bezpečnost zápisu
 

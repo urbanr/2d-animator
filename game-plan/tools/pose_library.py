@@ -29,6 +29,12 @@ def bounded(value, low, high):
     return value
 
 
+def validate_reference(value, label):
+    if not isinstance(value, str) or not 1 <= len(value) <= 120 or any(not (ch.isalnum() or ch in '-_.:') for ch in value):
+        raise ValueError(f'Neplatný odkaz na {label}.')
+    return value
+
+
 def validate_joint_fade(value):
     if not isinstance(value, dict) or set(value)-{'start', 'end'}:
         raise ValueError('Neplatný přechod spoje.')
@@ -174,6 +180,10 @@ def save_pose(payload, path=STORE):
         if isinstance(speed, bool) or not isinstance(speed, (int, float)) or not math.isfinite(speed) or not 0 <= speed <= 1000:
             raise ValueError('Rychlost pohybu musí být 0 až 1000 herních bodů/s.')
         record.update(frames=[validate_frame(frame) for frame in frames], fps=fps, move_speed_pt_s=speed, rig_lengths=validate_lengths(payload.get('rig_lengths')), joint_limits=validate_joint_limits(payload.get('joint_limits')))
+        if 'skin_id' in payload:
+            record['skin_id'] = validate_reference(payload.get('skin_id'), 'bitmapovou předlohu')
+        if 'skeleton_id' in payload:
+            record['skeleton_id'] = validate_reference(payload.get('skeleton_id'), 'kostru')
         record['frame_edits'] = validate_frame_edits(payload.get('frame_edits'), record['frames'], record['rig_lengths'])
         collection = 'clips'
     else:
@@ -201,11 +211,15 @@ def save_pose(payload, path=STORE):
         elif kind == 'rig':
             record = {**previous, 'rig_lengths': record['rig_lengths'], 'joint_limits': record['joint_limits'], 'updated_at': datetime.now(timezone.utc).isoformat()}
         else:
+            updated = record
             record = {**previous, 'frames': record['frames'], 'fps': record['fps'],
                   'move_speed_pt_s': record['move_speed_pt_s'] if 'move_speed_pt_s' in payload else previous.get('move_speed_pt_s', 8),
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
                   'joint_limits': record['joint_limits'] if 'joint_limits' in payload else validate_joint_limits(previous.get('joint_limits')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
+            for key in ('skin_id', 'skeleton_id'):
+                if key in updated:
+                    record[key] = updated[key]
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
         backup_dir = path.parent / 'history'
         backup_dir.mkdir(exist_ok=True)
