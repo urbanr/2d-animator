@@ -12,19 +12,19 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 - Zdrojové cesty a kontrolní součty editor nikdy nepřepisuje z dat poslaných prohlížečem.
 - Herní postava si ukládá vlastní snapshot předlohy. Díky tomu může mít jiné pořadí, ukotvení, rotační středy, natočení, měřítko a přechody než jiná postava ze stejného zdroje.
 
-### Kostra (`rig`)
+### Kostra (`pose`)
 
-- Knihovna je v `graphics/poses/poses.json`, kolekce `rigs`.
-- Kostra ukládá společné délky kostí (`rig_lengths`) a úhlové limity (`joint_limits`).
+- Uživatelský pojem **Kostra** znamená jednu uloženou pózu v `graphics/poses/poses.json`, kolekci `poses`. Editor automaticky načítá všechny její položky.
+- Kostra ukládá polohu kloubů jednoho snímku (`frame`) a nově může nést také společné délky kostí (`rig_lengths`) a úhlové limity (`joint_limits`). Starší kostry bez těchto dvou údajů zůstávají platné.
 - Výchozí kloubové limity jsou nyní maximální, −180° až +180°. Jsou připravené i pro budoucí fyziku, ale editor je zatím používá hlavně při tažení kloubů.
 - Délka jedné kosti je 5 až 250 jednotek kostry. Ramena a pánev mají pracovní šířku −300 až +300 %, aby šlo strany prohodit přes střed a použít až trojnásobný rozestup.
 - Kostra neobsahuje obrázky, pořadí vrstev ani rychlost pohybu postavy.
 
-### Globální pohybová předloha (`clip`)
+### Hotová animace (`clip`)
 
 - Je v `graphics/poses/poses.json`, kolekce `clips`.
 - Obsahuje 2 až 32 póz, tempo 1 až 30 snímků/s, rychlost vpřed 0 až 1000 herních bodů/s, délky kostí, limity kloubů a případné výjimky snímků.
-- Slouží jako znovupoužitelný zdroj. Přiřazení nebo úprava animace postavy globální předlohu nemění.
+- Je to globální zásobník hotových animací bez vlastnictví konkrétní postavou. Slouží jako znovupoužitelný zdroj. Přiřazení nebo úprava animace postavy globální hotovou animaci nemění.
 
 ### Animace postavy
 
@@ -50,6 +50,14 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 - Režimy **Kostra** a **Bitmapa** jsou výlučné a nikdy se nepřepnou pouhým kliknutím do plátna.
 - Změna režimu, rozsahu nebo nástroje sama nemění data a nevytváří krok Zpět. Jeden souvislý tah je jeden krok Zpět.
 
+## Pracovní postup knihoven
+
+1. Uživatel samostatně vybere **Kostru** a **Bitmapovou předlohu**.
+2. Jejich kombinací sestaví rozpracovanou obecnou animaci. Kostra ani bitmapová předloha tím nezačnou patřit žádné herní postavě.
+3. Rozpracovaný pohyb lze uložit do globálního zásobníku **Hotové animace** nebo ho zvláštním tlačítkem přiřadit vybrané herní postavě.
+4. Seznam koster i hotových animací se po uložení, uložení jako, smazání a obnovení ihned znovu sestaví z aktuálního katalogu.
+5. Disketa přepisuje vybranou položku se zálohou, plus vytváří novou položku a koš ji přesouvá do vratného koše.
+
 ## Kompatibilita a bezpečnost zápisu
 
 - Starší záznam s jediným polem `animation` se při prvním zápisu načte jako jedna položka `animations`.
@@ -70,6 +78,6 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 
 - Postava zatím nemá definované herní atributy mimo rozptyl rychlosti.
 - `animation` je pouze dočasná kompatibilní kopie a má být odstraněna teprve po převodu všech herních čteček na `animations`.
-- Knihovna globálních clipů a animace přiřazené postavám jsou záměrně dvě různé vrstvy. Editor nesmí jejich názvy ani tlačítka znovu sloučit do jedné nejasné operace.
+- Knihovna globálních hotových animací a animace přiřazené postavám jsou záměrně dvě různé vrstvy. Editor nesmí jejich názvy ani tlačítka znovu sloučit do jedné nejasné operace.
 - Fyzika může později převzít `joint_limits`; oddělení částí těla po zásahu ani fyzikální vazby zatím implementované nejsou.
 - Při změně schématu se zvýší `schema_version`, doplní validace, test starého záznamu a tento dokument.

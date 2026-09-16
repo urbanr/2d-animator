@@ -106,5 +106,23 @@ class PoseTests(unittest.TestCase):
                 save_pose({'kind': 'pose', 'name': 'Bad', 'frame': {**frame, 'head': 181}}, path)
             self.assertEqual(path.read_bytes(), before)
 
+    def test_saved_skeleton_can_be_updated_with_dimensions_and_backup(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'poses.json'
+            path.write_text(json.dumps({'clips': {}, 'poses': {}}))
+            frame = dict.fromkeys(LIMITS, 0)
+            original = save_pose({'kind': 'pose', 'name': 'Kostra', 'frame': frame,
+                                  'rig_lengths': {'nearShin': 90},
+                                  'joint_limits': {'nearKnee': [-120, 20]}}, path)['record']
+            saved = save_pose({'kind': 'pose', 'mode': 'update', 'id': original['id'], 'name': 'Ignoruje se',
+                               'expectedRecord': original, 'frame': {**frame, 'bodyY': 12},
+                               'rig_lengths': {'nearShin': 96},
+                               'joint_limits': {'nearKnee': [-90, 10]}}, path)
+            self.assertEqual(saved['record']['name'], 'Kostra')
+            self.assertEqual(saved['record']['frame']['bodyY'], 12)
+            self.assertEqual(saved['record']['rig_lengths']['nearShin'], 96)
+            self.assertEqual(saved['record']['joint_limits']['nearKnee'], [-90, 10])
+            self.assertEqual(json.loads((path.parent / saved['backup']).read_text())['record'], original)
+
 
 if __name__ == '__main__': unittest.main()

@@ -4,7 +4,8 @@ const skin=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-
 const gameManifest=JSON.parse(fs.readFileSync(__dirname+'/../graphics/characters2/bezec-zombie-v1/game-192/manifest.json'));
 const exportedSizes=[];
 const zombie=copy({...R.zombieClips()[0],id:skin.default_clip});
-const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}}};
+const storedSkeleton={id:'pose-1',name:'Kostra test',frame:{...R.neutral(),bodyY:9},rig_lengths:{...R.defaultLengths(),nearShin:82},joint_limits:R.defaultJointLimits()};
+const store={clips:{[zombie.id]:copy(zombie),walk:{id:'walk',...R.referenceGaitClips()[0]}},poses:{[storedSkeleton.id]:copy(storedSkeleton)}};
 const gameStore={characters:{}};
 const translations=[];
 const smoothingWrites=[];
@@ -14,7 +15,7 @@ function element(){return {children:[],style:{},value:'',textContent:'',disabled
  getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='imageSmoothingEnabled'||key==='imageSmoothingQuality'){owner[key]=value;smoothingWrites.push([key,value]);}if(key==='fillStyle')owner.fillColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];owner.ellipses=[];owner.arcs=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;owner.arcs??=[];owner.arcs.push(arc);}:key==='ellipse'?(...ellipse)=>{owner.ellipses??=[];owner.ellipses.push(ellipse);}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
  setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(){this.capture=null;},
  toBlob(fn){exportedSizes.push([this.width,this.height]);fn(new Blob(['png']));},click(){}};}
-const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','gameCharacter','characterName','saveCharacter','undo','play','previous','next','reload','up','down','save','exportFrame','exportSheet','exportRig','parts'];
+const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','gameCharacter','characterName','saveCharacter','undo','play','previous','next','up','down','save','exportFrame','exportSheet','exportRig','parts'];
 ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta','randomRate','rateInfo');
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode','characterAnimation','assignAnimation');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
@@ -22,6 +23,7 @@ ids.push('headerTarget','headerScope','headerTool');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
 ids.push('stageResize');
 ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
+ids.push('skeletonCount','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation');
 ids.push('fadeStrength','fadeRadius','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
 ids.push('fadeX','fadeY','fadeAngle','deleteCharacter','deleteAnimation','trash','restoreDeleted');
 const elements=Object.fromEntries(ids.map(id=>[id,element()]));elements.smooth.checked=true;elements.side.value='near';
@@ -75,7 +77,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
     return {ok:true,json:async()=>({ok:true,record})};
   }
   assert.equal(url,'/api/poses');
-  if(p.kind==='rig'){store.rigs??={};if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.rigs[p.id]);const record={id:p.id||'rig-test',name:p.name,rig_lengths:p.rig_lengths,joint_limits:p.joint_limits};store.rigs[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
+  if(p.kind==='pose'){if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.poses[p.id]);const record={id:p.mode==='update'?p.id:'pose-test',name:p.mode==='update'?store.poses[p.id].name:p.name,frame:copy(p.frame),rig_lengths:copy(p.rig_lengths),joint_limits:copy(p.joint_limits)};store.poses[record.id]=copy(record);return {ok:true,json:async()=>({ok:true,record})};}
   assert.equal(p.kind,'clip');
   if(p.mode==='update')assert.deepEqual(p.expectedRecord,store.clips[p.id]);else assert.ok(!p.id);
   if(fail)return {ok:false,json:async()=>({ok:false,error:'Save failed'})};
@@ -86,6 +88,8 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  await vm.runInContext(fs.readFileSync(__dirname+'/characters2.js','utf8'),context);
  helpElement.onclick({preventDefault(){},stopPropagation(){}});assert.equal(helpElement.classList.opened,true);helpElement.onmouseleave();assert.equal(helpElement.classList.opened,false);
  assert.equal(elements.parts.children.length,13);assert.equal(elements.frames.children.length,8);assert.equal(elements.play.disabled,false);
+ assert.equal(elements.skeletonSelect.children.length,Object.keys(store.poses).length+1);assert.match(elements.skeletonCount.textContent,/1 koster/);
+ assert.equal(elements.clip.children.length,Object.keys(store.clips).length+1);assert.equal(elements.clip.value,zombie.id);
  const defaultHeight=elements.stageWrap.style.height,defaultWidth=elements.stageWrap.style.width,resizeEvent={button:0,pointerId:99,clientY:500,preventDefault(){},stopPropagation(){}};
  elements.stageResize.onpointerdown(resizeEvent);elements.stageResize.onpointermove({...resizeEvent,clientY:350});elements.stageResize.onpointerup(resizeEvent);
  assert.notEqual(elements.stageWrap.style.height,defaultHeight);assert.equal(elements.stageResize.capture,null);
@@ -127,7 +131,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(gameStore.characters['game-1'].animations['assigned-2'].frames[0].bodyY,gameStore.characters['game-1'].animations['assigned-1'].frames[0].bodyY);
  elements.lean.value='35';elements.lean.onchange();elements.fps.value='12';elements.fps.onchange();
  fail=true;await elements.save.onclick();assert.match(elements.status.textContent,/Save failed/);assert.equal(elements.save.disabled,false);
- confirmed=false;elements.clip.value='walk';elements.clip.onchange();assert.equal(elements.clip.value,zombie.id);
+ confirmed=false;elements.clip.value='walk';elements.clip.onchange();assert.equal(elements.clip.value,'');
  fail=false;confirmed=true;elements.name.value='Third';await elements.save.onclick();assert.equal(gameStore.characters['game-1'].animations['assigned-3'].frames[0].bodyLean,35);assert.equal(gameStore.characters['game-1'].animations['assigned-3'].fps,12);
  elements.exportFrame.onclick();elements.exportSheet.onclick();elements.exportRig.onclick();assert.equal(downloads,3);
  elements.moveSpeed.value='10';elements.moveSpeed.onchange();elements.bodyY.value='-20';elements.bodyY.onchange();
@@ -150,7 +154,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.equal(Object.keys(savedGame.animations).length,4);
  elements.lean.value='10';elements.lean.onchange();confirmed=true;
  await elements.gameCharacter.onchange();assert.equal(Number(elements.lean.value),30);
- assert.equal(elements.clip.value,zombie.id);assert.equal(elements.characterAnimation.value,'assigned-4');
+ assert.equal(elements.clip.value,'');assert.equal(elements.characterAnimation.value,'assigned-4');
  // Playback must never silently change the editor checkbox.
  elements.play.onclick();assert.equal(elements.edit.checked,true);elements.play.onclick();assert.equal(elements.edit.checked,true);
  // A radial ordinary drag must not resize, Ctrl must resize, and the lock must prevent it.
@@ -375,13 +379,21 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  yellowEndpoints(0);elements.next.onclick();yellowEndpoints(1);
  elements.editTarget.onclick();assert.equal(elements.editTarget.value,'bitmap');assert.equal(elements.layerOrder.value,'nearForearm');
 
- // Separate skeleton library persists dimensions and maximal joint limits.
+ // Every saved pose appears as a skeleton; save/update/delete refresh the list.
+ elements.skeletonSelect.value='pose-1';elements.skeletonSelect.onchange();
+ assert.equal(Number(elements.bodyY.value),9);
  promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
- assert.equal(store.rigs['rig-test'].name,'Testovací kostra');assert.equal(store.rigs['rig-test'].frames,undefined);
- assert.deepEqual(store.rigs['rig-test'].joint_limits,R.defaultJointLimits());
- await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,1);
- await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.rigs).length,0);
- elements.trash.value='rigs:trash-rig-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.rigs).length,1);
+ assert.equal(store.poses['pose-test'].name,'Testovací kostra');assert.ok(store.poses['pose-test'].frame);
+ assert.deepEqual(store.poses['pose-test'].joint_limits,R.defaultJointLimits());
+ assert.equal(elements.skeletonSelect.children.length,3);
+ await elements.updateSkeleton.onclick();assert.equal(Object.keys(store.poses).length,2);
+ await elements.deleteSkeleton.onclick();assert.equal(Object.keys(store.poses).length,1);assert.equal(elements.skeletonSelect.children.length,2);
+ elements.trash.value='poses:trash-pose-test';await elements.restoreDeleted.onclick();assert.equal(Object.keys(store.poses).length,2);assert.equal(elements.skeletonSelect.children.length,3);
+ // Finished animations are a separate global library, with the same three actions.
+ const finishedBefore=Object.keys(store.clips).length;promptAnswers.push('Hotová testovací');await elements.saveFinishedAnimation.onclick();
+ assert.equal(Object.keys(store.clips).length,finishedBefore+1);assert.deepEqual(elements.clip.children.map(option=>option.value),['',...Object.keys(store.clips)]);
+ await elements.updateFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore+1);
+ await elements.deleteFinishedAnimation.onclick();assert.equal(Object.keys(store.clips).length,finishedBefore);assert.equal(elements.clip.children.length,finishedBefore+1);
  // On-canvas toggles change the selected endpoint only and undo restores it.
  elements.frames.children[0].onclick();elements.editTarget.value='bitmap';elements.layerOrder.value='nearForearm';elements.layerOrder.onchange();
  await elements.updateCharacter.onclick();

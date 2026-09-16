@@ -154,6 +154,10 @@ def save_pose(payload, path=STORE):
               'created_at': datetime.now(timezone.utc).isoformat()}
     if kind == 'pose':
         record['frame'] = validate_frame(payload.get('frame'))
+        if 'rig_lengths' in payload:
+            record['rig_lengths'] = validate_lengths(payload.get('rig_lengths'))
+        if 'joint_limits' in payload:
+            record['joint_limits'] = validate_joint_limits(payload.get('joint_limits'))
         collection = 'poses'
     elif kind == 'rig':
         record['rig_lengths'] = validate_lengths(payload.get('rig_lengths'))
@@ -179,15 +183,22 @@ def save_pose(payload, path=STORE):
     mode = payload.get('mode', 'create')
     backup = None
     if mode == 'update':
-        if kind not in ('clip', 'rig'):
-            raise ValueError('Přepsat lze pouze animaci.')
+        if kind not in ('pose', 'clip', 'rig'):
+            raise ValueError('Tento typ položky nelze přepsat.')
         target = payload.get('id')
         if not isinstance(target, str) or target not in library[collection]:
-            raise ValueError('Vybraná animace neexistuje; nic se nepřepsalo.')
+            raise ValueError('Vybraná položka neexistuje; nic se nepřepsalo.')
         previous = library[collection][target]
         if payload.get('expectedRecord') != previous:
-            raise ValueError('Animace se mezitím změnila v jiné kartě. Nic se nepřepsalo. Ulož úpravy jako novou variantu nebo načti aktuální stav.')
-        if kind == 'rig':
+            raise ValueError('Položka se mezitím změnila v jiné kartě. Nic se nepřepsalo. Ulož úpravy jako novou variantu nebo načti aktuální stav.')
+        if kind == 'pose':
+            updated = record
+            record = {**previous, 'frame': updated['frame'], 'updated_at': datetime.now(timezone.utc).isoformat()}
+            if 'rig_lengths' in updated:
+                record['rig_lengths'] = updated['rig_lengths']
+            if 'joint_limits' in updated:
+                record['joint_limits'] = updated['joint_limits']
+        elif kind == 'rig':
             record = {**previous, 'rig_lengths': record['rig_lengths'], 'joint_limits': record['joint_limits'], 'updated_at': datetime.now(timezone.utc).isoformat()}
         else:
             record = {**previous, 'frames': record['frames'], 'fps': record['fps'],
