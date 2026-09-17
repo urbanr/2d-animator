@@ -376,6 +376,8 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const pivoted=copy(gameStore.characters['legacy-b']);
  const key=(k,extra={})=>events.keydown({key:k,preventDefault(){},target:{tagName:'CANVAS'},...extra});
  key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('z',{code:'KeyY'});assert.match(elements.frameLabel.textContent,/8 \/ 8/,'Fyzická klávesa Y jde zpět i při rozložení, které vrací znak Z');
+ key('c',{code:'KeyC'});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('z');assert.match(elements.frameLabel.textContent,/2 \/ 8/);key('y');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('x');assert.match(elements.frameLabel.textContent,/1 \/ 8/);assert.equal(elements.stage.style.cursor,'crosshair');assert.equal(elements.stage.rects.length,4,'Holding X reveals four warp handles');
  const warpBefore=copy(gameStore.characters['legacy-b']),warpPose=C.sample(warpBefore.animation,0,false),warpGrip=require('./cutout-editor.js').partHandles(warpBefore.skin,'nearForearm',warpPose).warpCorners[0];

@@ -610,7 +610,8 @@
     if(['3','š'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTool').onclick();keyboardEdit=null;return;}
     if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
     if(key==='x'&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();keyboardEdit=null;if($('edit').checked&&$('editTarget').value==='bitmap'&&!warpHeld){freeze();warpHeld=true;cursor();draw();}return;}
-    if(['y','z','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
+    const frameShortcut=e.code==='KeyY'?'previous':e.code==='KeyC'?'next':key==='y'?'previous':['z','c'].includes(key)?'next':'';
+    if(frameShortcut){e.preventDefault();keyboardEdit=null;$(frameShortcut).onclick();return;}
     const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
     if(!move&&!rotate)return;
     e.preventDefault();
