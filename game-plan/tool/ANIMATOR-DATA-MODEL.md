@@ -62,7 +62,7 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - Je v `graphics/animace/animations.json`, kolekce `finished_animations`.
 - Je to kombinace vlastního úplného snapshotu kostry a nastavení jedné bitmapové předlohy, včetně bitmapových výjimek snímků a povinného odkazu `skin_id`.
 - `skeleton_id` je volitelný. Je vyplněný jen tehdy, pokud interní kostra animace stále přesně odpovídá pojmenované kostře v bance. První změna kostry odkaz odstraní, ale uložená animace dál obsahuje všechny své snímky, délky a limity. Bitmapová změna odkaz na kostru neodpojuje.
-- Zdrojové PNG se do animace nekopírují. Animace ukládá jen pozice, deformace, měřítka, rotační středy, pořadí a masky průhlednosti bitmapových dílů.
+- Zdrojové PNG se do animace nekopírují. Animace ukládá jen pozice, čtyřbodové deformace, měřítka, rotační středy, pořadí a masky průhlednosti bitmapových dílů. Čtyřbodová deformace je volitelné `warp: [[dx,dy], …]` v pořadí levý horní, pravý horní, pravý dolní, levý dolní roh; chybějící hodnota znamená čtyři nulové posuny.
 - Je to globální zásobník bez vlastnictví konkrétní postavou. Načtení nastaví uloženou bitmapovou předlohu i kosterní animaci a odpojí aktivní animaci postavy.
 
 ### Animace přiřazená postavě
@@ -84,8 +84,8 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 
 ## Rozsah úprav
 
-- **Snímek**: změna se uloží jako výjimka aktuálního snímku. U bitmapy je posun relativní k základnímu uchycení a velikost relativní k základnímu měřítku.
-- **Animace**: změna se promítne do všech snímků se zachováním jejich rozdílů. U bitmapy mění společný základ ve snapshotu rozpracované hotové animace. Výjimkou je přechod průhlednosti: vybraný konec dostane jednu společnou masku v místních souřadnicích dílu a jeho staré snímkové výjimky se odstraní, aby maska ve všech pózách stejně následovala kost. Druhý konec a ostatní vlastnosti snímků se nemění.
+- **Snímek**: změna se uloží jako výjimka aktuálního snímku. U bitmapy je posun i čtyřbodový `warp` relativní ke společnému základu a velikost relativní k základnímu měřítku.
+- **Animace**: změna se promítne do všech snímků se zachováním jejich rozdílů. U bitmapy mění společný základ ve snapshotu rozpracované hotové animace; platí to i pro jednotlivé rohy `warp`. Výjimkou je přechod průhlednosti: vybraný konec dostane jednu společnou masku v místních souřadnicích dílu a jeho staré snímkové výjimky se odstraní, aby maska ve všech pózách stejně následovala kost. Druhý konec a ostatní vlastnosti snímků se nemění.
 - Režimy **Kostra** a **Bitmapa** jsou výlučné a nikdy se nepřepnou pouhým kliknutím do plátna.
 - Změna režimu, rozsahu nebo nástroje sama nemění data a nevytváří krok Zpět. Jeden souvislý tah je jeden krok Zpět.
 
@@ -107,6 +107,7 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - Kanonická vazba postavy je pouze `animation_ids` + `default_animation_id`; staré vložené kopie ani snapshot bitmapy se do postavy už nezapisují.
 - Každá změna postavy nebo její animace posílá `expectedRecord`. Pokud mezitím jiná karta záznam změnila, zápis se odmítne místo tichého přepsání.
 - Před přepsáním se uloží záloha do `history/` uvnitř příslušné datové banky. Katalog se zapisuje přes dočasný soubor a atomické přejmenování.
+- Předchozí verze přepsané kosterní nebo hotové animace se zároveň vloží do `trash` s `saved_at` a odkazem na soubor `history`. Koš ji zobrazuje s datem a časem. Obnova verze nejdřív přesune právě aktivní verzi do další položky Koše, takže je vratná i obnova samotná.
 - Všechny akce Uložit, Uložit jako a Smazat vyžadují potvrzení uživatele.
 
 ## Ovládání panelu Úpravy
@@ -114,7 +115,8 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - `1` nebo `+`: Kostra / Bitmapa.
 - `2` nebo `ě`: tento Snímek / celá Animace.
 - `3` nebo `š`: Posun → Rotace → Velikost → Posun.
-- Mezerník: přehrát nebo pozastavit. `Y`: předchozí snímek. `X` nebo `C`: další snímek. `WASD`: posun. `Q` / `E`: rotace.
+- Mezerník: přehrát nebo pozastavit. `Y`: předchozí snímek. `Z` nebo `C`: další snímek. `WASD`: posun. `Q` / `E`: rotace.
+- Jen v režimu Bitmapa: při držení `X` se zobrazí čtyři rohové úchyty vybraného dílu. Tažení rohu mění jeho `warp`; puštění `X` pouze skryje úchyty. Rozsah Snímek / Animace, Zpět, ukládání, náhled i export zůstávají stejné jako u ostatních bitmapových úprav.
 - Zkratky neplatí při psaní do pole, výběru nebo textové oblasti. Přepínače v záhlaví a uvnitř rozbaleného panelu ovládají stejný stav.
 
 ### Ikony a navigace

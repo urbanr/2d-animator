@@ -18,11 +18,11 @@ Středový úchyt trupu respektuje nástroj: **Posun** přesouvá celou postavu,
 
 Kostra ukládá délky i `joint_limits`. Starší kostry bez tohoto údaje dostanou při načtení maximální výchozí limity −180° až +180°. Stejné limity přebírá hotová animace, aby je později mohl použít editor i fyzika; postava drží pouze odkaz na animaci.
 
-U vybrané bitmapy jsou ihned vidět obě zapnuté poloelipsy průhlednosti. Malé tyrkysové značky jsou uvnitř kloubových bodů a zvětšují se společně s nimi. Otazníky jsou v záhlaví sekcí vedle rozbalení.
+U vybrané bitmapy jsou ihned vidět oba zapnuté obrysy průhlednosti. Každý konec může mít samostatně tvar **Elipsa** nebo **Obdélník**. Elipsa zprůhledňuje radiálně od středu k oblouku; obdélník v rovných pruzích od koncového bodu k protější hraně. **Náběh %** určuje velikost plné části od středu před začátkem přechodu; výchozí hodnota je 15 %. U koncového bodu zůstává bitmapa plná a při 100 % je vnější část masky zcela průhledná. Aktuálně vybraný přechod a jeho značka jsou oranžové, ostatní šedé. Otazníky jsou v záhlaví sekcí vedle rozbalení.
 
-Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou malé úchyty **↔** (šířka) a **↕** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět.
+Průhlednost je třetí sbalovací sekce napravo. Na čárkovaném rámečku bitmapy jsou malé úchyty **↔** (šířka) a **↕** (výška); mění rozměr v místních osách natočeného dílu, se zvoleným rozsahem Snímek / Animace a možností Zpět. Všechna číselná pole ponechávají viditelné krokovací šipky nahoru a dolů; s drženým **Option** mění šipka nebo klávesa ↑/↓ hodnotu rovnou o ±10. Pole **Posun postavy** je vedle Výšky, má běžný krok 1 a záporná hodnota posouvá postavu doleva, kladná doprava. Také **Výška** používá pouze celá čísla a běžný krok 1.
 
-Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y** přepne na předchozí a **X** nebo **C** na další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. Funguje v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
+Mimo vstupní pole: **1/+** přepíná Kostru a Bitmapu, **2/Ě** přepíná Snímek a Animaci a **3/Š** cyklicky volí Posun, Rotaci a Velikost. **Mezerník** přehraje/pozastaví, **Y** přepne na předchozí a **Z** nebo **C** na další snímek včetně přechodu přes konec animace, **A/D** posouvá vybraný díl vodorovně, **W/S** svisle a **Q/E** otáčí. V režimu Bitmapa podržení **X** zobrazí čtyři oranžové rohy vybraného dílu; tažením libovolného rohu se bitmapa volně deformuje do čtyřúhelníku. Po puštění X úchyty zmizí, deformace zůstane a respektuje rozsah Snímek / Animace. Pohybové zkratky fungují v režimu Bitmapa i Kostra; **Shift** zvětšuje krok z 1 na 10. Při psaní do polí se zkratky neuplatní. Stejné první tři přepínače jsou jako ikony v záhlaví panelu Úpravy a zůstávají dostupné i po jeho sbalení.
 
 Náhled vždy využije celou volnou šířku. Plátno se interně vykresluje v rozlišení odpovídajícím skutečné šířce a hustotě pixelů displeje, takže se pevný logický prostor 512 × 560 při zvětšení nerozpixeluje. Výchozí zoom je 69 % a je ukotvený k podlaze. Výchozí výška končí těsně pod čárou podlahy a ukazuje jen 12 logických bodů její zelené plochy. Při ručním tažení není stanovená uživatelská minimální výška; technické minimum je jediný CSS pixel. Dvojklik na pravý dolní úchyt vrací výchozí ořez. Změna velikosti náhledu neovlivňuje uloženou postavu.
 
@@ -33,6 +33,8 @@ Pravá sbalovací část se jmenuje **Bitmapová předloha**. Tímto názvem se 
 Při úpravě průhlednosti v rozsahu **Animace** vznikne jedna společná maska v místních souřadnicích bitmapového dílu. Ve všech snímcích proto sleduje příslušnou kost a vypadá stejně relativně ke kloubu. Starší snímkové výjimky vybraného konce se odstraní; výjimky druhého konce a jiné úpravy zůstanou zachované.
 
 Nápovědy s otazníkem se otevřou jen kliknutím a zavřou po odjetí ukazatele z nápovědy.
+
+Při každém přepsání kosterní nebo hotové animace se její předchozí verze objeví v Koši s českým datem a časem. Obnovení starší verze nepřepíše současnou nevratně: nejdřív ji uloží jako další položku Koše. Dřívější soubory ze složky `history/` jsou do stejného seznamu převedeny jednorázově.
 
 ## Přehrávač spritů – podklady
 

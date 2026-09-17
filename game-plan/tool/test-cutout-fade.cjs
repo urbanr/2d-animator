@@ -6,15 +6,20 @@ for(const key of sourceSkin.layers.filter(C.canFade))for(const end of ['start','
   const p=sourceSkin.parts[key],configured={...p,joint_fade:{[end]:{...C.fadeFor(p,end),strength:1}}};
   assert.equal(C.fadeAlpha(configured,...p[end==='start'?'end':'start']),1,`${key}: default fade never touches opposite joint`);
 }
-assert.equal(C.fadeAlpha(part,50,40),1,'Attachment is the opaque circle center, not its arc');
+assert.equal(C.fadeAlpha(part,50,40),1,'The selected endpoint stays opaque');
+assert.equal(C.fadeAlpha(part,50,35),1,'The solid core survives bitmap sampling around the endpoint');
 assert.equal(C.fadeAlpha(part,50,80),1,'Opaque one radius inside bitmap');
-assert.equal(C.fadeAlpha(part,50,0),0,'Transparent at outward curved edge');
+assert.equal(C.fadeAlpha(part,50,0),0,'Curved edge is fully transparent at 100% strength');
 assert.equal(C.fadeAlpha(part,50,-1),1,'Beyond the arc the bitmap is unchanged');
 assert.equal(C.fadeAlpha(part,0,0),1,'Outside the half-disc but in the outward half-plane stays opaque');
 assert.ok(C.fadeAlpha(part,50,20)>0&&C.fadeAlpha(part,50,20)<1);
+const later={...part,joint_fade:{start:{...part.joint_fade.start,onset:.5}}};
+assert.equal(C.fadeAlpha(later,50,20),1,'Náběh keeps the configured core opaque');
+assert.ok(C.fadeAlpha(later,50,12)>0&&C.fadeAlpha(later,50,12)<1,'Fade starts after Náběh');
+assert.equal(C.fadeAlpha(later,50,0),0,'Náběh still reaches full transparency before the edge');
 assert.equal(C.fadeAlpha(part,50,140),1,'Hand untouched');
 const movedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,20],angle:0}}};
-assert.equal(C.fadeAlpha(movedMask,50,60),1,'Offset moves the circle center');
+assert.equal(C.fadeAlpha(movedMask,50,60),1,'Offset moves the solid center');
 assert.ok(C.fadeAlpha(movedMask,50,40)<C.fadeAlpha(part,50,40));
 const rotatedMask={...part,joint_fade:{start:{...part.joint_fade.start,offset:[0,0],angle:90}}};
 assert.notEqual(C.fadeAlpha(rotatedMask,70,60),C.fadeAlpha(part,70,60));
@@ -26,9 +31,9 @@ for(const end of ['start','end'])for(const radius of [10,40,100])for(const angle
 }
 assert.equal(C.fadeAlpha(part,0,120),1,'Whole inward half untouched');
 const inverse={...part,joint_fade:{start:{...part.joint_fade.start,direction:'inward'}}};
-assert.equal(C.fadeAlpha(inverse,50,0),1);assert.equal(C.fadeAlpha(inverse,50,80),0);
+assert.equal(C.fadeAlpha(inverse,50,0),1);assert.ok(C.fadeAlpha(inverse,50,60)<1);assert.equal(C.fadeAlpha(inverse,50,80),0);
 const endOnly={...part,joint_fade:{end:{strength:1,radius:20,direction:'outward'}}};
-assert.equal(C.fadeAlpha(endOnly,50,40),1);assert.equal(C.fadeAlpha(endOnly,50,160),0);
+assert.equal(C.fadeAlpha(endOnly,50,40),1);assert.equal(C.fadeAlpha(endOnly,50,140),1);assert.equal(C.fadeAlpha(endOnly,50,160),0);
 const skin={layers:['nearForearm','torso'],parts:{nearForearm:{...part,joint_fade:{}},torso:part}};
 const clip={frames:[R.neutral(),R.neutral()],fps:6};
 assert.equal(C.fadeAlpha(C.partFor(skin,'torso',{}),50,0),0,'Torso fades render too');
@@ -54,16 +59,16 @@ for(const key of sourceSkin.layers){
     assert.deepEqual(C.fadeFor(result.skin.parts[key],other),C.fadeFor(sourceSkin.parts[key],other));
   }
 }
-for(const bad of [null,[],{x:{}},{start:{strength:NaN,radius:4,direction:'outward'}},{start:{strength:.5,radius:0,direction:'outward'}}])assert.throws(()=>C.validateFade(bad));
+for(const bad of [null,[],{x:{}},{start:{strength:NaN,radius:4,direction:'outward'}},{start:{strength:.5,radius:0,direction:'outward'}},{start:{strength:.5,radius:4,direction:'outward',shape:'triangle'}},{start:{strength:.5,radius:4,direction:'outward',onset:.96}}])assert.throws(()=>C.validateFade(bad));
 // Actual RGBA multiplication, original retained, bounded cache, detail and game coordinates.
 function surface(w,h){let pixels;return {width:w,height:h,getContext:()=>({drawImage(){},getImageData:()=>({data:new Uint8ClampedArray(w*h*4).fill(255)}),putImageData:d=>{pixels=d.data;}}),get pixels(){return pixels;}};}
 const img={width:100,height:160},masked=C.fadedImage(img,part,()=>surface(100,160));
 assert.equal(masked.pixels[3],255,'Outside half-disc unchanged in rendered RGBA');
-assert.ok(masked.pixels[(0*100+50)*4+3]<10);assert.equal(masked.pixels[(140*100+50)*4+3],255);
+assert.ok(masked.pixels[(0*100+50)*4+3]<10);assert.equal(masked.pixels[(39*100+50)*4+3],255);assert.equal(masked.pixels[(140*100+50)*4+3],255);
 assert.equal(C.fadedImage(img,part,()=>{throw Error('Cache miss');}),masked);
 const low=C.fadedImage({width:10,height:16},part,()=>surface(10,16));
 assert.equal(low.pixels[(14*10+5)*4+3],255);assert.equal(low.pixels[3],255);
-assert.ok(low.pixels[(0*10+5)*4+3]<20,'Game resolution still fades inside half-disc');
+assert.ok(low.pixels[(0*10+5)*4+3]>20&&low.pixels[(0*10+5)*4+3]<50,'Game resolution keeps the proportional final pixel instead of a broad uniform cap');
 const disabled={...part,joint_fade:{start:{...part.joint_fade.start,strength:0}}};
 assert.equal(C.fadedImage(img,disabled,()=>{throw Error('Unnecessary surface');}),img);
-console.log('PASS: semicircle alpha, direction, ends, scope, reset, cyclic interpolation, immutable sources and both texture resolutions.');
+console.log('PASS: edge-centered semicircle alpha, direction, ends, scope, reset, cyclic interpolation, immutable sources and both texture resolutions.');

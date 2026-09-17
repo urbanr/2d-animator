@@ -18,6 +18,7 @@ class AnimationLinkMigrationTests(unittest.TestCase):
             skeleton = {'id': 'walk', 'name': 'Chůze', 'frames': [frame] * 8, 'fps': 8}
             poses_path.write_text(json.dumps({'schema_version': 1, 'clips': {'walk': skeleton}, 'poses': {}}))
             skin = {'layers': ['head'], 'parts': {'head': {'file': 'head.png', 'offset': [12, -8],
+                    'warp': [[1, 2], [3, 4], [5, 6], [7, 8]],
                     'rotation': 7, 'scale': 1, 'scale_x': 1.2, 'scale_y': .9}}}
             animation = {**skeleton, 'name': 'Zombie chůze', 'source_clip_id': 'walk'}
             characters_path.write_text(json.dumps({'schema_version': 2, 'characters': {'zombie': {
@@ -35,6 +36,7 @@ class AnimationLinkMigrationTests(unittest.TestCase):
             self.assertEqual(finished['skeleton_id'], 'walk')
             self.assertEqual(finished['skin_id'], 'zombie-template')
             self.assertEqual(finished['bitmap']['parts']['head']['offset'], [12, -8])
+            self.assertEqual(finished['bitmap']['parts']['head']['warp'], [[1, 2], [3, 4], [5, 6], [7, 8]])
             self.assertEqual(finished['bitmap']['parts']['head']['scale_x'], 1.2)
             self.assertEqual(len(list((poses_dir / 'history').glob('pre-animation-links-*.json'))), 1)
             self.assertEqual(len(list((characters_dir / 'history').glob('pre-animation-links-*.json'))), 1)

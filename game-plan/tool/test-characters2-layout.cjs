@@ -21,7 +21,8 @@ assert.match(html,/\.selection-bar\{display:grid;grid-template-columns:minmax\(0
 assert.match(html,/id="assignAnimation"[^>]*>↳ Přiřadit k postavě/);
 assert.match(html,/<details id="characterSection"><summary><span>Bitmapová předloha<\/span>/);
 assert.doesNotMatch(html,/<details id="characterSection"><summary><span>Postava<\/span>/);
-assert.match(html,/width:calc\(2ch \+ 18px\)/);
+assert.match(html,/\.speed-row input\[type=number\]\{width:76px/);
+assert.doesNotMatch(html,/appearance:textfield|inner-spin-button[^}]*display:none/);
 // Compact display does not narrow the accepted values or lose existing controls.
 assert.match(html,/id="moveSpeed"[^>]*max="1000"[^>]*step="0.1"/);
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
@@ -45,7 +46,17 @@ assert.deepEqual([...aside.matchAll(/<details id="([^"]+)"/g)].slice(0,3).map(m=
 assert.ok(!html.split('<aside class="panel">')[0].includes('id="fadePanel"'));
 assert.match(html,/id="helpFade" role="tooltip">Vyber bitmapový díl/);
 assert.match(html,/#fadePanel label\{display:flex;flex-direction:column/);
-assert.match(html,/#fadePanel input\[type=number\]\{width:40px/);
+assert.match(html,/#fadePanel input\[type=number\]\{width:64px/);
+assert.match(html,/#fadePanel \.fade-geometry\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\);gap:6px/);
+assert.match(html,/#fadePanel \.fade-primary\{display:grid;grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.25fr\) minmax\(0,1\.15fr\)/);
+assert.match(html,/<div class="row fade-primary"><label>Konec[\s\S]*?id="fadeDirection"[\s\S]*?Zprůhlednění[\s\S]*?id="fadeStrength"[\s\S]*?<\/div>\s*<div class="row fade-shape-row"><label>Tvar/);
+assert.match(html,/<div class="row fade-geometry">[\s\S]*?id="fadeOnset"[\s\S]*?id="fadeRadius"[\s\S]*?id="fadeRadius2"[\s\S]*?<\/div>/);
+assert.match(html,/id="fadeShape"[^>]*>[\s\S]*?<option value="ellipse">Elipsa<\/option>[\s\S]*?<option value="rectangle">Obdélník<\/option>/);
+assert.match(html,/id="fadeOnset"[^>]*type="number"[^>]*min="0"[^>]*max="95"[^>]*step="1"[^>]*value="15"/);
+assert.match(html,/id="bodyX"[^>]*type="number"[^>]*min="-200"[^>]*max="200"[^>]*step="1"[^>]*title="Mínus = doleva, plus = doprava; Option = krok 10"/);
+assert.match(html,/id="bodyY"[^>]*type="number"[^>]*min="-100"[^>]*max="100"[^>]*step="1"[^>]*title="Jen celá čísla; Option = krok 10"/);
+assert.doesNotMatch(html,/id="(?:left|right|up|down)"/);
+assert.match(js,/const numericIds=\['bodyX','bodyY','fps','moveSpeed','spread','fadeOnset','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'\]/);
 assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesNotMatch(html,/\.help:hover \.help-text/);
 assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
 assert.match(html,/id="lean"[^>]*min="-180"[^>]*max="180"/);
@@ -56,4 +67,7 @@ const animationSection=html.match(/<details id="animationSection">([\s\S]*?)<\/d
 assert.match(animationSection,/<summary><span>Hotové animace<\/span>/);
 for(const id of ['clip','animationDirtyStar','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation','assignAnimation'])assert.ok(animationSection.includes(`id="${id}"`));
 assert.match(html,/\.dirty-star\{color:#ff514f/);
+assert.match(html,/podržením X zobrazíš čtyři rohy/);assert.match(html,/Y: předchozí snímek, Z nebo C: další snímek/);
+assert.match(html,/Po každém přepsání animace se sem uloží předchozí verze s datem a časem/);
+assert.match(js,/toLocaleString\('cs-CZ',\{dateStyle:'short',timeStyle:'medium'\}\)/);
 console.log('PASS: Animator libraries, fixed Parts panel, corrected mode icons, speed row and collapsed panels.');

@@ -63,6 +63,14 @@ class PoseTests(unittest.TestCase):
             self.assertEqual(saved['record']['id'], original['id'])
             self.assertEqual(saved['record']['frames'][0]['bodyY'], 10)
             self.assertEqual(json.loads((path.parent / saved['backup']).read_text())['record'], original)
+            version = next(iter(loaded['trash'].values()))
+            self.assertEqual(version['collection'], 'clips')
+            self.assertEqual(version['record_id'], original['id'])
+            self.assertEqual(version['name'], original['name'])
+            self.assertNotIn('record', version)
+            self.assertEqual(version['saved_at'], saved['record']['updated_at'])
+            self.assertEqual(version['history'], saved['backup'])
+            self.assertEqual(saved['trash'], loaded['trash'])
             before = path.read_bytes()
             for invalid in [payload, {**payload, 'id': 'missing'}, {**payload, 'expectedRecord': saved['record'], 'fps': 99}]:
                 with self.assertRaises(ValueError): save_pose(invalid, path)
@@ -130,16 +138,25 @@ class PoseTests(unittest.TestCase):
             frame = dict.fromkeys(LIMITS, 0)
             skeleton = {'id': 'pose-1', 'name': 'Kostra', 'frames': [frame] * 8, 'fps': 8}
             path.write_text(json.dumps({'clips': {'pose-1': skeleton, 'pose-2': {**skeleton, 'id': 'pose-2'}}, 'poses': {}, 'finished_animations': {}}))
-            bitmap = {'layers': ['head'], 'parts': {'head': {'offset': [0, 0], 'rotation': 0, 'scale': 1, 'scale_x': 1, 'scale_y': 1}}}
+            fade = {'start': {'strength': .75, 'radius': 30, 'radius2': 18, 'shape': 'rectangle', 'onset': .35,
+                              'direction': 'outward', 'offset': [12, -4], 'angle': 25}}
+            warp = [[12, -5], [-8, 9], [17, 13], [-11, -7]]
+            bitmap = {'layers': ['head'], 'parts': {'head': {'offset': [0, 0], 'warp': warp, 'rotation': 0, 'scale': 1, 'scale_x': 1, 'scale_y': 1, 'joint_fade': fade}}}
+            frame_edits = {'0': {'parts': {'head': {'warp': [[1, 2], [3, 4], [5, 6], [7, 8]]}}}}
             original = save_pose({'kind': 'finished_animation', 'name': 'Hotová', 'frames': [frame] * 8, 'fps': 8,
-                                  'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bitmap}, path)['record']
+                                  'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bitmap,
+                                  'frame_edits': frame_edits}, path)['record']
             self.assertEqual(original['skin_id'], 'bezec-zombie-v1')
             self.assertEqual(original['skeleton_id'], 'pose-1')
+            self.assertEqual(original['bitmap']['parts']['head']['joint_fade'], fade)
+            self.assertEqual(original['bitmap']['parts']['head']['warp'], warp)
+            self.assertEqual(original['frame_edits'], frame_edits)
             updated = save_pose({'kind': 'finished_animation', 'mode': 'update', 'id': original['id'], 'name': 'Hotová',
                                  'expectedRecord': original, 'frames': [frame] * 8, 'fps': 9,
                                  'skin_id': 'bezec-zombie-v2', 'skeleton_id': 'pose-2', 'bitmap': bitmap}, path)['record']
             self.assertEqual(updated['skin_id'], 'bezec-zombie-v2')
             self.assertEqual(updated['skeleton_id'], 'pose-2')
+            self.assertEqual(updated['bitmap']['parts']['head']['joint_fade'], fade)
             detached = save_pose({'kind': 'finished_animation', 'mode': 'update', 'id': updated['id'], 'name': 'Hotová',
                                   'expectedRecord': updated, 'frames': [frame] * 8, 'fps': 9,
                                   'skin_id': 'bezec-zombie-v2', 'bitmap': bitmap}, path)['record']
@@ -154,6 +171,12 @@ class PoseTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8,
                                'skin_id': 'bezec-zombie-v1', 'skeleton_id': 'pose-1', 'bitmap': bad}, path)
+            for bad_warp in ([[0, 0]], [[0, 0], [0, 0], [0, 0], [2001, 0]],
+                             [[0, 0], [0, 0], [0, 0], [float('nan'), 0]]):
+                bad_bitmap = {'layers': ['head'], 'parts': {'head': {**bitmap['parts']['head'], 'warp': bad_warp}}}
+                with self.assertRaises(ValueError):
+                    save_pose({'kind': 'finished_animation', 'name': 'Bad', 'frames': [frame] * 8, 'fps': 8,
+                               'skin_id': 'bezec-zombie-v1', 'bitmap': bad_bitmap}, path)
 
 
 if __name__ == '__main__': unittest.main()

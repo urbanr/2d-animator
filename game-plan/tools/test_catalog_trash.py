@@ -55,8 +55,20 @@ class TrashTests(unittest.TestCase):
         self.assertEqual(catalog['trash'][deleted['trash_id']]['record'], self.record)
         change_trash(self.request('restore', id=deleted['trash_id']), self.path, {'clips', 'poses'})
         restored = json.loads(self.path.read_text())
-        self.assertEqual(restored['clips'], self.catalog['clips'])
-        self.assertEqual(restored['trash'], {})
+        self.assertEqual(restored['clips']['one'], {**self.record, 'name': 'Moje - koš'})
+        self.assertIn(deleted['trash_id'], restored['trash'])
+
+    def test_restore_uses_next_available_trash_suffix(self):
+        deleted = change_trash(self.request(), self.path, {'clips'})
+        catalog = json.loads(self.path.read_text())
+        catalog['clips']['copy-1'] = {'id': 'copy-1', 'name': 'Moje - koš'}
+        catalog['clips']['copy-2'] = {'id': 'copy-2', 'name': 'MOJE - KOŠ 2'}
+        self.path.write_text(json.dumps(catalog))
+        result = change_trash(self.request('restore', id=deleted['trash_id']), self.path, {'clips'})
+        self.assertEqual(result['record']['name'], 'Moje - koš 3')
+        again = change_trash(self.request('restore', id=deleted['trash_id']), self.path, {'clips'})
+        self.assertEqual(again['record']['name'], 'Moje - koš 4')
+        self.assertIn(deleted['trash_id'], again['trash'])
 
     def test_pose_and_character_deletion_are_independent(self):
         for collection, identifier in [('poses', 'two'), ('characters', 'three')]:
@@ -73,15 +85,37 @@ class TrashTests(unittest.TestCase):
                 change_trash(payload, self.path, {'clips', 'poses'})
             self.assertEqual(self.path.read_bytes(), before)
 
-    def test_restore_never_overwrites_existing_id(self):
+    def test_restore_with_existing_id_creates_a_new_copy(self):
         deleted = change_trash(self.request(), self.path, {'clips'})
         catalog = json.loads(self.path.read_text())
         catalog['clips']['one'] = {'id': 'one', 'name': 'new'}
         self.path.write_text(json.dumps(catalog))
-        before = self.path.read_bytes()
-        with self.assertRaises(ValueError):
-            change_trash(self.request('restore', id=deleted['trash_id']), self.path, {'clips'})
-        self.assertEqual(self.path.read_bytes(), before)
+        restored = change_trash(self.request('restore', id=deleted['trash_id']), self.path, {'clips'})
+        self.assertNotEqual(restored['id'], 'one')
+        loaded = json.loads(self.path.read_text())
+        self.assertEqual(loaded['clips']['one'], {'id': 'one', 'name': 'new'})
+        self.assertEqual(loaded['clips'][restored['id']]['name'], 'Moje - koš')
+        self.assertIn(deleted['trash_id'], loaded['trash'])
+
+    def test_saved_version_restore_creates_copy_and_keeps_version_in_trash(self):
+        old = copy.deepcopy(self.record)
+        current = {**old, 'name': 'Moje novější', 'updated_at': '2026-09-17T10:00:00+00:00'}
+        catalog = copy.deepcopy(self.catalog);catalog['clips']['one'] = current
+        history = self.path.parent / 'history';history.mkdir()
+        (history / 'version.json').write_text(json.dumps({'saved_at': '2026-09-17T09:00:00+00:00', 'record': old}))
+        version = {'collection': 'clips', 'record_id': old['id'], 'name': old['name'],
+                   'saved_at': '2026-09-17T09:00:00+00:00', 'history': 'history/version.json'}
+        catalog['trash'] = {'version': version}
+        self.path.write_text(json.dumps(catalog))
+        result = change_trash({'mode': 'restore', 'collection': 'clips', 'id': 'version',
+                               'expectedVersion': version}, self.path, {'clips'})
+        loaded = json.loads(self.path.read_text())
+        self.assertFalse(result['replaced'])
+        self.assertEqual(loaded['clips']['one'], current)
+        self.assertNotEqual(result['id'], 'one')
+        self.assertEqual(loaded['clips'][result['id']], {**old, 'id': result['id'], 'name': 'Moje - koš'})
+        self.assertEqual(loaded['trash']['version'], version)
+        self.assertTrue((history / 'version.json').exists())
 
 
 if __name__ == '__main__':

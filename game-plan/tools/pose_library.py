@@ -56,12 +56,18 @@ def validate_joint_fade(value):
         raise ValueError('Neplatný přechod spoje.')
     out = {}
     for end, fade in value.items():
-        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'radius2', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
+        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'radius2', 'shape', 'onset', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
             raise ValueError('Neplatný přechod spoje.')
         out[end] = {'strength': bounded(fade['strength'], 0, 1),
                     'radius': bounded(fade['radius'], 1, 2000), 'direction': fade['direction']}
         if 'radius2' in fade:
             out[end]['radius2'] = bounded(fade['radius2'], 1, 2000)
+        if 'shape' in fade:
+            if fade['shape'] not in ('ellipse', 'rectangle'):
+                raise ValueError('Neplatný tvar přechodu spoje.')
+            out[end]['shape'] = fade['shape']
+        if 'onset' in fade:
+            out[end]['onset'] = bounded(fade['onset'], 0, .95)
         if 'angle' in fade:
             out[end]['angle'] = bounded(fade['angle'], -180, 180)
         if 'offset' in fade:
@@ -72,7 +78,7 @@ def validate_joint_fade(value):
 
 
 def validate_part_transform(value, exception=False):
-    if not isinstance(value, dict) or set(value)-{'offset', 'pivot_offset', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
+    if not isinstance(value, dict) or set(value)-{'offset', 'pivot_offset', 'warp', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
         raise ValueError('Neplatná úprava bitmapového dílu.')
     out = {}
     if 'pivot_offset' in value:
@@ -87,6 +93,12 @@ def validate_part_transform(value, exception=False):
             raise ValueError('Posun musí být dvojice čísel.')
         limit = 4000 if exception else 2000
         out['offset'] = [bounded(v, -limit, limit) for v in value['offset']]
+    if 'warp' in value:
+        limit = 4000 if exception else 2000
+        if (not isinstance(value['warp'], list) or len(value['warp']) != 4 or
+                any(not isinstance(point, list) or len(point) != 2 for point in value['warp'])):
+            raise ValueError('Warp musí obsahovat čtyři rohové posuny.')
+        out['warp'] = [[bounded(axis, -limit, limit) for axis in point] for point in value['warp']]
     if 'rotation' in value:
         out['rotation'] = bounded(value['rotation'], -180, 180)
     for axis in ('scale', 'scale_x', 'scale_y'):
@@ -251,15 +263,23 @@ def save_pose(payload, path=None):
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
         backup_dir = path.parent / 'history'
         backup_dir.mkdir(exist_ok=True)
-        backup_path = backup_dir / (str(uuid.uuid4()) + '.json')
+        backup_token = str(uuid.uuid4())
+        backup_path = backup_dir / (backup_token + '.json')
         with backup_path.open('x', encoding='utf-8') as stream:
             json.dump({'saved_at': record['updated_at'], 'record': previous}, stream, ensure_ascii=False, indent=2)
             stream.write('\n')
         backup = str(backup_path.relative_to(path.parent))
+        if kind in ('clip', 'finished_animation'):
+            library.setdefault('trash', {})[backup_token] = {
+                'collection': collection, 'record_id': previous['id'],
+                'name': previous['name'],
+                'saved_at': record['updated_at'], 'history': backup,
+            }
     elif mode != 'create':
         raise ValueError('Neznámý způsob uložení.')
     library[collection][record['id']] = record
     temporary = path.with_suffix('.json.tmp')
     temporary.write_text(json.dumps(library, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     temporary.replace(path)
-    return {'collection': collection, 'record': record, 'backup': backup}
+    return {'collection': collection, 'record': record, 'backup': backup,
+            'trash': library.get('trash', {})}

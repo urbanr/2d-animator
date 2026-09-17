@@ -11,5 +11,6 @@
   // Choose delta once per actor, then keep this same factor for travel and cadence.
   const variation=(spread,random=Math.random)=>((random()*2-1)*Math.max(0,Math.min(90,spread)));
   const rates=(clip,delta=0)=>{const factor=1+Math.max(-90,Math.min(90,delta))/100;return {factor,fps:clip.fps*factor,speed:speed(clip)*factor};};
-  return {UNITS_PER_POINT,GROUND_Y,DEFAULT_SPEED,speed,offset,floor,variation,rates};
+  const frameDistance=(clip,delta=0)=>{const value=rates(clip,delta);return value.fps>0?value.speed/value.fps:0;};
+  return {UNITS_PER_POINT,GROUND_Y,DEFAULT_SPEED,speed,offset,floor,variation,rates,frameDistance};
 });

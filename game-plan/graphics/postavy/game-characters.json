@@ -1,5 +1,22 @@
 {
   "schema_version": 3,
-  "characters": {},
+  "characters": {
+    "20b22938-6c40-43db-a60e-fb92c6546e8f": {
+      "id": "20b22938-6c40-43db-a60e-fb92c6546e8f",
+      "name": "Boss Generalisimus",
+      "created_at": "2026-09-17T10:30:15.077259+00:00",
+      "renderer": "cutout-rig-v2",
+      "motion": {
+        "variation_percent": 15,
+        "coupled_cadence": true,
+        "sample_once_per_actor": true
+      },
+      "updated_at": "2026-09-17T10:30:35.158626+00:00",
+      "animation_ids": [
+        "d5c29e97-06f8-4cb5-989f-4fdc0935e37c"
+      ],
+      "default_animation_id": "d5c29e97-06f8-4cb5-989f-4fdc0935e37c"
+    }
+  },
   "trash": {}
 }

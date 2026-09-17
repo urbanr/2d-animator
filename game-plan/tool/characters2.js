@@ -1,6 +1,9 @@
 (async function(){
   'use strict';
   const R=window.PoseRig,C=window.CutoutRig,E=window.CutoutEditor,M=window.MotionPreview,$=id=>document.getElementById(id),copy=v=>JSON.parse(JSON.stringify(v));
+  const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).filter(k=>v[k]!==undefined).sort().map(k=>[k,canonical(v[k])])):v;
+  const animationState=value=>canonical(Object.fromEntries(['frames','fps','move_speed_pt_s','rig_lengths','joint_limits','frame_edits','skin_id','bitmap','skeleton_id'].filter(key=>value[key]!==undefined).map(key=>[key,value[key]])));
+  const numericIds=['bodyX','bodyY','fps','moveSpeed','spread','fadeOnset','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'];
   let skinURL=new URL('../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json',location.href),skinCatalog,gameCatalog;
   const stage=$('stage'),ctx=stage.getContext('2d'),mini=$('mini'),images={},hitMasks={};
   const gameImages={},gameMasks={},pixelFrame=document.createElement('canvas');
@@ -23,8 +26,9 @@
   const DEFAULT_ZOOM=.69,defaultPan=()=>({x:0,y:(M.GROUND_Y-280)*(1-DEFAULT_ZOOM)});
   let zoom=DEFAULT_ZOOM;
   let pan=defaultPan(),skinDirty=false,spread=15,delta=0;
+  const fadeSelectedColor='#ff9f43',fadeOtherColor='#a4a4a4';
   let characterId='',characterAnimationId='',characterSaving=false,skeletonId='',finishedAnimationId='';
-  let selectedSkeleton='';
+  let selectedSkeleton='',warpHeld=false;
   $('editTarget').value='skeleton';$('editTool').value='rotate';$('editScope').value='frame';
   for(const help of document.querySelectorAll?.('.help')||[]){
     help.onclick=e=>{e.preventDefault();e.stopPropagation();help.classList.add('help-open');};
@@ -32,6 +36,8 @@
   }
   const toolChoices={editTool:{toolMove:'move',toolRotate:'rotate',toolSize:'size'}};
   function saveButtons(){
+    const selected=library?.finished_animations?.[finishedAnimationId];
+    if(selected&&clip&&skin)animationDirty=JSON.stringify(animationState(finishedPayload(selected.name)))!==JSON.stringify(animationState(selected));
     const busy=saving||characterSaving;
     $('saveCharacter').disabled=busy;$('save').disabled=busy||!characterId;
     $('updateCharacter').disabled=busy||!characterId;
@@ -64,7 +70,7 @@
     $('undo').disabled=!history.length;$('redo').disabled=!future.length;
     $('resetFrame').disabled=!clip.frame_edits?.[index()]||!Object.keys(clip.frame_edits[index()]).length;
     $('editTools').classList.toggle('whole',scope()==='all');
-    $('scopeNote').textContent=scope()==='all'?`Všech ${clip.frames.length} snímků · ${$('editTarget').value==='bitmap'?'posun vůči uchycení, velikost stejným poměrem':'zachovává rozdíly mezi snímky'}.`:`Jen aktuální snímek ${index()+1} · Celá animace je vypnutá.`;
+    $('scopeNote').textContent=scope()==='all'?`Všech ${clip.frames.length} snímků · ${$('editTarget').value==='bitmap'?'posun vůči uchycení, velikost stejným poměrem a deformace rohů':'zachovává rozdíly mezi snímky'}.`:`Jen aktuální snímek ${index()+1} · Celá animace je vypnutá.`;
     if(scope()==='all'&&$('editTarget').value==='bitmap'){
       const custom=Object.values(clip.frame_edits||{}).filter(e=>Object.keys(e.parts?.[$('layerOrder').value]||{}).length).length;
       if(custom)$('scopeNote').textContent+=` Dřívější výjimky tohoto dílu (${custom} snímků) zůstávají. Přepnutí je nesjednotí.`;
@@ -83,11 +89,11 @@
   }
   function syncFade(){
     const key=$('layerOrder').value,allowed=C.canFade(key)&&Boolean(skin.parts[key]);
-    for(const id of ['fadeStrength','fadeRadius','fadeRadius2','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
+    for(const id of ['fadeStrength','fadeOnset','fadeRadius','fadeRadius2','fadeShape','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
     $('fadePart').textContent=skin.parts[key]?.label||'';
     if(!allowed)return;
     const f=C.fadeFor(C.partFor(skin,key,C.sample(clip,phase,$('smooth').checked)),$('fadeEnd').value||'start');
-    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeRadius:Math.round(f.radius),fadeRadius2:Math.round(f.radius2),fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(document.activeElement!==$(id))$(id).value=value;
+    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeOnset:Math.round(f.onset*100),fadeRadius:Math.round(f.radius),fadeRadius2:Math.round(f.radius2),fadeShape:f.shape,fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(['fadeShape','fadeDirection'].includes(id)||document.activeElement!==$(id))$(id).value=value;
     $('fadeValue').textContent=Math.round(f.strength*100)+' %';
   }
   function changeFade(values,record=true){
@@ -100,7 +106,9 @@
   $('fadeStrength').oninput=()=>{changeFade({strength:R.clamp(Number($('fadeStrength').value)/100,0,1)},!fadeSliding);fadeSliding=true;};
   $('fadeStrength').onchange=()=>{changeFade({strength:R.clamp(Number($('fadeStrength').value)/100,0,1)},!fadeSliding);fadeSliding=false;};
   $('fadeStrength').onpointercancel=()=>{fadeSliding=false;};
+  $('fadeOnset').onchange=()=>changeFade({onset:R.clamp((Number($('fadeOnset').value)||0)/100,0,.95)});
   $('fadeRadius').onchange=()=>{const v=Number($('fadeRadius').value);if(Number.isFinite(v))changeFade({radius:R.clamp(v,1,2000)});};
+  $('fadeShape').onchange=()=>changeFade({shape:$('fadeShape').value});
   $('fadeDirection').onchange=()=>changeFade({direction:$('fadeDirection').value});
   $('fadeRadius2').onchange=()=>changeFade({radius2:R.clamp(Number($('fadeRadius2').value)||1,1,2000)});
   for(const [id,axis] of [['fadeX',0],['fadeY',1]])$(id).onchange=()=>{
@@ -119,11 +127,25 @@
     const i=skin.layers.indexOf($('layerOrder').value);$('layerBack').disabled=i<=0;$('layerFront').disabled=i>=skin.layers.length-1;
   }
   function stop(){playing=false;phase=Math.floor(phase);distance=0;last=0;$('play').textContent='Přehrát';}
+  function manualFrame(target,frameDelta){
+    const previousDistance=distance;stop();phase=((target%clip.frames.length)+clip.frames.length)%clip.frames.length;
+    distance=$('travel').checked?(previousDistance+frameDelta*M.frameDistance(clip,delta))%48:0;draw();
+  }
   function handles(pose=C.sample(clip,index(),false)){return R.handles(pose,pose.rig_lengths).filter(h=>!$('side').value||!h.side||h.side===$('side').value);}
   function fadeToggles(pose){
     const key=$('layerOrder').value;if(!C.canFade(key)||!skin.parts[key])return [];
     const part=C.partFor(skin,key,pose),m=C.matrix(part,C.bones(pose)[key]);
-    return ['start','end'].map(end=>{const f=C.fadeGeometry(part,end),x=f.center[0]-f.ux*f.radius*.55,y=f.center[1]-f.uy*f.radius*.55;return {key,end,strength:f.strength,x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]};});
+    return ['start','end'].map(end=>{const f=C.fadeGeometry(part,end),local=C.warpPoint(part,f.center[0]-f.ux*f.radius*.55,f.center[1]-f.uy*f.radius*.55);return {key,end,strength:f.strength,x:m[0]*local.x+m[2]*local.y+m[4],y:m[1]*local.x+m[3]*local.y+m[5]};});
+  }
+  function fadeOutline(part,end){
+    const f=C.fadeFor(part,end),g=C.fadeGeometry(part,end),perp={x:-g.uy,y:g.ux},out={x:-g.ux,y:-g.uy};let points=[];
+    if(f.shape==='rectangle')points=[
+      [g.center[0]+perp.x*f.radius2,g.center[1]+perp.y*f.radius2],
+      [g.center[0]+out.x*f.radius+perp.x*f.radius2,g.center[1]+out.y*f.radius+perp.y*f.radius2],
+      [g.center[0]+out.x*f.radius-perp.x*f.radius2,g.center[1]+out.y*f.radius-perp.y*f.radius2],
+      [g.center[0]-perp.x*f.radius2,g.center[1]-perp.y*f.radius2]
+    ];else for(let i=0;i<=24;i++){const angle=-Math.PI/2+i*Math.PI/24;points.push([g.center[0]+out.x*f.radius*Math.cos(angle)+perp.x*f.radius2*Math.sin(angle),g.center[1]+out.y*f.radius*Math.cos(angle)+perp.y*f.radius2*Math.sin(angle)]);}
+    return points.map(p=>C.warpPoint(part,...p));
   }
   function draw(){
     const renderScale=stage.width/512;ctx.setTransform(renderScale,0,0,renderScale,0,0);
@@ -131,7 +153,7 @@
     ctx.clearRect(0,0,512,560);ctx.fillStyle='#505050';ctx.fillRect(0,0,512,560);
     ctx.save();ctx.translate(256+pan.x,280+pan.y);ctx.scale(zoom,zoom);ctx.translate(-256,-280);
     M.floor(ctx);ctx.save();ctx.translate($('travel').checked?M.offset(distance,-1):0,0);
-    const bitmap=$('editTarget').value==='bitmap'||drag?.mode==='bitmap';
+    const bitmap=$('editTarget').value==='bitmap'||drag?.mode==='bitmap',warpMode=bitmap&&(warpHeld||drag?.tool==='warp');
     paintCharacter(ctx,pose,{skeleton:$('bones').checked||$('edit').checked&&!bitmap});
     if($('edit').checked&&!bitmap){
       const active=new Set(E.selectedHandleKeys(pose,selectedSkeleton));
@@ -144,29 +166,36 @@
       if(h){
         ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;ctx.setLineDash([4/zoom,3/zoom]);ctx.beginPath();
         h.corners.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.stroke();ctx.setLineDash([]);
-        ctx.beginPath();ctx.moveTo(h.pivot.x,h.pivot.y);ctx.lineTo(h.rotate.x,h.rotate.y);ctx.stroke();
-        for(const key of ['pivot','rotate','size']){
-          const p=h[key],r=3/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
-          ctx.fillStyle=key==='pivot'?'#26332c':'#ffe08b';ctx.fill();ctx.stroke();
-        }
-        for(const [axis,label] of [['width','↔'],['height','↕']]){
-          const p=h[axis],r=5/zoom;ctx.fillStyle='#26332c';ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;
-          ctx.beginPath();ctx.rect(p.x-r*1.4,p.y-r,r*2.8,r*2);ctx.fill();ctx.stroke();
-          ctx.fillStyle='#ffe08b';ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,p.x,p.y);
+        if(warpMode){
+          for(const p of h.warpCorners){const r=6/zoom;ctx.beginPath();ctx.rect(p.x-r,p.y-r,r*2,r*2);ctx.fillStyle='#ff9f43';ctx.fill();ctx.strokeStyle='#fff0d8';ctx.lineWidth=1.5/zoom;ctx.stroke();}
+        }else{
+          ctx.beginPath();ctx.moveTo(h.pivot.x,h.pivot.y);ctx.lineTo(h.rotate.x,h.rotate.y);ctx.stroke();
+          for(const key of ['pivot','rotate','size']){
+            const p=h[key],r=3/zoom;ctx.beginPath();if(key==='size')ctx.rect(p.x-r,p.y-r,r*2,r*2);else ctx.arc(p.x,p.y,r,0,Math.PI*2);
+            ctx.fillStyle=key==='pivot'?'#26332c':'#ffe08b';ctx.fill();ctx.stroke();
+          }
+          for(const [axis,label] of [['width','↔'],['height','↕']]){
+            const p=h[axis],r=5/zoom;ctx.fillStyle='#26332c';ctx.strokeStyle='#ffe08b';ctx.lineWidth=1/zoom;
+            ctx.beginPath();ctx.rect(p.x-r*1.4,p.y-r,r*2.8,r*2);ctx.fill();ctx.stroke();
+            ctx.fillStyle='#ffe08b';ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,p.x,p.y);
+          }
         }
         const key=$('layerOrder').value,part=C.partFor(skin,key,pose);
         for(const end of ['start','end']){
           const f=C.fadeFor(part,end);if(!C.canFade(key)||!f.strength)continue;
-          const g=C.fadeGeometry(part,end),a=g.center,angle=g.angle+Math.PI;
-          ctx.save();ctx.transform(...C.matrix(part,C.bones(pose)[key]));ctx.strokeStyle='#80e6ff';
-          ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.ellipse(...a,f.radius,f.radius2,angle,-Math.PI/2,Math.PI/2);ctx.closePath();ctx.stroke();ctx.restore();
+          const points=fadeOutline(part,end);
+          ctx.save();ctx.transform(...C.matrix(part,C.bones(pose)[key]));ctx.strokeStyle=end===$('fadeEnd').value?fadeSelectedColor:fadeOtherColor;
+          ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();
+          points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();
+          ctx.stroke();ctx.restore();
         }
       }
     }
     if($('edit').checked&&bitmap){
       for(const t of fadeToggles(pose)){
-        ctx.beginPath();ctx.arc(t.x,t.y,4/zoom,0,Math.PI*2);ctx.fillStyle='#18373d';ctx.fill();ctx.strokeStyle='#80e6ff';ctx.lineWidth=1/zoom;ctx.stroke();
-        ctx.fillStyle='#80e6ff';ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t.strength?'×':'+',t.x,t.y);
+        const color=t.end===$('fadeEnd').value?fadeSelectedColor:fadeOtherColor;
+        ctx.beginPath();ctx.arc(t.x,t.y,4/zoom,0,Math.PI*2);ctx.fillStyle='#18373d';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1/zoom;ctx.stroke();
+        ctx.fillStyle=color;ctx.font=`${7/zoom}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t.strength?'×':'+',t.x,t.y);
       }
     }
     if($('bones').checked||$('edit').checked&&!bitmap){
@@ -174,7 +203,7 @@
       for(const key of skin.layers.filter(C.canFade))for(const end of ['start','end']){
         const f=C.fadeFor(C.partFor(skin,key,pose),end);if(!f.strength)continue;
         const p=joints[key][end==='start'?0:1],isHandle=visibleHandles.some(h=>Math.hypot(512-h.point.x-p.x,h.point.y-p.y)<1e-6);
-        ctx.save();ctx.strokeStyle='#80e6ff';ctx.lineWidth=isHandle?1:.7;
+        ctx.save();ctx.strokeStyle=key===$('layerOrder').value&&end===$('fadeEnd').value?fadeSelectedColor:fadeOtherColor;ctx.lineWidth=isHandle?1:.7;
         ctx.beginPath();ctx.arc(p.x,p.y,isHandle?4:1.5,Math.PI,2*Math.PI);ctx.stroke();ctx.restore();
       }
     }
@@ -182,7 +211,8 @@
     const m=mini.getContext('2d');m.clearRect(0,0,mini.width,mini.height);m.save();m.scale(mini.width/512,mini.height/560);M.floor(m);m.translate($('travel').checked?M.offset(distance,-1):0,0);paintCharacter(m,pose);m.restore();
     $('frameLabel').textContent=`${index()+1} / ${clip.frames.length}`;
     $('lean').value=clip.frames[index()].bodyLean||0;
-    $('bodyY').value=clip.frames[index()].bodyY||0;
+    $('bodyX').value=-(clip.frames[index()].bodyX||0);
+    $('bodyY').value=Math.round(clip.frames[index()].bodyY||0);
     const rates=M.rates(clip,delta);$('rateInfo').textContent=`${delta>=0?'+':''}${delta.toFixed(0)} % · ${rates.speed.toFixed(1)} bodů/s · ${rates.fps.toFixed(1)} sn./s`;
     [...$('frames').children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index())));
     syncTools();
@@ -194,7 +224,7 @@
       c.width=128;c.height=140;const x=c.getContext('2d');x.scale(.25,.25);M.floor(x);paintCharacter(x,C.sample(clip,i,false));
       const edited=Boolean(clip.frame_edits?.[i]&&Object.keys(clip.frame_edits[i]).length);
       label.textContent=String(i+1)+(edited?' ●':'');b.classList.toggle('has-edit',edited);b.append(c,label);b.setAttribute('aria-label','Snímek '+(i+1)+(edited?' · vlastní úpravy':''));
-      b.onclick=()=>{stop();phase=i;draw();};$('frames').append(b);
+      b.onclick=()=>manualFrame(i,i-phase);$('frames').append(b);
     });
   }
   function options(selected){
@@ -268,7 +298,7 @@
   function bitmapSnapshot(){
     const layers=skin.layers.filter(key=>key!=='shoulders');
     return {layers:copy(layers),parts:Object.fromEntries(layers.map(key=>[key,{offset:copy(skin.parts[key].offset||[0,0]),rotation:skin.parts[key].rotation||0,
-      ...(skin.parts[key].pivot_offset?{pivot_offset:copy(skin.parts[key].pivot_offset)}:{}),...(skin.parts[key].joint_fade?{joint_fade:copy(skin.parts[key].joint_fade)}:{}),
+      ...(skin.parts[key].pivot_offset?{pivot_offset:copy(skin.parts[key].pivot_offset)}:{}),...(skin.parts[key].warp?{warp:copy(skin.parts[key].warp)}:{}),...(skin.parts[key].joint_fade?{joint_fade:copy(skin.parts[key].joint_fade)}:{}),
       ...Object.fromEntries(['scale','scale_x','scale_y'].map(axis=>[axis,skin.parts[key][axis]||1]))}]))};
   }
   function applyBitmap(bitmap){
@@ -297,9 +327,11 @@
   }
   function trashOptions(){
     const selected=$('trash').value;$('trash').replaceChildren();
-    for(const [source,catalog] of [['characters',gameCatalog],['clips',library],['finished_animations',library],['poses',library]])for(const [id,item] of Object.entries(catalog?.trash||{})){
-      if(item.collection!==source)continue;
-      const o=document.createElement('option');o.value=source+':'+id;o.textContent=(source==='characters'?'Postava: ':source==='clips'?'Kosterní animace: ':source==='poses'?'Póza: ':'Hotová animace: ')+item.record.name;$('trash').append(o);
+    const entries=[];for(const [source,catalog] of [['characters',gameCatalog],['clips',library],['finished_animations',library],['poses',library]])for(const [id,item] of Object.entries(catalog?.trash||{}))if(item.collection===source)entries.push({source,id,item});
+    entries.sort((a,b)=>String(b.item.saved_at||b.item.deleted_at||'').localeCompare(String(a.item.saved_at||a.item.deleted_at||'')));
+    for(const {source,id,item} of entries){
+      const saved=Boolean(item.saved_at),stamp=item.saved_at||item.deleted_at,date=stamp?new Date(stamp).toLocaleString('cs-CZ',{dateStyle:'short',timeStyle:'medium'}):'';
+      const type=source==='characters'?'Postava':source==='clips'?'Kosterní animace':source==='poses'?'Póza':'Hotová animace',label=saved?(source==='clips'?'Záloha kosterní animace':source==='finished_animations'?'Záloha animace':'Záloha '+type.toLowerCase()):type,o=document.createElement('option');o.value=source+':'+id;o.textContent=label+': '+(item.record?.name||item.name)+(date?' · '+date:'');$('trash').append(o);
     }
     $('trash').value=[...$('trash').children].some(o=>o.value===selected)?selected:$('trash').children[0]?.value||'';
     $('restoreDeleted').disabled=!$('trash').children.length||saving||characterSaving;
@@ -308,21 +340,25 @@
     if(saving||characterSaving)return;
     let id=collection==='characters'?characterId:collection==='clips'?skeletonId:finishedAnimationId,catalog=collection==='characters'?gameCatalog:library;
     if(restore){const selection=$('trash').value.split(':');collection=selection[0];id=selection[1];catalog=collection==='characters'?gameCatalog:library;}
-    const record=restore?catalog.trash?.[id]?.record:catalog[collection]?.[id];if(!record)return;
-    if(!confirm(`${restore?'Obnovit':'Přesunout do koše'} ${collection==='characters'?'postavu':collection==='clips'?'kosterní animaci':collection==='poses'?'pózu':'hotovou animaci'} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. ${restore?'':'Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.'}`))return;
+    const entry=restore?catalog.trash?.[id]:null,record=restore?(entry?.record||entry&&{id:entry.record_id,name:entry.name}):catalog[collection]?.[id];if(!record)return;
+    const version=Boolean(entry?.saved_at),kind=collection==='characters'?'postavu':collection==='clips'?'kosterní animaci':collection==='poses'?'pózu':'hotovou animaci';
+    const question=restore?`Obnovit ${version?'uloženou verzi ':''}${kind} „${record.name}“ jako novou kopii?\nPůvodní záznam zůstane v Koši a obnovená kopie dostane do názvu „- koš“.`:`Přesunout do koše ${kind} „${record.name}“?\nZdrojové obrázky a kopie v jiných postavách zůstanou. Smazání lze vrátit v Koši. Rozpracované úpravy zůstanou v editoru.`;
+    if(!confirm(question))return;
     stop();characterSaving=true;saveButtons();
     try{
-      const response=await fetch(collection==='characters'?'/api/game-characters':'/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:restore?'restore':'delete',collection,id,expectedRecord:copy(record)})});
+      const request={mode:restore?'restore':'delete',collection,id};if(version)request.expectedVersion=copy(entry);else request.expectedRecord=copy(record);
+      const response=await fetch(collection==='characters'?'/api/game-characters':'/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});
       const result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Operace koše selhala.');
       if(collection==='characters')gameCatalog.trash=result.trash;
       else{
         if(collection==='finished_animations')animationTrash=result.trash;else skeletonTrash=result.trash;
         library.trash={...skeletonTrash,...animationTrash};
       }
-      if(restore)catalog[collection][result.id]=result.record;
+      if(restore){catalog[collection][result.id]=result.record;if(collection==='finished_animations')finishedAnimationId=result.id;}
       else{delete catalog[collection][id];if(collection==='characters'&&characterId===id){characterId='';characterAnimationId='';skinDirty=true;dirty=true;}else if(collection==='clips'&&skeletonId===id){skeletonId='';skeletonDirty=true;dirty=true;}else if(collection==='finished_animations'&&finishedAnimationId===id){finishedAnimationId='';animationDirty=true;clip.id='';dirty=true;}}
-      gameOptions(characterId);options(finishedAnimationId);skeletonOptions();trashOptions();draw();
-      status(restore?'Položka obnovena z koše.':'Položka je v koši. Rozpracovaná kopie zůstala v editoru; můžeš ji Uložit jako novou.');
+      gameOptions(characterId);options(finishedAnimationId);skeletonOptions();trashOptions();
+      if(restore&&collection==='finished_animations')await select(result.id,{confirmDiscard:false});else draw();
+      status(restore?`Nová kopie „${result.record.name}“ byla obnovena. Původní záznam zůstává v Koši.`:'Položka je v koši. Rozpracovaná kopie zůstala v editoru; můžeš ji Uložit jako novou.');
     }catch(e){saveError(e);}finally{characterSaving=false;saveButtons();trashOptions();}
   }
 
@@ -347,7 +383,7 @@
     if(previous)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
     saving=true;saveButtons();
     try{const r=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await r.json();if(!r.ok||!result.ok)throw Error(result.error||'Uložení kostry se nezdařilo.');
-      library.clips??={};library.clips[result.record.id]=result.record;skeletonId=result.record.id;skeletonDirty=false;dirty=skinDirty||animationDirty;skeletonOptions();saveButtons();status('Kosterní animace uložená: '+result.record.name+'. Bitmapová předloha se do ní neukládá.');
+      library.clips??={};library.clips[result.record.id]=result.record;if(result.trash){skeletonTrash=result.trash;library.trash={...skeletonTrash,...animationTrash};trashOptions();}skeletonId=result.record.id;skeletonDirty=false;dirty=skinDirty||animationDirty;skeletonOptions();saveButtons();status('Kosterní animace uložená: '+result.record.name+'. Bitmapová předloha se do ní neukládá.');
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
   $('saveSkeleton').onclick=()=>saveSkeleton(false);$('updateSkeleton').onclick=()=>saveSkeleton(true);
@@ -361,14 +397,17 @@
     if(saving||characterSaving)return;
     const previous=library.finished_animations?.[finishedAnimationId];if(overwrite&&!previous){status('Nejprve vyber uloženou hotovou animaci nebo použij plus.',true);return;}
     const name=overwrite?previous.name:prompt('Název hotové animace',clip.name||'Moje animace')?.trim();if(!name)return;
-    if(!confirm(overwrite?`Přepsat hotovou animaci „${previous.name}“ se zálohou?`:`Přidat do knihovny hotovou animaci „${name}“?`))return;
+    // Vytvoření nové položky není destruktivní. Po zadání názvu ji rovnou
+    // uložíme; dva navazující modální dialogy se v některých prohlížečích
+    // mohou vzájemně zablokovat. Potvrzení zůstává jen u přepsání.
+    if(overwrite&&!confirm(`Přepsat hotovou animaci „${previous.name}“ se zálohou?`))return;
     const payload=finishedPayload(name);
     if(skeletonId)payload.skeleton_id=skeletonId;
     if(overwrite)Object.assign(payload,{mode:'update',id:previous.id,expectedRecord:copy(previous)});
     const snapshot=JSON.stringify(clip);saving=true;saveButtons();
     try{const response=await fetch('/api/poses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await response.json();if(!response.ok||!result.ok)throw Error(result.error||'Uložení hotové animace se nezdařilo.');
-      library.finished_animations??={};library.finished_animations[result.record.id]=result.record;const changed=snapshot!==JSON.stringify(clip);
-      if(!changed)loadClip(result.record,{source:result.record.skeleton_id||skeletonId,finished:result.record.id,message:overwrite?'Hotová animace aktualizována':'Hotová animace přidána',skeletonClean:!skeletonDirty});else{finishedAnimationId=result.record.id;options(finishedAnimationId);saveButtons();status('Animace byla uložena, novější rozpracované změny zůstaly v editoru.');}
+      library.finished_animations??={};library.finished_animations[result.record.id]=result.record;finishedAnimationId=result.record.id;options(finishedAnimationId);if(result.trash){animationTrash=result.trash;library.trash={...skeletonTrash,...animationTrash};trashOptions();}const changed=snapshot!==JSON.stringify(clip);
+      if(!changed)loadClip(result.record,{source:result.record.skeleton_id||skeletonId,finished:result.record.id,message:overwrite?'Hotová animace aktualizována':'Hotová animace přidána',skeletonClean:!skeletonDirty});else{saveButtons();status('Animace byla uložena, novější rozpracované změny zůstaly v editoru.');}
     }catch(e){saveError(e);}finally{saving=false;saveButtons();}
   }
   function finishedPayload(name){const payload={kind:'finished_animation',name,frames:copy(clip.frames),fps:clip.fps,move_speed_pt_s:M.speed(clip),rig_lengths:R.lengthsFor(clip),joint_limits:R.jointLimitsFor(clip),frame_edits:copy(clip.frame_edits||{}),skin_id:$('skinSelect').value,bitmap:bitmapSnapshot()};if(skeletonId)payload.skeleton_id=skeletonId;return payload;}
@@ -384,7 +423,7 @@
     await loadSkin(Object.keys(skinCatalog.skins)[0]);gameOptions();skeletonOptions();
     skeletonId=library.clips[skin.default_clip]?skin.default_clip:Object.keys(library.clips)[0]||'';
     loadClip(library.clips[skeletonId],{source:skeletonId,message:'Načtená kosterní animace',animationClean:false});
-    for(const id of ['skinSelect','saveCharacter','play','previous','next','clip','fps','moveSpeed','bodyY','up','down','lean','exportFrame','exportSheet','exportRig'])$(id).disabled=false;
+    for(const id of ['skinSelect','saveCharacter','play','previous','next','clip','fps','moveSpeed','bodyX','bodyY','lean','exportFrame','exportSheet','exportRig'])$(id).disabled=false;
     saveButtons();
     playing=true;$('play').textContent='Pozastavit';
   }catch(e){status(e.message,true);return;}
@@ -463,18 +502,35 @@
   };
   $('characterAnimation').onchange=async()=>{const next=$('characterAnimation').value;if(!next)return;if(dirty&&!confirm('Načíst jinou animaci postavy a zahodit neuložené úpravy animace?')){$('characterAnimation').value=characterAnimationId;return;}await loadCharacterAnimation(next);};
   $('play').onclick=()=>{if(playing)stop();else{playing=true;$('play').textContent='Pozastavit';}draw();};
-  $('previous').onclick=()=>{stop();phase=(index()+clip.frames.length-1)%clip.frames.length;draw();};
-  $('next').onclick=()=>{stop();phase=(index()+1)%clip.frames.length;draw();};
+  $('previous').onclick=()=>manualFrame(index()-1,index()-1-phase);
+  $('next').onclick=()=>manualFrame(index()+1,index()+1-phase);
   for(const id of ['smooth','bones','side'])$(id).onchange=draw;
   $('edit').onchange=()=>{if($('edit').checked)stop();draw();};
   $('clip').onchange=async()=>{const previous=finishedAnimationId,next=$('clip').value;if(!next){finishedAnimationId='';saveButtons();return;}if(!await select(next))$('clip').value=previous;};
   $('fps').onchange=()=>{stop();remember();clip.fps=Math.max(1,Math.min(30,Math.round(Number($('fps').value)||6)));$('fps').value=clip.fps;mark('skeleton');draw();};
   $('moveSpeed').onchange=()=>{stop();remember();const value=Number($('moveSpeed').value);clip.move_speed_pt_s=Number.isFinite(value)?R.clamp(value,0,1000):M.DEFAULT_SPEED;$('moveSpeed').value=clip.move_speed_pt_s;mark('skeleton');draw();};
   $('travel').onchange=()=>{distance=0;draw();};
-  $('up').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)-(e.shiftKey?10:1),-100,100));
-  $('down').onclick=e=>change(p=>p.bodyY=R.clamp((p.bodyY||0)+(e.shiftKey?10:1),-100,100));
+  $('bodyX').onchange=()=>change(p=>p.bodyX=-R.clamp(Number($('bodyX').value)||0,-200,200));
   $('lean').onchange=()=>change(p=>p.bodyLean=Number($('lean').value));
-  $('bodyY').onchange=()=>change(p=>p.bodyY=R.clamp(Number($('bodyY').value)||0,-100,100));
+  $('bodyY').onchange=()=>change(p=>p.bodyY=R.clamp(Math.round(Number($('bodyY').value)||0),-100,100));
+  function stepNumeric(input,amount){
+    const value=Number(input.value),min=Number(input.min),max=Number(input.max);
+    input.value=R.clamp((Number.isFinite(value)?value:0)+amount,Number.isFinite(min)?min:-Infinity,Number.isFinite(max)?max:Infinity);
+    input.onchange?.();
+  }
+  for(const id of numericIds){
+    const input=$(id);
+    input.onkeydown=e=>{
+      if(!e.altKey||e.metaKey||e.ctrlKey||!['ArrowUp','ArrowDown'].includes(e.key))return;
+      e.preventDefault();e.stopPropagation?.();stepNumeric(input,e.key==='ArrowUp'?10:-10);
+    };
+    input.onmousedown=e=>{
+      if(!e.altKey||e.ctrlKey||e.metaKey||e.button!==0||!Number.isFinite(e.clientX)||!Number.isFinite(e.clientY))return;
+      const r=input.getBoundingClientRect(),right=r.right??r.left+r.width,bottom=r.bottom??r.top+r.height;
+      if(e.clientX<right-Math.min(24,r.width*.35))return;
+      e.preventDefault();e.stopPropagation?.();stepNumeric(input,e.clientY<(r.top+bottom)/2?10:-10);
+    };
+  }
   function restore(old){stop();skeletonId=old.skeletonId||'';finishedAnimationId=old.finishedAnimationId||'';clip=old.clip;clip.joint_limits=R.jointLimitsFor(clip);skin=old.skin;skinDirty=old.skinDirty;skeletonDirty=true;animationDirty=true;dirty=true;characterAnimationId='';spread=old.spread;phase=old.index;$('spread').value=spread;$('rateDelta').min=-spread;$('rateDelta').max=spread;delta=R.clamp(delta,-spread,spread);$('rateDelta').value=delta;$('fps').value=clip.fps;$('moveSpeed').value=M.speed(clip);characterAnimationOptions('');skeletonOptions();options(finishedAnimationId);status('Neuložené změny');syncTools();saveButtons();layerOptions(old.selected);selectedSkeleton=old.selectedSkeleton??selectedSkeleton;thumbnails();draw();}
   $('undo').onclick=()=>{if(!history.length||drag)return;const old=history.pop();future.push({...snapshot(),index:old.index});restore(old);};
   $('redo').onclick=()=>{if(!future.length||drag)return;const next=future.pop();history.push({...snapshot(),index:next.index});restore(next);};
@@ -533,18 +589,19 @@
   function pointer(e){const p=screen(e);return window.EditorView.point(p.x,p.y,zoom,true,pan);}
   function cursor(e={}){
     const bitmap=$('editTarget').value==='bitmap';
-    const tool=drag?.mode==='bitmap'?drag.tool:bitmap&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmap&&e.ctrlKey?'height':bitmap&&e.altKey?'width':e.altKey?'move':e.ctrlKey?'length':$('editTool').value;
-    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='pivot'?'crosshair':tool==='fade'||tool==='height'||tool==='heightHandle'?'ns-resize':tool==='width'||tool==='widthHandle'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
+    const tool=drag?.mode==='bitmap'?drag.tool:bitmap&&warpHeld?'warp':bitmap&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmap&&e.ctrlKey?'height':bitmap&&e.altKey?'width':e.altKey?'move':e.ctrlKey?'length':$('editTool').value;
+    stage.style.cursor=drag?.mode==='pan'?'grabbing':tool==='warp'||tool==='pivot'?'crosshair':tool==='fade'||tool==='height'||tool==='heightHandle'?'ns-resize':tool==='width'||tool==='widthHandle'||tool==='length'?'ew-resize':tool==='size'?'nwse-resize':tool==='move'?'move':'grab';
     $('gestureHint').textContent=tool==='height'?'Ctrl + tah dolů/nahoru: výška bitmapy · šířka a kostra se nemění':tool==='width'?'Option + tah doprava/doleva: šířka bitmapy · výška a kostra se nemění':bitmap?'Bitmapa: Ctrl = výška · Option = šířka · Ctrl+Option = obojí · posun: nástroj Posun':'Ctrl: délka kosti · Option: posun bitmapy · Ctrl+Option: velikost bitmapy';
     $('gestureHint').textContent+=' · Pravý tah ↓/↑: zprůhlednit / zneprůhlednit spoj';
-    if(bitmap)$('gestureHint').textContent+=' · Shift+tah: rotační střed · ↔ / ↕: šířka / výška';
-    $('gestureHint').textContent+=' · 1/+: kostra/bitmapa · 2/Ě: snímek/animace · 3/Š: nástroj · Mezerník: přehrát/pauza · Y: zpět · X/C: vpřed · WASD: posun · Q/E: rotace';
+    if(bitmap)$('gestureHint').textContent+=(warpHeld?' · X + tah rohu: volný warp':' · drž X: warp rohů')+' · Shift+tah: rotační střed · ↔ / ↕: šířka / výška';
+    $('gestureHint').textContent+=' · 1/+: kostra/bitmapa · 2/Ě: snímek/animace · 3/Š: nástroj · Mezerník: přehrát/pauza · Y: zpět · Z/C: vpřed · WASD: posun · Q/E: rotace';
   }
   let keyboardEdit=null;
   window.addEventListener('keydown',e=>{
     cursor(e);
     const target=e.target||document.activeElement,key=e.key?.toLowerCase();
-    if(e.defaultPrevented||e.isComposing||['INPUT','TEXTAREA','SELECT'].includes(target?.tagName)||target?.isContentEditable||target?.closest?.('[contenteditable=true]'))return;
+    if(e.defaultPrevented||e.isComposing)return;
+    if(['INPUT','TEXTAREA','SELECT'].includes(target?.tagName)||target?.isContentEditable||target?.closest?.('[contenteditable=true]'))return;
     if(key==='escape'){target?.blur?.();keyboardEdit=null;return;}
     if((e.metaKey||e.ctrlKey)&&key==='z'){e.preventDefault();(e.shiftKey?$('redo'):$('undo')).onclick();keyboardEdit=null;return;}
     if(e.metaKey||e.ctrlKey||e.altKey||drag||!visible)return;
@@ -552,7 +609,8 @@
     if(['2','ě'].includes(key)){e.preventDefault();if(!e.repeat)$('headerScope').onclick();keyboardEdit=null;return;}
     if(['3','š'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTool').onclick();keyboardEdit=null;return;}
     if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
-    if(['y','x','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
+    if(key==='x'&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();keyboardEdit=null;if($('edit').checked&&$('editTarget').value==='bitmap'&&!warpHeld){freeze();warpHeld=true;cursor();draw();}return;}
+    if(['y','z','c'].includes(key)){e.preventDefault();keyboardEdit=null;$(key==='y'?'previous':'next').onclick();return;}
     const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
     if(!move&&!rotate)return;
     e.preventDefault();
@@ -581,31 +639,32 @@
     if(!e.repeat||keyboardEdit!==token)remember();keyboardEdit=token;
     ({clip,skin}=E.partChange(clip,skin,index(),selected,values,scope()));skinDirty=true;mark('bitmap');thumbnails();draw();
   });
-  window.addEventListener('keyup',e=>{keyboardEdit=null;cursor(e);});window.addEventListener('blur',()=>{keyboardEdit=null;cursor();});cursor();
+  window.addEventListener('keyup',e=>{keyboardEdit=null;if(e.key?.toLowerCase()==='x'&&warpHeld){warpHeld=false;cursor(e);draw();return;}cursor(e);});window.addEventListener('blur',()=>{keyboardEdit=null;warpHeld=false;cursor();draw();});cursor();
   const travelX=()=>$('travel').checked?M.offset(distance,-1):0;
   function freeze(){const d=distance;phase=Math.round(phase)%clip.frames.length;stop();distance=d;}
   stage.onpointerdown=e=>{
     if(![0,2].includes(e.button)||drag)return;
-    if(e.button===0&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&$('edit').checked&&$('editTarget').value==='bitmap'){const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked),t=fadeToggles(pose).find(t=>Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y)<9/zoom);const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,$('layerOrder').value,pose):null,gripHit=grips&&['rotate','size','width','height','pivot'].some(k=>Math.hypot(grips[k].x-(512-p.x-travelX()),grips[k].y-p.y)<Math.min(12/zoom,t?Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y):Infinity));if(t&&!gripHit){e.preventDefault();$('fadeEnd').value=t.end;changeFade({strength:t.strength?0:.65});return;}}
+    if(e.button===0&&!warpHeld&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&$('edit').checked&&$('editTarget').value==='bitmap'){const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked),t=fadeToggles(pose).find(t=>Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y)<9/zoom);const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,$('layerOrder').value,pose):null,gripHit=grips&&['rotate','size','width','height','pivot'].some(k=>Math.hypot(grips[k].x-(512-p.x-travelX()),grips[k].y-p.y)<Math.min(12/zoom,t?Math.hypot(t.x-(512-p.x-travelX()),t.y-p.y):Infinity));if(t&&!gripHit){e.preventDefault();$('fadeEnd').value=t.end;changeFade({strength:t.strength?0:.65});return;}}
     const right=e.button===2,bitmapMode=$('editTarget').value==='bitmap',bitmap=bitmapMode;
     if(bitmap&&$('edit').checked){
       const p=pointer(e),pose=C.sample(clip,phase,$('smooth').checked);
       const point={x:512-p.x-travelX(),y:p.y},selected=$('layerOrder').value;
       const grips=$('editTarget').value==='bitmap'?E.partHandles(skin,selected,pose):null;
-      const grip=grips&&!right?['rotate','size','width','height','pivot'].map(k=>({k,d:Math.hypot(point.x-grips[k].x,point.y-grips[k].y)})).sort((a,b)=>a.d-b.d).find(v=>v.d<12/zoom)?.k:null;
+      const warpCorner=warpHeld&&grips&&!right?grips.warpCorners.map((p,corner)=>({corner,d:Math.hypot(point.x-p.x,point.y-p.y)})).sort((a,b)=>a.d-b.d).find(v=>v.d<14/zoom):null;
+      const grip=grips&&!right&&!warpHeld?['rotate','size','width','height','pivot'].map(k=>({k,d:Math.hypot(point.x-grips[k].x,point.y-grips[k].y)})).sort((a,b)=>a.d-b.d).find(v=>v.d<12/zoom)?.k:null;
       let endHit=null;
       if(right&&bitmapMode&&C.canFade(selected)){
         const part=C.partFor(skin,selected,pose),m=C.matrix(part,C.bones(pose)[selected]);
-        endHit=['start','end'].map(end=>{const a=C.fadeGeometry(part,end).anchor;return {end,d:Math.hypot(point.x-(m[0]*a[0]+m[2]*a[1]+m[4]),point.y-(m[1]*a[0]+m[3]*a[1]+m[5]))};}).sort((a,b)=>a.d-b.d).find(v=>v.d<14/zoom);
+        endHit=['start','end'].map(end=>{const a=C.fadeGeometry(part,end).anchor,w=C.warpPoint(part,...a);return {end,d:Math.hypot(point.x-(m[0]*w.x+m[2]*w.y+m[4]),point.y-(m[1]*w.x+m[3]*w.y+m[5]))};}).sort((a,b)=>a.d-b.d).find(v=>v.d<14/zoom);
       }
-      const key=endHit||grip?selected:C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,point,{ignoreFade:right});
+      const key=endHit||warpCorner||grip?selected:C.hitTest(skin,pixelMode()?gameMasks:hitMasks,pose,point,{ignoreFade:right});
       if(endHit)$('fadeEnd').value=endHit.end;
       if(key){
         if(right&&!C.canFade(key)){e.preventDefault();return;}
         freeze();layerOptions(key);
         const frozen=C.sample(clip,index(),false),h=E.partHandles(skin,key,frozen);
-        const tool=right?'fade':bitmapMode&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='width'?'widthHandle':grip==='height'?'heightHandle':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
-        e.preventDefault();drag={mode:'bitmap',tool,scope:scope(),index:index(),id:e.pointerId,key,grab:point,part:C.partFor(skin,key,frozen),bone:C.bones(frozen)[key],pivot:h.pivot,clip:copy(clip),skin:copy(skin),changed:false};stage.setPointerCapture(e.pointerId);cursor(e);draw();return;
+        const tool=warpCorner?'warp':right?'fade':bitmapMode&&e.shiftKey?'pivot':e.ctrlKey&&e.altKey?'size':bitmapMode&&e.ctrlKey?'height':bitmapMode&&e.altKey?'width':grip==='rotate'?'rotate':grip==='size'?'size':grip==='width'?'widthHandle':grip==='height'?'heightHandle':grip==='pivot'||e.altKey?'move':$('editTool').value||'rotate';
+        e.preventDefault();drag={mode:'bitmap',tool,corner:warpCorner?.corner,scope:scope(),index:index(),id:e.pointerId,key,grab:point,part:C.partFor(skin,key,frozen),bone:C.bones(frozen)[key],pivot:h.pivot,clip:copy(clip),skin:copy(skin),changed:false};stage.setPointerCapture(e.pointerId);cursor(e);draw();return;
       }
     }
     if(right){e.preventDefault();return;}
@@ -625,7 +684,13 @@
     if(drag.mode==='pan'){const p=screen(e);pan={x:drag.pan.x+p.x-drag.grab.x,y:drag.pan.y+p.y-drag.grab.y};draw();return;}
     if(drag.mode==='bitmap'){
       const p=pointer(e),point={x:512-p.x-travelX(),y:p.y};let values;
-      if(drag.tool==='fade')values={strength:R.clamp(C.fadeFor(drag.part,$('fadeEnd').value||'start').strength+(point.y-drag.grab.y)/150,0,1)};
+      if(drag.tool==='warp'){
+        const [a,b,c,d,e0,f]=C.matrix(drag.part,drag.bone),det=a*d-b*c;if(Math.abs(det)<1e-10)return;
+        const dx=point.x-e0,dy=point.y-f,local={x:(d*dx-c*dy)/det,y:(-b*dx+a*dy)/det};
+        const [w,h]=drag.part.size,base=[[0,0],[w,0],[w,h],[0,h]],warp=drag.part.warp.map(p=>[...p]);
+        warp[drag.corner]=[local.x-base[drag.corner][0],local.y-base[drag.corner][1]];values={warp};
+      }
+      else if(drag.tool==='fade')values={strength:R.clamp(C.fadeFor(drag.part,$('fadeEnd').value||'start').strength+(point.y-drag.grab.y)/150,0,1)};
       else if(drag.tool==='pivot')values={pivot_offset:C.movePivot(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y)};
       else if(drag.tool==='move')values={offset:C.moveAttachment(drag.part,drag.bone,point.x-drag.grab.x,point.y-drag.grab.y).offset};
       else if(drag.tool==='rotate')values={rotation:drag.part.rotation+(Math.atan2(point.y-drag.pivot.y,point.x-drag.pivot.x)-Math.atan2(drag.grab.y-drag.pivot.y,drag.grab.x-drag.pivot.x))*180/Math.PI};
@@ -722,6 +787,10 @@
         if(part.pivot_offset!==undefined){
           if(!Array.isArray(part.pivot_offset)||part.pivot_offset.length!==2||part.pivot_offset.some(v=>!Number.isFinite(v)||Math.abs(v)>2000))throw Error('Neplatný rotační střed.');
           base.parts[k].pivot_offset=copy(part.pivot_offset);
+        }
+        if(part.warp!==undefined){
+          if(!Array.isArray(part.warp)||part.warp.length!==4||part.warp.some(point=>!Array.isArray(point)||point.length!==2||point.some(v=>!Number.isFinite(v)||Math.abs(v)>2000)))throw Error('Neplatný warp bitmapy.');
+          base.parts[k].warp=copy(part.warp);
         }
         if(part.joint_fade!==undefined)base.parts[k].joint_fade=copy(C.validateFade(part.joint_fade));
       }

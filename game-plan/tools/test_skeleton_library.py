@@ -28,14 +28,18 @@ class SkeletonTests(unittest.TestCase):
             removed = change_trash({'mode': 'delete', 'collection': 'rigs', 'id': original['id'], 'expectedRecord': result['record']}, path, {'rigs'})
             trash_id = next(iter(removed['trash']))
             restored = change_trash({'mode': 'restore', 'collection': 'rigs', 'id': trash_id, 'expectedRecord': result['record']}, path, {'rigs'})
-            self.assertEqual(restored['record'], result['record'])
+            self.assertEqual(restored['record'], {**result['record'], 'name': 'Kostra - koš'})
+            self.assertIn(trash_id, restored['trash'])
 
     def test_ellipse_and_head_fields_roundtrip(self):
-        f = {'start': {'strength': .65, 'radius': 20, 'radius2': 60, 'direction': 'outward'}}
+        f = {'start': {'strength': .65, 'radius': 20, 'radius2': 60, 'shape': 'rectangle', 'onset': .4, 'direction': 'outward'}}
         self.assertEqual(validate_joint_fade(f), f)
         for bad in [0, 2001, True, float('nan')]:
             with self.assertRaises(ValueError):
                 validate_joint_fade({'start': {**f['start'], 'radius2': bad}})
+        for key, bad in [('shape', 'triangle'), ('onset', .96), ('onset', True)]:
+            with self.assertRaises(ValueError):
+                validate_joint_fade({'start': {**f['start'], key: bad}})
         frame = dict.fromkeys(LIMITS, 0)
         frame['headOffsetX'] = 15
         frame['neckOffsetY'] = -10

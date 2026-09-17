@@ -140,6 +140,7 @@ směrem po obrazovce ve všech pózách. Již vytvořené snímkové výjimky se
 | Nástroj Posun + bitmapa | Posun bitmapového uchycení vůči kosti |
 | Kruhový úchyt bitmapy bez modifikátorů | Rotace bitmapy kolem uchycení |
 | Čtvercový úchyt / Ctrl+Option + bitmapa | Velikost bitmapy bez změny kosti |
+| Držet X + táhnout oranžový roh (jen Bitmapa) | Volná čtyřbodová deformace dílu; platí pro Snímek / Animaci |
 | Tah do prázdna | Posun pohledu, nikoli postavy |
 | ⌘Z / ⌘⇧Z (také Ctrl) | Zpět / Znovu; jeden tah je jeden krok |
 
@@ -157,9 +158,12 @@ pozastaví; nelze upravovat samostatnou neuloženou mezifázi.
 
 Data: `frames` obsahují výsledné úhly/posuny, společné délky jsou v
 `rig_lengths`. `frame_edits[index].pose_base` drží původní hodnoty pro reset,
-`lengths` obsahuje násobky společných délek, `parts` lokální offsety, úhly a
-násobky velikosti bitmap. Společné bitmapové úpravy jsou `skin.parts[key]`
-(`offset`, `rotation`, `scale`, `scale_x`, `scale_y`). `scale_x/y` jsou nezávislé
+`lengths` obsahuje násobky společných délek, `parts` lokální offsety, úhly,
+čtyřbodové deformace a násobky velikosti bitmap. Společné bitmapové úpravy jsou
+`skin.parts[key]` (`offset`, `rotation`, `scale`, `scale_x`, `scale_y`, `warp`).
+`warp` obsahuje čtyři dvojice posunů rohů v původních pixelech bitmapy v pořadí
+levý horní, pravý horní, pravý dolní, levý dolní; chybějící hodnota je nulová.
+`scale_x/y` jsou nezávislé
 násobky šířky a výšky zdrojové bitmapy, společný `scale` zůstává zachován.
 Staré záznamy mají oba nové násobky 1. Kostra ani uchycení se změnou poměru
 bitmapy nemění; změny respektují rozsah a historii. Offset je v původních pixelech v soustavě
@@ -242,7 +246,7 @@ Ukládání vyžaduje běžící `tools/serve_sprite_gallery.py`. POST
 `/api/game-characters` ověřuje vstup a atomicky přidává záznam. Všechny dosavadní
 uživatelské animace a ruční posuny zůstávají zachované.
 
-## Pokus `pruhlednost`: měkké půlkruhové spoje
+## Pokus `pruhlednost`: měkké eliptické a obdélníkové spoje
 
 Pod zobrazením Detail / Herní pixely je **Varianta: průhlednost spojů**.
 Nové základy mají oba konce všech bitmapových dílů zapnuté na 65 %.
@@ -253,16 +257,19 @@ Po jednorázové migraci existujících postav se další uložená vypnutí zac
 
 - **Pravý tah na bitmapě dolů** zesílí průhlednost, nahoru ji odstraní.
   150 jednotek náhledu odpovídá celému rozsahu. Není to štětec: mění se celý
-  zvolený půlkruhový přechod. Průhledné místo lze znovu uchopit podle původní
+  zvolený přechod. Průhledné místo lze znovu uchopit podle původní
   bitmapy. Seznam vždy ukazuje vybraný díl.
 - **Konec** vybírá uchycení nebo druhý konec; u nového základu jsou oba zapnuté.
-  **Směr** obrátí půlkruh ven / dovnitř. **Poloměr** je v původních pixelech;
-  následuje otočení i velikost bitmapy. Tyrkysový obrys je pouze pomůcka editoru.
-- Síla 0 % plně obnoví původní alfu. 100 % odstraní okraj zvolené poloviny.
-  Konec dílu (plus ruční X/Y posun masky) je **střed pomyslného kruhu**, tedy
-  střed rovné hrany půlkruhu. Není na oblouku: žádný automatický posun o
-  poloměr dovnitř dílu se nepřičítá. Poloměr ani úhel neposouvají střed.
-  Střed půlkruhu zůstává neprůhledný. Výchozí poloměr je nejvýše 45 % délky kosti,
+  **Tvar** přepíná Elipsu / Obdélník a **Směr** masku obrátí ven / dovnitř.
+  R1 a R2 jsou v původních pixelech;
+  následuje otočení i velikost bitmapy. Oranžový vybraný a šedý nevybraný obrys
+  jsou pouze pomůcky editoru.
+- Síla 0 % plně obnoví původní alfu. Zvolený koncový bod zůstává plný. Elipsa
+  mizí radiálně směrem k oblouku, obdélník v rovných pruzích směrem k protější
+  hraně. Při 100 % je celá vnější část masky úplně průhledná, a to i v herním
+  rozlišení. Konec dílu (plus ruční X/Y posun masky) je **střed masky** a začátek
+  její hloubky; žádný automatický posun o R1 se nepřičítá. Rozměry ani úhel
+  tento bod neposouvají a zůstává neprůhledný. Výchozí R1 je nejvýše 45 % délky kosti,
   aby např. přechod krátkého krku nezprůhlednil celý obličej.
   Při nevhodném poloměru nebo chybějícím překryvu
   se může ukázat mezera — maska nepřikresluje chybějící materiál.
@@ -270,24 +277,27 @@ Po jednorázové migraci existujících postav se další uložená vypnutí zac
   animace ulož přes **Hotová animace → Uložit / Uložit jako**. Postava si uloží
   jen odkaz na výslednou hotovou animaci.
 
-Data: `skin.parts[key].joint_fade.start/end = {strength, radius, direction, offset, angle}`.
-Síla je 0–1, poloměr 1–2000, směr `outward`/`inward`. Snímkové výjimky mají
+Data: `skin.parts[key].joint_fade.start/end = {strength, radius, radius2, shape, onset, direction, offset, angle}`.
+Síla je 0–1, oba rozměry jsou 1–2000, tvar je `ellipse`/`rectangle` a směr
+`outward`/`inward`. `onset` je náběh 0–0,95; starší záznam bez něj používá 0,15.
+Starší záznam bez tvaru se načte jako elipsa. Snímkové výjimky mají
 stejný formát v `clip.frame_edits[i].parts[key].joint_fade`. Číselné hodnoty
-se interpolují včetně přechodu posledního snímku na první, směr se přepne
+se interpolují včetně přechodu posledního snímku na první; směr a tvar se přepnou
 v polovině. Globální úprava přičítá stejný rozdíl i k výjimkám (v mezích rozsahu).
 Volitelný `offset` je posun masky v původních pixelech bitmapy, `angle` natočení
 od osy dílu ve stupních. Starší nastavení bez nich znamená nuly. Oba konce
 jsou nezávislé; nastavení jednoho nesahá na druhý. Pravý klik u konce právě
 vybrané bitmapy vybere tento konec a pravý tah mění sílu. Pole X/Y, úhel,
-poloměr a směr umožňují masku přizpůsobit. Při zobrazené kostře mají všechny
-aktivní konce tyrkysový symbol půlkruhu (včetně přehrávání), nikoli jen vybraný díl.
+rozměry, tvar a směr umožňují masku přizpůsobit. Při zobrazené kostře mají všechny
+aktivní konce symbol masky (oranžový pro vybraný, šedý pro ostatní), nikoli jen vybraný díl.
 
 Renderer násobí původní alfu maskou v souřadnicích zdrojového obrázku.
-Maska působí jen uvnitř půlkruhu včetně jeho oblouku. Za poloměrem ani na druhé
-straně rovné hrany alfu nemění; nezprůhledňuje tedy celý prostor za spojem.
+Maska působí jen uvnitř vybrané poloelipsy nebo obdélníku a u jejich vnější
+hrany dosahuje nejsilnějšího zprůhlednění. Za R1, za R2 ani na opačné straně
+koncového bodu alfu nemění; nezprůhledňuje tedy celý prostor za spojem.
 Detail, herní díly, miniatura, snímky i oba PNG exporty používají stejný postup.
 RGB a originální PNG soubory se nikdy nemění. Textury jsou omezeně cachované;
-PNG export neobsahuje tyrkysovou pomůcku. Swift prototyp tento pokus zatím
+PNG export neobsahuje barevné pomůcky. Swift prototyp tento pokus zatím
 nepoužívá; starý skript `export_cutout_poses.cjs` je jen export původní předlohy.
 
 ## Přepínače a koš
@@ -305,10 +315,12 @@ pixelech bitmapy. Chybějící hodnota znamená `[0,0]`. Změna středu kompenzu
 posun bitmapy; při společné změně může kvůli odlišným otočením snímků přidat
 jejich vlastní kompenzace `offset`. Kostra ani délky kostí se nemění.
 
-- **A / D**: předchozí / další snímek, včetně přechodu konec–začátek.
-- **Shift + W/A/S/D**: posun aktivní bitmapy o jednu jednotku náhledu nahoru,
-  doleva, dolů, doprava. Shift rozlišuje kolidující požadavek na A/D pro snímky.
+- **Y / Z** (také **C** pro další): předchozí / další snímek, včetně přechodu konec–začátek.
+- **W/A/S/D**: posun aktivní bitmapy o jednu jednotku náhledu nahoru,
+  doleva, dolů, doprava; se Shiftem o 10.
 - **Q / E**: rotace aktivní bitmapy o −1° / +1°; se Shiftem o 10°.
+- **Držet X** v režimu Bitmapa: zobrazí čtyři oranžové rohy. Tažení rohu
+  deformuje bitmapu; po puštění X deformace zůstává a úchyty se skryjí.
 - Držení klávesy je jedna změna pro Zpět. Posun a rotace platí podle přepínače
   Snímek / Animace. Zkratky nezasahují při psaní do polí nebo výběru v seznamu.
 
@@ -337,7 +349,11 @@ začít novou dvousnímkovou animací nebo obnovit položku z koše.
 
 - Přechod má `radius` (R1, hloubka ve směru dílu) a `radius2` (R2, šířka).
   Starý záznam bez R2 zůstává kruhový (R2 = R1). Maska končí na hranici
-  poloelipsy; mimo ni nechává původní alfu. Obě osy mají rozsah 1–2000.
+  poloelipsy a její úrovně průhlednosti jsou soustředné poloelipsy. Volitelný
+  obdélník používá R1 jako hloubku a R2 jako poloviční šířku; průhlednost v něm
+  roste v rovných pruzích od koncového bodu k protější hraně. Vnější část obou
+  tvarů má při síle 100 % nulovou alfu; mimo masku zůstává původní alfa.
+  Obě osy mají rozsah 1–2000.
   Rozsah Snímek / Animace, interpolace, hit-test i export používají stejnou geometrii.
 - Nově načtený základ má oba konce všech bitmapových dílů zapnuté na 65 %.
   Uložená vypnutí se při běžném načítání respektují. Dle výslovného zadání byly

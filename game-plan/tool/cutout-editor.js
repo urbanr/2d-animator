@@ -113,6 +113,14 @@
         return v+R.clamp(values.pivot_offset[axis]-effective.pivot_offset[axis],Math.max(...vals.map(v=>-2000-v)),Math.min(...vals.map(v=>2000-v)));
       });
     }
+    if(Array.isArray(values.warp)&&values.warp.length===4&&values.warp.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite))){
+      const old=Array.isArray(target.warp)?target.warp:[[0,0],[0,0],[0,0],[0,0]];
+      target.warp=old.map((point,corner)=>point.map((v,axis)=>{
+        const delta=values.warp[corner][axis]-effective.warp[corner][axis];
+        const vals=scope==='all'?[...(s.parts[key].warp?.[corner]||[0,0]).slice(axis,axis+1),...clip.frames.map((_,i)=>C.partFor(skin,key,C.sample(clip,i,false)).warp[corner][axis])]:[effective.warp[corner][axis]];
+        return v+R.clamp(delta,Math.max(...vals.map(n=>-2000-n)),Math.min(...vals.map(n=>2000-n)));
+      }));
+    }
     for(const axis of ['scale','scale_x','scale_y'])if(Number.isFinite(values[axis])){
       const vals=scope==='all'?[skin.parts[key][axis]||1,...clip.frames.map((_,i)=>C.partFor(skin,key,C.sample(clip,i,false))[axis])]:[effective[axis]];
       const ratio=R.clamp(values[axis]/effective[axis],Math.max(...vals.map(v=>.1/v)),Math.min(...vals.map(v=>10/v)));
@@ -169,7 +177,8 @@
     const width=freeEdge([.25,.5,.75].map(t=>at(part.start[0]+part.pivot_offset[0]>w/2?0:w,h*t)));
     occupied.push(width);
     const height=freeEdge([.25,.5,.75].map(t=>at(w*t,part.start[1]+part.pivot_offset[1]>h/2?0:h)));
-    return {pivot,attachment:at(...part.start),rotate,size,width,height,corners:[[0,0],[w,0],[w,h],[0,h]].map(p=>at(...p))};
+    const corners=C.warpCorners(part).map(p=>at(...p));
+    return {pivot,attachment:at(...part.start),rotate,size,width,height,corners,warpCorners:corners};
   }
   function validateEdits(clip,skin){
     const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
@@ -182,13 +191,14 @@
       for(const [k,v] of Object.entries(e.pose_base||{}))if(!fields[k]||!number(v,fields[k][2],fields[k][3]))fail();
       for(const [k,v] of Object.entries(e.lengths||{}))if(!(k in R.defaultLengths())||!number(v,.02,50)||!number(R.lengthsFor(clip)[k]*v,5,250))fail();
       for(const [k,v] of Object.entries(e.parts||{})){
-        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','pivot_offset','scale','scale_x','scale_y','rotation','joint_fade'].includes(k)))fail();
+        if(!skin.layers.includes(k)||!object(v)||Object.keys(v).some(k=>!['offset','pivot_offset','warp','scale','scale_x','scale_y','rotation','joint_fade'].includes(k)))fail();
         if(v.pivot_offset!==undefined&&(!Array.isArray(v.pivot_offset)||v.pivot_offset.length!==2||v.pivot_offset.some(n=>!number(n,-4000,4000))))fail();
         if(v.joint_fade!==undefined)C.validateFade(v.joint_fade);
         if(v.offset!==undefined&&(!Array.isArray(v.offset)||v.offset.length!==2||v.offset.some(n=>!number(n,-4000,4000))))fail();
+        if(v.warp!==undefined&&(!Array.isArray(v.warp)||v.warp.length!==4||v.warp.some(p=>!Array.isArray(p)||p.length!==2||p.some(n=>!number(n,-4000,4000)))))fail();
         if(v.rotation!==undefined&&!number(v.rotation,-180,180))fail();
         for(const axis of ['scale','scale_x','scale_y'])if(v[axis]!==undefined&&!number(v[axis],.01,100))fail();
-        const p=C.partFor(skin,k,{part_edits:e.parts});if(['scale','scale_x','scale_y'].some(axis=>!number(p[axis],.1,10))||p.offset.some(n=>!number(n,-2000,2000))||p.pivot_offset.some(n=>!number(n,-2000,2000)))fail();
+        const p=C.partFor(skin,k,{part_edits:e.parts});if(['scale','scale_x','scale_y'].some(axis=>!number(p[axis],.1,10))||p.offset.some(n=>!number(n,-2000,2000))||p.pivot_offset.some(n=>!number(n,-2000,2000))||p.warp.some(point=>point.some(n=>!number(n,-2000,2000))))fail();
       }
     }
   }
