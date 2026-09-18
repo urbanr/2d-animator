@@ -7,13 +7,15 @@
   let distance=0,frameTime=0,lastTime=0,visible=true;
   let zoom=1;
   let drag=null, saving=false;
+  let extrasPanel;
   const status=(message,error=false)=>{$('status').textContent=message;$('status').classList.toggle('error',error);};
   function stop() { clearInterval(timer); playing=false;distance=0;frameTime=0;lastTime=0; $('play').textContent='▶ Přehrát'; }
-  function remember() { history.push({frames:clone(current.frames),frame_edits:clone(current.frame_edits||{}),index,fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current),joint_limits:R.jointLimitsFor(current)}); if(history.length>80)history.shift(); }
+  function remember() { history.push({frames:clone(current.frames),extra_bones:clone(current.extra_bones||{}),frame_edits:clone(current.frame_edits||{}),index,fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current),joint_limits:R.jointLimitsFor(current)}); if(history.length>80)history.shift(); }
   function mark() {dirty=true;$('dirty').textContent='Neuložené změny animace';}
   function draw() {
+    extrasPanel?.refresh();
     $('updateClip').disabled=saving||!data.clips[current.id];$('deleteClip').disabled=saving||!data.clips[current.id];
-    $('stage').innerHTML=R.svg(current.frames[index],{editable:!playing,side:$('dragSide')?.value||'',offsetX:$('travel').checked?M.offset(distance):0,lengths:R.lengthsFor(current,index),zoom});
+    $('stage').innerHTML=R.svg(current.frames[index],{extra_bones:current.extra_bones,editable:!playing,side:$('dragSide')?.value||'',offsetX:$('travel').checked?M.offset(distance):0,lengths:R.lengthsFor(current,index),zoom});
     $('zoomLabel').textContent=Math.round(zoom*100)+' %';
     $('frameLabel').textContent=`Snímek ${index+1} / ${current.frames.length}${playing?' · přehrávání':''}`;
     for(const [key,pair] of inputs) pair.forEach(input=>input.value=current.frames[index][key]??R.neutral()[key]);
@@ -24,7 +26,7 @@
     $('frames').replaceChildren();
     current.frames.forEach((frame,i)=>{
       const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',`Upravit snímek ${i+1}`);
-      button.innerHTML=R.svg(frame,{lengths:R.lengthsFor(current,i)})+`<span>${i+1}</span>`;
+      button.innerHTML=R.svg(frame,{extra_bones:current.extra_bones,lengths:R.lengthsFor(current,i)})+`<span>${i+1}</span>`;
       button.onclick=()=>{stop();index=i;draw();};$('frames').append(button);
     });
   }
@@ -63,7 +65,7 @@
     $('clip').value=selected;
   }
   function selectClip(id) {
-    stop();current=clone(data.clips[id]||{id:'',name:'Nová animace',fps:6,frames:[R.neutral(),R.neutral()]});current.joint_limits=R.jointLimitsFor(current);baseline=clone(current.frames);index=0;history=[];dirty=false;
+    stop();current=clone(data.clips[id]||{id:'',name:'Nová animace',fps:8,frames:Array.from({length:8},()=>R.neutral())});current.joint_limits=R.jointLimitsFor(current);baseline=clone(current.frames);index=0;history=[];dirty=false;
     $('dirty').textContent='';$('fps').value=current.fps;$('clipName').value=current.name+' · moje verze';
     $('moveSpeed').value=M.speed(current);
     frameStrip();draw();
@@ -73,9 +75,9 @@
     for(const pose of Object.values(data.poses).reverse()) {
       if(!pose.name.toLocaleLowerCase('cs').includes(search))continue;
       const button=document.createElement('button');button.className='pose-card';button.type='button';button.title='Vložit do vybraného snímku';
-      const picture=document.createElement('div');picture.innerHTML=R.svg(pose.frame);
+      const picture=document.createElement('div');picture.innerHTML=R.svg(pose.frame,{extra_bones:pose.extra_bones,lengths:pose.rig_lengths});
       const name=document.createElement('span');name.textContent=pose.name;button.append(picture,name);
-      button.onclick=()=>{stop();remember();current.frames[index]=clone(pose.frame);mark();frameStrip();draw();status(`Kostra „${pose.name}“ vložena do snímku ${index+1}.`);};
+      button.onclick=()=>{stop();const merged={...current.extra_bones,...pose.extra_bones};for(const [key,bone] of Object.entries(pose.extra_bones||{}))if(current.extra_bones?.[key]&&JSON.stringify(current.extra_bones[key])!==JSON.stringify(bone)){status('Póza má jinak nastavenou stejnojmennou přidanou kost. Nejprve načti její kosterní animaci.',true);return;}window.RigExtensions.validate(merged);remember();current.extra_bones=merged;current.frames[index]=clone(pose.frame);mark();frameStrip();draw();status(`Kostra „${pose.name}“ vložena do snímku ${index+1}.`);};
       const card=document.createElement('div'),remove=document.createElement('button');remove.textContent='Smazat kosteru…';remove.setAttribute('aria-label','Smazat kosteru '+pose.name);remove.onclick=()=>trashAction('poses',pose.id);card.append(button,remove);$('library').append(card);
     }
     trashOptions();
@@ -110,6 +112,7 @@
     if(overwrite&&!confirm(`Uložit změny do animace „${current.name}“? Předchozí stav se zazálohuje. Ostatní animace zůstanou beze změny.`))return;
     const payload=kind==='pose'?{kind,name,frame:clone(current.frames[index])}:{kind,name,frames:clone(current.frames),fps:current.fps,move_speed_pt_s:M.speed(current),rig_lengths:R.lengthsFor(current),joint_limits:R.jointLimitsFor(current)};
     if(kind==='clip')payload.frame_edits=clone(current.frame_edits||{});
+    payload.extra_bones=clone(current.extra_bones||{});
     if(overwrite)Object.assign(payload,{mode:'update',id:current.id,expectedRecord:clone(data.clips[current.id])});
     const snapshot=JSON.stringify(current);
     saving=true;for(const id of ['savePose','saveClip','updateClip'])$(id).disabled=true;
@@ -140,6 +143,11 @@
     const initial=Object.values(data.clips).find(clip=>clip.name==='Zombie · šouravá chůze v1')?.id||Object.values(data.clips).find(clip=>clip.name==='Chůze · přirozený krok v4')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · jemnější ramena v3')?.id||Object.values(data.clips).find(clip=>clip.name==='Sprint · ramena a pánev v2')?.id||(data.clips['sprint-v1']?'sprint-v1':Object.keys(data.clips)[0]||'');
     controls();clipOptions(initial);selectClip(initial);drawLibrary();status('Připraveno. Úpravy se ukládají až příslušným tlačítkem.');
   } catch(error){status(error.message,true);return;}
+  if(window.mountRigExtras&&$('rigExtras'))extrasPanel=window.mountRigExtras($('rigExtras'),{
+    clip:()=>current,index:()=>index,error:message=>status(message,true),frameOrder:false, // This page has its own Prohodit buttons.
+replace:(value,i,fresh=false)=>{current=value;index=i;if(fresh){$('clip').value='';$('clipName').value=current.name;} $('fps').value=current.fps;$('moveSpeed').value=M.speed(current);},
+    change:(kind,fn)=>{stop();remember();const old=clone(current);try{fn();}catch(e){current=old;history.pop();throw e;}mark();frameStrip();draw();}
+  });
   $('clip').onchange=()=>{
     if(dirty&&!confirm('Animace má neuložené změny. Přepnout bez jejich uložení?')){$('clip').value=current.id;return;}
     selectClip($('clip').value);
@@ -167,7 +175,7 @@
   stage.onpointermove=event=>{
     if(!drag||drag.id!==event.pointerId)return;
     const end=pointerPoint(event);if(!end)return;
-    const updated=R.dragClip(drag.clip,index,drag.key,drag.start,end,{ctrlKey:drag.ctrlKey});
+    const updated=drag.clip.extra_bones?.[drag.key]?window.RigExtensions.dragBone(drag.clip,index,drag.key,{x:512-drag.start.x,y:drag.start.y},{x:512-end.x,y:end.y},{bones:window.CutoutRig.bones(window.CutoutRig.sample(drag.clip,index,false)),ctrlKey:drag.ctrlKey}):R.dragClip(drag.clip,index,drag.key,drag.start,end,{ctrlKey:drag.ctrlKey});
     if(JSON.stringify(updated)===JSON.stringify(current))return;
     if(!drag.changed){remember();drag.changed=true;}
     current=updated;mark();draw();
@@ -193,14 +201,14 @@
   $('down').onclick=event=>updateFrame('bodyY',current.frames[index].bodyY+(event.shiftKey?10:1));
   function swap(direction) {stop();remember();const next=(index+direction+current.frames.length)%current.frames.length;[current.frames[index],current.frames[next]]=[current.frames[next],current.frames[index]];if(current.frame_edits){const edits=current.frame_edits,a=edits[index],b=edits[next];delete edits[index];delete edits[next];if(a)edits[next]=a;if(b)edits[index]=b;}index=next;mark();frameStrip();draw();}
   $('swapLeft').onclick=()=>swap(-1);$('swapRight').onclick=()=>swap(1);
-  $('restore').onclick=()=>{stop();remember();current.frames[index]=clone(baseline[index]);mark();frameStrip();draw();};
-  $('undo').onclick=()=>{stop();const previous=history.pop();if(previous){current.frames=previous.frames;current.frame_edits=previous.frame_edits;current.fps=previous.fps;current.rig_lengths=previous.rig_lengths;current.joint_limits=R.jointLimitsFor(previous);current.move_speed_pt_s=previous.move_speed_pt_s;$('fps').value=current.fps;$('moveSpeed').value=M.speed(current);index=previous.index;mark();frameStrip();draw();}};
+  $('restore').onclick=()=>{stop();remember();current.frames[index]=clone(baseline[index]||R.neutral());if(current.frame_edits)delete current.frame_edits[index];mark();frameStrip();draw();};
+  $('undo').onclick=()=>{stop();const previous=history.pop();if(previous){current.frames=previous.frames;current.extra_bones=previous.extra_bones||{};current.frame_edits=previous.frame_edits;current.fps=previous.fps;current.rig_lengths=previous.rig_lengths;current.joint_limits=R.jointLimitsFor(previous);current.move_speed_pt_s=previous.move_speed_pt_s;$('fps').value=current.fps;$('moveSpeed').value=M.speed(current);index=previous.index;mark();frameStrip();draw();}};
   $('savePose').onclick=()=>save('pose');$('saveClip').onclick=()=>save('clip');$('search').oninput=drawLibrary;
   $('updateClip').onclick=()=>save('clip',true);
-  $('exportFrame').onclick=()=>download(R.svg(current.frames[index],{lengths:R.lengthsFor(current,index)}),`pose-${index+1}.svg`);
+  $('exportFrame').onclick=()=>download(R.svg(current.frames[index],{extra_bones:current.extra_bones,lengths:R.lengthsFor(current,index)}),`pose-${index+1}.svg`);
   $('exportSheet').onclick=()=>{
     const rows=Math.ceil(current.frames.length/4);
-    const cells=current.frames.map((p,i)=>R.svg(p,{lengths:R.lengthsFor(current,i)}).replace('<svg ',`<svg x="${(i%4)*512}" y="${Math.floor(i/4)*560}" `)).join('');
+    const cells=current.frames.map((p,i)=>R.svg(p,{extra_bones:current.extra_bones,lengths:R.lengthsFor(current,i)}).replace('<svg ',`<svg x="${(i%4)*512}" y="${Math.floor(i/4)*560}" `)).join('');
     download(`<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="${rows*560}" viewBox="0 0 2048 ${rows*560}">${cells}</svg>`,'pose-sheet.svg');
   };
   window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});

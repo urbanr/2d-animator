@@ -1,5 +1,39 @@
 # Společné preview
 
+## Nové díly a větve kostry
+
+Tlačítka snímků jsou v Animátoru **pod pásem snímků**: **＋ Snímek** vloží kopii
+aktuálního, **🗑 Snímek** jej odebere, **◀ Přesunout** / **Přesunout ▶** jej
+prohodí se sousedním včetně přechodu přes konec smyčky a snímkové výjimky jdou
+s ním. V Kostrách zůstávají ve vlastním panelu **Snímky a přidané kosti**.
+
+Panel **Bitmapy na kostech** je v Animátoru jediný a ovládá se od kosti.
+Prvním řádkem je výběr **Kosti** a hned u něj **＋** (přidá novou kost navázanou
+na vybranou) a **🗑** (smaže vybranou kost i s bitmapami, které jsi na ni
+přilepil; díly z předlohy se jen vypnou, základní kost smazat nelze). Je-li
+vybraná přidaná kost, rozbalí se pod ní její vlastnosti. Následuje pod nadpisem
+**Bitmapy na této kosti** číslovaný seznam ve stejné podobě jako „Díly zezadu
+dopředu“. Na konci každého řádku jsou dvě ikony — zámek přepíná **zachovat
+velikost při změně délky kosti** (🔒 zachovat, 🔓 sledovat kost) a popelnice
+bitmapu odebere: přidanou smaže, díl z předlohy jen vypne a šipkou **↩** ho
+vrátíš. Čísla jsou pořadí v tomto seznamu, ne pořadí vrstev. Pod seznamem je
+**Dostupné bitmapy** a tlačítko, které vybranou bitmapu přidá na zvolenou kost.
+
+Panel je v pravém sloupci zařazený mezi ostatní sekce (Pohyb a rychlost,
+Kostry, Bitmapová předloha…) a má stejnou nápovědu pod otazníkem.
+
+**Bitmapové předlohy** ukazují celý návrh nad díly a umožňují přidat PNG díl
+nebo celkový návrh. Každá dlaždice dílu má v rohu tlačítko **⋯**, které dílu
+vymění PNG za nově vybraný soubor z disku. Název, kost, zapnutí i kloubové
+úchyty zůstanou; při jiném rozměru se úchyty poměrně přepočítají. Předchozí
+podoba předlohy se zazálohuje do `history/`. Nové díly se ve starších animacích samy nezapínají.
+Matka všech krys má schválený celkový návrh a 19 samostatných dílů; nastavení
+úchytů je pracovní výchozí stav pro animování, ne hotová schválená chůze.
+
+Migrace: `python3 game-plan/tools/migrate_rig_extensions.py` z kořene projektu.
+Je opakovatelná, před změnami zálohuje data do `graphics/migration-backups/`.
+Podrobnosti schématu jsou v `ANIMATOR-DATA-MODEL.md`.
+
 Otevři `http://127.0.0.1:8765/tool/preview.html`. Horní menu spojuje **Postavy**, **Animátor**, **Levely** a **Kostry** v jednom nástroji. Animátor je editor bitmapových postav na kostře (dříve Postavy2); původní samostatný animátor už v menu není. Přepínání sekcí zachová jejich rozpracovaný stav; trvalé uložení změn se provádí tlačítkem v příslušném editoru. Obnovení celé stránky neuložené změny nezachovává.
 
 Původní odkazy (`gallery.html`, `levels.html`, `poses.html`) se automaticky otevřou ve společném preview a zachovají výběr postavy, filtr i odkaz na konkrétní kartu.

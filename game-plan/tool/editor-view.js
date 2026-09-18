@@ -1,9 +1,14 @@
 (function(root){
-  const api={stageSize:(height,availableWidth)=>{
+  // The window is a crop of the full 512x560 canvas whose bottom edge sits just
+  // below the ground line; it scrolls the canvas instead of moving the drawing,
+  // so pointer coordinates stay untouched. Default height fits the whole figure.
+  const DEFAULT_VIEW=320,BOTTOM=404;
+  const api={DEFAULT_VIEW,BOTTOM,stageSize:(height,availableWidth)=>{
       const width=Math.max(1,availableWidth),scale=width/512,max=560*scale;
-      // Default: ground line plus a narrow 12-unit strip. Manual resizing has no
-      // product minimum; one CSS pixel only keeps the resize box well-defined.
-      const h=Math.max(1,Math.min(max,height??404*scale));return {width,height:h,canvasHeight:max};
+      // Manual resizing has no product minimum; one CSS pixel only keeps the
+      // resize box well-defined.
+      const h=Math.max(1,Math.min(max,height??DEFAULT_VIEW*scale));
+      return {width,height:h,canvasHeight:max,offset:Math.max(0,Math.min(max-h,BOTTOM*scale-h))};
     },backingSize:(cssWidth,dpr=1)=>{
       const width=Math.max(512,Math.round(Math.max(1,cssWidth)*Math.max(1,dpr||1)));
       return {width,height:Math.round(width*560/512),scale:width/512};

@@ -54,7 +54,7 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 ### Kostra / kosterní animace (`clip`)
 
 - Je v `graphics/kostry/skeletons.json`, kolekce `clips`.
-- Obsahuje 2 až 32 póz, tempo, rychlost vpřed, délky kostí, limity kloubů a pouze kosterní výjimky snímků.
+- Nová animace má výchozích 8 snímků. Obsahuje 1 až 256 póz, tempo, rychlost vpřed, délky kostí, limity kloubů, přidané větve a kosterní výjimky snímků.
 - Stejný seznam `clips` ukazuje editor Koster i sekce Kostry v Animátoru. Bitmapová předloha se sem neukládá.
 
 ### Hotová animace (`finished_animation`)
@@ -83,6 +83,26 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - Herní atributy postavy jsou plánované, ale zatím nemají v editoru ani schématu konkrétní pole.
 
 ## Rozsah úprav
+
+### Přidané kosti a nezávislé bitmapy (formát 2)
+
+- Kostra i hotová animace nesou `extra_bones`: slovník ID `extra_*` s `label`, `parent`, `at` (0–1), místním `offset: [x,y]`, základním `angle` a `length`. Rodič může být základní i přidaná kost; chybějící rodiče a cykly jsou zakázané. Nejvýše 128 přidaných kostí.
+- Snímek může mít `extra_pose[id]: {angle,x,y}`. Posuny jsou v osách rodiče, natočení je relativní k základnímu úhlu. Přidané kosti mají zlaté úchyty, lze je táhnout a s Ctrl měnit délku. Úpravy se ukládají i do samostatných póz.
+- Každý bitmapový díl má vlastní `bone`. Více bitmap smí sledovat stejnou kost. Žádná bitmapa nedědí měřítko, průhlednost, deformaci ani zapnutí od jiné bitmapy.
+- Nové instance mají unikátní ID `attachment_*` a `source_part` odkazující na původní díl předlohy. PNG se neduplikuje. Všechny vlastní transformace i přiřazení se ukládají do `bitmap.parts` hotové animace.
+- `enabled: false` vypne díl v celé animaci bez smazání PNG. `opacity` (0–1) je vlastní krytí. `fixed_length` drží vlastní velikost při změně délky kosti; nové přilepené bitmapy mají tuto volbu zapnutou. Poloha a rotace nadále sledují kost. Staré díly bez `fixed_length` zachovávají původní škálování podle kosti.
+- Bitmapy se v editoru zobrazují jako seznam podle kosti: ukazuje všechny díly, jejichž `bone` odpovídá zvolené kosti, včetně dílů s `enabled: false`. Každý řádek ovládá jen `fixed_length` a odebrání. Vlastnictví dat se tím nemění — jde o pohled na `bitmap.parts`. `opacity` a změna `bone` už v tomto panelu ovládací prvek nemají; uložené hodnoty zůstávají platné a beze změny se ukládají dál.
+- Přilepenou bitmapu (`attachment_*`) lze smazat. Zmizí z `bitmap.parts` i z pořadí vrstev a s ní i její snímkové výjimky; zdrojový díl předlohy, jeho PNG ani ostatní instance se nemění. Díl pocházející z předlohy se tímto tlačítkem smazat nedá — vypíná se pouze `enabled: false`, aby snapshot zůstal shodný s předlohou.
+- Odebrání větve odebere také její potomky a snímkové pózy těchto kostí; připojené bitmapy vypne a převede na trup. Přepnutí na kostru bez dané větve rovněž bezpečně vypne osiřelé díly.
+- `＋ Snímek` vloží kopii aktuálního snímku včetně výjimek, `🗑 Snímek` jej odebere a přečísluje výjimky. Zůstane minimálně jeden snímek. `◀ Přesunout` a `Přesunout ▶` prohodí snímek se sousedním cyklicky přes konec smyčky; prohodí se s ním i jeho snímkové výjimky, počet snímků se nemění. Vše podporuje Zpět.
+
+### Rozšiřování bitmapových předloh a migrace
+
+- Stránka Bitmapové předlohy zobrazuje `reference_image` (celý návrh), potom díly. Formulář přidá další PNG nebo nastaví nový celkový návrh; předchozí soubor ani díly nemaže.
+- Nový PNG díl dostane unikátní ID a je výchozím stavem vypnutý. Existující animace při načtení doplní nové díly jako vypnuté, takže se jejich vzhled nezmění. Obrázky musí být běžné neprokládané 8bitové RGB/RGBA PNG, nejvýše 16 MB a 16 megapixelů.
+- Režim `replace-part` vymění PNG existujícího dílu předlohy: přepíše `file`, `size` a `sha256`, poměrně přepočítá `start` a `end` při jiném rozměru a ostatní hodnoty dílu nechá beze změny. Nová PNG se ukládá vedle staré, původní soubor se nemaže. Instance `attachment_*` tímto režimem měnit nelze.
+- Zápis ověřuje `expectedRecord`, zálohuje předchozí JSON do `history` a nahrazuje jej atomicky.
+- `tools/migrate_rig_extensions.py` je opakovatelná aditivní migrace. Zachovává transformace, klipy i obrázky, doplňuje metadata formátu 2. Před prvním zápisem vytváří úplné kopie měněných souborů v `graphics/migration-backups/rig-v2-*`. Původní počty snímků se nemění.
 
 - **Snímek**: změna se uloží jako výjimka aktuálního snímku. U bitmapy je posun i čtyřbodový `warp` relativní ke společnému základu a velikost relativní k základnímu měřítku.
 - **Animace**: změna se promítne do všech snímků se zachováním jejich rozdílů. U bitmapy mění společný základ ve snapshotu rozpracované hotové animace; platí to i pro jednotlivé rohy `warp`. Výjimkou je přechod průhlednosti: vybraný konec dostane jednu společnou masku v místních souřadnicích dílu a jeho staré snímkové výjimky se odstraní, aby maska ve všech pózách stejně následovala kost. Druhý konec a ostatní vlastnosti snímků se nemění.

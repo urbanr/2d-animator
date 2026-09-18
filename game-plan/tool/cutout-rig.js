@@ -1,8 +1,8 @@
 /* Bitmap attachments to PoseRig. Pure geometry shared by browser and tests. */
 (function(root,factory){
-  if(typeof module==='object'&&module.exports)module.exports=factory(require('./pose-rig.js'));
-  else root.CutoutRig=factory(root.PoseRig);
-})(typeof globalThis!=='undefined'?globalThis:this,function(R){
+  if(typeof module==='object'&&module.exports)module.exports=factory(require('./pose-rig.js'),require('./rig-extensions.js'));
+  else root.CutoutRig=factory(root.PoseRig,root.RigExtensions);
+})(typeof globalThis!=='undefined'?globalThis:this,function(R,X){
   'use strict';
   const mirror=p=>({x:512-p.x,y:p.y});
   const angleKeys=new Set(R.fields.filter(f=>f[4]==='°').map(f=>f[0]));
@@ -138,13 +138,19 @@
         rotation:(a.rotation||0)+t*wrap((b.rotation||0)-(a.rotation||0)),
         ...Object.fromEntries(['scale','scale_x','scale_y'].map(k=>[k,(a[k]||1)+t*((b[k]||1)-(a[k]||1))]))};
     }
+    p.extra_bones=clip.extra_bones||{};p.extra_pose={};
+    for(const key of Object.keys(p.extra_bones)){
+      const av=a.extra_pose?.[key]||{},bv=b.extra_pose?.[key]||{};
+      p.extra_pose[key]={angle:(av.angle||0)+t*wrap((bv.angle||0)-(av.angle||0)),x:(av.x||0)+t*((bv.x||0)-(av.x||0)),y:(av.y||0)+t*((bv.y||0)-(av.y||0))};
+    }
     return p;
   }
-  function bones(pose,lengths){
+  function bones(pose,lengths,skin){
     const p={...R.neutral(),...pose},g=R.points(p,lengths),b={};
     const pair=(a,z)=>[mirror(a),mirror(z)];
     b.torso=pair(g.shoulderCenter,g.hipCenter);
     b.head=pair(g.headBase,g.headCenter);
+    b.neck=pair(g.shoulderCenter,g.headBase);
     // Shoulders are attachment guides. A skin may also supply a separate
     // pelvis bitmap; it follows the torso and overlaps both hip roots.
     b.pelvis=b.torso;
@@ -162,11 +168,15 @@
     // Generalissimus holds his detached megaphone by the near hand. The
     // bitmap has its own authored anchors and therefore only shares the bone.
     b.megaphone=b.nearForearm;
-    return b;
+    const resolved=X.resolve(b,pose.extra_bones,pose.extra_pose),out={...resolved};
+    for(const [key,part] of Object.entries(skin?.parts||{}))out[key]=resolved[part.bone||key];
+    return out;
   }
   function matrix(part,bone){
     const [a,z]=bone,[sx,sy]=part.start,[ex,ey]=part.end;
-    const ux=ex-sx,uy=ey-sy,vx=z.x-a.x,vy=z.y-a.y,den=ux*ux+uy*uy;
+    const ux=ex-sx,uy=ey-sy,den=ux*ux+uy*uy;
+    let vx=z.x-a.x,vy=z.y-a.y;
+    if(part.fixed_length){const len=Math.hypot(vx,vy)||1;vx*=part.fixed_length/len;vy*=part.fixed_length/len;}
     if(den<0.0001)throw Error('Attachment has zero length');
     // Bone similarity transform, followed by optional independent bitmap width/height.
     const bc=(vx*ux+vy*uy)/den,bs=(vy*ux-vx*uy)/den;
@@ -211,11 +221,12 @@
     }
   }
   function hitTest(skin,masks,pose,point,options={}){
-    const joints=bones(pose,options.lengths);
+    const joints=bones(pose,options.lengths,skin);
     // Last painted, visible pixel wins. A transparent rectangle never steals a hit.
     for(const key of [...skin.layers].reverse()){
       const mask=masks[key];if(!skin.parts[key]||!mask||!joints[key])continue;
       const part=partFor(skin,key,pose);
+      if(part.enabled===false||part.opacity===0)continue;
       const [a,b,c,d,e,f]=matrix(part,joints[key]),det=a*d-b*c;
       if(Math.abs(det)<1e-10)continue;
       const dx=point.x-e,dy=point.y-f;
@@ -226,19 +237,20 @@
     return null;
   }
   function draw(ctx,skin,images,pose,options={}){
-    const joints=bones(pose,options.lengths);
+    const joints=bones(pose,options.lengths,skin);
     for(const key of skin.layers){
       if(options.skeletonOnly)continue;
       if(options.only&&options.only!==key)continue;
-      const part=partFor(skin,key,pose);if(!images[key]||!joints[key])continue;
+      const part=partFor(skin,key,pose);if(!images[key]||!joints[key]||part.enabled===false||part.opacity===0)continue;
       const img=fadedImage(images[key],part,options.createCanvas);
       ctx.save();ctx.transform(...matrix(part,joints[key]));
+      ctx.globalAlpha=part.opacity??1;
       drawWarpedImage(ctx,img,part);
       ctx.restore();
     }
     if(options.skeleton){
       ctx.save();ctx.lineWidth=2;ctx.globalAlpha=0.9;
-      for(const [key,[a,z]] of Object.entries(joints)){
+      for(const [key,[a,z]] of Object.entries(bones(pose,options.lengths))){
         if(key==='backpack')continue;
         ctx.strokeStyle=key.startsWith('near')?R.NEAR:key.startsWith('far')?R.FAR:'#fff';
         ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(z.x,z.y);ctx.stroke();

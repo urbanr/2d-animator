@@ -2,6 +2,26 @@
 
 Zdroj: přímé pokyny uživatele v této úloze, 12. 9. 2026. Tyto body jsou potvrzené požadavky, nikoli návrhy asistenta.
 
+## Nový postup pro kosterní postavy — 17. 9. 2026
+
+Pro nové kosterní postavy chce uživatel jeden celkový návrh z ImageGen a samostatné
+bitmapové díly, nikoli další kreslené osmifázové sekvence. Stránka Bitmapové
+předlohy musí ukazovat nejprve celou postavu a potom její díly. Stávající sekvence
+se zachovávají jako starší podklady.
+
+Animátor i Kostry mají při vytvoření animace výchozích osm snímků a dovolují
+snímky přidávat i odebírat. Kostru lze rozšířit o další navázané větve a k jedné
+kosti přilepit více nezávislých bitmap ze seznamu dílů. Tyto bitmapy následují
+pohyb a rotaci kosti, ale nedědí zmenšení ani zprůhlednění jiné bitmapy. Nový
+přilepený díl má vlastní velikost i při změně délky kosti. Jednotlivé díly lze
+v animaci nepoužít bez jejich smazání. Do předloh lze přidávat další PNG.
+Starší data se obohacují aditivně se zálohou, nikoli nahrazují od začátku.
+
+Matka všech krys: uživatelem schválený vzpřímený návrh bosse na zadních a
+schválený atlas 19 dílů, včetně krku, ocasu, nádrže a tří samostatných malých
+krys. Uloženo v `graphics/bitmapove-predlohy/matka-vsech-krys-v1/`.
+Schválení grafiky není schválením finálního pohybu; ten vzniká v editoru.
+
 ## Výtvarný styl a rozměry
 
 - Inspirace Metal Slug, zejména díly 3, 4 a 5: výtvarný styl, groteskní postavy, stroje a živé animace. Není požadována kostičkovaná pixelovost. Zachovat současnou kvalitu kresby postav.

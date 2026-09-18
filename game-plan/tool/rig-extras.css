@@ -1,0 +1,31 @@
+/* The host is only a mount point: its sections belong to the page's own section list. */
+#rigExtras{display:contents}
+.rig-extras-section>summary{cursor:pointer}
+.rig-extras-section label{font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:7px 0;flex-wrap:wrap}
+.rig-extras-section select{max-width:100%;min-width:150px}
+.rig-extras-section input[type=number]{width:85px}
+.rig-extras-section p{font-size:12px;line-height:1.5}
+.rig-extras-section button:not(.help){margin:4px 3px 4px 0}
+.rig-extras-section .list-title{margin:10px 0 5px;font-size:14px;color:inherit}
+.rig-extras-section .inline-actions{display:flex;align-items:center;gap:5px;flex:1 1 auto;min-width:0}
+.rig-extras-section .inline-actions select{flex:1 1 auto;width:100%;min-width:0}
+.rig-extras-section .inline-actions button{margin:0;flex:0 0 auto;padding:7px 9px;line-height:1}
+.rig-extras-section .bitmap-list{list-style:none;margin:0 0 10px;padding:5px;border:1px solid #526454;border-radius:7px;background:#26332c;max-height:220px;overflow:auto}
+.rig-extras-section .bitmap-list li{display:flex;align-items:center;gap:4px;border-radius:5px}
+.rig-extras-section .bitmap-list li.selected{background:#3f4d44}
+.rig-extras-section .bitmap-list li.off .name{opacity:.55}
+.rig-extras-section .bitmap-list li.empty{justify-content:center;padding:10px;font-size:13px;color:#aebbb4}
+.rig-extras-section .bitmap-list .name{flex:1 1 auto;min-width:0;margin:0;padding:5px 7px;border:0;border-radius:5px;background:none;font-size:14px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rig-extras-section .bitmap-list .name:hover{border:0;background:#33413a}
+.rig-extras-section .bitmap-list .row-actions{display:flex;gap:2px;flex:0 0 auto}
+.rig-extras-section .bitmap-list button.icon{margin:0;padding:4px 6px;border:0;background:none;font-size:14px;line-height:1}
+.rig-extras-section .bitmap-list button.icon:hover{border:0;background:#33413a}
+.rig-extras-section .bitmap-list button.icon[aria-pressed]{outline:none;background:none}
+.rig-extras-section .bitmap-list button.icon[aria-pressed]:hover{background:#33413a}
+.rig-extras-section button.danger{border-color:#8d5350}
+.rig-extras-section button.danger:hover:not(:disabled){border-color:#e07a72}
+/* Fallback only: a page that styles .help itself wins, being loaded after this file. */
+.help{position:relative;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;min-height:23px;padding:0;margin-left:8px;border-radius:50%;flex-shrink:0}
+.help .help-text{display:none;position:absolute;right:0;top:calc(100% + 7px);z-index:50;width:300px;max-width:70vw;padding:11px 13px;background:#0b1310;color:#e6eee8;border:1px solid #4c5c50;border-radius:8px;font-size:12px;line-height:1.5;font-weight:400;text-align:left;white-space:normal}
+.help.help-open .help-text{display:block}
+.reference{margin:18px 0;padding:16px;background:#505050;border-radius:8px}.reference img{display:block;width:100%;max-height:540px;object-fit:contain}.reference figcaption{margin-top:12px}.upload{margin-top:24px;padding-top:12px;border-top:1px solid #58705d}.upload label{display:block;margin:12px 0}.upload input,.upload select,.upload button{margin-left:8px;padding:7px}

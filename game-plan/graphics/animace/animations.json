@@ -401,7 +401,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -435,7 +438,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -473,7 +479,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -507,7 +516,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -561,7 +573,10 @@
             "rotation": 0,
             "scale": 1.0038941274939701,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -599,7 +614,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -637,7 +655,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -689,7 +710,10 @@
             "rotation": 0,
             "scale": 1.01444737980304,
             "scale_x": 1.531490636308923,
-            "scale_y": 1.1223242889780052
+            "scale_y": 1.1223242889780052,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -745,7 +769,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -779,7 +806,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -813,7 +843,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -847,7 +880,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -857,7 +893,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -891,7 +930,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -1458,7 +1500,8 @@
           }
         }
       },
-      "updated_at": "2026-09-17T11:02:13.100962+00:00"
+      "updated_at": "2026-09-17T11:02:13.100962+00:00",
+      "extra_bones": {}
     },
     "14877d15-46b5-4b4a-ad4a-a178d2d4cb4f": {
       "id": "14877d15-46b5-4b4a-ad4a-a178d2d4cb4f",
@@ -1860,7 +1903,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -1894,7 +1940,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -1932,7 +1981,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -1966,7 +2018,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -2020,7 +2075,10 @@
             "rotation": 0,
             "scale": 1.0038941274939701,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -2058,7 +2116,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -2096,7 +2157,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -2130,7 +2194,10 @@
             "rotation": 0,
             "scale": 1.0019627229638968,
             "scale_x": 1.6081569713794417,
-            "scale_y": 1.0386023507490283
+            "scale_y": 1.0386023507490283,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -2184,7 +2251,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -2218,7 +2288,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -2252,7 +2325,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -2286,7 +2362,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -2296,7 +2375,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -2330,7 +2412,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -2580,7 +2665,8 @@
             }
           }
         }
-      }
+      },
+      "extra_bones": {}
     },
     "fb8e1d70-aacf-467a-94a6-a93286a9236a": {
       "id": "fb8e1d70-aacf-467a-94a6-a93286a9236a",
@@ -2982,7 +3068,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -3016,7 +3105,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -3054,7 +3146,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -3088,7 +3183,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -3142,7 +3240,10 @@
             "rotation": 0,
             "scale": 1.0038941274939701,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -3180,7 +3281,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -3218,7 +3322,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -3252,7 +3359,10 @@
             "rotation": 0,
             "scale": 1.0019627229638968,
             "scale_x": 1.6081569713794417,
-            "scale_y": 1.0386023507490283
+            "scale_y": 1.0386023507490283,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -3306,7 +3416,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -3340,7 +3453,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -3374,7 +3490,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -3408,7 +3527,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -3418,7 +3540,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -3452,7 +3577,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -3703,7 +3831,8 @@
           }
         }
       },
-      "updated_at": "2026-09-17T10:29:12.744985+00:00"
+      "updated_at": "2026-09-17T10:29:12.744985+00:00",
+      "extra_bones": {}
     },
     "a1ab5d59-e1a3-45f3-a994-d45a29e19bd6": {
       "id": "a1ab5d59-e1a3-45f3-a994-d45a29e19bd6",
@@ -4105,7 +4234,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -4139,7 +4271,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -4177,7 +4312,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -4211,7 +4349,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -4265,7 +4406,10 @@
             "rotation": 0,
             "scale": 1.0038941274939701,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -4303,7 +4447,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -4341,7 +4488,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -4375,7 +4525,10 @@
             "rotation": 0,
             "scale": 1.0019627229638968,
             "scale_x": 1.6081569713794417,
-            "scale_y": 1.0386023507490283
+            "scale_y": 1.0386023507490283,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -4429,7 +4582,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -4463,7 +4619,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -4497,7 +4656,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -4531,7 +4693,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -4541,7 +4706,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -4575,7 +4743,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -4826,7 +4997,8 @@
           }
         }
       },
-      "updated_at": "2026-09-17T10:03:59.032715+00:00"
+      "updated_at": "2026-09-17T10:03:59.032715+00:00",
+      "extra_bones": {}
     },
     "c2524d9e-bd60-41fa-b139-3cf8a76f12f7": {
       "id": "c2524d9e-bd60-41fa-b139-3cf8a76f12f7",
@@ -5228,7 +5400,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -5262,7 +5437,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -5296,7 +5474,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -5330,7 +5511,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -5364,7 +5548,10 @@
             "rotation": 0,
             "scale": 1.0022846471471887,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -5398,7 +5585,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -5436,7 +5626,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -5470,7 +5663,10 @@
             "rotation": 0,
             "scale": 1.0019627229638968,
             "scale_x": 1.6081569713794417,
-            "scale_y": 1.0386023507490283
+            "scale_y": 1.0386023507490283,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -5504,7 +5700,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -5538,7 +5737,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -5572,7 +5774,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -5606,7 +5811,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -5616,7 +5824,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -5650,7 +5861,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -5749,7 +5963,8 @@
           }
         }
       },
-      "updated_at": "2026-09-17T06:54:47.701151+00:00"
+      "updated_at": "2026-09-17T06:54:47.701151+00:00",
+      "extra_bones": {}
     },
     "0064a9f6-4ac7-4fcd-b74b-dbd378766170": {
       "id": "0064a9f6-4ac7-4fcd-b74b-dbd378766170",
@@ -6151,7 +6366,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "farForearm": {
             "joint_fade": {
@@ -6185,7 +6403,10 @@
             "rotation": -0.8431073416945765,
             "scale": 1,
             "scale_x": 1.0150722056736663,
-            "scale_y": 1.1385713955122942
+            "scale_y": 1.1385713955122942,
+            "bone": "farForearm",
+            "enabled": true,
+            "opacity": 1
           },
           "farFoot": {
             "joint_fade": {
@@ -6223,7 +6444,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "farThigh": {
             "joint_fade": {
@@ -6257,7 +6481,10 @@
             "rotation": -14.19912205724654,
             "scale": 1.0433066071224077,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "farShin": {
             "joint_fade": {
@@ -6311,7 +6538,10 @@
             "rotation": 0,
             "scale": 1.0038941274939701,
             "scale_x": 1.8475152946030693,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "farShin",
+            "enabled": true,
+            "opacity": 1
           },
           "nearFoot": {
             "joint_fade": {
@@ -6349,7 +6579,10 @@
             "rotation": 0,
             "scale": 1,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearFoot",
+            "enabled": true,
+            "opacity": 1
           },
           "pelvis": {
             "joint_fade": {
@@ -6387,7 +6620,10 @@
             "rotation": 8.762776823071363,
             "scale": 2.2322417313091574,
             "scale_x": 1,
-            "scale_y": 0.7536502437209021
+            "scale_y": 0.7536502437209021,
+            "bone": "pelvis",
+            "enabled": true,
+            "opacity": 1
           },
           "nearThigh": {
             "joint_fade": {
@@ -6439,7 +6675,10 @@
             "rotation": 0,
             "scale": 1.01444737980304,
             "scale_x": 1.531490636308923,
-            "scale_y": 1.1223242889780052
+            "scale_y": 1.1223242889780052,
+            "bone": "nearThigh",
+            "enabled": true,
+            "opacity": 1
           },
           "nearShin": {
             "joint_fade": {
@@ -6495,7 +6734,10 @@
             "rotation": 0.10506064357809919,
             "scale": 1,
             "scale_x": 1.5648908165441284,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearShin",
+            "enabled": true,
+            "opacity": 1
           },
           "torso": {
             "joint_fade": {
@@ -6529,7 +6771,10 @@
             "rotation": 5.070075436836191,
             "scale": 1.896167408902829,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "torso",
+            "enabled": true,
+            "opacity": 1
           },
           "head": {
             "joint_fade": {
@@ -6565,7 +6810,10 @@
             "rotation": -0.05874433306860283,
             "scale": 1.6037076851094245,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "head",
+            "enabled": true,
+            "opacity": 1
           },
           "nearUpperArm": {
             "joint_fade": {
@@ -6599,7 +6847,10 @@
             "rotation": 0.11662214048885744,
             "scale": 1,
             "scale_x": 1.4335472525176576,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearUpperArm",
+            "enabled": true,
+            "opacity": 1
           },
           "megaphone": {
             "offset": [
@@ -6609,7 +6860,10 @@
             "rotation": -63.83401267752447,
             "scale": 0.6842159344063943,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "megaphone",
+            "enabled": true,
+            "opacity": 1
           },
           "nearForearm": {
             "joint_fade": {
@@ -6643,7 +6897,10 @@
             "rotation": 1.24474681530819,
             "scale": 0.993065571035189,
             "scale_x": 1,
-            "scale_y": 1
+            "scale_y": 1,
+            "bone": "nearForearm",
+            "enabled": true,
+            "opacity": 1
           }
         }
       },
@@ -7287,7 +7544,8 @@
           }
         }
       },
-      "updated_at": "2026-09-17T11:55:27.807720+00:00"
+      "updated_at": "2026-09-17T11:55:27.807720+00:00",
+      "extra_bones": {}
     }
   },
   "trash": {
@@ -8302,5 +8560,6 @@
       "saved_at": "2026-09-17T11:55:27.807720+00:00",
       "history": "history/5ccc0176-a85e-444f-bf87-21a968b0c15a.json"
     }
-  }
+  },
+  "rig_format_version": 2
 }

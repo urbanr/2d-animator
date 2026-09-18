@@ -7,28 +7,30 @@ class GraphicsDataBanksTests(unittest.TestCase):
     def test_clean_split_banks(self):
         graphics = Path(__file__).resolve().parents[1] / 'graphics'
         self.assertEqual(
-            {path.name for path in graphics.iterdir() if path.is_dir()},
+            {path.name for path in graphics.iterdir() if path.is_dir() and path.name != 'migration-backups'},
             {'postavy', 'animace', 'bitmapove-sekvence', 'bitmapove-predlohy', 'levely', 'kostry'},
         )
         skeletons = json.loads((graphics / 'kostry/skeletons.json').read_text())
         animations = json.loads((graphics / 'animace/animations.json').read_text())
         characters = json.loads((graphics / 'postavy/game-characters.json').read_text())
         templates = json.loads((graphics / 'bitmapove-predlohy/skins.json').read_text())
-        self.assertEqual(len(skeletons['clips']), 3)
-        self.assertEqual(skeletons['poses'], {})
-        self.assertEqual(skeletons['trash'], {})
-        self.assertEqual(animations['finished_animations'], {})
-        self.assertEqual(animations['trash'], {})
-        self.assertEqual(characters['characters'], {})
-        self.assertEqual(characters['trash'], {})
-        self.assertEqual(
-            list(templates['skins']),
-            ['bezec-zombie-v1', 'soudruh-generalissimus-v1'],
-        )
-        self.assertEqual(
-            list(templates['templates']),
-            ['bezec-zombie-v1', 'soudruh-generalissimus-v1'],
-        )
+        # Banks are user-editable, so assert relationships rather than an empty seed.
+        self.assertTrue(skeletons['clips'])
+        for clip in skeletons['clips'].values():
+            self.assertNotIn('bitmap', clip)
+            self.assertTrue(1 <= len(clip['frames']) <= 256)
+        for animation in animations['finished_animations'].values():
+            self.assertIn(animation['skin_id'], templates['skins'])
+            if animation.get('skeleton_id'):
+                self.assertIn(animation['skeleton_id'], skeletons['clips'])
+        for character in characters['characters'].values():
+            self.assertNotIn('skin', character)
+            self.assertNotIn('animation', character)
+            for identifier in character['animation_ids']:
+                self.assertIn(identifier, animations['finished_animations'])
+        for key in ['bezec-zombie-v1', 'soudruh-generalissimus-v1', 'matka-vsech-krys-v1']:
+            self.assertIn(key, templates['skins'])
+            self.assertIn(key, templates['templates'])
         general = templates['templates']['soudruh-generalissimus-v1']
         self.assertTrue(general['animator_ready'])
         skin = json.loads((graphics / 'bitmapove-predlohy' / general['path']).read_text())

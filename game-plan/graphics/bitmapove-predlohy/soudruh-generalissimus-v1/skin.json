@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "id": "soudruh-generalissimus-v1",
   "name": "Soudruh Generalissimus · cutout v1",
   "status": "experiment",
@@ -56,7 +56,10 @@
       "end": [
         122,
         126
-      ]
+      ],
+      "bone": "head",
+      "enabled": true,
+      "opacity": 1
     },
     "torso": {
       "label": "Trup",
@@ -85,7 +88,10 @@
       "end": [
         143,
         256
-      ]
+      ],
+      "bone": "torso",
+      "enabled": true,
+      "opacity": 1
     },
     "pelvis": {
       "label": "Pánev",
@@ -114,7 +120,10 @@
       "end": [
         124,
         180
-      ]
+      ],
+      "bone": "pelvis",
+      "enabled": true,
+      "opacity": 1
     },
     "megaphone": {
       "label": "Amplion",
@@ -143,7 +152,10 @@
       "end": [
         174,
         158
-      ]
+      ],
+      "bone": "megaphone",
+      "enabled": true,
+      "opacity": 1
     },
     "nearUpperArm": {
       "label": "Bližší nadloktí",
@@ -172,7 +184,10 @@
       "end": [
         76,
         220
-      ]
+      ],
+      "bone": "nearUpperArm",
+      "enabled": true,
+      "opacity": 1
     },
     "nearForearm": {
       "label": "Bližší předloktí a ruka",
@@ -201,7 +216,10 @@
       "end": [
         76,
         236
-      ]
+      ],
+      "bone": "nearForearm",
+      "enabled": true,
+      "opacity": 1
     },
     "farUpperArm": {
       "label": "Vzdálenější nadloktí",
@@ -231,7 +249,10 @@
         176,
         218
       ],
-      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+      "bitmap_transform": "horizontal-flip-around-vertical-axis",
+      "bone": "farUpperArm",
+      "enabled": true,
+      "opacity": 1
     },
     "farForearm": {
       "label": "Vzdálenější předloktí a ruka",
@@ -260,7 +281,10 @@
       "end": [
         57,
         231
-      ]
+      ],
+      "bone": "farForearm",
+      "enabled": true,
+      "opacity": 1
     },
     "nearThigh": {
       "label": "Bližší stehno",
@@ -289,7 +313,10 @@
       "end": [
         62,
         251
-      ]
+      ],
+      "bone": "nearThigh",
+      "enabled": true,
+      "opacity": 1
     },
     "nearShin": {
       "label": "Bližší lýtko",
@@ -318,7 +345,10 @@
       "end": [
         73,
         253
-      ]
+      ],
+      "bone": "nearShin",
+      "enabled": true,
+      "opacity": 1
     },
     "farThigh": {
       "label": "Vzdálenější stehno",
@@ -348,7 +378,10 @@
         116,
         255
       ],
-      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+      "bitmap_transform": "horizontal-flip-around-vertical-axis",
+      "bone": "farThigh",
+      "enabled": true,
+      "opacity": 1
     },
     "farShin": {
       "label": "Vzdálenější lýtko",
@@ -378,7 +411,10 @@
         73,
         254
       ],
-      "bitmap_transform": "horizontal-flip-around-vertical-axis"
+      "bitmap_transform": "horizontal-flip-around-vertical-axis",
+      "bone": "farShin",
+      "enabled": true,
+      "opacity": 1
     },
     "nearFoot": {
       "label": "Bližší bota",
@@ -407,7 +443,10 @@
       "end": [
         35,
         49
-      ]
+      ],
+      "bone": "nearFoot",
+      "enabled": true,
+      "opacity": 1
     },
     "farFoot": {
       "label": "Vzdálenější bota",
@@ -436,7 +475,10 @@
       "end": [
         31,
         49
-      ]
+      ],
+      "bone": "farFoot",
+      "enabled": true,
+      "opacity": 1
     }
   },
   "postprocess": {
@@ -446,5 +488,7 @@
       "farThigh",
       "farShin"
     ]
-  }
+  },
+  "reference_image": "../../bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-00.png",
+  "reference_label": "Celá postava · existující kreslená reference"
 }

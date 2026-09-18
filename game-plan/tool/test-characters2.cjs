@@ -21,7 +21,7 @@ function element(){return {children:[],style:{},value:'',textContent:'',disabled
  getContext(){const owner=this;return new Proxy(paint,{set:(target,key,value)=>{if(key==='imageSmoothingEnabled'||key==='imageSmoothingQuality'){owner[key]=value;smoothingWrites.push([key,value]);}if(key==='fillStyle')owner.fillColor=value;if(key==='strokeStyle')owner.strokeColor=value;return true;},get:(target,key)=>key==='transform'?(...matrix)=>{owner.matrices??=[];owner.matrices.push(matrix);}:key==='clearRect'?()=>{owner.fills=[];owner.strokes=[];owner.ellipses=[];owner.arcs=[];owner.rects=[];}:key==='arc'?(...arc)=>{owner.lastArc=arc;owner.arcs??=[];owner.arcs.push(arc);}:key==='ellipse'?(...ellipse)=>{owner.ellipses??=[];owner.ellipses.push(ellipse);}:key==='rect'?(...rect)=>{owner.rects??=[];owner.rects.push(rect);}:key==='fill'?()=>{owner.fills??=[];owner.fills.push({color:owner.fillColor,arc:owner.lastArc});}:key==='stroke'?()=>{owner.strokes??=[];owner.strokes.push(owner.strokeColor);}:target[key]});},getBoundingClientRect:()=>({left:0,top:0,width:512,height:560}),
  setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(){this.capture=null;},
  toBlob(fn){exportedSizes.push([this.width,this.height]);fn(new Blob(['png']));},click(){}};}
-const ids=['stage','mini','status','frameLabel','frames','lean','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyX','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','nearLegend','farLegend','gameCharacter','characterName','saveCharacter','undo','play','previous','next','save','exportFrame','exportSheet','exportRig','parts'];
+const ids=['stage','mini','status','frameLabel','frames','smooth','edit','resizeBones','bones','side','clip','name','fps','moveSpeed','travel','bodyX','bodyY','zoomIn','zoomOut','zoomReset','zoomLabel','skinSelect','nearLegend','farLegend','gameCharacter','characterName','saveCharacter','undo','play','previous','next','save','exportFrame','exportSheet','exportRig','parts'];
 ids.push('layerOrder','layerBack','layerFront','anchorReset','spread','rateDelta','randomRate','rateInfo');
 ids.push('updateCharacter','updateAnimation','animationName','importDraft','renderMode','characterAnimation','assignAnimation');
 ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','resetFrame','stageWrap','toolGrip','toolBody','toolCollapse','gestureHint');
@@ -138,7 +138,8 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.previous.onclick();assert.match(elements.frameLabel.textContent,/8 \/ 8/);
  elements.next.onclick();assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  elements.edit.checked=true;elements.edit.onchange();elements.toolMove.onclick();
- const h=R.handles(zombie.frames[0]).find(h=>h.key==='bodyY'),e={button:0,pointerId:7,clientX:512-h.point.x,clientY:h.point.y,preventDefault(){}};
+ const h=R.handles(zombie.frames[0]).find(h=>h.key==='bodyY');
+ const e={button:0,pointerId:7,clientX:512-h.point.x,clientY:h.point.y,preventDefault(){}};
  elements.stage.onpointerdown(e);elements.stage.onpointermove({...e,clientY:e.clientY+20});elements.stage.onpointerup(e);
  elements.bodyX.value='-10';elements.bodyX.onchange();
  assert.equal(elements.stage.capture,null);elements.characterName.value='Zombie custom';await elements.saveCharacter.onclick();
@@ -149,10 +150,10 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.deepEqual(store.clips[zombie.id],zombie);
  elements.bodyY.value=String(Number(elements.bodyY.value)-10);elements.bodyY.onchange();elements.undo.onclick();elements.name.value='Undo proof';await elements.save.onclick();
  assert.equal(gameStore.characters['game-1'].animations['assigned-2'].frames[0].bodyY,gameStore.characters['game-1'].animations['assigned-1'].frames[0].bodyY);
- elements.lean.value='35';elements.lean.onchange();elements.fps.value='12';elements.fps.onchange();
+ elements.bodyY.value='35';elements.bodyY.onchange();elements.fps.value='12';elements.fps.onchange();
  fail=true;await elements.save.onclick();assert.match(elements.status.textContent,/Save failed/);assert.equal(elements.save.disabled,false);
  confirmed=false;const previousHot=elements.clip.value;elements.clip.value='walk';await elements.clip.onchange();assert.equal(elements.clip.value,previousHot);
- fail=false;confirmed=true;elements.name.value='Third';await elements.save.onclick();assert.equal(gameStore.characters['game-1'].animations['assigned-3'].frames[0].bodyLean,35);assert.equal(gameStore.characters['game-1'].animations['assigned-3'].fps,12);
+ fail=false;confirmed=true;elements.name.value='Third';await elements.save.onclick();assert.equal(gameStore.characters['game-1'].animations['assigned-3'].frames[0].bodyY,35);assert.equal(gameStore.characters['game-1'].animations['assigned-3'].fps,12);
  elements.exportFrame.onclick();elements.exportSheet.onclick();elements.exportRig.onclick();assert.equal(downloads,3);
  elements.moveSpeed.value='10';elements.moveSpeed.onchange();elements.bodyY.value='-20';elements.bodyY.onchange();
  elements.name.value='Speed and floor';await elements.save.onclick();
@@ -169,14 +170,14 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  elements.zoomIn.onclick();assert.equal(elements.zoomLabel.textContent,'120 %');
  elements.stage.onwheel({deltaY:-300,preventDefault(){}});assert.notEqual(elements.zoomLabel.textContent,'120 %');
  elements.zoomReset.onclick();assert.equal(elements.zoomLabel.textContent,'69 %');unitZoom();
- elements.frames.children[0].onclick();elements.edit.checked=true;elements.edit.onchange();elements.lean.value='30';elements.lean.onchange();await elements.updateAnimation.onclick();
+ elements.frames.children[0].onclick();elements.edit.checked=true;elements.edit.onchange();elements.bodyY.value='30';elements.bodyY.onchange();await elements.updateAnimation.onclick();
  const savedGame=gameStore.characters['game-1'];
- assert.equal(savedGame.name,'Zombie custom');assert.equal(savedGame.animation.frames[0].bodyLean,30);
+ assert.equal(savedGame.name,'Zombie custom');assert.equal(savedGame.animation.frames[0].bodyY,30);
  assert.deepEqual(savedGame.animation.joint_limits,R.defaultJointLimits());
  assert.equal(savedGame.animation.move_speed_pt_s,10);assert.equal(savedGame.animation.rig_lengths.nearShin,74);
  assert.equal(elements.gameCharacter.value,'game-1');assert.deepEqual(store.clips[zombie.id],zombie);assert.ok(Object.keys(savedGame.animations).length>=4);
- elements.lean.value='10';elements.lean.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skeletonDirtyStar.hidden,false);assert.equal(elements.animationDirtyStar.hidden,false);confirmed=true;
- await elements.gameCharacter.onchange();assert.equal(Number(elements.lean.value),30);
+ elements.bodyY.value='10';elements.bodyY.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skeletonDirtyStar.hidden,false);assert.equal(elements.animationDirtyStar.hidden,false);confirmed=true;
+ await elements.gameCharacter.onchange();assert.equal(Number(elements.bodyY.value),30);
  assert.equal(elements.clip.value,gameStore.characters['game-1'].default_animation_id);assert.equal(elements.characterAnimation.value,gameStore.characters['game-1'].default_animation_id);
  // Playback must never silently change the editor checkbox.
  elements.play.onclick();assert.equal(elements.edit.checked,true);elements.play.onclick();assert.equal(elements.edit.checked,true);
@@ -418,7 +419,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  const hotId=elements.clip.value;assert.equal(store.finished_animations[hotId].skin_id,skin.id);assert.equal(store.finished_animations[hotId].skeleton_id,'walk');assert.equal(elements.animationDirtyStar.hidden,true,'Successful Save As clears the finished-animation dirty star');
  elements.gameCharacter.value='legacy-b';await elements.gameCharacter.onchange();assert.notEqual(elements.characterAnimation.value,'');
  elements.clip.value=hotId;await elements.clip.onchange();assert.equal(elements.characterAnimation.value,'');assert.equal(elements.skinSelect.value,skin.id);assert.equal(elements.skeletonSelect.value,'walk');
- const savedLean=Number(elements.lean.value);elements.lean.value=String(savedLean+1);elements.lean.onchange();assert.equal(elements.animationDirtyStar.hidden,false,'A real edit shows the dirty star');elements.undo.onclick();assert.equal(elements.animationDirtyStar.hidden,true,'Returning exactly to the saved data clears the dirty star');
+ const savedLean=Number(elements.bodyY.value);elements.bodyY.value=String(savedLean+1);elements.bodyY.onchange();assert.equal(elements.animationDirtyStar.hidden,false,'A real edit shows the dirty star');elements.undo.onclick();assert.equal(elements.animationDirtyStar.hidden,true,'Returning exactly to the saved data clears the dirty star');
  // Saved skeleton animations share the clips collection with the skeleton editor.
  const skeletonBefore=Object.keys(store.clips).length;promptAnswers.push('Testovací kostra');await elements.saveSkeleton.onclick();
  const savedSkeleton=elements.skeletonSelect.value;assert.equal(store.clips[savedSkeleton].name,'Testovací kostra');assert.ok(store.clips[savedSkeleton].frames);

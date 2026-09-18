@@ -56,6 +56,10 @@
     return handles.filter(h=>[selected.point,selected.pivot].filter(Boolean).some(p=>Math.hypot(p.x-h.point.x,p.y-h.point.y)<1e-6)).map(h=>h.key);
   }
   function dragSkeleton(clip,index,key,start,end,{scope='frame',tool='rotate',ctrlKey=false,resize=true}={}){
+    if(clip.extra_bones?.[key]){
+      const X=typeof module==='object'&&module.exports?require('./rig-extensions.js'):globalThis.RigExtensions;
+      return X.dragBone(clip,index,key,{x:512-start.x,y:start.y},{x:512-end.x,y:end.y},{bones:C.bones(C.sample(clip,index,false)),scope,tool,ctrlKey:ctrlKey&&resize});
+    }
     const p=C.sample(clip,index,false),bone=boneForHandle(key)||({head:'head',neck:'neck',bodyLean:'torso'}[key]);
     // The center handle belongs to the torso too: honor the chosen tool.
     if(key==='bodyY'&&(tool!=='move'||ctrlKey)){
@@ -163,12 +167,27 @@
     }
     return {clip:out,skin:s};
   }
+  function removeAttachment(clip,skin,key){
+    // Only attachments are removable here; parts of the skin itself are merely disabled.
+    const part=skin.parts[key];
+    if(!part||!part.source_part)throw Error('Smazat lze jen přilepenou bitmapu. Díl z předlohy se jen vypne.');
+    const out=copy(clip),s=copy(skin);
+    delete s.parts[key];s.layers=s.layers.filter(k=>k!==key);
+    for(const [frame,edit] of Object.entries(out.frame_edits||{})){
+      if(edit.parts?.[key]===undefined)continue;
+      delete edit.parts[key];
+      if(!Object.keys(edit.parts).length)delete edit.parts;
+      if(!Object.keys(edit).length)delete out.frame_edits[frame];
+    }
+    if(out.frame_edits&&!Object.keys(out.frame_edits).length)delete out.frame_edits;
+    return {clip:out,skin:s};
+  }
   function resetFrame(clip,index){
     const out=copy(clip),e=out.frame_edits?.[index];if(!e)return out;
     Object.assign(out.frames[index],e.pose_base||{});delete out.frame_edits[index];return out;
   }
   function partHandles(skin,key,pose){
-    const bone=C.bones(pose)[key];if(!bone||!skin.parts[key])return null;
+    const bone=C.bones(pose,undefined,skin)[key];if(!bone||!skin.parts[key])return null;
     const part=C.partFor(skin,key,pose),m=C.matrix(part,bone),at=(x,y)=>({x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]});
     const [w,h]=part.size;
     const pivot=at(part.start[0]+part.pivot_offset[0],part.start[1]+part.pivot_offset[1]),rotate=at(w/2,-20),size=at(w,h);
@@ -202,5 +221,5 @@
       }
     }
   }
-  return {poseChange,lengthChange,boneForHandle,handleForBone,selectedHandleKeys,dragSkeleton,partChange,pivotChange,fadeChange,resetFrame,partHandles,validateEdits};
+  return {poseChange,lengthChange,boneForHandle,handleForBone,selectedHandleKeys,dragSkeleton,partChange,pivotChange,fadeChange,removeAttachment,resetFrame,partHandles,validateEdits};
 });

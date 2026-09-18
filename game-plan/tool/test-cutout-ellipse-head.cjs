@@ -68,7 +68,7 @@ const limited={...clip,joint_limits:{bodyLean:[-10,10]}},limitedTorso=R.handles(
 assert.equal(E.dragSkeleton(limited,0,'bodyY',limitedTorso.point,{x:limitedTorso.point.x+200,y:limitedTorso.point.y},{tool:'rotate'}).frames[0].bodyLean,10);
 const view=require('./editor-view.js');
 assert.ok(Math.abs(view.stageSize(null,900,1400).width-900)<1e-6);
-assert.ok(Math.abs(view.stageSize(null,900,1400).height-900*404/512)<1e-6);
+assert.ok(Math.abs(view.stageSize(null,900,1400).height-900*view.DEFAULT_VIEW/512)<1e-6);
 for(const width of [250,600,1600])for(const height of [300,800,1600])for(const wanted of [null,10,2000]){
   const size=view.stageSize(wanted,width,height);assert.equal(size.width,width);assert.ok(size.height>=1&&size.height<=width*560/512+1e-7);
   assert.ok(Math.abs(size.canvasHeight-width*560/512)<1e-7);

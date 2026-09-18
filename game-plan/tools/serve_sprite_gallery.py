@@ -18,6 +18,7 @@ from build_level_gallery import build_level_data
 from pose_library import save_pose, SKELETON_STORE, ANIMATION_STORE
 from cutout_characters import save_character, ROOT as CHARACTER_ROOT
 from catalog_trash import change_trash
+from bitmap_templates import save_template_image
 from sprite_variants import (
     DEFAULT_CATALOG,
     DEFAULT_GALLERY_DATA,
@@ -60,17 +61,22 @@ class SpriteGalleryHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802 - inherited HTTP API name
         endpoint = urlparse(self.path).path
-        if endpoint not in ("/api/frame-offsets", "/api/level-walk-line", "/api/poses", "/api/game-characters"):
+        if endpoint not in ("/api/frame-offsets", "/api/level-walk-line", "/api/poses", "/api/game-characters", "/api/bitmap-templates"):
             self._json_response(404, {"ok": False, "error": "Neznámá adresa."})
             return
         try:
             length = int(self.headers.get("Content-Length", "0"))
-            if length <= 0 or length > MAX_REQUEST_BYTES:
+            limit = 24 * 1024 * 1024 if endpoint == '/api/bitmap-templates' else 4 * 1024 * 1024 if endpoint == '/api/poses' else MAX_REQUEST_BYTES
+            if length <= 0 or length > limit:
                 raise ValueError("Neplatná velikost požadavku.")
             payload = json.loads(self.rfile.read(length).decode("utf-8"))
             if not isinstance(payload, dict):
                 raise ValueError("Požadavek musí být objekt JSON.")
             with SAVE_LOCK:
+                if endpoint == '/api/bitmap-templates':
+                    result = save_template_image(payload)
+                    self._json_response(200, {'ok': True, **result})
+                    return
                 if endpoint == "/api/game-characters":
                     if payload.get('mode') in ('delete', 'restore'):
                         result = change_trash(payload, CHARACTER_ROOT/'game-characters.json', {'characters'})

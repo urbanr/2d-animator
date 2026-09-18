@@ -25,6 +25,50 @@ DEFAULT_JOINT_LIMITS = {key: [-180, 180] for key in ANGLE_KEYS}
 DEFAULT_LENGTHS = {side+bone: length for side in ('near','far') for bone,length in {'UpperArm':46,'Forearm':44,'Thigh':70,'Shin':74,'Foot':25}.items()}
 PART_KEYS = set(DEFAULT_LENGTHS) | {'head', 'torso', 'backpack'}
 DEFAULT_LENGTHS.update(head=21, neck=18, torso=94)
+BASE_BONES = set(DEFAULT_LENGTHS) | {'pelvis', 'backpack', 'megaphone'}
+
+
+def validate_extra_bones(value=None):
+    value = {} if value is None else value
+    if not isinstance(value, dict) or len(value) > 128:
+        raise ValueError('Neplatné přidané kosti.')
+    out = {}
+    for key, bone in value.items():
+        validate_reference(key, 'kost')
+        if not key.startswith('extra_') or key in BASE_BONES or not isinstance(bone, dict) or set(bone) != {'label', 'parent', 'at', 'offset', 'length', 'angle'}:
+            raise ValueError('Neplatná přidaná kost.')
+        if not isinstance(bone['label'], str) or not 1 <= len(bone['label'].strip()) <= 100:
+            raise ValueError('Neplatný název kosti.')
+        if not isinstance(bone['offset'], list) or len(bone['offset']) != 2:
+            raise ValueError('Neplatný posun kosti.')
+        out[key] = dict(label=bone['label'], parent=validate_reference(bone['parent'], 'rodiče kosti'),
+                        at=bounded(bone['at'], 0, 1), length=bounded(bone['length'], 1, 1000),
+                        angle=bounded(bone['angle'], -180, 180), offset=[bounded(v, -2000, 2000) for v in bone['offset']])
+    visited, active = set(), set()
+    def visit(key):
+        if key in BASE_BONES or key in visited:
+            return
+        if key in active or key not in out:
+            raise ValueError('Kosti tvoří kruh nebo chybí rodič.')
+        active.add(key)
+        visit(out[key]['parent'])
+        active.remove(key)
+        visited.add(key)
+    for key in out:
+        visit(key)
+    return out
+
+
+def validate_extra_pose(value):
+    if not isinstance(value, dict) or len(value) > 128:
+        raise ValueError('Neplatná póza přidaných kostí.')
+    out = {}
+    for key, pose in value.items():
+        validate_reference(key, 'kost')
+        if not key.startswith('extra_') or not isinstance(pose, dict) or set(pose)-{'angle', 'x', 'y'}:
+            raise ValueError('Neplatná póza přidané kosti.')
+        out[key] = {k: bounded(v, -180 if k == 'angle' else -2000, 180 if k == 'angle' else 2000) for k, v in pose.items()}
+    return out
 
 
 def bounded(value, low, high):
@@ -78,9 +122,20 @@ def validate_joint_fade(value):
 
 
 def validate_part_transform(value, exception=False):
-    if not isinstance(value, dict) or set(value)-{'offset', 'pivot_offset', 'warp', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade'}:
+    if not isinstance(value, dict) or set(value)-{'offset', 'pivot_offset', 'warp', 'rotation', 'scale', 'scale_x', 'scale_y', 'joint_fade', 'bone', 'source_part', 'enabled', 'opacity', 'fixed_length'}:
         raise ValueError('Neplatná úprava bitmapového dílu.')
     out = {}
+    for key in ('bone', 'source_part'):
+        if key in value:
+            out[key] = validate_reference(value[key], key)
+    if 'enabled' in value:
+        if type(value['enabled']) is not bool:
+            raise ValueError('Použití bitmapy musí být ano/ne.')
+        out['enabled'] = value['enabled']
+    if 'opacity' in value:
+        out['opacity'] = bounded(value['opacity'], 0, 1)
+    if 'fixed_length' in value:
+        out['fixed_length'] = None if value['fixed_length'] is None else bounded(value['fixed_length'], .001, 2000)
     if 'pivot_offset' in value:
         if not isinstance(value['pivot_offset'], list) or len(value['pivot_offset']) != 2:
             raise ValueError('Rotační střed musí být dvojice čísel.')
@@ -119,7 +174,7 @@ def validate_frame_edits(value, frames, lengths):
         out[index] = {}
         for section, entries in edit.items():
             allowed = {'pose_base': set(LIMITS), 'lengths': set(DEFAULT_LENGTHS), 'parts': PART_KEYS}[section]
-            if not isinstance(entries, dict) or set(entries)-allowed:
+            if not isinstance(entries, dict) or (section != 'parts' and set(entries)-allowed):
                 raise ValueError('Neplatné položky výjimky.')
             result = {}
             for key, v in entries.items():
@@ -129,6 +184,7 @@ def validate_frame_edits(value, frames, lengths):
                     result[key] = bounded(v, .02, 50)
                     bounded(lengths[key]*v, 5-1e-8, 250+1e-8)
                 else:
+                    validate_reference(key, 'bitmapový díl')
                     result[key] = validate_part_transform(v, exception=True)
             out[index][section] = result
     return out
@@ -166,7 +222,9 @@ def validate_joint_limits(value=None):
 
 def validate_frame(frame):
     # Legacy saved poses retain their original full-width geometry.
+    extra_pose = frame.get('extra_pose') if isinstance(frame, dict) else None
     if isinstance(frame, dict):
+        frame = {k: v for k, v in frame.items() if k != 'extra_pose'}
         frame = {**dict.fromkeys(ROOT_OFFSETS,0), 'bodyX': 0, 'shoulderWidth': 100, 'pelvisWidth': 100, 'bodyLean': 0, **frame}
     if not isinstance(frame, dict) or set(frame) != set(LIMITS):
         raise ValueError('Póza musí obsahovat všechny klouby.')
@@ -176,6 +234,8 @@ def validate_frame(frame):
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not low <= value <= high:
             raise ValueError(f'{key}: povolený rozsah je {low} až {high}.')
         result[key] = value
+    if extra_pose is not None:
+        result['extra_pose'] = validate_extra_pose(extra_pose)
     return result
 
 
@@ -200,8 +260,8 @@ def save_pose(payload, path=None):
     elif kind in ('clip', 'finished_animation'):
         frames = payload.get('frames')
         fps = payload.get('fps')
-        if not isinstance(frames, list) or not 2 <= len(frames) <= 32:
-            raise ValueError('Animace musí mít 2 až 32 snímků.')
+        if not isinstance(frames, list) or not 1 <= len(frames) <= 256:
+            raise ValueError('Animace musí mít 1 až 256 snímků.')
         if type(fps) is not int or not 1 <= fps <= 30:
             raise ValueError('Rychlost musí být 1 až 30 snímků/s.')
         speed = payload.get('move_speed_pt_s', 8)
@@ -217,6 +277,15 @@ def save_pose(payload, path=None):
         collection = 'clips' if kind == 'clip' else 'finished_animations'
     else:
         raise ValueError('Neznámý typ záznamu.')
+    record['extra_bones'] = validate_extra_bones(payload.get('extra_bones', (payload.get('expectedRecord') or {}).get('extra_bones')))
+    extra_bones = record['extra_bones']
+    for frame in record.get('frames', [record.get('frame', {})]):
+        if set(frame.get('extra_pose', {}))-set(record['extra_bones']):
+            raise ValueError('Snímek odkazuje na chybějící přidanou kost.')
+    if kind == 'finished_animation':
+        for key, part in record['bitmap']['parts'].items():
+            if part.get('bone', key) not in BASE_BONES | set(record['extra_bones']):
+                raise ValueError('Bitmapa odkazuje na chybějící kost.')
     path = Path(path) if path is not None else (ANIMATION_STORE if kind == 'finished_animation' else SKELETON_STORE)
     library = json.loads(path.read_text(encoding='utf-8'))
     library.setdefault(collection, {})
@@ -253,7 +322,7 @@ def save_pose(payload, path=None):
                   'rig_lengths': record['rig_lengths'] if 'rig_lengths' in payload else validate_lengths(previous.get('rig_lengths')),
                   'joint_limits': record['joint_limits'] if 'joint_limits' in payload else validate_joint_limits(previous.get('joint_limits')),
                   'updated_at': datetime.now(timezone.utc).isoformat()}
-            for key in ('skin_id', 'bitmap'):
+            for key in ('skin_id', 'bitmap', 'extra_bones'):
                 if key in updated:
                     record[key] = updated[key]
             if kind == 'finished_animation':
@@ -261,6 +330,7 @@ def save_pose(payload, path=None):
                 if 'skeleton_id' in updated:
                     record['skeleton_id'] = updated['skeleton_id']
             record['frame_edits'] = validate_frame_edits(payload.get('frame_edits', previous.get('frame_edits')), record['frames'], record['rig_lengths'])
+        record['extra_bones'] = extra_bones
         backup_dir = path.parent / 'history'
         backup_dir.mkdir(exist_ok=True)
         backup_token = str(uuid.uuid4())

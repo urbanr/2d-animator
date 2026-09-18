@@ -2,9 +2,11 @@
   "schema_version": 1,
   "skins": {
     "bezec-zombie-v1": {"name": "Zombie (Běžec)", "path": "bezec-zombie-v1/skin.json", "game_textures": "game-192/manifest.json"},
-    "soudruh-generalissimus-v1": {"name": "Soudruh Generalissimus", "path": "soudruh-generalissimus-v1/skin.json"}
+    "soudruh-generalissimus-v1": {"name": "Soudruh Generalissimus", "path": "soudruh-generalissimus-v1/skin.json"},
+    "matka-vsech-krys-v1": {"name": "Matka všech krys · vzpřímený boss", "path": "matka-vsech-krys-v1/skin.json"}
   },
   "templates": {
+    "matka-vsech-krys-v1": {"name": "Matka všech krys · vzpřímený boss", "path": "matka-vsech-krys-v1/skin.json", "animator_ready": true},
     "bezec-zombie-v1": {
       "name": "Zombie (Běžec)",
       "path": "bezec-zombie-v1/skin.json",

@@ -230,6 +230,11 @@
     const nose={x:g.headCenter.x+25*Math.cos(rad(g.headAngle)), y:g.headCenter.y-25*Math.sin(rad(g.headAngle))};
     line(g.headCenter,nose,BODY,3); joint(g.headBase,BODY,3);
     limb('near',NEAR);
+    const cutout=typeof module==='object'&&module.exports?require('./cutout-rig.js'):globalThis.CutoutRig;
+    if(options.extra_bones&&cutout){
+      const bones=cutout.bones({...pose,rig_lengths:options.lengths,extra_bones:options.extra_bones});
+      for(const key of Object.keys(options.extra_bones)){const [a,b]=bones[key],aa={x:512-a.x,y:a.y},bb={x:512-b.x,y:b.y};line(aa,bb,'#ffc56b',5);joint(bb,'#ffc56b',6);if(options.editable&&/^extra_[a-zA-Z0-9_-]+$/.test(key))segments.push(`<circle data-joint="${key}" cx="${bb.x}" cy="${bb.y}" r="9" fill="#202426" stroke="#ffc56b" class="pose-handle"/>`);}
+    }
     const ground=options.ground===false?'':`<line x1="24" y1="392" x2="488" y2="392" stroke="#ffea5b" stroke-width="1"/>`;
     const grips=options.editable?handles(pose,options.lengths).filter(h=>!options.side||!h.side||h.side===options.side).map(h=>`<circle data-joint="${h.key}" cx="${h.point.x}" cy="${h.point.y}" r="9" fill="#202426" fill-opacity="0.8" stroke="${h.color}" stroke-width="2" class="pose-handle"><title>${h.label}</title></circle>`).join(''):'';
     const move=Number.isFinite(options.offsetX)?options.offsetX:0;
