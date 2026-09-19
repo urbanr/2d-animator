@@ -2,6 +2,8 @@ import json
 import unittest
 from pathlib import Path
 
+import animation_store
+
 
 class GraphicsDataBanksTests(unittest.TestCase):
     def test_clean_split_banks(self):
@@ -11,7 +13,9 @@ class GraphicsDataBanksTests(unittest.TestCase):
             {'postavy', 'animace', 'bitmapove-sekvence', 'bitmapove-predlohy', 'levely', 'kostry'},
         )
         skeletons = json.loads((graphics / 'kostry/skeletons.json').read_text())
-        animations = json.loads((graphics / 'animace/animations.json').read_text())
+        # Přes adaptér: syrové čtení vrátí stuby bez skeleton_id a kontrola níž
+        # by tiše neplatila.
+        animations = animation_store.load_library(graphics / 'animace/animations.json')
         characters = json.loads((graphics / 'postavy/game-characters.json').read_text())
         templates = json.loads((graphics / 'bitmapove-predlohy/skins.json').read_text())
         # Banks are user-editable, so assert relationships rather than an empty seed.

@@ -81,7 +81,17 @@ Prefer `restart: unless-stopped` and keep the application as the container's mai
 
 These are complementary, not substitutes.
 
-`ast-grep` is optional, not part of the default stack. Add it only when repeated AST-pattern searches or structural mass refactors justify another tool. Graphify + Serena + FTS cover the normal workflow.
+`ast-grep` is optional, not part of the default stack. Add it when repeated AST-pattern searches or structural mass refactors justify another tool. Graphify + Serena + FTS cover the normal workflow.
+
+**When `ast-grep` is not installed, say so and recommend installing it for later work** rather than silently working around it. Report it the way any other gap is reported: state that it is missing, name what it would buy, and let the user decide. It is a small, self-contained binary (`brew install ast-grep`, `cargo install ast-grep`, or `npm i -g @ast-grep/cli`) and it pays for itself the first time a change has to touch every call site of one pattern.
+
+Reach for it when a question is about the *shape* of code rather than its text or its relationships:
+
+- finding every occurrence of a construct precisely, without matches from comments, strings or documentation;
+- rewriting a call signature, an import form or an idiom across many files at once;
+- enforcing or auditing a convention that a regular expression cannot express reliably.
+
+Do not reach for it to answer "where is this identifier" - FTS is faster and covers docs and data files too. A structural search usually still needs a second pass to narrow by meaning, because `ast-grep` matches form, not intent; combining it with FTS or Graphify is the normal workflow.
 
 Recommended search order:
 

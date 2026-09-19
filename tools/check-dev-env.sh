@@ -14,7 +14,7 @@ kv "OS" "$(uname -s 2>/dev/null || echo unknown)"
 kv "Architecture" "$(uname -m 2>/dev/null || echo unknown)"
 
 section "Core tools"
-for tool in git gh curl jq python3 uv uvx docker graphify sqlite3 pandoc pdftotext rg; do
+for tool in git gh curl jq python3 uv uvx docker graphify sqlite3 pandoc pdftotext rg ast-grep; do
   if have "$tool"; then
     kv "$tool" "installed: $(command -v "$tool")"
   else
