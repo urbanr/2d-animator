@@ -9,6 +9,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+import animation_store
 from pose_library import save_pose
 
 
@@ -56,6 +57,7 @@ def migrate(poses_path=POSES, characters_path=CHARACTERS):
     temporary = poses_path.with_name('poses.animation-links.tmp.json')
     temporary.write_text(json.dumps(poses, ensure_ascii=False, indent=2) + '\n')
     created = 0
+    created_ids = []
     for character in characters.get('characters', {}).values():
         refs = []
         default_ref = None
@@ -75,7 +77,7 @@ def migrate(poses_path=POSES, characters_path=CHARACTERS):
                 'skeleton_id': skeleton_id, 'bitmap': bitmap_snapshot(skin),
             }
             saved = save_pose(payload, temporary)['record']
-            refs.append(saved['id']); created += 1
+            refs.append(saved['id']); created_ids.append(saved['id']); created += 1
             if old_id == old_default or default_ref is None:
                 default_ref = saved['id']
         for key in legacy_keys:
@@ -85,8 +87,15 @@ def migrate(poses_path=POSES, characters_path=CHARACTERS):
         character['renderer'] = 'cutout-rig-v2'
         character['updated_at'] = datetime.now(timezone.utc).isoformat()
 
-    migrated_poses = json.loads(temporary.read_text())
+    # save_pose uklada rozdelene (index + items/), takze zpatky se musi cist
+    # pres adapter; vysledek teto historicke migrace zustava plochy soubor.
+    migrated_poses = animation_store.load_library(temporary)
     temporary.unlink()
+    items_dir = temporary.parent / animation_store.ITEMS_DIRNAME
+    for identifier in created_ids:
+        (items_dir / f'{identifier}.json').unlink(missing_ok=True)
+    if items_dir.is_dir() and not any(items_dir.iterdir()):
+        items_dir.rmdir()
     poses_tmp = poses_path.with_suffix('.json.migration.tmp')
     chars_tmp = characters_path.with_suffix('.json.migration.tmp')
     characters['schema_version'] = 3

@@ -1,0 +1,15 @@
+# Graf je o kódu, ne o assetech. graphics/ je 574 MB obrázků plus stovky
+# skoro shodných JSON katalogů (migrace, varianty, importy) - do grafu vztahů
+# nepřinášejí nic a extrakci prodlužují řádově. Hledá se v nich fulltextem
+# (tools/fts.sh) a rozplétá skriptem (game-plan/tools/resolve_assets.py).
+game-plan/graphics/
+
+# Odvozené a zálohované artefakty.
+.fts/
+files/_text/
+**/history/
+**/migration-backups/
+
+# Build artefakty prototypu a vlastní cache graphify.
+game-plan/protoyp/.build/
+graphify-out/

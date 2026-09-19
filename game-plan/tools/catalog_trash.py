@@ -5,6 +5,8 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+import animation_store
+
 
 def restored_name(name, records, replacing_id=None):
     """Return a readable, unique name for an item brought back from Trash."""
@@ -23,7 +25,7 @@ def change_trash(payload, path, allowed):
     collection = payload.get('collection')
     if collection not in allowed:
         raise ValueError('Neznámý druh položky.')
-    catalog = json.loads(path.read_text(encoding='utf-8'))
+    catalog = animation_store.load_library(path)
     records = catalog[collection]
     mode, identifier = payload.get('mode'), payload.get('id')
     if not isinstance(identifier, str):
@@ -68,7 +70,5 @@ def change_trash(payload, path, allowed):
                   'replaced': False, 'copied': True}
     else:
         raise ValueError('Neznámá operace koše.')
-    temporary = path.with_suffix('.json.tmp')
-    temporary.write_text(json.dumps(catalog, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    temporary.replace(path)
+    animation_store.save_library(path, catalog)
     return {**result, 'collection': collection, 'trash': trash}

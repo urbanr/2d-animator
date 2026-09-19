@@ -1,0 +1,1581 @@
+{
+  "id": "0064a9f6-4ac7-4fcd-b74b-dbd378766170",
+  "name": "Boss General 1",
+  "created_at": "2026-09-17T11:02:20.726387+00:00",
+  "frames": [
+    {
+      "bodyX": 0,
+      "bodyY": -28.1,
+      "bodyLean": 22,
+      "shoulders": 0,
+      "pelvis": 0,
+      "shoulderWidth": -166.23868264546962,
+      "pelvisWidth": -6.709086484304407,
+      "neck": 21.200000000000045,
+      "head": -55.80000000000001,
+      "nearShoulder": 16.299999999999955,
+      "nearElbow": 98.80000000000007,
+      "nearHip": 15.899999999999977,
+      "nearKnee": 3.800000000000068,
+      "nearFoot": -5.399999999999977,
+      "farShoulder": 115.70000000000005,
+      "farElbow": 39.299999999999955,
+      "farHip": -6.7999999999999545,
+      "farKnee": -28.600000000000023,
+      "farFoot": 15,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0,
+      "nearHipOffsetY": 0,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -31.4,
+      "bodyLean": 23.4,
+      "shoulders": 1.4,
+      "pelvis": -1.4,
+      "shoulderWidth": -161.83868264546962,
+      "pelvisWidth": -12.609086484304408,
+      "neck": 13.200000000000045,
+      "head": -59.400000000000034,
+      "nearShoulder": 23.899999999999977,
+      "nearElbow": 54.799999999999955,
+      "nearHip": 10.5,
+      "nearKnee": -9.300000000000068,
+      "nearFoot": 7.7999999999999545,
+      "farShoulder": 105.30000000000007,
+      "farElbow": 34.5,
+      "farHip": -0.1999999999999318,
+      "farKnee": -40.60000000000002,
+      "farFoot": 25.200000000000045,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0,
+      "nearHipOffsetY": 0,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -32.5,
+      "bodyLean": 24,
+      "shoulders": 2,
+      "pelvis": -2,
+      "shoulderWidth": -151.23868264546962,
+      "pelvisWidth": -26.709086484304407,
+      "neck": 1.1000000000000227,
+      "head": -38,
+      "nearShoulder": 15.100000000000023,
+      "nearElbow": 42,
+      "nearHip": 1.8999999999999773,
+      "nearKnee": -11.300000000000068,
+      "nearFoot": 12.399999999999977,
+      "farShoulder": 116.70000000000005,
+      "farElbow": 33.700000000000045,
+      "farHip": 13.200000000000045,
+      "farKnee": -30.600000000000023,
+      "farFoot": 3.1000000000000227,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0,
+      "nearHipOffsetY": 0,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -28.8,
+      "bodyLean": 23.4,
+      "shoulders": 1.4,
+      "pelvis": -1.4,
+      "shoulderWidth": -140.63868264546963,
+      "pelvisWidth": -40.80908648430441,
+      "neck": -4.7999999999999545,
+      "head": -34,
+      "nearShoulder": 9.699999999999932,
+      "nearElbow": 49,
+      "nearHip": -7.5,
+      "nearKnee": -5.600000000000023,
+      "nearFoot": 15.799999999999955,
+      "farShoulder": 106.70000000000016,
+      "farElbow": 35.39999999999998,
+      "farHip": 18.800000000000068,
+      "farKnee": -33.60000000000002,
+      "farFoot": 5,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0.18983693271195534,
+      "nearHipOffsetY": -6.45445571220489,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -33.1,
+      "bodyLean": 22,
+      "shoulders": 0,
+      "pelvis": 0,
+      "shoulderWidth": -136.23868264546962,
+      "pelvisWidth": -46.70908648430441,
+      "neck": -4.399999999999977,
+      "head": -37.30000000000007,
+      "nearShoulder": 5.699999999999932,
+      "nearElbow": 53.10000000000002,
+      "nearHip": -8.100000000000023,
+      "nearKnee": -8.100000000000023,
+      "nearFoot": 16.699999999999932,
+      "farShoulder": 106.60000000000002,
+      "farElbow": 34.59999999999991,
+      "farHip": 17.200000000000045,
+      "farKnee": -16.600000000000023,
+      "farFoot": -0.8999999999998636,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": -0.18802896192411822,
+      "nearHipOffsetY": -2.467880125254794,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -28.3,
+      "bodyLean": 20.6,
+      "shoulders": 20,
+      "pelvis": 1.4,
+      "shoulderWidth": -120.03868264546963,
+      "pelvisWidth": -40.80908648430441,
+      "neck": -5.599999999999909,
+      "head": -27.5,
+      "nearShoulder": 29.600000000000023,
+      "nearElbow": 58.39999999999998,
+      "nearHip": 1.2999999999999545,
+      "nearKnee": -39.39999999999998,
+      "nearFoot": 49.10000000000002,
+      "farShoulder": 133.5000000000001,
+      "farElbow": 32.39999999999998,
+      "farHip": 14.600000000000023,
+      "farKnee": -22.600000000000023,
+      "farFoot": 5.2999999999999545,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 4.9411841628728155,
+      "nearHipOffsetY": -5.125597183221544,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -32.5,
+      "bodyLean": 20,
+      "shoulders": -2,
+      "pelvis": 2,
+      "shoulderWidth": -151.23868264546962,
+      "pelvisWidth": -26.709086484304407,
+      "neck": 13.200000000000045,
+      "head": -60.200000000000045,
+      "nearShoulder": 16.100000000000023,
+      "nearElbow": 59.5,
+      "nearHip": 15.899999999999977,
+      "nearKnee": -10.100000000000023,
+      "nearFoot": 1.5,
+      "farShoulder": 97.20000000000005,
+      "farElbow": 43,
+      "farHip": 7.2000000000000455,
+      "farKnee": -28.899999999999977,
+      "farFoot": 14.699999999999932,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0,
+      "nearHipOffsetY": 0,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    },
+    {
+      "bodyX": 0,
+      "bodyY": -28.7,
+      "bodyLean": 20.6,
+      "shoulders": -1.4,
+      "pelvis": 1.4,
+      "shoulderWidth": -161.83868264546962,
+      "pelvisWidth": -12.609086484304408,
+      "neck": 27.600000000000023,
+      "head": -61.60000000000002,
+      "nearShoulder": 16,
+      "nearElbow": 84.29999999999995,
+      "nearHip": 20.299999999999955,
+      "nearKnee": -13.100000000000023,
+      "nearFoot": -2.300000000000068,
+      "farShoulder": 114.00000000000011,
+      "farElbow": 29.399999999999977,
+      "farHip": -3.3999999999999773,
+      "farKnee": -26.600000000000023,
+      "farFoot": 16.600000000000023,
+      "nearShoulderOffsetX": 3.0119620889210523,
+      "nearShoulderOffsetY": -5.65097597840645,
+      "nearHipOffsetX": 0,
+      "nearHipOffsetY": 0,
+      "farShoulderOffsetX": -26.445404608368165,
+      "farShoulderOffsetY": 8.00009688936575,
+      "farHipOffsetX": 0,
+      "farHipOffsetY": 0,
+      "headOffsetX": 0,
+      "headOffsetY": 0,
+      "neckOffsetX": 0,
+      "neckOffsetY": 0
+    }
+  ],
+  "fps": 3,
+  "move_speed_pt_s": 3,
+  "rig_lengths": {
+    "nearUpperArm": 44.786542,
+    "nearForearm": 44,
+    "nearThigh": 63.84968200000001,
+    "nearShin": 64.560357,
+    "nearFoot": 32.693761,
+    "farUpperArm": 46,
+    "farForearm": 44,
+    "farThigh": 72.407277,
+    "farShin": 52.467511,
+    "farFoot": 32.456018,
+    "head": 21,
+    "neck": 6.019431,
+    "torso": 58.949075
+  },
+  "joint_limits": {
+    "pelvis": [
+      -180,
+      180
+    ],
+    "farHip": [
+      -180,
+      180
+    ],
+    "farKnee": [
+      -180,
+      180
+    ],
+    "nearHip": [
+      -180,
+      180
+    ],
+    "nearFoot": [
+      -180,
+      180
+    ],
+    "neck": [
+      -180,
+      180
+    ],
+    "shoulders": [
+      -180,
+      180
+    ],
+    "nearShoulder": [
+      -180,
+      180
+    ],
+    "farShoulder": [
+      -180,
+      180
+    ],
+    "farFoot": [
+      -180,
+      180
+    ],
+    "bodyLean": [
+      -180,
+      180
+    ],
+    "head": [
+      -180,
+      180
+    ],
+    "nearKnee": [
+      -180,
+      180
+    ],
+    "nearElbow": [
+      -180,
+      180
+    ],
+    "farElbow": [
+      -180,
+      180
+    ]
+  },
+  "skin_id": "soudruh-generalissimus-v1",
+  "bitmap": {
+    "layers": [
+      "farUpperArm",
+      "farForearm",
+      "farFoot",
+      "farThigh",
+      "farShin",
+      "nearFoot",
+      "pelvis",
+      "nearThigh",
+      "nearShin",
+      "torso",
+      "head",
+      "nearUpperArm",
+      "megaphone",
+      "nearForearm"
+    ],
+    "parts": {
+      "farUpperArm": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 105.18936495672935,
+            "direction": "outward",
+            "radius2": 105.18936495672935,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0.65,
+            "radius": 105.18936495672935,
+            "direction": "outward",
+            "radius2": 105.18936495672935,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "farUpperArm",
+        "enabled": true,
+        "opacity": 1
+      },
+      "farForearm": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 35,
+            "direction": "outward",
+            "radius2": 80,
+            "angle": -25,
+            "offset": [
+              0,
+              20
+            ]
+          },
+          "end": {
+            "strength": 0,
+            "radius": 106,
+            "direction": "outward",
+            "radius2": 106,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          14.72,
+          -21.87
+        ],
+        "rotation": -0.8431073416945765,
+        "scale": 1,
+        "scale_x": 1.0150722056736663,
+        "scale_y": 1.1385713955122942,
+        "bone": "farForearm",
+        "enabled": true,
+        "opacity": 1
+      },
+      "farFoot": {
+        "joint_fade": {
+          "start": {
+            "strength": 0,
+            "radius": 62.550000000000004,
+            "direction": "outward",
+            "radius2": 62.550000000000004,
+            "shape": "ellipse",
+            "onset": 0.15,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0,
+            "radius": 62.550000000000004,
+            "direction": "outward",
+            "radius2": 62.550000000000004,
+            "shape": "ellipse",
+            "onset": 0.15,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "farFoot",
+        "enabled": true,
+        "opacity": 1
+      },
+      "farThigh": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 92.5,
+            "direction": "outward",
+            "radius2": 92.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0.65,
+            "radius": 92.5,
+            "direction": "outward",
+            "radius2": 92.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          -18.03,
+          36.43
+        ],
+        "rotation": -14.19912205724654,
+        "scale": 1.0433066071224077,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "farThigh",
+        "enabled": true,
+        "opacity": 1
+      },
+      "farShin": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 71.5,
+            "direction": "outward",
+            "radius2": 71.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 1,
+            "radius": 41,
+            "direction": "outward",
+            "radius2": 61,
+            "shape": "rectangle",
+            "onset": 0.15,
+            "angle": 10,
+            "offset": [
+              -1,
+              -16
+            ]
+          }
+        },
+        "offset": [
+          -32.57,
+          -1.55
+        ],
+        "warp": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -9.036356380027541,
+            6.4108789789175376
+          ],
+          [
+            30.07321270960225,
+            -8.766403032806977
+          ]
+        ],
+        "rotation": 0,
+        "scale": 1.0038941274939701,
+        "scale_x": 1.8475152946030693,
+        "scale_y": 1,
+        "bone": "farShin",
+        "enabled": true,
+        "opacity": 1
+      },
+      "nearFoot": {
+        "joint_fade": {
+          "start": {
+            "strength": 0,
+            "radius": 65.7,
+            "direction": "outward",
+            "radius2": 65.7,
+            "shape": "ellipse",
+            "onset": 0.15,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0,
+            "radius": 65.7,
+            "direction": "outward",
+            "radius2": 65.7,
+            "shape": "ellipse",
+            "onset": 0.15,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "nearFoot",
+        "enabled": true,
+        "opacity": 1
+      },
+      "pelvis": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 108,
+            "direction": "outward",
+            "radius2": 105.5,
+            "shape": "rectangle",
+            "onset": 0.15,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0.92,
+            "radius": 26,
+            "direction": "outward",
+            "radius2": 106,
+            "shape": "rectangle",
+            "onset": 0.34,
+            "angle": 0,
+            "offset": [
+              0,
+              4
+            ]
+          }
+        },
+        "offset": [
+          -30.9,
+          99
+        ],
+        "rotation": 8.762776823071363,
+        "scale": 2.2322417313091574,
+        "scale_x": 1,
+        "scale_y": 0.7536502437209021,
+        "bone": "pelvis",
+        "enabled": true,
+        "opacity": 1
+      },
+      "nearThigh": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 99.5,
+            "direction": "outward",
+            "radius2": 99.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0.65,
+            "radius": 99.5,
+            "direction": "outward",
+            "radius2": 99.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          24.2,
+          18.7
+        ],
+        "warp": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            129.14777066971186,
+            -39.975504623695855
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "rotation": 0,
+        "scale": 1.01444737980304,
+        "scale_x": 1.531490636308923,
+        "scale_y": 1.1223242889780052,
+        "bone": "nearThigh",
+        "enabled": true,
+        "opacity": 1
+      },
+      "nearShin": {
+        "joint_fade": {
+          "start": {
+            "strength": 1,
+            "radius": 54,
+            "direction": "outward",
+            "radius2": 84,
+            "shape": "rectangle",
+            "onset": 0.1,
+            "angle": -6,
+            "offset": [
+              -32,
+              30
+            ]
+          },
+          "end": {
+            "strength": 1,
+            "radius": 38,
+            "direction": "outward",
+            "radius2": 64,
+            "shape": "rectangle",
+            "onset": 0,
+            "angle": -4,
+            "offset": [
+              6,
+              -13
+            ]
+          }
+        },
+        "offset": [
+          26.6,
+          1.06
+        ],
+        "warp": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -26.633008238355742,
+            0.7865699644383426
+          ],
+          [
+            28.384423985630253,
+            -13.086244787863222
+          ]
+        ],
+        "rotation": 0.10506064357809919,
+        "scale": 1,
+        "scale_x": 1.5648908165441284,
+        "scale_y": 1,
+        "bone": "nearShin",
+        "enabled": true,
+        "opacity": 1
+      },
+      "torso": {
+        "joint_fade": {
+          "start": {
+            "strength": 0,
+            "radius": 96.45128303967759,
+            "direction": "outward",
+            "radius2": 96.45128303967759,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0,
+            "radius": 30,
+            "direction": "outward",
+            "radius2": 96.45128303967759,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          -37.32,
+          -17.19
+        ],
+        "rotation": 5.070075436836191,
+        "scale": 1.896167408902829,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "torso",
+        "enabled": true,
+        "opacity": 1
+      },
+      "head": {
+        "joint_fade": {
+          "start": {
+            "strength": 1,
+            "radius": 15,
+            "direction": "outward",
+            "radius2": 90,
+            "shape": "rectangle",
+            "onset": 0,
+            "angle": 9,
+            "offset": [
+              -10,
+              -4
+            ]
+          },
+          "end": {
+            "strength": 0,
+            "radius": 58.5,
+            "direction": "outward",
+            "radius2": 58.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          0.04,
+          -0.21
+        ],
+        "rotation": -0.05874433306860283,
+        "scale": 1.6037076851094245,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "head",
+        "enabled": true,
+        "opacity": 1
+      },
+      "nearUpperArm": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.36,
+            "radius": 81,
+            "direction": "outward",
+            "radius2": 81,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          },
+          "end": {
+            "strength": 0.65,
+            "radius": 81,
+            "direction": "outward",
+            "radius2": 81,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          0,
+          0
+        ],
+        "rotation": 0.11662214048885744,
+        "scale": 1,
+        "scale_x": 1.4335472525176576,
+        "scale_y": 1,
+        "bone": "nearUpperArm",
+        "enabled": true,
+        "opacity": 1
+      },
+      "megaphone": {
+        "offset": [
+          -91.28,
+          84.27
+        ],
+        "rotation": -63.83401267752447,
+        "scale": 0.6842159344063943,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "megaphone",
+        "enabled": true,
+        "opacity": 1
+      },
+      "nearForearm": {
+        "joint_fade": {
+          "start": {
+            "strength": 0.65,
+            "radius": 39,
+            "direction": "outward",
+            "radius2": 86.5,
+            "angle": -20,
+            "offset": [
+              0,
+              20
+            ]
+          },
+          "end": {
+            "strength": 0.65,
+            "radius": 86.5,
+            "direction": "outward",
+            "radius2": 86.5,
+            "angle": 0,
+            "offset": [
+              0,
+              0
+            ]
+          }
+        },
+        "offset": [
+          -25.68,
+          4.35
+        ],
+        "rotation": 1.24474681530819,
+        "scale": 0.993065571035189,
+        "scale_x": 1,
+        "scale_y": 1,
+        "bone": "nearForearm",
+        "enabled": true,
+        "opacity": 1
+      }
+    }
+  },
+  "frame_edits": {
+    "0": {
+      "pose_base": {
+        "head": -2.6000000000000227,
+        "bodyY": -33.1,
+        "farElbow": 30.200000000000045,
+        "farShoulder": 44.500000000000114,
+        "nearElbow": 48.70000000000016,
+        "nearShoulder": 41.30000000000007,
+        "farFoot": 5.900000000000091,
+        "nearKnee": 3.8999999999999773,
+        "nearFoot": -5.5
+      },
+      "parts": {
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              85.17738605273462,
+              -86.13746344277038
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2.438337576357746,
+              -1.1950628147367865
+            ]
+          ],
+          "rotation": -1.2535212150251027
+        }
+      }
+    },
+    "1": {
+      "pose_base": {
+        "head": -17.40000000000009,
+        "farElbow": 32.39999999999998,
+        "farShoulder": 48.90000000000009,
+        "nearShoulder": 31.300000000000068,
+        "nearElbow": 50.90000000000009,
+        "nearKnee": -2.1000000000000227,
+        "nearFoot": 0.599999999999909
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6.679229361561202,
+              -5.926423653413451
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              99.93334622454114,
+              -52.18064522921347
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              3.2033259123372027,
+              3.9150461421833143
+            ]
+          ]
+        },
+        "head": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -2.815859768512894,
+              9.408772068558562
+            ],
+            [
+              -7.743978956783963,
+              -17.05280667925271
+            ]
+          ]
+        }
+      },
+      "lengths": {
+        "nearShin": 0.9430126292517249
+      }
+    },
+    "2": {
+      "pose_base": {
+        "farFoot": -6.2999999999999545,
+        "farShoulder": 51.90000000000009,
+        "farElbow": 34.5,
+        "nearShoulder": 8.800000000000068,
+        "nearElbow": 53.000000000000114,
+        "nearKnee": 6.899999999999977,
+        "nearFoot": 2.2999999999999545
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -6.072875973681221,
+              5.576153712096527
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              91.16674270509603,
+              -15.036779686185142
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "lengths": {
+        "nearShin": 0.9498430437737512
+      }
+    },
+    "3": {
+      "pose_base": {
+        "head": -62.60000000000002,
+        "nearFoot": -16.200000000000045,
+        "farFoot": -12.299999999999955,
+        "farShoulder": 68.40000000000009,
+        "nearShoulder": -28.000000000000114,
+        "nearElbow": 53.90000000000009,
+        "nearHipOffsetX": 0,
+        "nearHipOffsetY": 0,
+        "nearKnee": 3.8999999999999773
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -1.741435577223939,
+              -7.607477562919485
+            ],
+            [
+              6.209647489131921,
+              -1.169335220789037
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              45.66064383026384,
+              -10.991828787633551
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearThigh": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -61.18834378591902,
+              37.41242016025191
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "4": {
+      "pose_base": {
+        "head": -62.60000000000002,
+        "farShoulder": 60.500000000000114,
+        "nearShoulder": -10.500000000000114,
+        "nearHipOffsetX": 0,
+        "nearHipOffsetY": 0
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6.263536754571977,
+              1.2824866260691579
+            ]
+          ]
+        },
+        "nearShin": {
+          "joint_fade": {
+            "start": {
+              "strength": 1,
+              "radius": 49,
+              "direction": "outward",
+              "radius2": 84,
+              "shape": "rectangle",
+              "onset": 0,
+              "angle": -6,
+              "offset": [
+                -32,
+                30
+              ]
+            }
+          },
+          "warp": [
+            [
+              12.399312791827533,
+              -18.62571937475364
+            ],
+            [
+              36.25655417527429,
+              -1.5743484299708577
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearThigh": {
+          "joint_fade": {
+            "end": {
+              "strength": 0,
+              "radius": 99.5,
+              "direction": "outward",
+              "radius2": 99.5,
+              "shape": "rectangle",
+              "onset": 0.15,
+              "angle": 0,
+              "offset": [
+                0,
+                -40
+              ]
+            }
+          },
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -75.05537073367319,
+              20.09420635100659
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "scale_y": 1.0174277927289563
+        },
+        "head": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1.5400616093235158,
+              8.94040670489187
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "5": {
+      "pose_base": {
+        "head": -39.299999999999955,
+        "nearElbow": 50.90000000000009,
+        "farShoulder": 43.90000000000009,
+        "nearShoulder": 20.699999999999932,
+        "nearHipOffsetX": 0,
+        "nearHipOffsetY": 0,
+        "nearKnee": -20.100000000000023,
+        "nearFoot": 29.799999999999955,
+        "farFoot": -1.7999999999999545
+      },
+      "parts": {
+        "nearUpperArm": {
+          "offset": [
+            24.14,
+            28.73
+          ]
+        },
+        "nearForearm": {
+          "offset": [
+            28.08,
+            1.29
+          ]
+        },
+        "farShin": {
+          "warp": [
+            [
+              -21.71934409115364,
+              -14.009566268895401
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              7.565878876010149,
+              0.44125416048183297
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              39.945835050097095,
+              -15.338705921015407
+            ],
+            [
+              61.15872344178834,
+              96.48644242469588
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1.8588192167620186,
+              0.04513662461391732
+            ]
+          ]
+        },
+        "nearThigh": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -39.08994867096936,
+              58.17560779602084
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "6": {
+      "pose_base": {
+        "head": -38.5,
+        "nearFoot": 5.199999999999932,
+        "farFoot": -24.499999999999886,
+        "farShoulder": 40.90000000000009,
+        "nearShoulder": -7.600000000000023,
+        "nearElbow": 48.80000000000007,
+        "farKnee": -13.600000000000023
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -1.677423047173363,
+              -8.161288297355952
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              87.10383570747561,
+              -14.289220127634612
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearThigh": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              8.0374705298089,
+              3.057220564117415
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearForearm": {
+          "joint_fade": {
+            "end": {
+              "strength": 0,
+              "radius": 86.5,
+              "direction": "outward",
+              "radius2": 86.5,
+              "shape": "ellipse",
+              "onset": 0.15,
+              "angle": 0,
+              "offset": [
+                0,
+                0
+              ]
+            }
+          },
+          "offset": [
+            -0.6400000000000006,
+            -0.20999999999999996
+          ]
+        },
+        "head": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              -3.51104276259872,
+              14.382153755848776
+            ],
+            [
+              0.24194408684885807,
+              -9.904314846004524
+            ]
+          ]
+        }
+      }
+    },
+    "7": {
+      "pose_base": {
+        "head": -19.299999999999955,
+        "farShoulder": 41.100000000000136,
+        "nearShoulder": 23.499999999999886,
+        "nearElbow": 47.90000000000009,
+        "farFoot": 0.20000000000004547,
+        "farKnee": -16.600000000000023
+      },
+      "parts": {
+        "farShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              7.02448342103305,
+              -3.612864059803883
+            ]
+          ]
+        },
+        "nearShin": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              104.47882935640274,
+              -3.367887453645514
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "nearThigh": {
+          "warp": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              33.949687061847726,
+              -0.31993962900025963
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "updated_at": "2026-09-17T11:55:27.807720+00:00",
+  "extra_bones": {}
+}

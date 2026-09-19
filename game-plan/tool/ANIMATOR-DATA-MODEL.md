@@ -5,7 +5,7 @@ Tento dokument je zdroj pravdy pro vztah mezi bitmapovými díly, kostrou, anima
 ## Samostatné datové banky
 
 - `graphics/postavy/game-characters.json`: herní postavy a odkazy na animace.
-- `graphics/animace/animations.json`: hotové animace z Animátoru.
+- `graphics/animace/`: hotové animace z Animátoru — `animations.json` je index, celé záznamy jsou v `items/<id>.json` a smazané v `trash/<token>.json`.
 - `graphics/bitmapove-sekvence/`: klasické snímkové animace tvořené hotovými bitmapami.
 - `graphics/bitmapove-predlohy/`: rozsekané zdrojové postavy pro kostrový Animátor.
 - `graphics/levely/`: levely, jejich varianty a herní export.
@@ -59,7 +59,17 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 
 ### Hotová animace (`finished_animation`)
 
-- Je v `graphics/animace/animations.json`, kolekce `finished_animations`.
+- Je v bance `graphics/animace/`, kolekce `finished_animations`.
+- **Banka je rozdělená.** `animations.json` je jen index: u každé animace drží
+  `id`, `name`, `skin_id`, `fps`, `move_speed_pt_s`, časy, počet snímků v `frames`
+  a `file` s cestou k celému záznamu. Celý záznam je v `items/<id>.json`, smazaný
+  v `trash/<token>.json`. Index tak zůstává v jednotkách kB místo stovek.
+- Kdo bankou prochází, musí použít `tools/animation_store.py` (Python) nebo
+  `tool/animation-store.js` (prohlížeč). Obojí složí v paměti stejný tvar jako dřív,
+  takže volající kód se nemění. **Syrové `json.loads` nad `animations.json` vrátí
+  stuby, ne animace.** Výjimka je kontrola pouhé existence `id` — na tu index stačí.
+- Starší plochý formát (celé záznamy přímo v indexu) se načte beze změny; stub se
+  pozná podle klíče `file`. Převod udělal `tools/split_animation_store.py`.
 - Je to kombinace vlastního úplného snapshotu kostry a nastavení jedné bitmapové předlohy, včetně bitmapových výjimek snímků a povinného odkazu `skin_id`.
 - `skeleton_id` je volitelný. Je vyplněný jen tehdy, pokud interní kostra animace stále přesně odpovídá pojmenované kostře v bance. První změna kostry odkaz odstraní, ale uložená animace dál obsahuje všechny své snímky, délky a limity. Bitmapová změna odkaz na kostru neodpojuje.
 - Zdrojové PNG se do animace nekopírují. Animace ukládá jen pozice, čtyřbodové deformace, měřítka, rotační středy, pořadí a masky průhlednosti bitmapových dílů. Čtyřbodová deformace je volitelné `warp: [[dx,dy], …]` v pořadí levý horní, pravý horní, pravý dolní, levý dolní roh; chybějící hodnota znamená čtyři nulové posuny.
@@ -126,7 +136,7 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - Staré vložené animace, postavy, pózy, archivy a koše byly při schváleném čistém startu odstraněny; nejsou kompatibilní součástí nového modelu.
 - Kanonická vazba postavy je pouze `animation_ids` + `default_animation_id`; staré vložené kopie ani snapshot bitmapy se do postavy už nezapisují.
 - Každá změna postavy nebo její animace posílá `expectedRecord`. Pokud mezitím jiná karta záznam změnila, zápis se odmítne místo tichého přepsání.
-- Před přepsáním se uloží záloha do `history/` uvnitř příslušné datové banky. Katalog se zapisuje přes dočasný soubor a atomické přejmenování.
+- Před přepsáním se uloží záloha do `history/` uvnitř příslušné datové banky. Katalog se zapisuje přes dočasný soubor a atomické přejmenování; u rozdělené banky animací to platí pro index i pro každý soubor v `items/` a `trash/`. Soubory po smazaných záznamech se při zápisu mažou, aby je nenacházel fulltext ani grep.
 - Předchozí verze přepsané kosterní nebo hotové animace se zároveň vloží do `trash` s `saved_at` a odkazem na soubor `history`. Koš ji zobrazuje s datem a časem. Obnova verze nejdřív přesune právě aktivní verzi do další položky Koše, takže je vratná i obnova samotná.
 - Všechny akce Uložit, Uložit jako a Smazat vyžadují potvrzení uživatele.
 

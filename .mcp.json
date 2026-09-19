@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "serena-agent",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta",
+        "--enable-web-dashboard",
+        "false",
+        "--enable-gui-log-window",
+        "false"
+      ],
+      "env": {}
+    }
+  }
+}

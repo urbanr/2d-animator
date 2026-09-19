@@ -423,7 +423,7 @@
   $('deleteCharacter').onclick=()=>catalogAction('characters');
   $('restoreDeleted').onclick=()=>catalogAction(null,true);
   try{
-    const [skeletonCatalog,animationCatalog]=await Promise.all([getJSON('../graphics/kostry/skeletons.json'),getJSON('../graphics/animace/animations.json')]);
+    const [skeletonCatalog,animationCatalog]=await Promise.all([getJSON('../graphics/kostry/skeletons.json'),window.AnimationStore.load(getJSON,'../graphics/animace/')]);
     [skinCatalog,gameCatalog]=await Promise.all([getJSON('../graphics/bitmapove-predlohy/skins.json'),getJSON('../graphics/postavy/game-characters.json')]);
     skeletonTrash=skeletonCatalog.trash||{};animationTrash=animationCatalog.trash||{};
     library={...skeletonCatalog,finished_animations:animationCatalog.finished_animations||{},trash:{...skeletonTrash,...animationTrash}};
@@ -624,7 +624,7 @@
     if(['3','š'].includes(key)){e.preventDefault();if(!e.repeat)$('headerTool').onclick();keyboardEdit=null;return;}
     if(key===' '){e.preventDefault();if(!e.repeat)$('play').onclick();keyboardEdit=null;return;}
     if(key==='x'&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();keyboardEdit=null;if($('edit').checked&&$('editTarget').value==='bitmap'&&!warpHeld){freeze();warpHeld=true;cursor();draw();}return;}
-    const frameShortcut=e.code==='KeyY'?'previous':e.code==='KeyC'?'next':key==='y'?'previous':['z','c'].includes(key)?'next':'';
+    const frameShortcut=['KeyY','KeyZ'].includes(e.code)||['y','z'].includes(key)?'previous':e.code==='KeyC'||key==='c'?'next':'';
     if(frameShortcut){e.preventDefault();keyboardEdit=null;$(frameShortcut).onclick();return;}
     const move=['w','a','s','d'].includes(key),rotate=['q','e'].includes(key);
     if(!move&&!rotate)return;

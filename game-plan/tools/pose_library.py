@@ -5,6 +5,8 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+import animation_store
+
 GRAPHICS = Path(__file__).resolve().parent.parent / 'graphics'
 SKELETON_STORE = GRAPHICS / 'kostry' / 'skeletons.json'
 ANIMATION_STORE = GRAPHICS / 'animace' / 'animations.json'
@@ -287,7 +289,7 @@ def save_pose(payload, path=None):
             if part.get('bone', key) not in BASE_BONES | set(record['extra_bones']):
                 raise ValueError('Bitmapa odkazuje na chybějící kost.')
     path = Path(path) if path is not None else (ANIMATION_STORE if kind == 'finished_animation' else SKELETON_STORE)
-    library = json.loads(path.read_text(encoding='utf-8'))
+    library = animation_store.load_library(path)
     library.setdefault(collection, {})
     if kind == 'finished_animation' and 'skeleton_id' in record:
         clips = library.get('clips', {})
@@ -348,8 +350,6 @@ def save_pose(payload, path=None):
     elif mode != 'create':
         raise ValueError('Neznámý způsob uložení.')
     library[collection][record['id']] = record
-    temporary = path.with_suffix('.json.tmp')
-    temporary.write_text(json.dumps(library, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    temporary.replace(path)
+    animation_store.save_library(path, library)
     return {'collection': collection, 'record': record, 'backup': backup,
             'trash': library.get('trash', {})}

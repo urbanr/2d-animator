@@ -4,6 +4,8 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
+import animation_store
+
 ROOT = Path(__file__).resolve().parents[1] / 'graphics'
 
 
@@ -34,7 +36,9 @@ def migrate(root=ROOT):
             pending[path] = skin
     for bank in ('kostry/skeletons.json', 'animace/animations.json'):
         path = root / bank
-        data = json.loads(path.read_text())
+        # Banka animaci je rozdelena na index + items/; syrove cteni by tu
+        # prepisovalo stuby misto skutecnych zaznamu.
+        data = animation_store.load_library(path)
         before = json.dumps(data, sort_keys=True)
         data['rig_format_version'] = 2
         for collection in ('clips', 'poses', 'rigs', 'finished_animations'):
@@ -54,9 +58,12 @@ def migrate(root=ROOT):
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(path, destination)
     for path, data in pending.items():
-        temporary = path.with_suffix('.json.tmp')
-        temporary.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
-        temporary.replace(path)
+        if path.name == 'skin.json':
+            temporary = path.with_suffix('.json.tmp')
+            temporary.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+            temporary.replace(path)
+        else:
+            animation_store.save_library(path, data)
     return backup
 
 

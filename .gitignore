@@ -4,3 +4,14 @@ __pycache__/
 .venv/
 .fts/
 node_modules/
+
+
+<!-- developer-environment-local-artifacts:start -->
+.fts/
+files/_text/
+<!-- developer-environment-local-artifacts:end -->
+
+# Odvozené a lokální artefakty nástrojů.
+graphify-out/
+.serena/
+*.bak.*

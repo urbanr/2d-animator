@@ -46,7 +46,7 @@ const url=URL;url.createObjectURL=()=>{downloads++;return 'blob:test';};url.revo
 const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>{questions.push(q);return confirmAnswers.length?confirmAnswers.shift():confirmed;},prompt:(q,value)=>{questions.push(q);return promptAnswers.length?promptAnswers.shift():q.includes('postavy')?(elements.characterName.value||value):(elements.name.value||value);},
  location:new URL('http://127.0.0.1:8765/tool/characters2.html'),parent:{},
  requestAnimationFrame:fn=>{raf=fn;},
- window:{PoseRig:R,CutoutRig:C,CutoutEditor:require('./cutout-editor.js'),EditorView:require('./editor-view.js'),MotionPreview:require('./motion-preview.js'),addEventListener:(type,fn)=>events[type]=fn},
+ window:{PoseRig:R,CutoutRig:C,AnimationStore:require('./animation-store.js'),CutoutEditor:require('./cutout-editor.js'),EditorView:require('./editor-view.js'),MotionPreview:require('./motion-preview.js'),addEventListener:(type,fn)=>events[type]=fn},
  document:{getElementById:id=>elements[id],createElement:element,querySelectorAll:selector=>selector==='.help'?[helpElement]:[]},
  fetch:async(url,options)=>{
   if(!options||!options.method)return {ok:true,json:async()=>copy(String(url).endsWith('manifest.json')?gameManifest:String(url).endsWith('skins.json')?{skins:{'bezec-zombie-v1':{name:'Zombie',path:'bezec-zombie-v1/skin.json'}}}:String(url).endsWith('game-characters.json')?gameStore:String(url).endsWith('skin.json')?skin:store)};
@@ -379,7 +379,9 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  key('y');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('z',{code:'KeyY'});assert.match(elements.frameLabel.textContent,/8 \/ 8/,'Fyzická klávesa Y jde zpět i při rozložení, které vrací znak Z');
  key('c',{code:'KeyC'});assert.match(elements.frameLabel.textContent,/1 \/ 8/);
- key('z');assert.match(elements.frameLabel.textContent,/2 \/ 8/);key('y');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
+ key('z');assert.match(elements.frameLabel.textContent,/8 \/ 8/,'Znak Z jde na předchozí snímek');
+ key('z',{code:'KeyZ'});assert.match(elements.frameLabel.textContent,/7 \/ 8/,'Fyzická klávesa Z jde zpět i tam, kde vrací znak Y');
+ key('c');assert.match(elements.frameLabel.textContent,/8 \/ 8/);key('c');assert.match(elements.frameLabel.textContent,/1 \/ 8/);
  key('x');assert.match(elements.frameLabel.textContent,/1 \/ 8/);assert.equal(elements.stage.style.cursor,'crosshair');assert.equal(elements.stage.rects.length,4,'Holding X reveals four warp handles');
  const warpBefore=copy(gameStore.characters['legacy-b']),warpPose=C.sample(warpBefore.animation,0,false),warpGrip=require('./cutout-editor.js').partHandles(warpBefore.skin,'nearForearm',warpPose).warpCorners[0];
  const warpEvent={button:0,pointerId:108,clientX:warpGrip.x,clientY:warpGrip.y,preventDefault(){}};
