@@ -13,3 +13,8 @@ files/_text/
 # Build artefakty prototypu a vlastní cache graphify.
 game-plan/protoyp/.build/
 graphify-out/
+
+# Vyexportovaná herní data prototypu: 71 MB PNG a catalog.json s katalogem
+# všech variant. Do grafu kódu taháhlo jen šum (uzly jednotlivých animačních
+# sekvencí). Zdroj pravdy je game-plan/graphics/, export se dá kdykoli obnovit.
+game-plan/protoyp/GameData/
