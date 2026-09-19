@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "vozik",
+  "display_name": "Vozík",
+  "imported_at": "2026-09-14T19:22:35.936758+00:00",
+  "source": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/source/sheet-v1.png",
+  "source_sha256": "11dcf4603ed02508f486edcbd0401784603dd06335ea8c6c586eb6a91fda0f82",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-00.png",
+      "removed_background_pixels": 100383,
+      "sha256": "9c18116be3b38b3cd834fe2749a704e67c358ffa78d84c986aad5ff4bc890423"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-01.png",
+      "removed_background_pixels": 99874,
+      "sha256": "1a82261c0871f62b26e54875802b75d2a49a75f4dac5b0c47b6508d44c235ada"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-02.png",
+      "removed_background_pixels": 94850,
+      "sha256": "0add3e1b18072a5936992c933a608d8a90b22e448bb142a861da69306601cce3"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-03.png",
+      "removed_background_pixels": 101033,
+      "sha256": "0c08d75174ace650f6e1d124b8b28fafa90c40506d2720e05fb05138404fcf7e"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-04.png",
+      "removed_background_pixels": 95873,
+      "sha256": "e655751aa0074af37df506133d3cf0c96420f396798a40d4c7393c910cacc07a"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-05.png",
+      "removed_background_pixels": 99967,
+      "sha256": "467de612aea7acc16b1073a4e6b7931841261f010331e65093a39819f947014a"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-06.png",
+      "removed_background_pixels": 96701,
+      "sha256": "b0cbf2d0a0f975ffb6454f1f47c495ab1afc68848e5b3d8820743f11d6650933"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v3/frames/vozik-push-07.png",
+      "removed_background_pixels": 97684,
+      "sha256": "13754d9a51f07da2300887c7f4440bb4649980a7055037cd38c62b83c0e463f6"
+    }
+  ]
+}

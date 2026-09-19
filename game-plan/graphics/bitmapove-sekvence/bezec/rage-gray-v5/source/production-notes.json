@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "generation_mode": "built-in-imagegen",
+  "prompts": [
+    "graphics/bitmapove-sekvence/generation-prompts/bezec-wide-loop-v4-group-a.txt",
+    "graphics/bitmapove-sekvence/generation-prompts/bezec-wide-loop-v4-group-b.txt"
+  ],
+  "original_generated_sheets": ["group-a.png", "group-b.png"],
+  "actual_sheet_dimensions": [1254, 1254],
+  "assembled_atlas_dimensions": [2508, 1254],
+  "cell_dimensions": [627, 627],
+  "assembly_resampling": false,
+  "crop_policy": "One shared crop for all cells; full cells retained here to preserve the long stride. Additional external padding may be excluded via --frame-crop.",
+  "game_canvas": [96, 96],
+  "common_export_scale": "96 / 627",
+  "first_version_mean_visible_height_pixels": 79.6,
+  "new_contact_and_passing_heights_pixels": [77, 78, 79, 79, 80, 80],
+  "new_flight_heights_pixels": [71, 70],
+  "frame_order": [1, 2, 3, 4, 5, 6, 7, 8],
+  "previous_4_5_swap_incorporated_in_artwork": true,
+  "frame_8": "Redrawn bent-knee airborne transition from raised near knee (7) toward extended red shoe at contact (1).",
+  "automatic_frame_offsets": false,
+  "status": "alternative-awaiting-user-review"
+}

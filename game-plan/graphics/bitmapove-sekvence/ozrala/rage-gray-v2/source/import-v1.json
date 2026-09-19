@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "ozrala",
+  "display_name": "Ožrala",
+  "imported_at": "2026-09-14T18:46:05.139763+00:00",
+  "source": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "0716eda35dadc990675dc2e82e53181051ded8fb7826f183cedb7079a2c609ea",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-00.png",
+      "removed_background_pixels": 99921,
+      "sha256": "f6be8f86ed162a5007b5302a3a7e6c7752516dd984df98d29c1b4dbf41dc77ed"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-01.png",
+      "removed_background_pixels": 104720,
+      "sha256": "6aecdf4dbbbb61e3080d057e68e0fb7bce2e646ab1eda9555fd55a59a378cedf"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-02.png",
+      "removed_background_pixels": 105867,
+      "sha256": "f5027b9bc94eec62bdc7fc334fbcf16512abb6b3a2f207e812591aa4ebcca61e"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-03.png",
+      "removed_background_pixels": 103516,
+      "sha256": "dc822c83f9621aa913373348fd88d919cdb3a28872e95accbc5da45bca60f901"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-04.png",
+      "removed_background_pixels": 109652,
+      "sha256": "641177def06e5f3e263b8b590975ecfa228f1324a403bd9e01f606c00b836a7b"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-05.png",
+      "removed_background_pixels": 108364,
+      "sha256": "0291861639a32cb8e2557dbfa566b6e282554360c01d151f996b0c6edf383fb4"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-06.png",
+      "removed_background_pixels": 110039,
+      "sha256": "6a44cdfffbfb605c79c35d18157f72425333d1cd70617cfbc53c1814583c6c96"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-07.png",
+      "removed_background_pixels": 105745,
+      "sha256": "1b582bfcf46741ab2c4c5a9ef1b87a5826a72417a28d511131492ea32fb6d541"
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T19:03:20.746832+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b282e1b6bbc7df01a6480da9d4a998fd6fdbb159b0db65e4f0b0bf1f4a42bc93",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-00.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "123b8c01ef0689407ec6ffe7d63b65798ad44b58330f9d99144597a60e29e6c1"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "97799151f045c4a181d00520fe07ee5950d0c33fca20b3f37dade7d7aa289d70",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-01.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "471a19c97bb716678cd47075a2aeeb3920c9af6f1e5b6acd8278b77842e0b3d6"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "1d79643f06186d0a4cb0f39aadb0549eb294b403eed2e56ad54453116f8d111f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-02.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "1847abeab45a20dd1d6add04d2a4fc03fd9331d55caa7235db24c840c26c4593"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "211778a32884253dfb73267ae8b83f474ee4b55a6f9cacb240c604e974bfffcd",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-03.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "9eef4140238b1cfd7b9a847d1a2aeb6968e3c70f523dcbcb9749333fe04f8de3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f6b709bc1359aa98a620d52f569a6b8fff516d92b6d8b3ab1e684137ce3cdd72",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-04.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "ead7c60ca46e3fa00436c5423ac2cf2f621b609429a09bd3c26b1b4dd2e8c1c2"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "089e1469db6031a3d8e4d44be99a336042f2a8758a454fe82cf78d6c81da6cee",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-05.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "4ca22ab5cda000bee13f6864550b257faa34ea88a3770b4a21ee7ce4af1a44d8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2e156d00e32d4445d260673d44b8f25f36de2d6d76978bc8eb362945d3194ae3",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-06.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "c22884d9744d894f59e7bf4bff437ebf253f0b52bbc7e1ab4b0bf6a047531987"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b3cf58249c0a9881d9e0662b9d2bf53709dfec672e9aadc89fb13fee3f4eae2f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/variants/generated-v1/boss-matka-krys-crawl-07.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "38635bde7614e511a3fc2c9b72e618ccf2ac5db5ba0f7266b6282447d13b19b8"
+    }
+  ]
+}

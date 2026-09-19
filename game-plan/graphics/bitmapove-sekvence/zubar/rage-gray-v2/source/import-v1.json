@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "zubar",
+  "display_name": "Zubař",
+  "imported_at": "2026-09-14T18:52:22.506191+00:00",
+  "source": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "a0e9143b7f381afa9e96328b23de8ab164d44d1ad675f90973ba4a1b4b13c520",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-00.png",
+      "removed_background_pixels": 107583,
+      "sha256": "f2953c7c11e784a43e385951e6c793ee7d68ad1749074aef3e54fc1273e556a4"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-01.png",
+      "removed_background_pixels": 107300,
+      "sha256": "0c655db864431388e45f5b802fe9312fc6574718cd3fa5fd1b091fe52656d845"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-02.png",
+      "removed_background_pixels": 111193,
+      "sha256": "dad865dd7a882fb5a94b7f53b3194f983f7dbd4fe9c9ffab330f4161757597e7"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-03.png",
+      "removed_background_pixels": 110544,
+      "sha256": "a6a196d978ab1ec4e172f278610f329da035de22d06024d64f5afafc34f05dc7"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-04.png",
+      "removed_background_pixels": 108299,
+      "sha256": "39838504952d52c3adb473b37dbed5443f4288dc712e5ca4f4cb3d7a580e71e7"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-05.png",
+      "removed_background_pixels": 109793,
+      "sha256": "a77c289fb4accc1d923aad45633d098b50aa703e5bafcac4519ec7aa3e186680"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-06.png",
+      "removed_background_pixels": 110822,
+      "sha256": "a07955276ce231168c802c711cdbb096b2d05f8ce4918d01094e75e139a88751"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-07.png",
+      "removed_background_pixels": 108131,
+      "sha256": "a95daced2f9cc4f982194744670474c5421c1581db1567012b1c659314f79f44"
+    }
+  ]
+}

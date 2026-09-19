@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-zeppelin-z-matraci",
+  "display_name": "Zeppelin z matrací",
+  "imported_at": "2026-09-14T19:02:55.650764+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "cd348b1804f7a023fa4f91baef8f5452c64d0e9eea3614cf04e86e465b9b9446",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-00.png",
+      "removed_background_pixels": 89130,
+      "sha256": "9dfd0d90cf96264d3950e942b70bee5020ec48dd22dfa8774aa0e89605c4dd3d"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-01.png",
+      "removed_background_pixels": 85275,
+      "sha256": "6f599a3d2bf4d2679bdf5af9f7726dec71a921398573124aeb5eb85ffe4c7cfb"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-02.png",
+      "removed_background_pixels": 86466,
+      "sha256": "984d79179a9df4825d119b6c30c87a8fb284469456b7f17cff2e2a027167e27c"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-03.png",
+      "removed_background_pixels": 85633,
+      "sha256": "ccbf2880dbbb3ecc26f70456a5cbcf86cfc482fb0da20a12b7fa121601ea424d"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-04.png",
+      "removed_background_pixels": 84993,
+      "sha256": "6cc5ca64e48c79db1a6b430223574200e2cc55ff7d1f2ef61300b92d40c1775b"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-05.png",
+      "removed_background_pixels": 86433,
+      "sha256": "72db962f1ce3fbfd22e011b45a048a159f7112297dc4a28e27f191a2878b7ae3"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-06.png",
+      "removed_background_pixels": 87561,
+      "sha256": "fca551487353d3e92cb8d7f22ed1163d036c640e3413e8306dab8cee024d567a"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-zeppelin-z-matraci/rage-gray-v2/frames/boss-zeppelin-fly-07.png",
+      "removed_background_pixels": 86880,
+      "sha256": "e2c3182fc8031a0527bad9af4ec254f4fcb6c2012138938923793ca9dd8f5c4a"
+    }
+  ]
+}

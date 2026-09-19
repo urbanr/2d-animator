@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "prodavac",
+  "display_name": "Prodavač",
+  "imported_at": "2026-09-14T18:46:00.857375+00:00",
+  "source": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "692d44bb039a05078da43d3606c87eed5d450f7c30f72dd8b1eaa208099b4b2f",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-00.png",
+      "removed_background_pixels": 100632,
+      "sha256": "1576430e9b3300a59d75cc094de9be374959150003fde96cf1f888849cc27d2f"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-01.png",
+      "removed_background_pixels": 98771,
+      "sha256": "c8b2d5fb80b8bdc361addb3cf4aee140d3958a0f38465b1b504ceb08d8c1b3f2"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-02.png",
+      "removed_background_pixels": 99192,
+      "sha256": "404a3729184befcec197edbe031ae49fc3a24728fc527e27fd4a28f4a45a1fca"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-03.png",
+      "removed_background_pixels": 98544,
+      "sha256": "713a9dba4b7fcd94a00ae07ab663145bc7a89cd1551ef307a97285bb4798b06a"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-04.png",
+      "removed_background_pixels": 98346,
+      "sha256": "e367f44450905a041624b5b83d668e11d60cec4c87cbdf365fb22c0649b80148"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-05.png",
+      "removed_background_pixels": 99342,
+      "sha256": "af4ed9578c0d3ece67dc5f0c2289ace3aace1bcf9aa9529e13fc0b3d6835cac3"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-06.png",
+      "removed_background_pixels": 98796,
+      "sha256": "a3f8b67099242a4aa957743797fc5b2becf4408f0688ede1a41fbdceda86c4c5"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-07.png",
+      "removed_background_pixels": 100473,
+      "sha256": "71d142d853c026ae8e1f2f1d3bfa983ff319036c0b10a51e15b539c3daab6f28"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "knez-zkazy",
+  "display_name": "Kněz zkázy",
+  "imported_at": "2026-09-14T18:42:44.082634+00:00",
+  "source": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "f2f8573607ab029805d6851d9c28053862d87f403465670d492972e974be6c02",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-00.png",
+      "removed_background_pixels": 104043,
+      "sha256": "babfa77cca6e3b70ad1b5877cc3d513483f19e473b7e692101fffc8746bfa2b8"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-01.png",
+      "removed_background_pixels": 105352,
+      "sha256": "c059497ce91cc5ce8869d6cbcd497de20b2c1b9a9a876f5582ad3a50e12989c5"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-02.png",
+      "removed_background_pixels": 102751,
+      "sha256": "95e548ffad44cd280d575c44186779cfbd12a51adb97d8373dd66f17caedce55"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-03.png",
+      "removed_background_pixels": 105442,
+      "sha256": "d1ddf4f333bf0bdea81016fca09db4e625a32bc6ac9979bdb5822839a28a66ab"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-04.png",
+      "removed_background_pixels": 104192,
+      "sha256": "649b8681d2780cb1f3ece115edb862caa646c250e5326a53c65c74ac82c8be2a"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-05.png",
+      "removed_background_pixels": 105986,
+      "sha256": "b77fe457250edd5f5965bfe12bf4e52d061df83ab0abdc89ec492e90e422b9a4"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-06.png",
+      "removed_background_pixels": 102971,
+      "sha256": "1b54b7fc9c7db8a7ab97c3d7e6d0de59e468af3b470b88f7aa2b4ae73553cbae"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/knez-zkazy/rage-gray-v2/frames/knez-zkazy-walk-07.png",
+      "removed_background_pixels": 102384,
+      "sha256": "5a103d71a3360fd5b7b040a36fb8c9e18f2e1c2f0cda86a1da4f8a61d55be237"
+    }
+  ]
+}

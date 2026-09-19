@@ -1,0 +1,218 @@
+{
+  "id": "chuchvalec-idle-v2",
+  "status": "revised-idle-for-user-review",
+  "source": "../chuchvalec-neutral@3x.png",
+  "method": "controlled deformation of a single original bitmap; no frame-by-frame generative repainting",
+  "frameSizePixels": {
+    "width": 384,
+    "height": 480
+  },
+  "spriteSizePoints": {
+    "width": 128,
+    "height": 160
+  },
+  "textureScale": 3,
+  "fps": 16,
+  "frameCount": 24,
+  "durationSeconds": 1.5,
+  "loop": true,
+  "groundLineFromTopPixels": 468,
+  "anchorPoint": {
+    "x": 0.5,
+    "y": 0.025
+  },
+  "stationaryRegion": {
+    "x": 0,
+    "y": 300,
+    "width": 384,
+    "height": 180
+  },
+  "globalImageResize": false,
+  "movingRegionSampling": "premultiplied-alpha bilinear; upper-body motion only",
+  "maxChestLiftPixels": 4.5,
+  "webPDelayMilliseconds": [
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63,
+    62,
+    63
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "file": "frames/chuchvalec-idle-00@3x.png",
+      "sha256": "77dfd01f35759bf17e3081264794da38bcfb124488f9987556f2e7a75db7a69a",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 1,
+      "file": "frames/chuchvalec-idle-01@3x.png",
+      "sha256": "57a6f43b702863f5bd75f2a67d36b02be31dc7e6b98311a123b729af7cc70ef7",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 2,
+      "file": "frames/chuchvalec-idle-02@3x.png",
+      "sha256": "e238ce35a2cb5bde5b209d0f850959b2c83dc9c044690087bda929fb3a4ee0e9",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 3,
+      "file": "frames/chuchvalec-idle-03@3x.png",
+      "sha256": "9e73d2000b2127a23de74215edaed85cfba4acd5d4cf4eb8409cfadb5a742821",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 4,
+      "file": "frames/chuchvalec-idle-04@3x.png",
+      "sha256": "0bf05b7b7d9544378967f58c527895e9ccbec1911b65f0ef18129f25155fa38d",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 5,
+      "file": "frames/chuchvalec-idle-05@3x.png",
+      "sha256": "518d0fbbd8d52cda0dfcd3e7044bd5fcf96a606fd5f0a6a18961f26f275c3f6a",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 6,
+      "file": "frames/chuchvalec-idle-06@3x.png",
+      "sha256": "af5f5cc8cb1ecf04ec12925c4bbc4b2a14bf9d6ca4aca85cfee5e50d71a64e9c",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 7,
+      "file": "frames/chuchvalec-idle-07@3x.png",
+      "sha256": "b05601bb9e205d69040608d6f0de365502dca2a99a684868253a1843e7aa8258",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 8,
+      "file": "frames/chuchvalec-idle-08@3x.png",
+      "sha256": "d37b97b5d2fca3aa3491ca6b5343b18c4e0b2930f302b36060c59a9020780c9b",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 9,
+      "file": "frames/chuchvalec-idle-09@3x.png",
+      "sha256": "b1a5b0a38e6dee6a4524fd7f29a188512b33603aca942a04c19002ee44ad7d86",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 10,
+      "file": "frames/chuchvalec-idle-10@3x.png",
+      "sha256": "0367700448bb7be37c670f9cec928c5d320657966b6a368064290b53cc7de814",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 11,
+      "file": "frames/chuchvalec-idle-11@3x.png",
+      "sha256": "05328d5562af7cdc476230f89fdf8f42b1c23b47def039efd413f707663a9de3",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 12,
+      "file": "frames/chuchvalec-idle-12@3x.png",
+      "sha256": "a81dd49c5fe71996ad3d4448e28a431a8b3f00b3186234f5cdebda5b74df6799",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 13,
+      "file": "frames/chuchvalec-idle-13@3x.png",
+      "sha256": "e0d08b7412379e3bd33d9b54f2b55f1f1131825b34f83ba72d6a173160871519",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 14,
+      "file": "frames/chuchvalec-idle-14@3x.png",
+      "sha256": "c65b9edd3fad17c571fe5726934ed7570d581897a199cd6b407ae914b66c94c7",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 15,
+      "file": "frames/chuchvalec-idle-15@3x.png",
+      "sha256": "29320d5210a9ee3914234a7350e2f2fec55b3db2ec52e2fa9d30e227af95e4be",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 16,
+      "file": "frames/chuchvalec-idle-16@3x.png",
+      "sha256": "e3f3784cb9b04793fa751864682803b4779a4a16bd200dfed8f70d7be3047d2a",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 17,
+      "file": "frames/chuchvalec-idle-17@3x.png",
+      "sha256": "f91e86c4df48469f35529d56bb36ab4d8074bb2d9d9d0c5ab8be4e72da6065b5",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 18,
+      "file": "frames/chuchvalec-idle-18@3x.png",
+      "sha256": "9782a81b2b2d9cffc87b5e35e33d0f66e94e78d5e8ad9d4e8bb86a49ffd37222",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 19,
+      "file": "frames/chuchvalec-idle-19@3x.png",
+      "sha256": "67dd86bda40596264ba931c7583acc7bc1f5f1ee9bf1cee39cd4715ac49dd7db",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 20,
+      "file": "frames/chuchvalec-idle-20@3x.png",
+      "sha256": "e8ed9023f2411b2f21abf7f490f0e37f2e45bec870c5efb04a639e8fe28ee10c",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 21,
+      "file": "frames/chuchvalec-idle-21@3x.png",
+      "sha256": "0fa3e791c35921e7bb82c6ef6fe172e9aa49cfd38e0c889779f54e4e7df7a108",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 22,
+      "file": "frames/chuchvalec-idle-22@3x.png",
+      "sha256": "d530d6b4afb273dce583fb6dea0ac74a79b161049ca3ebda87ed17995a77a4c1",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    },
+    {
+      "index": 23,
+      "file": "frames/chuchvalec-idle-23@3x.png",
+      "sha256": "87d694940f72155aebdef4fd13ee4340a388971b4bedb33779d4ad47bcf890c1",
+      "stationaryRegionSha256": "d776db665c375ac2e197ffbf6344a4d084aaa37400941ffeb83bf138cb561ab2"
+    }
+  ],
+  "validation": {
+    "nativeFrameDimensions": true,
+    "pngPixelsPreserved": true,
+    "bottomRegionByteIdentical": true,
+    "allFramesUnique": true,
+    "webPFrames": 24
+  },
+  "limitations": [
+    "Controlled idle from one drawing, not newly hand-drawn acting poses.",
+    "No walk, attack, mouth articulation or split animation.",
+    "No physical iPhone performance test."
+  ],
+  "rejectedGeneration": "../source/idle-retry-unused.png"
+}

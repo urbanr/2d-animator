@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "tunel-metra",
+  "display_name": "Tunel metra",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:14:36.013563+00:00",
+  "source": "graphics/levely/tunel-metra/concept-v1/source.png",
+  "source_sha256": "eb3628220364eab944f606fa25cd13d2528fd43db8b3f6d15c04283be5e3517b",
+  "background_master": "graphics/levely/tunel-metra/concept-v1/background-master.png",
+  "background_sha256": "63e3894a9a668095183375049d5d09d799ce33ec228bff413a38545fb3210a6f",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Nízký strop, koleje a pravidelně projíždějící souprava."
+}

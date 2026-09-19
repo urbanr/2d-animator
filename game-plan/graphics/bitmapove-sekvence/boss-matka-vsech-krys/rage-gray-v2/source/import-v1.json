@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-matka-vsech-krys",
+  "display_name": "Matka všech krys",
+  "imported_at": "2026-09-14T19:03:14.096932+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "9a150342bad33e3394cd24f3c707ea212faa48be517bede40212b873e16ba85c",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-00.png",
+      "removed_background_pixels": 106036,
+      "sha256": "b282e1b6bbc7df01a6480da9d4a998fd6fdbb159b0db65e4f0b0bf1f4a42bc93"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-01.png",
+      "removed_background_pixels": 106990,
+      "sha256": "97799151f045c4a181d00520fe07ee5950d0c33fca20b3f37dade7d7aa289d70"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-02.png",
+      "removed_background_pixels": 104776,
+      "sha256": "1d79643f06186d0a4cb0f39aadb0549eb294b403eed2e56ad54453116f8d111f"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-03.png",
+      "removed_background_pixels": 108276,
+      "sha256": "211778a32884253dfb73267ae8b83f474ee4b55a6f9cacb240c604e974bfffcd"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-04.png",
+      "removed_background_pixels": 111355,
+      "sha256": "f6b709bc1359aa98a620d52f569a6b8fff516d92b6d8b3ab1e684137ce3cdd72"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-05.png",
+      "removed_background_pixels": 107968,
+      "sha256": "089e1469db6031a3d8e4d44be99a336042f2a8758a454fe82cf78d6c81da6cee"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-06.png",
+      "removed_background_pixels": 100923,
+      "sha256": "2e156d00e32d4445d260673d44b8f25f36de2d6d76978bc8eb362945d3194ae3"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-matka-vsech-krys/rage-gray-v2/frames/boss-matka-krys-crawl-07.png",
+      "removed_background_pixels": 101306,
+      "sha256": "b3cf58249c0a9881d9e0662b9d2bf53709dfec672e9aadc89fb13fee3f4eae2f"
+    }
+  ]
+}

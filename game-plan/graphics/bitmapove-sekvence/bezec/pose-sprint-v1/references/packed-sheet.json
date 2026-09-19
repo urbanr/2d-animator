@@ -1,0 +1,128 @@
+{
+  "column_cuts": [
+    0,
+    434,
+    793,
+    1190,
+    1586
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "placements": [
+    {
+      "frame": 1,
+      "source_rect": [
+        0,
+        0,
+        434,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 2,
+      "source_rect": [
+        434,
+        0,
+        359,
+        496
+      ],
+      "destination_in_cell": [
+        95,
+        8
+      ]
+    },
+    {
+      "frame": 3,
+      "source_rect": [
+        793,
+        0,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 4,
+      "source_rect": [
+        1190,
+        0,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 5,
+      "source_rect": [
+        0,
+        496,
+        434,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 6,
+      "source_rect": [
+        434,
+        496,
+        359,
+        496
+      ],
+      "destination_in_cell": [
+        95,
+        8
+      ]
+    },
+    {
+      "frame": 7,
+      "source_rect": [
+        793,
+        496,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 8,
+      "source_rect": [
+        1190,
+        496,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    }
+  ],
+  "resampled": false,
+  "alignment": "nominal grid; no per-frame bounds fitting",
+  "source": "game-plan/graphics/bitmapove-sekvence/bezec/pose-sprint-v1/references/generated-sheet.png",
+  "source_sha256": "130ebd96b4910ae2ebeeb45b68c2015a5fab8028ba9ed8e552b0c397471e5fb1",
+  "source_size": [
+    1586,
+    992
+  ],
+  "output_sha256": "875ba9f02daf5c255b385b01de364f042ff9b5cb4a5b741760355263e9444def"
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "level": "strecha-panelaku",
+  "display_name": "Střecha paneláku",
+  "variant": "composition-v2",
+  "title": "Nekončící střecha — v2",
+  "description": "Střecha i fasáda pokračují vlevo a vpravo mimo obraz, bez bočního konce budovy.",
+  "status": "alternative",
+  "generated_at": "2026-09-15T09:04:05.865989+00:00",
+  "source": "graphics/levely/strecha-panelaku/composition-v2/source.png",
+  "source_sha256": "7a73a6590f9ee5f5167a7cf2552efdb9e347bfe1fdcef40de49119516f3269c3",
+  "background_master": "graphics/levely/strecha-panelaku/composition-v2/background-master.png",
+  "background_sha256": "c709c4e030e83b08997436ced776a6afa5cf201b05ea44747b587d16365c98e0",
+  "source_size": [
+    1855,
+    848
+  ],
+  "master_size": [
+    1855,
+    848
+  ],
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "width": 1855,
+    "height": 848
+  },
+  "resampled": false,
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Vítr, lezení po fasádě a pády ze střechy.",
+  "prompt": "graphics/levely/strecha-panelaku/composition-v2/prompt.txt",
+  "generation_mode": "built-in image_gen"
+}

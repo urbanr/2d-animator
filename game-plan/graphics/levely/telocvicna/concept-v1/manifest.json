@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "telocvicna",
+  "display_name": "Tělocvična",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:17:30.474774+00:00",
+  "source": "graphics/levely/telocvicna/concept-v1/source.png",
+  "source_sha256": "ea1709d271922cef29d3362527390bfeb84ec5b5028b95027c9f949df6ad101d",
+  "background_master": "graphics/levely/telocvicna/concept-v1/background-master.png",
+  "background_sha256": "c385f7165743e75f4ffb10c68644a119c622e0429b0203e269a5937c242da6d3",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Žebřiny jako kotvy a pohyblivé sportovní předměty."
+}

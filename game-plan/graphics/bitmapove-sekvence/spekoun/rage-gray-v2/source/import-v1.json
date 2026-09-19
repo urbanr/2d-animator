@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "spekoun",
+  "display_name": "Špekoun",
+  "imported_at": "2026-09-14T18:49:11.327793+00:00",
+  "source": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "1f9c74a5408c302ff3181db2e131a554fbd8cb7637dc8565266be6015aa1e354",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-00.png",
+      "removed_background_pixels": 87650,
+      "sha256": "9c615f9946c7ce38eae06e193d37079ccd354de9dbff16a806b1902341ee1c6c"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-01.png",
+      "removed_background_pixels": 91222,
+      "sha256": "4bb566a33383d0f26455b8b06c62c1634074d57fc3d04aa9ef499d35853cc75e"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-02.png",
+      "removed_background_pixels": 88382,
+      "sha256": "d20cf7fa148473d6a486a996b67e3fca7942c548a4b5da825e823fe0fd3e4b6f"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-03.png",
+      "removed_background_pixels": 86315,
+      "sha256": "962951706616be1cc8d68d86c666465e83c3b47f3f9854990829dc0833399987"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-04.png",
+      "removed_background_pixels": 87596,
+      "sha256": "638a1b1ddea26f6a5092d4ee15a2e6893f6939f5c54cdea566d2d43b14dd2523"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-05.png",
+      "removed_background_pixels": 87627,
+      "sha256": "6e552c23136e30cba324e1bad87be74c046b8dc08490cd12fd54e4a6b9b50f7b"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-06.png",
+      "removed_background_pixels": 88158,
+      "sha256": "2452ebb3ff4bdf2b927c97b7c70e262564da4116becd63106327a8b7f3a8ee43"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-07.png",
+      "removed_background_pixels": 89871,
+      "sha256": "28381d1b6ba97f88cf24134755eb805faa7cf1215253665eb660102dc0de80f3"
+    }
+  ]
+}

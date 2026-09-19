@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "snehulak-z-popela",
+  "display_name": "Sněhulák z popela",
+  "imported_at": "2026-09-14T18:52:14.068465+00:00",
+  "source": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "0c0e2d7be574002a93ee1c381eb9554eeed5eb2291e3ef849a0b33230c1c5e4f",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-00.png",
+      "removed_background_pixels": 112964,
+      "sha256": "02d28427d04d1a2e91b73e092cff2a83aa22918573a064802c77edb6fa3e0ceb"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-01.png",
+      "removed_background_pixels": 115008,
+      "sha256": "8a5044dd95f42892e059c6d35016c0221f9b77ff8752815bc98b738da5e82be1"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-02.png",
+      "removed_background_pixels": 106135,
+      "sha256": "3db9bef597cfa62211cace8ad76474985284100593844f583e5e7535f11c7c4b"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-03.png",
+      "removed_background_pixels": 110877,
+      "sha256": "d6c8ac7510666bf4a58ffffe4b85020f1245fc5eb3d08622e4a7d0dfaf9a751a"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-04.png",
+      "removed_background_pixels": 107149,
+      "sha256": "190cd3bee110d9603796bbaf0e9870fb64c1362dae3fa9fbbccdaf5249554073"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-05.png",
+      "removed_background_pixels": 114908,
+      "sha256": "df44eba3e0f65d7e2e6d85b482bceea5688afe107a43f69d01bfe2f7dceb12f5"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-06.png",
+      "removed_background_pixels": 110947,
+      "sha256": "75fd64e560b85a1f1b937563effada9ac7b878209acea2c60f1cbdb88f255db9"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/snehulak-z-popela/rage-gray-v2/frames/snehulak-z-popela-walk-07.png",
+      "removed_background_pixels": 112090,
+      "sha256": "bb022dfa912eadfa418988776d1efd2b79f355eb0ba6e76977fb7448b2bcb702"
+    }
+  ]
+}

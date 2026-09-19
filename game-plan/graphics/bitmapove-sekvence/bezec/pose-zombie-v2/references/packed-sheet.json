@@ -1,0 +1,128 @@
+{
+  "column_cuts": [
+    0,
+    396,
+    793,
+    1189,
+    1586
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "placements": [
+    {
+      "frame": 1,
+      "source_rect": [
+        0,
+        0,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 2,
+      "source_rect": [
+        396,
+        0,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 3,
+      "source_rect": [
+        793,
+        0,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 4,
+      "source_rect": [
+        1189,
+        0,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 5,
+      "source_rect": [
+        0,
+        496,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 6,
+      "source_rect": [
+        396,
+        496,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 7,
+      "source_rect": [
+        793,
+        496,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 8,
+      "source_rect": [
+        1189,
+        496,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    }
+  ],
+  "resampled": false,
+  "alignment": "nominal grid; no per-frame bounds fitting",
+  "source": "game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/references/generated-sheet.png",
+  "source_sha256": "cb9228f82f181a283e7b54984e9bf18e15fae3edca44cafb49965caef6deda0d",
+  "source_size": [
+    1586,
+    992
+  ],
+  "output_sha256": "f81fd95900aa9d2b1f7ef816eea20b84e961f01f05577e379623fa0a518df5db"
+}

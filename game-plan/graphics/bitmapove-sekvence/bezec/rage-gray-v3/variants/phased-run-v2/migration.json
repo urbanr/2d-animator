@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T20:45:54.461349+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "10e74c578384ef2e82b2d203299e5bd52383a0551d498f2000ba7880c376414a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "2dc28be4633a36f9b2b8bf92c2d9b54367053700d9b1bd97dc8f8f80fc6183af"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "756938107f853ad3024461d5f78a6f91dae071578c501b7acc4531806e793af0",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "4608a2c24afa242f184a9961f2e9e8a12f551893a687d4277f7226e14cd5c2cd"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6386839ff9762932bbfb02c45f0d8958f0cb1e5e7f15bea95c37b9a384adc70e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "dadabadbabaaefa7650934109e20e1411114605230057918364d6baa1739b358"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "1de8e69831a7bbdaeb27464c762ce2a0ea9b74b39284d9e878b414cfe6b59990",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "85a45f6964aad27006becff4d435c2737ae2c31782027f6a6640645d86cc4469"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a4c1cb911dc9c496548de3485e0248fba4c31279184762f592d3b884f069db48",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9b5c1e14f7aac83478e17752a0155ac386df6d53f26c679d33ccc250c18b20ef"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b48aebd59bfd63162225850d0f1b1f6e790948eb48e53aac3f2e8131c238fc35",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "d7cfcf1fc55cf3bf706e9d63126a787b0c451713963bf50623fffb1329159f84"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6b046d3bebf333dc381791bcbfad641f9d30c52eaef3436ab7e7d7dbba62b759",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "366b2849dc9646bc8c6fdaeeaca5bf3060352ebec6a52691ea9f0973991a87f2"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "306deebc53987299d9f60578376e780f887fabf6d5cd48eab1792ffd0cb699a4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/rage-gray-v3/variants/phased-run-v2/bezec-run-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9cab8c2afad5ce4de60ba7f8f89898e9e356dd89af1d0da6a4183e81382f8c66"
+    }
+  ]
+}

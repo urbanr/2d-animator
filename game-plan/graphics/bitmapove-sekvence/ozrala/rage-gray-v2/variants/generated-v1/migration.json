@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:46:06.999051+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f6be8f86ed162a5007b5302a3a7e6c7752516dd984df98d29c1b4dbf41dc77ed",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "466c18f3347441d22d02ae7cced2fef674b5e73c69bcc80ee0454c66cdee880e"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6aecdf4dbbbb61e3080d057e68e0fb7bce2e646ab1eda9555fd55a59a378cedf",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b01b403f386fad083d504cfdbd26b6690eb48d1c68a7141d9b42143d1f0c5a86"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f5027b9bc94eec62bdc7fc334fbcf16512abb6b3a2f207e812591aa4ebcca61e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9378bf49cf50abc7c5985e48373e39a313a7a301d42e43d8b6714aae43ac4ded"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "dc822c83f9621aa913373348fd88d919cdb3a28872e95accbc5da45bca60f901",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "29d8cbb3dfe3a653dcf49d3426b3d12b1bb3d5cb69d96c7cc77d5cd31292eda4"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "641177def06e5f3e263b8b590975ecfa228f1324a403bd9e01f606c00b836a7b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1644334d4f5d905b57933d5758019a5522bb5e38cdc40da64da9389f71c29037"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "0291861639a32cb8e2557dbfa566b6e282554360c01d151f996b0c6edf383fb4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "feaf46a4526aac0b9cb094d269a71fb7359d5cbea51c77d14c32f19c528770fa"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6a44cdfffbfb605c79c35d18157f72425333d1cd70617cfbc53c1814583c6c96",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1caec37b4abf1720da1b864de50ad6eba5b2e3ac79e8be05605fb0da5b027cdc"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/frames/ozrala-stagger-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "1b582bfcf46741ab2c4c5a9ef1b87a5826a72417a28d511131492ea32fb6d541",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/ozrala/rage-gray-v2/variants/generated-v1/ozrala-stagger-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "cc271b6d969ccee3029dce5fddcf76b4f849d1a2be83f618364ff809f7b22003"
+    }
+  ]
+}

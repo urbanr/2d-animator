@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "babka-dealerka",
+  "display_name": "Babka dealerka",
+  "imported_at": "2026-09-14T18:49:19.697108+00:00",
+  "source": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "d4f05bee132ad4126987358014d370b1385c871d67d7112f00906d6807593340",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-00.png",
+      "removed_background_pixels": 101174,
+      "sha256": "7965f113903968922fbc513024bc25d379564966292625c2e1a8accf5dde25d1"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-01.png",
+      "removed_background_pixels": 102699,
+      "sha256": "e71576396bf63ae7a26d5770242360408efea59fd9e22e683012ffdf7041d60d"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-02.png",
+      "removed_background_pixels": 104371,
+      "sha256": "008aefbbfb532e8040003935645c1bbe3217888d958d008b21745a244be12f43"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-03.png",
+      "removed_background_pixels": 105016,
+      "sha256": "dc0392ab9e045e4e07a2ef140dd214fbb99db25301a728c0e601224255080f39"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-04.png",
+      "removed_background_pixels": 105003,
+      "sha256": "89d5e53b9d8659023f787b0cbe323d7aa7f507699b9ee3203f2e2ef092bf9c9b"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-05.png",
+      "removed_background_pixels": 107064,
+      "sha256": "a0fef12539d6a7bd5647320b92647cb8c68d8eb6ff0d8b647ba83c8cf55856b1"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-06.png",
+      "removed_background_pixels": 105775,
+      "sha256": "d1aa6cbd10345e8d13aa000bf6082908e825d7a4ed1887ae02e421d3c3889628"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/babka-dealerka/rage-gray-v2/frames/babka-dealerka-walk-07.png",
+      "removed_background_pixels": 103989,
+      "sha256": "a01894bdd2b83bde60bafae871d2562dbeb68b8dee25f607d6a086604eaa4daa"
+    }
+  ]
+}

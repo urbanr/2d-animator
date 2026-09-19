@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "hazec",
+  "display_name": "Házeč",
+  "imported_at": "2026-09-14T18:35:52.271348+00:00",
+  "source": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "17a417cc1de15eb17ef76d1af7534f542c97849da2155f6e083396dfa520743a",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-00.png",
+      "removed_background_pixels": 108946,
+      "sha256": "917216ef82f1857d70d5a0c34cd2d6caee8336bff2553718e5950be3b940403a"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-01.png",
+      "removed_background_pixels": 109268,
+      "sha256": "f6bc23cc3735e1f66803b05b468ed1f8bc93dd3494f15a3a60170c50d5bd89b5"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-02.png",
+      "removed_background_pixels": 107491,
+      "sha256": "e41c9bea199aa73817935d0d2512686c052fd3edbb8a948a9af8aa171289d0af"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-03.png",
+      "removed_background_pixels": 107285,
+      "sha256": "9a76cbb97ad4c7f73e5b91620ded4321aa85386f01bdbab50810c2fefde165e4"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-04.png",
+      "removed_background_pixels": 110519,
+      "sha256": "c0f85516b2f7b85dbeb8542651cd691a838e217bc99b707d765b80f9c91a4fef"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-05.png",
+      "removed_background_pixels": 110968,
+      "sha256": "329b2fa932849818fa5608875aa87da2cc4b22d00974785a76d1cb91c6ebf1f6"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-06.png",
+      "removed_background_pixels": 110330,
+      "sha256": "87e9682d419c44bdecaff7bb7ee7f2fa1aef148a0f3c2e5170471a56291c8be8"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/hazec/rage-gray-v2/frames/hazec-walk-07.png",
+      "removed_background_pixels": 110567,
+      "sha256": "06e8edb8c22c80e46557b14d3dcabc13deb222eefcf91ddf650948113731e126"
+    }
+  ]
+}

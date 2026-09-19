@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-dvojcata",
+  "display_name": "Dvojčata",
+  "imported_at": "2026-09-14T19:03:05.033685+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "bed4cc81e55625fd9be6466d0296fdba7683d615d2e7df877f54f28af9e27ed7",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-00.png",
+      "removed_background_pixels": 97450,
+      "sha256": "29ccd07e107245a80c8fe8b9c1619af8aa1fa5a952e4e64625eb0791351c06bb"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-01.png",
+      "removed_background_pixels": 103173,
+      "sha256": "0047e19755f77757a6d7514d858766ad56d3b85b047b01f792233b55e0d2e90d"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-02.png",
+      "removed_background_pixels": 100985,
+      "sha256": "e91cbaac87ebe1ca5d8219f9e045973b330209a8ceea67c7c9d4fc8462960481"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-03.png",
+      "removed_background_pixels": 102620,
+      "sha256": "7b9b993ff01eb58ad6197dc394275cb0ecd2f07180571d120e80b0815b2a48c5"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-04.png",
+      "removed_background_pixels": 99392,
+      "sha256": "c7bd07f943b5a3c91cc136f3a2b61907dd859d7481611297e85442bdc086d36c"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-05.png",
+      "removed_background_pixels": 103234,
+      "sha256": "bef06d05b2eb2d29dc70c8ec891195df95992f3b8f83a2881eff129164a3b936"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-06.png",
+      "removed_background_pixels": 100840,
+      "sha256": "fdc4dcf81201bc595873e6ea4c4f2dbc154eeeb4eb0b5dd0e61a9e7bfbe88941"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-dvojcata/rage-gray-v2/frames/boss-dvojcata-run-07.png",
+      "removed_background_pixels": 103773,
+      "sha256": "13ed45043746f808c63c7b1b59418cfb47a60197185fcf2fe44dab7e8936d241"
+    }
+  ]
+}

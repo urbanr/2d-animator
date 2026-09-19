@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:52:28.588197+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d538915570a30fd7f0fb35fada6049647966dfe150059613434501b6aa75a1d3",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "dbefdda40580ed2d44a99477145e40911e3322bb128d30f040c27029df736a6f"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "30d62f1e9e9c23ad95334c7dc41afd5089f7f641124ca030c7b8fab80a92105e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f2eff36100bcc83b05d608241ce387b8e708348051a2df2a7dd091a5fd123e14"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a6a955e7c56a19d7521f93ba0036668745c180ff34acb63681a8e94e759c119b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "6c931690f7b6040d08125c79b341e55b34a18ea606ca738d21bf59feba845568"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "bde144dfa7a2414aad69bf05be36217313a442ec6c3e1d26241c7c98edac57eb",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "fe866ad3791c5192e4a71537dbae53881114a5e8dd56ab35ad06886fce98319d"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "dc8e121630dd8defae9a16f0a4bb188511cdc1b5c7aa0fa4a92dd62d9c1c3cfc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "613a18005d012c7260aade12316fd1a77814a9ae9cb5bc7accdec93059d8fdab"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8c6d4762c398d5384b7ffd83e2eb6826b45b81e56abf7a2fe0a549befe85aaa0",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "d68d970d0fdf68435e155c24c49d0f8d10d98df12ac33fbd66199bc2e46c3724"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "bb1377d952fb368429fa059112805ad6205bc6ff6bc5746107596bee18ac50b0",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "5c5859d7944489f69ee5e6620c5ba53b17d3853f66924b7b9fc89afcc6e1713b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e2f0d8af5f4de78fe19013466ed223f0704a84d5a169591a2f5c3e6901876f32",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/variants/generated-v1/mikrovlnka-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "6571d5d59b2004f665bfbf2697f77c7f228366b0e00952a12a5bcb0d2677432f"
+    }
+  ]
+}

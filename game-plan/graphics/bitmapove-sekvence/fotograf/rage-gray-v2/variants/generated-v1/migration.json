@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:46:11.172816+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4a7beff939d001b820a3125a8062f37949956ff282acfc9d3a20613220c198f8",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "23c8b5ea3a9febc1a65fabcf1c9428c2b24df68f3b1bc46508b9e1cfe917b8b5"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "468ffc7d6bccdf7f5ac5d65b31ed0bc09cd202aae88c899771d29ddb999e9187",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "fa0fa06f551416e839fa90afdfdb73704510ca9bbd3f6d53bae0642a60690252"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a348d622d11261b1d6a986abcdc2227a1d1c9b1754fcae7adcab3de49c81fb7c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "8fced979d80eccfa8a62c67ee506b556102d77efd7ab99eee89e239d371233be"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "21c8ede0a5ae28bd792a5b3dda3f540a84c6c7c334b8cb621f8328aec5f54b1d",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "003a55d4ffa51c11564910b35d4358065dce66fb7565418f8b31c70fded88e50"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4f0dd089e6c57810eaa13ec8cd0f13a923572dd4c9fa327ec563eef00e3fab1d",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "2b83e7037af328f935feb9281a52247d19f08d2e76a5cfbc7f643f5703d4acc9"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e1760dd97f5ce765563013506bde7b84fb614178490cb3527a874209c06473e5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e730005b5d6e336fbc0ab2924f2f95d99c39ed31779d5f25671a52349814a4a8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "c8de1000467924b2eb6ccdc76722b123a5d7016d410217c3885a740f5933a51a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "202328ebe0bc18d0a3cc0ed8771c58f6e4710d9b98a97ad31d2ccf1e485d28ea"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ca7b3a9b6ba915f88115ce970cbce1b1e0feda0a72890beacec8a6f0414b1b8b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/fotograf/rage-gray-v2/variants/generated-v1/fotograf-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "090d63d0992c2455b91dae1f035aa9c116429aaa9521ff2b44388b2643152d08"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "kolona-duchodcu-na-vozikach",
+  "display_name": "Kolona důchodců na vozících",
+  "imported_at": "2026-09-14T18:55:18.558724+00:00",
+  "source": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "865dde9240f8a3c4951513b8ce8c6a20f0c0c4f5980f6f282be8b2f7d25f393e",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-00.png",
+      "removed_background_pixels": 116020,
+      "sha256": "c42843ce893f0ed715e522536aa423a6b9bdac9763c65b1831c1911c5ed65fa1"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-01.png",
+      "removed_background_pixels": 115314,
+      "sha256": "eb79b15f2707bd5dc425525039c92a67a86fd3b990bd00b403a9a36ba549f6d1"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-02.png",
+      "removed_background_pixels": 117334,
+      "sha256": "307925e03d1594eb3b8a06f748e1cc0dfb87474c604538dd45ce60c327b3e4c6"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-03.png",
+      "removed_background_pixels": 115927,
+      "sha256": "7a9c5ecc7d1ce84c1bdc2214ab511600d50dc8995de1f6341d00b46db14717aa"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-04.png",
+      "removed_background_pixels": 115479,
+      "sha256": "edc1da39eae4a7815d5737271ac11638a88444ef7c946c181cd7afee83518ae5"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-05.png",
+      "removed_background_pixels": 116390,
+      "sha256": "a157a7d06f439c2ce181b01d4ad4be3ae4ac94897c39eadaeb3977216abbf798"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-06.png",
+      "removed_background_pixels": 115815,
+      "sha256": "33031bb67a11b061e52abdce8eaea7c5cd0ef4faf061dc090272858d4cf300a6"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/kolona-duchodcu-na-vozikach/rage-gray-v2/frames/kolona-voziky-roll-07.png",
+      "removed_background_pixels": 116818,
+      "sha256": "77bb6014cf7c4c7ec2a688e3f5a33f360ba4038c67fa6876a8e24defb79abedf"
+    }
+  ]
+}

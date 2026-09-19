@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:59:27.383976+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "00b3df866a9abebedc255c5b07ba4b01f49afdad10cad957adc2521c3fde2d55",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-00.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "723d79aadebf842243a3f5f65a2f2010ecb91e4a0c221e493d70f4da13c114ca"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3ec326c838b96fe3f04a9c6d3c19a3e1932904a1df5718e2229f9f1360315abb",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-01.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "16becec99456d393b85ffdce8ee2005fa125855814118f08539d52b8c01ce6fa"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "78534e54e3361d0682e3946b7bd745b6a90fb3158832e4f86819bf8a98805c2d",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-02.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "a2bec1722dedd4ab0b3b88141e96b33003b81087a6c5bc8129394aec79d4b156"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b6e7e405be545839f9c9463e71713606201a27a3b786c5f08adae71a4b2ee089",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-03.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "2b7167b23119b128066f08c982861e1204aee46557002bc4c8a35fd2e6492789"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8952a57fefe794b9392b47d07bcc5683305f238faa18ec3af644ae7e4be0c6bc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-04.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "7d6b3c3238a93163b995dcfd124331dc20bd48763cf0fd30d224fbab61b24c4e"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "77316704c38aaf25dbd3d534fcef70a305cce342ea37c3505140420d593448fc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-05.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "acf4befa67009583721e72b1d068f0488e5debdd2fd235a008499da678352477"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "603000a70b37161f56388b59bb9c678f0b1543c2028c67d732dee42c59d2392a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-06.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "8cedd8f7ebf6e5067bfdcc1dd5975ec0399dd8c0b3682d83046f93f90c90c49a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/frames/boss-starosta-march-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f530dcdd624a6f934f1fc337ec87c87957633e1ef386041d0938673b9a13cad9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-byvaly-starosta/rage-gray-v2/variants/generated-v1/boss-starosta-march-07.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "7db621f55f4b7c850f5abc5367e4402f3fb889151bcd6811e1d4f66430d5d59f"
+    }
+  ]
+}

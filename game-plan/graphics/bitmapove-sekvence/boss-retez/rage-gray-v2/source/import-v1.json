@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-retez",
+  "display_name": "Řetěz",
+  "imported_at": "2026-09-14T19:05:40.492416+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "f4f9bc2c9d5222ff8cf8941150fdcf127d71865af177bd236512016d764d166e",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-00.png",
+      "removed_background_pixels": 113461,
+      "sha256": "2e84d889330c29206d4c040e90a0ee779b2342b5ab13e31bc33cfdae72cb90b6"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-01.png",
+      "removed_background_pixels": 113643,
+      "sha256": "e570b54bf195ca629da666f78386a5a0e8cb1d5493c2fc20d4552ca39e9661b9"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-02.png",
+      "removed_background_pixels": 114713,
+      "sha256": "ecfcad99f0886402c16a2818501adcecadd203f95f096f8d36d80a0981f9e898"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-03.png",
+      "removed_background_pixels": 108764,
+      "sha256": "34786ee7890ead5f2e8ae9fac17af1275d27b806d546bff2bb123d29f7c9f36a"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-04.png",
+      "removed_background_pixels": 112974,
+      "sha256": "7cb854a985ce7f1109ba984327f308d443574f542f7bdf120256864bced8fb27"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-05.png",
+      "removed_background_pixels": 113738,
+      "sha256": "e8864b61a74380af43583755ce8d27fc25eb280192c91bb4e8db1fbc8fd3a880"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-06.png",
+      "removed_background_pixels": 112876,
+      "sha256": "587ed45bdfe1db460a790f081e330e5a22e0144261aafaa11fb80469bb35a874"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-07.png",
+      "removed_background_pixels": 112271,
+      "sha256": "be82c7c627b54afb815907f13f13a048afef53c307a5b99699ae03ad59ed30f2"
+    }
+  ]
+}

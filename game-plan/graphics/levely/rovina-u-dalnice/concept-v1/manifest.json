@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "rovina-u-dalnice",
+  "display_name": "Rovina u dálnice",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:11:40.092899+00:00",
+  "source": "graphics/levely/rovina-u-dalnice/concept-v1/source.png",
+  "source_sha256": "77853a77a440d2546a3d5617621fbb53faf302d6929b59b029e67ae9d8ede618",
+  "background_master": "graphics/levely/rovina-u-dalnice/concept-v1/background-master.png",
+  "background_sha256": "fa002c11330da48aaa2cba9eb2cd873d52ad2d00ab6ea25de77345f4a53952ac",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Rovná betonová cesta; bez zvláštní mechaniky."
+}

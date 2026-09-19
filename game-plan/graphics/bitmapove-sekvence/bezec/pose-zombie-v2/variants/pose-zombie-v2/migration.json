@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-15T20:09:52.673117+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-00.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "ddbb2f180097e19776f1427966591b77d51e048060631fda6bd735de630e15d5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "30c6fdff1ac09910018fbff30a8a822ec6b39429161e978e16a1f481fc2e7dab"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-01.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "cfccf242fd3f473e1cc806a676c925fd86d88eeb7f383d500cc35b49ef28f752",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "3df6d4bfd46ceeb3ebdf357ca8b2cfa944d21fb1dae33773d325adaf0f73d3a8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-02.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "101b9fa045a140da1b3efecf08caaaf8e9123c7508c55c2e8f15d9885dbf080c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "12a6b7291052eb785c59b912066afd9656e0e8f0e3aa53dc234a118e4e6059cb"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-03.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "45a081623d5da2184d3576c8dcdeb1df0fcbcc0742b1dc02cd0d75422c6fc04b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "448e4d77502786e9cf0ebb540555b6791d78a064ea782c28513eb0e326c99bf4"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-04.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "3c0207fafcbdc167288e46fc187a77e2bac0ecdfc68dd3ebb9fb1a2ea48e5a6e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "8752437668c4d62175011803ee2af0c3a4fe2d31b7b9664b412ca3f1ffda350d"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-05.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "deeab0eddd2599b4b360f49d7b42e1d66f1a3f0aba8fc522a88c4342b7457f72",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "ca562efc04454344eaaf155fef004b9ef3c48e89ae5456f353eba4d72b8e89ec"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-06.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "f0167f1bff542d3b02ebac5b3dc66fcdaeec1117418a856d54205d0a443f2f1f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "5e04e3ff45a8bf18d2743946432c8abf0596cf9990b98a79da18db0a3c4cb030"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-07.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "18741735049333a1e371ccdd30caea9114f600042b53f329dafb441e34b2509e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-zombie-v2/variants/pose-zombie-v2/bezec-zombie-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "92e0daa79e87c22add8cebee2b6240240bd11804264cf0aad1ecbdc47d8337fa"
+    }
+  ]
+}

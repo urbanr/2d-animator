@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "level": "sidliste",
+  "display_name": "Sídliště",
+  "variant": "composition-v2",
+  "title": "Sídliště zepředu — v2",
+  "description": "Čelní fasáda paneláku a rovná vodorovná ulice napříč celým obrazem.",
+  "status": "alternative",
+  "generated_at": "2026-09-15T09:04:04.033528+00:00",
+  "source": "graphics/levely/sidliste/composition-v2/source.png",
+  "source_sha256": "4b5ca1044c1740d1cc6a5f130028aad150aa74cec27ee6c7091b2371b9a7a9ab",
+  "background_master": "graphics/levely/sidliste/composition-v2/background-master.png",
+  "background_sha256": "b38594b7d836cf95a4392178ae95ef68dbd22d78eccfecc81157dd45a67055fc",
+  "source_size": [
+    1851,
+    849
+  ],
+  "master_size": [
+    1851,
+    849
+  ],
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "width": 1851,
+    "height": 849
+  },
+  "resampled": false,
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Fasádní kotvy, tři balkony, kanál a reakce sousedů.",
+  "prompt": "graphics/levely/sidliste/composition-v2/prompt.txt",
+  "generation_mode": "built-in image_gen"
+}

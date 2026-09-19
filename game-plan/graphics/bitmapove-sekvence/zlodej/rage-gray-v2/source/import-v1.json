@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "zlodej",
+  "display_name": "Zloděj",
+  "imported_at": "2026-09-14T18:39:13.164066+00:00",
+  "source": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "742b64264ce6ce0be0d06612d09a1c79e13f5f68743d9760d6dabbc50e4c5c18",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-00.png",
+      "removed_background_pixels": 97511,
+      "sha256": "46626fad5e8454c88ecbb6c7978897125fbb314f6910712538f5121dfd766fad"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-01.png",
+      "removed_background_pixels": 101555,
+      "sha256": "8ed9c2e44400422770ba8af6072ec43af98fdfb27f1fb5df8e7302e3a5848b0d"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-02.png",
+      "removed_background_pixels": 102653,
+      "sha256": "5f20af48a41d4f142019311c758aca89a801db5ed7bc465d608ce34387fc6a29"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-03.png",
+      "removed_background_pixels": 102419,
+      "sha256": "87b2e89da181b5a7e5a55a9569e09240dca2d35efc34f4bc465ead77b42e3a77"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-04.png",
+      "removed_background_pixels": 101708,
+      "sha256": "4c43fed3718a014202dc1d69da87dbf6c551f345b4505d8d6e7a0a166a6461eb"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-05.png",
+      "removed_background_pixels": 104842,
+      "sha256": "bc2a96ca0577c42c987bf470bf1b9563e6527328434e6efdcca6a9db95afb1d7"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-06.png",
+      "removed_background_pixels": 102621,
+      "sha256": "32bf29d25d5549aae787ca74d3ad20901dffe22577dea3c60259191258384ce3"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/zlodej/rage-gray-v2/frames/zlodej-sneak-07.png",
+      "removed_background_pixels": 99435,
+      "sha256": "8cff6bd4e7484b0037c6ca2ee3dd60db3f333960aebb9da2ee63efb1ec62301d"
+    }
+  ]
+}

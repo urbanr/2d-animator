@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "rojnice",
+  "display_name": "Rojnice",
+  "imported_at": "2026-09-14T18:39:21.649452+00:00",
+  "source": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "4871705101ec7d1fafefe6528677432fc2e71d2b631d0f13448bfd122d761e81",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-00.png",
+      "removed_background_pixels": 99653,
+      "sha256": "48275572ba0fad497a6c344e6724e918c7df3bfdfb3d732b5bbaa7b9b0d4aa6c"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-01.png",
+      "removed_background_pixels": 99579,
+      "sha256": "8616f9bdd797d8de60df1241b311583b76b230ed47720fc75c69c61ba7a65df5"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-02.png",
+      "removed_background_pixels": 99286,
+      "sha256": "b43455628b5d48bf35885fe5469232472e74ca04d566c372f736054449bd6421"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-03.png",
+      "removed_background_pixels": 100541,
+      "sha256": "02a9d1bfa66e42688919b097f6b3a6710fe654aa67769cd92cae432eb1b9417f"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-04.png",
+      "removed_background_pixels": 99645,
+      "sha256": "7d601cca4793aaab7fc6ad9b86b90b3a4c83666d039020365ebd3c1989e571de"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-05.png",
+      "removed_background_pixels": 99672,
+      "sha256": "fcf2ca801abd8c0d2312e8d000b0963936b524fc76316972d0d2be5ed2500a8b"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-06.png",
+      "removed_background_pixels": 100192,
+      "sha256": "ba940c74fe42b9cb309eb509c2c59f6000069c10fd687efd25c3f11cf243b1ea"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v2/frames/rojnice-walk-07.png",
+      "removed_background_pixels": 100588,
+      "sha256": "ebd35c0d5dc5324fb6f6ef8959ec8d36b1c0f321bd72b7307a0a56ead1680e7d"
+    }
+  ]
+}

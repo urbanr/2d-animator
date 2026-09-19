@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-15T20:09:47.832245+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-00.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "df969b465e6152c8c0c70cfa4aa2ded9531549326c6be82a88feff1309c8bea5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "a09c686617d64c662fe93e4c53725a0fb9d3cb74ef7bc525b4940f30bb267ed8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-01.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "816d505d6e4d888600ea951cf7b300acea7ab03b96df8fc33758cb20d0cbef72",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "19a12b746fd497b17bb31706eb84d519f270c7a29a4795bd963ea0f9a11c9eaf"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-02.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "3ae43ae6e810fe0e82d0f263c88d0e92961ba2aee64621307cab55c309ee3b2e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "45bb7d197f988da9088627edefa4e7353ef64d73e73555fa41a5d19eebea6f99"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-03.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "16448416914b7ececb9f441264fae64cb6f204fb7b76c33e6308fd568ba168e2",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "49dcc3e36967f74a775877a6d8385d16d8982e64ef0b194b0fae5b06d3f385a0"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-04.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "ea40204da57abd3e83b8bfe6bd05b5dddf28f2560ff4dfb8a7002ad6b6a6b83a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "aaefbdff86d438ba09cdc5b591cf8ded2b2e4f9f740d2fda42cc766736629914"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-05.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "d9936c88ff7d328d9c4939825d565dc624c8015bc13de7cdccf32389037efa3d",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "5f3ba0d655a73d16787e5db3363c9d96d6853bbc6a3c8afc345e5480f68dc58f"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-06.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "81a0558bc91fb95c2c7bf12ab5b80fb969ae9dd99f1f8b4505587917cd827aba",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "9a6da1f7f7e83f920f9035305b4848426a35505af4161d1c4bdf4ff911dd99ec"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/frames/bezec-walk-07.png",
+      "source_size": [
+        512,
+        512
+      ],
+      "source_sha256": "07d221c8fe96e711eec50ed1284261d447e79686861ff2f0e514472a0da168dc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/variants/pose-walk-v1/bezec-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          96,
+          96
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "e312ae905db7ed96f8f7f60ce1fde726b3e63ecf9077d010389b9ffb9d14ec42"
+    }
+  ]
+}

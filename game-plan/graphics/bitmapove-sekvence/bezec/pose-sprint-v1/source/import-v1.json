@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "character": "bezec",
+  "display_name": "Běžec",
+  "imported_at": "2026-09-15T20:09:20.390630+00:00",
+  "source": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/source/sheet-v1.png",
+  "source_sha256": "875ba9f02daf5c255b385b01de364f042ff9b5cb4a5b741760355263e9444def",
+  "sheet_size": [
+    2048,
+    1024
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "frame_size": [
+    512,
+    512
+  ],
+  "shared_frame_crop": [
+    0,
+    0,
+    512,
+    512
+  ],
+  "assembly": "single-sheet",
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "minimum_safe_margin": 16,
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-00.png",
+      "removed_background_pixels": 212664,
+      "visible_bounds": [
+        102,
+        80,
+        489,
+        439
+      ],
+      "safe_margins": {
+        "left": 102,
+        "right": 22,
+        "top": 80,
+        "bottom": 72
+      },
+      "sha256": "0504f2032a5f0bc47261ca88f9e9a1cbe82cc8ab93815959c79214192be06820"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-01.png",
+      "removed_background_pixels": 219781,
+      "visible_bounds": [
+        164,
+        76,
+        391,
+        433
+      ],
+      "safe_margins": {
+        "left": 164,
+        "right": 120,
+        "top": 76,
+        "bottom": 78
+      },
+      "sha256": "4f9e897770b44ea436666a52313562b2069c8b2f9183ba01ee7e7b7e302f2167"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-02.png",
+      "removed_background_pixels": 208615,
+      "visible_bounds": [
+        77,
+        75,
+        452,
+        439
+      ],
+      "safe_margins": {
+        "left": 77,
+        "right": 59,
+        "top": 75,
+        "bottom": 72
+      },
+      "sha256": "792ed8d13d4e8f6d90936fff40439973b08b76cea8a8a16b162608f68b3da771"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-03.png",
+      "removed_background_pixels": 213137,
+      "visible_bounds": [
+        81,
+        49,
+        439,
+        396
+      ],
+      "safe_margins": {
+        "left": 81,
+        "right": 72,
+        "top": 49,
+        "bottom": 115
+      },
+      "sha256": "7c1cfe6737009bb5298c364ade1b0214eb8f6e52ec7b365a14ad31a1114e7ad9"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-04.png",
+      "removed_background_pixels": 209379,
+      "visible_bounds": [
+        111,
+        43,
+        458,
+        412
+      ],
+      "safe_margins": {
+        "left": 111,
+        "right": 53,
+        "top": 43,
+        "bottom": 99
+      },
+      "sha256": "741b6cfc7a02fe01b645c790f2251f3f7c0fa4a2322fad5f6d6f00363d8960de"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-05.png",
+      "removed_background_pixels": 213517,
+      "visible_bounds": [
+        159,
+        45,
+        410,
+        420
+      ],
+      "safe_margins": {
+        "left": 159,
+        "right": 101,
+        "top": 45,
+        "bottom": 91
+      },
+      "sha256": "2deeda2d6516e0b5db485647925a1900774aa1bc836a64eec615536a1378ffe9"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-06.png",
+      "removed_background_pixels": 207819,
+      "visible_bounds": [
+        61,
+        42,
+        436,
+        410
+      ],
+      "safe_margins": {
+        "left": 61,
+        "right": 75,
+        "top": 42,
+        "bottom": 101
+      },
+      "sha256": "cd76c808dc982274f711fcbc55babbed28ebaf8bf65adcaed29d828678374914"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-sprint-v1/frames/bezec-sprint-07.png",
+      "removed_background_pixels": 211876,
+      "visible_bounds": [
+        81,
+        29,
+        441,
+        359
+      ],
+      "safe_margins": {
+        "left": 81,
+        "right": 70,
+        "top": 29,
+        "bottom": 152
+      },
+      "sha256": "ebed798f39022a79be52fd9a5283075124e88b955df3d8fe691cfe156703d082"
+    }
+  ]
+}

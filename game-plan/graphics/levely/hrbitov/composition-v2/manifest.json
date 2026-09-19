@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "level": "hrbitov",
+  "display_name": "Hřbitov",
+  "variant": "composition-v2",
+  "title": "Průchozí hřbitov — v2",
+  "description": "Vodorovná cesta pokračuje za oba okraje; odstraněný vstup do krypty vlevo.",
+  "status": "alternative",
+  "generated_at": "2026-09-15T09:04:00.386588+00:00",
+  "source": "graphics/levely/hrbitov/composition-v2/source.png",
+  "source_sha256": "2eb8560e3d5aa40b162b9a6e49cbfe8d864e5e34e0b42820f92ece4eb08ed6b5",
+  "background_master": "graphics/levely/hrbitov/composition-v2/background-master.png",
+  "background_sha256": "c78c598b4e6ea313abd3f90a716a70ce0f79bbd79f87ab8a05a0bc5bd8788a10",
+  "source_size": [
+    1852,
+    849
+  ],
+  "master_size": [
+    1852,
+    849
+  ],
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "width": 1852,
+    "height": 849
+  },
+  "resampled": false,
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Noční mapa; nespálení nepřátelé se znovu zvedají.",
+  "prompt": "graphics/levely/hrbitov/composition-v2/prompt.txt",
+  "generation_mode": "built-in image_gen"
+}

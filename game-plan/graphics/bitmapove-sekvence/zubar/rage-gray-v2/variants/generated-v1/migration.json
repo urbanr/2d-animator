@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:52:24.368817+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f2953c7c11e784a43e385951e6c793ee7d68ad1749074aef3e54fc1273e556a4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "01927df862854bf87d977a32d4d2e4cc146826379adf359edd67abab6ae1cdab"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "0c655db864431388e45f5b802fe9312fc6574718cd3fa5fd1b091fe52656d845",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "8b2213564593a6aa9ab3d3b495ddf85bf28bafa048a5765a78b5e53eaeecc17c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "dad865dd7a882fb5a94b7f53b3194f983f7dbd4fe9c9ffab330f4161757597e7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "512172199e19045d581330c93efe24c29955ff82cd24d8bd8fbdd0c9aa48631c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a6a196d978ab1ec4e172f278610f329da035de22d06024d64f5afafc34f05dc7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "6c6c9328393cf734650b0f8d197d657ccf7de124981a0154ea1e104218bac05f"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "39838504952d52c3adb473b37dbed5443f4288dc712e5ca4f4cb3d7a580e71e7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "da47e3252d01d696183c2b2834cad423674b28cadba10679ea0a3fb38b1462f8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a77c289fb4accc1d923aad45633d098b50aa703e5bafcac4519ec7aa3e186680",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "ad4850e84928259a37294b86017b2c1c17fe237a384832ba4d490f72cfb804db"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a07955276ce231168c802c711cdbb096b2d05f8ce4918d01094e75e139a88751",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "4843507bf53208a79c9cdd802359586f071164485c44328435ec1b8061035bff"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/frames/zubar-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a95daced2f9cc4f982194744670474c5421c1581db1567012b1c659314f79f44",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/zubar/rage-gray-v2/variants/generated-v1/zubar-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "808f7adfa31c78b5397d0be2d34dfc402c90e514e6ef3174a090ee68d764ff51"
+    }
+  ]
+}

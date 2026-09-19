@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "lezec",
+  "display_name": "Lezec",
+  "imported_at": "2026-09-14T18:35:47.700047+00:00",
+  "source": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "f347ce38f4caa51e96b219b8e0230c94263f0f5221036dbff73dcf7cce94aa12",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-00.png",
+      "removed_background_pixels": 126313,
+      "sha256": "d29c8e3bed804ec136c8ef743494af6b7b36cadd9e9d7b9ce680b75e908f1f59"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-01.png",
+      "removed_background_pixels": 124882,
+      "sha256": "98266a73a5ec21b01f591b600cebb3830a74b2f2b9e590c9aa06c63604254a17"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-02.png",
+      "removed_background_pixels": 128349,
+      "sha256": "254dd80b6451f7bd5adc393d8ab2c2f7f0adc4407798ad5183e85317c3e77205"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-03.png",
+      "removed_background_pixels": 124096,
+      "sha256": "38122bd7001b0b9c6e79781b60771005f1fd27a8834ce743e373faa485f20c41"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-04.png",
+      "removed_background_pixels": 132778,
+      "sha256": "148424d8dc0beb6fa9b6581cadcaf390c961c9f73fde06c7505a8084285cccd9"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-05.png",
+      "removed_background_pixels": 128612,
+      "sha256": "9f924214a6be6c0018c875afe222b2d4af5edea02929e9428a8bea864138ea99"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-06.png",
+      "removed_background_pixels": 126492,
+      "sha256": "90ebc6e120182d21bc7c80d4567e025d7fa07b62d996e0176f3707bc6814767e"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-07.png",
+      "removed_background_pixels": 125433,
+      "sha256": "db6e2d91cdbbde36bda37b08ff2896913a6f8d0294bdc6e2a79d09876d6fe217"
+    }
+  ]
+}

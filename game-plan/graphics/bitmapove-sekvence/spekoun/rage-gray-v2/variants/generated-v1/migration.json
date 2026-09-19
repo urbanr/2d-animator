@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:49:13.238003+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "9c615f9946c7ce38eae06e193d37079ccd354de9dbff16a806b1902341ee1c6c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c3df71c6e7599ad29f64fd895eb590621d8d656d5c1916402db95ec7d7988773"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4bb566a33383d0f26455b8b06c62c1634074d57fc3d04aa9ef499d35853cc75e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9118209b4d4c1699e24ced10e22b2f1e3fe43e5c0a76c8d6c7788be8702faed5"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d20cf7fa148473d6a486a996b67e3fca7942c548a4b5da825e823fe0fd3e4b6f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "462cb8730582a5d3e3da14008067b440197901d4a328a670f774a50d865d04ce"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "962951706616be1cc8d68d86c666465e83c3b47f3f9854990829dc0833399987",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "dbba285b1f821a89b11dae0cf2581ae89fd779540719674433bd826ec8588ea1"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "638a1b1ddea26f6a5092d4ee15a2e6893f6939f5c54cdea566d2d43b14dd2523",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "681a835ae71cd0b38890c12aaa643bce105a5afd49ee723c6b4b9b561eec27e0"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6e552c23136e30cba324e1bad87be74c046b8dc08490cd12fd54e4a6b9b50f7b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "3e2689ae420c9af6d3533c6855ee59172bfa236cbd2f41a34143ff812e78e0a3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2452ebb3ff4bdf2b927c97b7c70e262564da4116becd63106327a8b7f3a8ee43",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e6a63eecd71b2fddc4d602af58638ece760c4e75313838827ba657c76e89c819"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/frames/spekoun-waddle-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "28381d1b6ba97f88cf24134755eb805faa7cf1215253665eb660102dc0de80f3",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/spekoun/rage-gray-v2/variants/generated-v1/spekoun-waddle-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "670b5747d4378152322ce179735e16c99f476f01541f56a568242f35ce3ace53"
+    }
+  ]
+}

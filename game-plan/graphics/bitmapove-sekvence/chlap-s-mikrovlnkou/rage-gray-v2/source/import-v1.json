@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "chlap-s-mikrovlnkou",
+  "display_name": "Chlap s mikrovlnkou",
+  "imported_at": "2026-09-14T18:52:26.691875+00:00",
+  "source": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "023bf2e510c24b911d9749e91e2607336eada3f846b5c2d29533fda9f9d42c31",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-00.png",
+      "removed_background_pixels": 98656,
+      "sha256": "d538915570a30fd7f0fb35fada6049647966dfe150059613434501b6aa75a1d3"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-01.png",
+      "removed_background_pixels": 101229,
+      "sha256": "30d62f1e9e9c23ad95334c7dc41afd5089f7f641124ca030c7b8fab80a92105e"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-02.png",
+      "removed_background_pixels": 99663,
+      "sha256": "a6a955e7c56a19d7521f93ba0036668745c180ff34acb63681a8e94e759c119b"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-03.png",
+      "removed_background_pixels": 98343,
+      "sha256": "bde144dfa7a2414aad69bf05be36217313a442ec6c3e1d26241c7c98edac57eb"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-04.png",
+      "removed_background_pixels": 102061,
+      "sha256": "dc8e121630dd8defae9a16f0a4bb188511cdc1b5c7aa0fa4a92dd62d9c1c3cfc"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-05.png",
+      "removed_background_pixels": 99741,
+      "sha256": "8c6d4762c398d5384b7ffd83e2eb6826b45b81e56abf7a2fe0a549befe85aaa0"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-06.png",
+      "removed_background_pixels": 99069,
+      "sha256": "bb1377d952fb368429fa059112805ad6205bc6ff6bc5746107596bee18ac50b0"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/chlap-s-mikrovlnkou/rage-gray-v2/frames/mikrovlnka-walk-07.png",
+      "removed_background_pixels": 99812,
+      "sha256": "e2f0d8af5f4de78fe19013466ed223f0704a84d5a169591a2f5c3e6901876f32"
+    }
+  ]
+}

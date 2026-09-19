@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:31:56.597948+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "fa54cb5ce6cd8a79363636d697eaacc31afa16f2f82ab4da0e15e4067fd80a0a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "4eeda69d4723a8e3c05b43f908cf309a092af8a3d013205ef7fed4196787f54b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2b2f08ea06ab3e8a2212b6a1a274be85b5ee7ba4ea61e752923f6e109a66b6d0",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c8349af3d94750c2f3193d60df4fb886678bf507e812c14df4616b37ec140319"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "897ea4fe2147fc3c039fb017fee8e5bb36ae90287d56bbeb281eef7690b36b9a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "31d9702444197e6418e67d0244992f0536fa7e1b04e3cbce0f662bba88cf0c3b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e38d9d089599acbe6068782b8fb67facf122801da5afdb8f68ea33801b3debb6",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9d392ed583d0474b8535e2226d8c87db9ed9413a206bb3e6316473146f1a07cc"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "63be1d71457c2aa1cb35655c389eba96b15ac2e0ca8b9d1a9b64a6dac92f1c85",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "dee9510830b0fbecbe3751ed435ac654fd347168528496d893a30a04ed31b466"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b29986fbe93619a0ae43c41b374f69bb4d8c1eadf341eda9362f41438a3662f9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "07ee9b0be27dce609e59644a7cefdafe9a4d033368ad05284cf2b670329a3dfb"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f81aadd596c9374a671fc8b1ea6e07d917214f705098a87ccbd2581c6485701f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "d94a0365e5e1ad485886214f98ecfd262739204faaaa5fa167325d8fd11abf1a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/frames/loudac-shamble-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8895c883ca1ad9f36b5e6eabe305f09bbf013ab16f085a1e76db106fb9e0ed5b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/loudac/rage-gray-v2/variants/generated-v1/loudac-shamble-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b71bcde5d6282fedc0544e04e9a17cb2c0adb3ab2154ffe4c83fcb5f8b25cbac"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "puskar",
+  "display_name": "Puškař",
+  "imported_at": "2026-09-14T18:35:57.017839+00:00",
+  "source": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "cf53838cfc617527360c0e72649f42c77687b1a4f5f1a0f063b27648e2a0a7b2",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-00.png",
+      "removed_background_pixels": 106404,
+      "sha256": "a7ce99d6b2a3e62537b33c370c064ac588fb7f135e616d84a51140ec0f40ebb8"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-01.png",
+      "removed_background_pixels": 105606,
+      "sha256": "5980129b9a7a7d8793e938db3c9fc01fd3faabb94ddf67e3c43b3d5edbd50fa7"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-02.png",
+      "removed_background_pixels": 103283,
+      "sha256": "8e0ee213f90712e909fa84a14d2bedac6cc2b03c1834247e1af0aaceecace590"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-03.png",
+      "removed_background_pixels": 102729,
+      "sha256": "54babddcdcf18f2914bd5a5f6d67788423c897dddf629e802595aeb579408728"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-04.png",
+      "removed_background_pixels": 104817,
+      "sha256": "5195a3ca6ed88e373c4f4aad4123878f838ab00abd3e507c245830ba5edf1ce6"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-05.png",
+      "removed_background_pixels": 105087,
+      "sha256": "f2b53113d1ee71e1bdff365e19d54aa41e90d45851cc2e6608beacdadd13a0a9"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-06.png",
+      "removed_background_pixels": 106271,
+      "sha256": "652b8631e4cab48d4fe441536b71eaea281dbcf8648354f052e639ab9b5181f3"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-07.png",
+      "removed_background_pixels": 106274,
+      "sha256": "27856100356b14fd650c159c333eb895a2c6a1f5cfbd9d3f9d60c5af7694bf9c"
+    }
+  ]
+}

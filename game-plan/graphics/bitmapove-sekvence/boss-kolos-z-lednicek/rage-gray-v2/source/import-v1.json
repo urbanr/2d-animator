@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-kolos-z-lednicek",
+  "display_name": "Kolos z ledniček",
+  "imported_at": "2026-09-14T18:59:10.675569+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "a1438ea2483b21ef52d02ca8fda6d897727fb10c44ee72a2000a147a4e0d6bc8",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-00.png",
+      "removed_background_pixels": 61452,
+      "sha256": "58a869a7fc0503ed1712b3ec01319a712ac803ef2719bebcd2203002a2bba8fd"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-01.png",
+      "removed_background_pixels": 67107,
+      "sha256": "9b7b565755fbba7f89c6e23ff20e0e073bff6973785818576e39950f5789d8fb"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-02.png",
+      "removed_background_pixels": 72362,
+      "sha256": "98a4bb31df8165e2d8b9fead6aa788dfbe84d2e503602c9c3cf5bc280de3e8df"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-03.png",
+      "removed_background_pixels": 73069,
+      "sha256": "d7390f036e705732f59e47ab94b82a46baeafa357530aeb9a42a0f06aa09af40"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-04.png",
+      "removed_background_pixels": 69492,
+      "sha256": "d19822e4cc022a6f7f48c6375c668947730f231f1ea8c3b813a2af1542b54304"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-05.png",
+      "removed_background_pixels": 71182,
+      "sha256": "40d9be86241111ed7fa8aa67a792b6cb6f4c44cacf33186a302882670293fbf7"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-06.png",
+      "removed_background_pixels": 71223,
+      "sha256": "cf3d376d538b1dd5516f4396b4edde1b55b37ca15e163c3f6bfdff041d934470"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-kolos-z-lednicek/rage-gray-v2/frames/boss-kolos-walk-07.png",
+      "removed_background_pixels": 66061,
+      "sha256": "58bf21b0841e6edbe1e931d43421a22bb250ce2b48eef841af23acacfb6ade73"
+    }
+  ]
+}

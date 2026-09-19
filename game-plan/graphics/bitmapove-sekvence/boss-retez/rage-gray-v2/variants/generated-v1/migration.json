@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T19:05:47.010081+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2e84d889330c29206d4c040e90a0ee779b2342b5ab13e31bc33cfdae72cb90b6",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-00.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "eb3baf88329343b4dfb7449402d8cb30ce30d74580aec091e0b525c66ce2236b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e570b54bf195ca629da666f78386a5a0e8cb1d5493c2fc20d4552ca39e9661b9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-01.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "4129bca18a65e55c402e5b63feb111735507a998d5089dd2444f2081e8ab4055"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ecfcad99f0886402c16a2818501adcecadd203f95f096f8d36d80a0981f9e898",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-02.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "f78aadb7295f929f576548a3a97487d953c7bb18a07e96d64daee7e89a6b47a5"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "34786ee7890ead5f2e8ae9fac17af1275d27b806d546bff2bb123d29f7c9f36a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-03.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "a634e36974654826fbcb5939990b240e558e4d23ae3e497ddb25b1df7aac505a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "7cb854a985ce7f1109ba984327f308d443574f542f7bdf120256864bced8fb27",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-04.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "17ade085766168b50e28d9c73a0cfc9ff672c35049ac1ecb58b362f318a3073c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e8864b61a74380af43583755ce8d27fc25eb280192c91bb4e8db1fbc8fd3a880",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-05.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "b4b8c5b534a1e4d263ee9145b35eb5334c8f24bfe09da361d54abd957acbba9c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "587ed45bdfe1db460a790f081e330e5a22e0144261aafaa11fb80469bb35a874",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-06.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "83ee52a334fef11c3f05d2265e1e279815fb26f9e081fc3361678695ef7d870f"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/frames/boss-retez-march-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "be82c7c627b54afb815907f13f13a048afef53c307a5b99699ae03ad59ed30f2",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-retez/rage-gray-v2/variants/generated-v1/boss-retez-march-07.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "c0dd3b1cff4b74c3b1cc65722f00c4bc23efb1d44cf0a3c235b8ace618c92037"
+    }
+  ]
+}

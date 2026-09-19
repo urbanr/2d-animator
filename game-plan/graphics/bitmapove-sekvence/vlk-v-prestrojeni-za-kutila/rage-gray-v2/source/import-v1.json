@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "vlk-v-prestrojeni-za-kutila",
+  "display_name": "Vlk v přestrojení za Kutila",
+  "imported_at": "2026-09-14T18:55:26.928982+00:00",
+  "source": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "fe84b902f33dfcac07805cff465dbf36871fe6b58ef16b7509470a87a5a02f37",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-00.png",
+      "removed_background_pixels": 111282,
+      "sha256": "446836af43eb14a62052d71f56f770a0d15f73e084e0b69bd351433adefca2cf"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-01.png",
+      "removed_background_pixels": 113812,
+      "sha256": "beec8f82b4db975b09af714b2de2a40b255304fc383511b83fb4c9dd314f9fce"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-02.png",
+      "removed_background_pixels": 115648,
+      "sha256": "fb09126af5cae60e2b37c3af8f9e5eb5b3128500ada58a03d2daea98f0b04d9c"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-03.png",
+      "removed_background_pixels": 112016,
+      "sha256": "b3b4f6ae0513f15a9bb44c5e3fc7e6d0c06e674da9cad45d39f3c19198dd8fdf"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-04.png",
+      "removed_background_pixels": 111475,
+      "sha256": "13d937a2085c3dc92533f894143096f9effc8ff6dc11ecec945cfa5653a544ba"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-05.png",
+      "removed_background_pixels": 120401,
+      "sha256": "eeccf7d05a846babb2cc78856e276ef8120bedad094dce26b4de72674331adc6"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-06.png",
+      "removed_background_pixels": 110602,
+      "sha256": "d358e95cafc0114b90061e7a70b448cea4a31be23b090792405260af2666d371"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-07.png",
+      "removed_background_pixels": 114361,
+      "sha256": "28c85c98adae8b624cac735293a36bf424662a11c3f93fcbe0153b59ede19026"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "fotograf",
+  "display_name": "Fotograf",
+  "imported_at": "2026-09-14T18:46:09.307513+00:00",
+  "source": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "268d1544c98645419a91acbe04a2df7168d5e93846d0a1d48c92d0db8a0f225f",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-00.png",
+      "removed_background_pixels": 99991,
+      "sha256": "4a7beff939d001b820a3125a8062f37949956ff282acfc9d3a20613220c198f8"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-01.png",
+      "removed_background_pixels": 99394,
+      "sha256": "468ffc7d6bccdf7f5ac5d65b31ed0bc09cd202aae88c899771d29ddb999e9187"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-02.png",
+      "removed_background_pixels": 99044,
+      "sha256": "a348d622d11261b1d6a986abcdc2227a1d1c9b1754fcae7adcab3de49c81fb7c"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-03.png",
+      "removed_background_pixels": 97539,
+      "sha256": "21c8ede0a5ae28bd792a5b3dda3f540a84c6c7c334b8cb621f8328aec5f54b1d"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-04.png",
+      "removed_background_pixels": 100787,
+      "sha256": "4f0dd089e6c57810eaa13ec8cd0f13a923572dd4c9fa327ec563eef00e3fab1d"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-05.png",
+      "removed_background_pixels": 99687,
+      "sha256": "e1760dd97f5ce765563013506bde7b84fb614178490cb3527a874209c06473e5"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-06.png",
+      "removed_background_pixels": 98935,
+      "sha256": "c8de1000467924b2eb6ccdc76722b123a5d7016d410217c3885a740f5933a51a"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/fotograf/rage-gray-v2/frames/fotograf-walk-07.png",
+      "removed_background_pixels": 101209,
+      "sha256": "ca7b3a9b6ba915f88115ce970cbce1b1e0feda0a72890beacec8a6f0414b1b8b"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-tchyne",
+  "display_name": "Tchyně",
+  "imported_at": "2026-09-14T19:02:46.183103+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "5595b029110ab5f687074aa7116ba7f26ea1cf5c61fc3143acdd583bbb3b55c3",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-00.png",
+      "removed_background_pixels": 84366,
+      "sha256": "8f7e054a46156e7b2e19e9f159f6f3ed07d8979984a2a62a27495696bab652b7"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-01.png",
+      "removed_background_pixels": 81579,
+      "sha256": "8b85ec41c46d08f2ac273ad2132abe46f3b784374e2dc385c70f94d0dd213f16"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-02.png",
+      "removed_background_pixels": 78386,
+      "sha256": "220a8e096b0f65ae527cb421c500a8d1fe580afe9272310af5468ea63b1d41f8"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-03.png",
+      "removed_background_pixels": 78790,
+      "sha256": "aeb38601fe245a5dac9fe461a6c49dc73afa67a8e4bccc17f13b5a2dbb8df54c"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-04.png",
+      "removed_background_pixels": 81837,
+      "sha256": "e979225769e09a9c23953964644355f66210a17c0f0247a0959ab241b39f9fa0"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-05.png",
+      "removed_background_pixels": 79573,
+      "sha256": "d1b889bd3a6d9080e595ff89c82b85119053b0e0903c7ae0f25b5d42644d7132"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-06.png",
+      "removed_background_pixels": 81485,
+      "sha256": "788b49466c11482327e8f872dffb775a846e4ec6ba1d45629c2ede8b4b18f3f4"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-tchyne/rage-gray-v2/frames/boss-tchyne-march-07.png",
+      "removed_background_pixels": 88966,
+      "sha256": "8ad98a4447982ba67b3d436ebca07ab138d048de1472f92bd4401fc3946cbc75"
+    }
+  ]
+}

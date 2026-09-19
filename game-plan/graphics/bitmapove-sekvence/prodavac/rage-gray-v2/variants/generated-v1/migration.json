@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:46:02.765312+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "1576430e9b3300a59d75cc094de9be374959150003fde96cf1f888849cc27d2f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "03c98a1a7c1bd1d098143141fe2a198a74d33a8820ab7e1c9d436804c8804f57"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "c8b2d5fb80b8bdc361addb3cf4aee140d3958a0f38465b1b504ceb08d8c1b3f2",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "01d93e056e125396a3d930db94923022dcba62644930471bce382799213670c0"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "404a3729184befcec197edbe031ae49fc3a24728fc527e27fd4a28f4a45a1fca",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f744109c839856b794137cef121e03475fb99e0542d51649b113b8ac9aab24fb"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "713a9dba4b7fcd94a00ae07ab663145bc7a89cd1551ef307a97285bb4798b06a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "5864a31fbda26da40e81c3a37a8e3e0f0982d81a9ff36e42713c92a0c3837f5d"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e367f44450905a041624b5b83d668e11d60cec4c87cbdf365fb22c0649b80148",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "2c37e069df687c46e04cfe86f0b4adf5d60eaf43feed5d299c4e38491ca2f2dd"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "af4ed9578c0d3ece67dc5f0c2289ace3aace1bcf9aa9529e13fc0b3d6835cac3",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1fc5097fa445dcda02a86cd0dfe658095efcb39e04e8ca233dd19a602f45f975"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a3f8b67099242a4aa957743797fc5b2becf4408f0688ede1a41fbdceda86c4c5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e379e5fd8df910d8cb2e3c242ef461585b5437ae4d4f46c16cf9515cb48b3677"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/frames/prodavac-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "71d142d853c026ae8e1f2f1d3bfa983ff319036c0b10a51e15b539c3daab6f28",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/prodavac/rage-gray-v2/variants/generated-v1/prodavac-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "acf75941ccd43b3bcbb90f8a25f537e7167cdee86e8a0022600f0c7686226610"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "frames": 8,
+  "width": 384,
+  "height": 480,
+  "fps": 8,
+  "largeWheelAngles": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "smallWheelAngles": [
+    0,
+    135,
+    270,
+    45,
+    180,
+    315,
+    90,
+    225
+  ],
+  "boot": "shared pixels from frame 0",
+  "lightingOverlays": false,
+  "background": "transparent alpha, black ink contour",
+  "palette": {
+    "ink": [
+      "090a08"
+    ],
+    "rubber": [
+      "2f302d",
+      "4c4e48",
+      "6f7168"
+    ],
+    "leather": [
+      "713a18",
+      "a85e24",
+      "d28842"
+    ],
+    "skin": [
+      "b3482c",
+      "ed895c",
+      "ffbd91"
+    ],
+    "denim": [
+      "104986",
+      "146dbe",
+      "4395da"
+    ],
+    "olive": [
+      "363b18",
+      "626a2e",
+      "959947"
+    ],
+    "hair": [
+      "754382",
+      "ac73bc",
+      "e0b0e8"
+    ],
+    "orange": [
+      "a44008",
+      "ed720d",
+      "ffa32d"
+    ],
+    "slime": [
+      "384f06",
+      "6b9e0d",
+      "b2d72e"
+    ],
+    "cyan": [
+      "0d5e76",
+      "18b9dc",
+      "9eeded"
+    ],
+    "enamel": [
+      "9f8e61",
+      "d2bd87",
+      "ffe9b8"
+    ],
+    "white": [
+      "7b877b",
+      "bbc4b3",
+      "f0f2dc"
+    ],
+    "brass": [
+      "92700d",
+      "d5a71b",
+      "ffe04b"
+    ]
+  },
+  "materialTonesMaximum": 3,
+  "dithering": false,
+  "shadeRegions": "same-material island merging; geometric boot fills",
+  "postExportVerification": [
+    {
+      "frame": 0,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 1,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 2,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 3,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 4,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 5,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 6,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    },
+    {
+      "frame": 7,
+      "colors": 37,
+      "colorsOutsidePalette": 0,
+      "bootPatchColors": 2
+    }
+  ],
+  "bootPatchIdenticalAcrossEight": true
+}

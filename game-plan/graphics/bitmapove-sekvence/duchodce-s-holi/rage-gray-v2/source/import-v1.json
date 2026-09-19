@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "duchodce-s-holi",
+  "display_name": "Důchodce s holí",
+  "imported_at": "2026-09-14T18:42:31.346594+00:00",
+  "source": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "39d6556090b3f9d10d5909fe904aa35fea00ef5afbdf57afeaa8a0273474435c",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-00.png",
+      "removed_background_pixels": 107987,
+      "sha256": "3a119db0d6418e1ffbaec526f44468fca2cebd81ebcd70172e14b3ef97068c90"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-01.png",
+      "removed_background_pixels": 103441,
+      "sha256": "efb322cb93e58b1f94d5b039ad3f6bf0fea4913b6b7bfd7c7e28fe892f9adc5a"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-02.png",
+      "removed_background_pixels": 99798,
+      "sha256": "d6b051bba0878aaa4059dbd42d5bc8915bc96add6906723ad0e233af49bdac41"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-03.png",
+      "removed_background_pixels": 102845,
+      "sha256": "f78da571f0c710f10d7a774d306aaf73208985408649326d323a5516156ccb57"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-04.png",
+      "removed_background_pixels": 103529,
+      "sha256": "c4d2d745d5472f20c3ff8c3bf0b376bee308e683b289b9a251f48de468045267"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-05.png",
+      "removed_background_pixels": 104004,
+      "sha256": "d21a41414cee19ef0ec605602ae6525e4ba33140e5a4f0ab5ee9a900affce1af"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-06.png",
+      "removed_background_pixels": 102406,
+      "sha256": "8645e56201c6af10506a6eb694b6b9f38ae34aa283ea26fcada7a3e215c55089"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/duchodce-s-holi/rage-gray-v2/frames/duchodce-shuffle-07.png",
+      "removed_background_pixels": 105319,
+      "sha256": "d9f773d6dd3fa6a429acfc623636d7c8c82881ae65ec573859f7322b5a74e583"
+    }
+  ]
+}

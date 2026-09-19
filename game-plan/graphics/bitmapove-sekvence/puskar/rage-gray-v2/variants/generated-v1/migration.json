@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:35:58.864042+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a7ce99d6b2a3e62537b33c370c064ac588fb7f135e616d84a51140ec0f40ebb8",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "fb6dff9c609fec1b2e022d996415c7f57cc0acffd2b94808a7c761df883666e9"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "5980129b9a7a7d8793e938db3c9fc01fd3faabb94ddf67e3c43b3d5edbd50fa7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1758fb889d92f14e7ed77c7d6ddae1569603701bd2cf04241fc07635cf2776b5"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8e0ee213f90712e909fa84a14d2bedac6cc2b03c1834247e1af0aaceecace590",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "0334df4adf5f88bafd4cb4f6a1f5b48aff53e28ff08cbb4d39b81724b94aec49"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "54babddcdcf18f2914bd5a5f6d67788423c897dddf629e802595aeb579408728",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "a0c19b1cc5c95c437153703765fd5126c37ad18afb0842082f575333164cf9ef"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "5195a3ca6ed88e373c4f4aad4123878f838ab00abd3e507c245830ba5edf1ce6",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f4e44ef782bf9d679de7a7c3c1efbb0107e2b52ac62a577e91100c5a7e411c57"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f2b53113d1ee71e1bdff365e19d54aa41e90d45851cc2e6608beacdadd13a0a9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "510ca8a0c4ed7bc75b50bb64779127ad9d75258d0106947178f8c3176822b662"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "652b8631e4cab48d4fe441536b71eaea281dbcf8648354f052e639ab9b5181f3",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f024550654d899fc949ff7f48513f6124cf51ce28d9795db9715731f7c03f15c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/frames/puskar-stalk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "27856100356b14fd650c159c333eb895a2c6a1f5cfbd9d3f9d60c5af7694bf9c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/puskar/rage-gray-v2/variants/generated-v1/puskar-stalk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "658373bdd183ddaa4d5a9a515cef19d4a2cc7191364fdb92c5220d06aed6fead"
+    }
+  ]
+}

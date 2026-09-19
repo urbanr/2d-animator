@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "character": "bezec",
+  "display_name": "Běžec",
+  "imported_at": "2026-09-14T20:45:51.791604+00:00",
+  "source": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/source/sheet-v1.png",
+  "source_sha256": "58784ec53864aa5d6ae0d1b179b9b9689d700dd230ae48f4e43d6f8faf44632e",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "minimum_safe_margin": 16,
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-00.png",
+      "removed_background_pixels": 144005,
+      "visible_bounds": [
+        55,
+        106,
+        359,
+        432
+      ],
+      "safe_margins": {
+        "left": 55,
+        "right": 24,
+        "top": 106,
+        "bottom": 47
+      },
+      "sha256": "10e74c578384ef2e82b2d203299e5bd52383a0551d498f2000ba7880c376414a"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-01.png",
+      "removed_background_pixels": 144855,
+      "visible_bounds": [
+        66,
+        126,
+        354,
+        429
+      ],
+      "safe_margins": {
+        "left": 66,
+        "right": 29,
+        "top": 126,
+        "bottom": 50
+      },
+      "sha256": "756938107f853ad3024461d5f78a6f91dae071578c501b7acc4531806e793af0"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-02.png",
+      "removed_background_pixels": 142411,
+      "visible_bounds": [
+        47,
+        107,
+        350,
+        431
+      ],
+      "safe_margins": {
+        "left": 47,
+        "right": 33,
+        "top": 107,
+        "bottom": 48
+      },
+      "sha256": "6386839ff9762932bbfb02c45f0d8958f0cb1e5e7f15bea95c37b9a384adc70e"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-03.png",
+      "removed_background_pixels": 145805,
+      "visible_bounds": [
+        51,
+        100,
+        339,
+        405
+      ],
+      "safe_margins": {
+        "left": 51,
+        "right": 44,
+        "top": 100,
+        "bottom": 74
+      },
+      "sha256": "1de8e69831a7bbdaeb27464c762ce2a0ea9b74b39284d9e878b414cfe6b59990"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-04.png",
+      "removed_background_pixels": 141088,
+      "visible_bounds": [
+        18,
+        65,
+        328,
+        400
+      ],
+      "safe_margins": {
+        "left": 18,
+        "right": 55,
+        "top": 65,
+        "bottom": 79
+      },
+      "sha256": "a4c1cb911dc9c496548de3485e0248fba4c31279184762f592d3b884f069db48"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-05.png",
+      "removed_background_pixels": 142544,
+      "visible_bounds": [
+        23,
+        76,
+        311,
+        392
+      ],
+      "safe_margins": {
+        "left": 23,
+        "right": 72,
+        "top": 76,
+        "bottom": 87
+      },
+      "sha256": "b48aebd59bfd63162225850d0f1b1f6e790948eb48e53aac3f2e8131c238fc35"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-06.png",
+      "removed_background_pixels": 141351,
+      "visible_bounds": [
+        54,
+        66,
+        337,
+        406
+      ],
+      "safe_margins": {
+        "left": 54,
+        "right": 46,
+        "top": 66,
+        "bottom": 73
+      },
+      "sha256": "6b046d3bebf333dc381791bcbfad641f9d30c52eaef3436ab7e7d7dbba62b759"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v3/frames/bezec-run-07.png",
+      "removed_background_pixels": 141991,
+      "visible_bounds": [
+        51,
+        59,
+        341,
+        372
+      ],
+      "safe_margins": {
+        "left": 51,
+        "right": 42,
+        "top": 59,
+        "bottom": 107
+      },
+      "sha256": "306deebc53987299d9f60578376e780f887fabf6d5cd48eab1792ffd0cb699a4"
+    }
+  ]
+}

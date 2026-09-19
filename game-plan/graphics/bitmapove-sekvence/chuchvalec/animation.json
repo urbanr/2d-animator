@@ -1,0 +1,158 @@
+{
+  "id": "chuchvalec-babicka-traktor-kolos-profesor",
+  "status": "visual-and-idle-proposal-awaiting-feedback",
+  "sourceDesign": "../../other/prdel sveta design.md#18-po-vlne-30-chuchvalec",
+  "composition": [
+    "Babička s válečkem",
+    "Traktor",
+    "Kolos z ledniček",
+    "Profesor Relativita"
+  ],
+  "facing": "left",
+  "textureScale": 3,
+  "frameSizePixels": {
+    "width": 384,
+    "height": 480
+  },
+  "spriteSizePoints": {
+    "width": 128,
+    "height": 160
+  },
+  "approximateBodyHeightPoints": 144,
+  "atlasSizePixels": {
+    "width": 1536,
+    "height": 1024
+  },
+  "atlasCellSizePixels": {
+    "width": 384,
+    "height": 512
+  },
+  "anchorPoint": {
+    "x": 0.5,
+    "y": 0.025
+  },
+  "groundLineFromTopPixels": 468,
+  "colorSpace": "sRGB",
+  "alpha": "preserved from generated PNG",
+  "framePixelResampling": false,
+  "defaultAnimation": "idle",
+  "animations": {
+    "idle": {
+      "fps": 8,
+      "durationSeconds": 1,
+      "loop": true,
+      "frameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "frames/chuchvalec-idle-00@3x.png",
+          "sourceRectPixels": {
+            "left": 0,
+            "top": 0,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "77dfd01f35759bf17e3081264794da38bcfb124488f9987556f2e7a75db7a69a"
+        },
+        {
+          "index": 1,
+          "file": "frames/chuchvalec-idle-01@3x.png",
+          "sourceRectPixels": {
+            "left": 384,
+            "top": 0,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "075c58bfbba2544475a90641954db9df2fb328b707df44ef89244c39ff9f07d8"
+        },
+        {
+          "index": 2,
+          "file": "frames/chuchvalec-idle-02@3x.png",
+          "sourceRectPixels": {
+            "left": 768,
+            "top": 0,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "a5187e8a78dcde930181807ad43c32e93511957b18eea6b7acfcc182102b77e5"
+        },
+        {
+          "index": 3,
+          "file": "frames/chuchvalec-idle-03@3x.png",
+          "sourceRectPixels": {
+            "left": 1152,
+            "top": 0,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "8b57f221bff87700fa68049f84d4ca9a696782a5ab6b3b6c0dd9273b2b7d900d"
+        },
+        {
+          "index": 4,
+          "file": "frames/chuchvalec-idle-04@3x.png",
+          "sourceRectPixels": {
+            "left": 0,
+            "top": 512,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "d9881f3a091895fe3edb64229eee3a17c2228861474d863cdfe71f89b1a6a7c9"
+        },
+        {
+          "index": 5,
+          "file": "frames/chuchvalec-idle-05@3x.png",
+          "sourceRectPixels": {
+            "left": 384,
+            "top": 512,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "21da4fb212b17b336948b6e4c9c8675e946b77537cf6f12506a222ca49611367"
+        },
+        {
+          "index": 6,
+          "file": "frames/chuchvalec-idle-06@3x.png",
+          "sourceRectPixels": {
+            "left": 768,
+            "top": 512,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "19857c9c19ca035aa13c09ac6196bfdc45e5351bfe5f52d58733419ed99b20d5"
+        },
+        {
+          "index": 7,
+          "file": "frames/chuchvalec-idle-07@3x.png",
+          "sourceRectPixels": {
+            "left": 1152,
+            "top": 512,
+            "width": 384,
+            "height": 480
+          },
+          "sha256": "c4fa8156f4a722daff13271a63c881cf0883605cb417a82e1c6da85b81a042af"
+        }
+      ]
+    }
+  },
+  "validation": {
+    "exactDimensions": true,
+    "allFramesUnique": true,
+    "exportedPixelsEqualAtlasCrop": true,
+    "realDevicePerformanceTested": false
+  },
+  "limitations": [
+    "One selected four-boss combination; other combinations not designed.",
+    "Idle artwork proposal only; walk, attack, damage and split are not delivered.",
+    "Native 3x master only. 2x assets not yet authored.",
+    "AI-drawn frames can vary in fine details; motion requires artistic approval."
+  ]
+}

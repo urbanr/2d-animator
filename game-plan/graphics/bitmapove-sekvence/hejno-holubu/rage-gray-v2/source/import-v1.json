@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "hejno-holubu",
+  "display_name": "Hejno holubů",
+  "imported_at": "2026-09-14T18:42:39.895399+00:00",
+  "source": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "0b418122dea83df0f9c083dfef61fcf1fcea94e9f920c7adea6761a68bec6561",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-00.png",
+      "removed_background_pixels": 108423,
+      "sha256": "62c0855c22a378a4a5d5c3f93c3ebdd698c26adcc796dbbf09f985e60d94bf5c"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-01.png",
+      "removed_background_pixels": 113428,
+      "sha256": "d1f81afc9e405428dc52dc8e127af313847fac6d3c825f319df62c92ed533925"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-02.png",
+      "removed_background_pixels": 123354,
+      "sha256": "2b7149c4c152889076cfdad6827dca3afc881cf6175527b01538eafaf5d8f24a"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-03.png",
+      "removed_background_pixels": 120170,
+      "sha256": "76cf35dbd287843e2462b9a86d697328f470d4f5e18c1d8d26e103fda5a0bf1f"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-04.png",
+      "removed_background_pixels": 124366,
+      "sha256": "a6b6b6062ce361b493e8fbc60b71cdcf380ddea68a8fc722845bfb2ba2dae7eb"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-05.png",
+      "removed_background_pixels": 120296,
+      "sha256": "4b18c6aa0f873a387fa581167cb44b3ae19cabe33ba6e4623e7731ffb3e63e71"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-06.png",
+      "removed_background_pixels": 107614,
+      "sha256": "f19e28d95b8007e684292014b595bdf012572021aa81769981467d0d1cdd2bfa"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-07.png",
+      "removed_background_pixels": 109022,
+      "sha256": "a71dd357f96041e84182f808cc9bf69fc2413db2e415cc83151f86b42a28560e"
+    }
+  ]
+}

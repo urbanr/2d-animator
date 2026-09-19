@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "skladka",
+  "display_name": "Skládka",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:11:44.263142+00:00",
+  "source": "graphics/levely/skladka/concept-v1/source.png",
+  "source_sha256": "438444b71441f8e6ce8d5ec363b5d735e1548cfd828ff91d8c4ed17f0ae01174",
+  "background_master": "graphics/levely/skladka/concept-v1/background-master.png",
+  "background_sha256": "54a57f99f9df728cfca1dcdbaf99996102b03ea79e4d21b217dbca32479b48a9",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Sesouvající se fyzický odpad a šrot zdarma."
+}

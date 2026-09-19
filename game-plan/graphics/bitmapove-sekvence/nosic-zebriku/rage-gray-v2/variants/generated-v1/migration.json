@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:42:37.471917+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a2fb6a5ac65ee8b1334927362d61b2dd0910376cccc2b468d964f2523a7f39d7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "eb725c642ab985da2bbfaa81dcf3237187cadb2cef44ac289769e109816b52c9"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "9791e2348b8ced1be4790a98cfc869c143b5be5dd3d51730be667daf125411f5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1bc429a0918cbebfbf953843996c1b7f3c06a5d2124731ce04bf8150a25e74d7"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "1d4f71f1fbd33fc9d7114a57f62c4985cd832340cef8807315fcb5e293bff5c9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f1045f518be57655b72cebf4ae76b723698aa471a6fdd9d7a44a23e91d043387"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "bed4548c71d2d83cdd98f33b2e9400094c896263d97d8f2f24bcc415c34e6ea0",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "ae1ef08e4f926031c67eff0065428daafdd40e8b784c32a7a70c15b371f51138"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b3305d3a4ee6ec32ebad71250a6ed24580cf710885e682f4c8fa2e9cb1cff274",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "7bf7be57494e512fdb0f03881fb9cfe13794d9877fec5ed79ab3af522762e913"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "16b88a78bdd3ecfe029fd436c3090b26e9538d1db1107a4c7159a15806df0743",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "2c25ff822420c96d4267c8e7900e4221c44abc0f8f3925e201db2d27ad0ca35a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8b550c46cf66dd1080e44c9591896bbc10326ad138dc37d01517ed53b645f287",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "8665c0c234a162b073d437e0234869f38d8d70411fd6cd8239cb46ef2c4b7bfc"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "020e89fd23c98874834ec6dcb5db2104579f65dc007e69791e743013a31c38b4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/variants/generated-v1/nosic-zebriku-walk-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f693bd92571dd35359115337506ca071633828610441a195f55207d0b0b6e28f"
+    }
+  ]
+}

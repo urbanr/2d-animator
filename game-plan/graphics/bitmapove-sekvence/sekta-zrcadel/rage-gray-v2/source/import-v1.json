@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "sekta-zrcadel",
+  "display_name": "Sekta zrcadel",
+  "imported_at": "2026-09-14T18:49:15.410423+00:00",
+  "source": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "122511500eaa63ce7197aa145a69e00410a5f7c18e85238698f1daf87737878d",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-00.png",
+      "removed_background_pixels": 84055,
+      "sha256": "8b2599d4d105373f1e742c1b1484707f85c2fc3741059df5ca7896385ce679ae"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-01.png",
+      "removed_background_pixels": 85916,
+      "sha256": "ae3b4f28a0f7120aacee2dd0d19fc6f4532bfba2c7d3cbbd2f6cce45062270c5"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-02.png",
+      "removed_background_pixels": 88581,
+      "sha256": "d4df46a129dbac8a137befb68498fa0bf5ce0b3da01d11940c217f37029f9c56"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-03.png",
+      "removed_background_pixels": 91212,
+      "sha256": "334e9657ed03f7f591313e68f9051a33a948f5c492304ede067b92ef186429ba"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-04.png",
+      "removed_background_pixels": 85181,
+      "sha256": "b6f28f6e280797b8a7f47fd7467b18c095bf2fca832ea3ebb2881927c57fb5e6"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-05.png",
+      "removed_background_pixels": 91846,
+      "sha256": "9ba46aae14ce8854a6296858a8e3231e17073867258489bad5b9ea1af9f567ea"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-06.png",
+      "removed_background_pixels": 84686,
+      "sha256": "cf6e279e6dfcc0ff42d3faaef7eb441146d81ed443319466a833c27ed00458c7"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/sekta-zrcadel/rage-gray-v2/frames/sekta-zrcadel-march-07.png",
+      "removed_background_pixels": 84867,
+      "sha256": "5a45e88ccc379bf8cf9d36af53bef83284623d85a569cee58cd98144f98d37d9"
+    }
+  ]
+}

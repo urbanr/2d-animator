@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "character": "bezec",
+  "display_name": "Běžec",
+  "imported_at": "2026-09-15T20:09:23.500556+00:00",
+  "source": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/source/sheet-v1.png",
+  "source_sha256": "f81fd95900aa9d2b1f7ef816eea20b84e961f01f05577e379623fa0a518df5db",
+  "sheet_size": [
+    2048,
+    1024
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "frame_size": [
+    512,
+    512
+  ],
+  "shared_frame_crop": [
+    0,
+    0,
+    512,
+    512
+  ],
+  "assembly": "single-sheet",
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "minimum_safe_margin": 16,
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-00.png",
+      "removed_background_pixels": 211277,
+      "visible_bounds": [
+        93,
+        76,
+        427,
+        458
+      ],
+      "safe_margins": {
+        "left": 93,
+        "right": 84,
+        "top": 76,
+        "bottom": 53
+      },
+      "sha256": "ddbb2f180097e19776f1427966591b77d51e048060631fda6bd735de630e15d5"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-01.png",
+      "removed_background_pixels": 212244,
+      "visible_bounds": [
+        91,
+        82,
+        422,
+        458
+      ],
+      "safe_margins": {
+        "left": 91,
+        "right": 89,
+        "top": 82,
+        "bottom": 53
+      },
+      "sha256": "cfccf242fd3f473e1cc806a676c925fd86d88eeb7f383d500cc35b49ef28f752"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-02.png",
+      "removed_background_pixels": 212013,
+      "visible_bounds": [
+        83,
+        88,
+        404,
+        461
+      ],
+      "safe_margins": {
+        "left": 83,
+        "right": 107,
+        "top": 88,
+        "bottom": 50
+      },
+      "sha256": "101b9fa045a140da1b3efecf08caaaf8e9123c7508c55c2e8f15d9885dbf080c"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-03.png",
+      "removed_background_pixels": 213620,
+      "visible_bounds": [
+        79,
+        109,
+        387,
+        459
+      ],
+      "safe_margins": {
+        "left": 79,
+        "right": 124,
+        "top": 109,
+        "bottom": 52
+      },
+      "sha256": "45a081623d5da2184d3576c8dcdeb1df0fcbcc0742b1dc02cd0d75422c6fc04b"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-04.png",
+      "removed_background_pixels": 210555,
+      "visible_bounds": [
+        98,
+        64,
+        439,
+        444
+      ],
+      "safe_margins": {
+        "left": 98,
+        "right": 72,
+        "top": 64,
+        "bottom": 67
+      },
+      "sha256": "3c0207fafcbdc167288e46fc187a77e2bac0ecdfc68dd3ebb9fb1a2ea48e5a6e"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-05.png",
+      "removed_background_pixels": 210434,
+      "visible_bounds": [
+        106,
+        65,
+        432,
+        441
+      ],
+      "safe_margins": {
+        "left": 106,
+        "right": 79,
+        "top": 65,
+        "bottom": 70
+      },
+      "sha256": "deeab0eddd2599b4b360f49d7b42e1d66f1a3f0aba8fc522a88c4342b7457f72"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-06.png",
+      "removed_background_pixels": 213209,
+      "visible_bounds": [
+        92,
+        75,
+        405,
+        441
+      ],
+      "safe_margins": {
+        "left": 92,
+        "right": 106,
+        "top": 75,
+        "bottom": 70
+      },
+      "sha256": "f0167f1bff542d3b02ebac5b3dc66fcdaeec1117418a856d54205d0a443f2f1f"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/bezec/pose-zombie-v2/frames/bezec-zombie-07.png",
+      "removed_background_pixels": 212185,
+      "visible_bounds": [
+        77,
+        77,
+        402,
+        443
+      ],
+      "safe_margins": {
+        "left": 77,
+        "right": 109,
+        "top": 77,
+        "bottom": 68
+      },
+      "sha256": "18741735049333a1e371ccdd30caea9114f600042b53f329dafb441e34b2509e"
+    }
+  ]
+}

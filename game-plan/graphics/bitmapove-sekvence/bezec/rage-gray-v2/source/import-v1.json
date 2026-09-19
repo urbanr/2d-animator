@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "bezec",
+  "display_name": "Běžec",
+  "imported_at": "2026-09-14T18:31:44.141128+00:00",
+  "source": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "c474e6177d2ce1e5734f40a1dfc9c3537907511993e9922da50511df3415b131",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-00.png",
+      "removed_background_pixels": 128326,
+      "sha256": "bb953cdbf08d27ee954cdf442ae5e15c59bf56a587396e3b026495683fe1b2ce"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-01.png",
+      "removed_background_pixels": 126904,
+      "sha256": "da713e4bd0bef1baf17fe0539e63ce1f973e53b4fad245f1a9990729cbdea0f8"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-02.png",
+      "removed_background_pixels": 125389,
+      "sha256": "259160e640c86fe079b7b690d6650af52e7545f5536e653c8ea81288f1e10587"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-03.png",
+      "removed_background_pixels": 124230,
+      "sha256": "bd48c60b2554094810fd26aa2629cb0b10b062a6cae9e5dfb3829ae95e7a22d4"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-04.png",
+      "removed_background_pixels": 130981,
+      "sha256": "5da1f43415b11b72688d6f77c9a80dc3e615a4c04029f8d162664e709dd4ddf1"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-05.png",
+      "removed_background_pixels": 130027,
+      "sha256": "18c25d6d3dad1d8e6cbd63511ada334aa62292b9f8737b3f16b7557fc39768bf"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-06.png",
+      "removed_background_pixels": 130024,
+      "sha256": "2f921a10af2c355e8f9a7de022bb64c3cb901844ff706332dd5c49d009569135"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v2/frames/bezec-run-07.png",
+      "removed_background_pixels": 129863,
+      "sha256": "92f2e1085e2c63e0d8c479602ceb91f985ac236793c554fa4530d01915bde79b"
+    }
+  ]
+}

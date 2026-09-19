@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:55:33.258827+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4934645e139ec5f70de3d3d97d2d29714de3b8bef261f5d7058fd7966f91f40a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "1c250d42820d2adc0fcd4a0d121d660249451e575fc335d78ff6fdacb85b73d3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ebc9b8959fa3f46708b4a4ead9886b7eeb91997a7947201aab4908a6952b5e27",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c588b85bb75e6941f37886ec6c58802fa2c34e45fab8827a31c504d226b2f57b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2f07f343fffcb77e8e79670b0a098018889a707f40688b7cee4f7cf63e7978f1",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "38c6e81508d5a1d7ba2a021331133f4aae40a4898be220a801e41a46351b2a0e"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f236f1925fe418eb94f1f439ad568744f7b5022340690486cda4150f05924ee2",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "238f7605f0620de63dc4ebca2a9b71104512026da1f1fd64c43d3df3549ff8f6"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b9b910605ed895c78105e7286b6cad8af198124bfb1f7c72d91d6fccc54b0930",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e8b7c92a58ada3ab1c3ba3403bbe944da0f6ac21e9ac901e15bd177ba1fff575"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "e71a83c37065faafaa16b1ab757c57395e191a64a78073872a6c62caec6d5a4f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "5e72a9f42fe2240e7b5cc63bf9400a9bee0771687ee899d8f39ebbe244763e75"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "98ff57b958c970b285b7228438cae9e1439026d69b0c8004ec5c82e6b4ca0d96",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "2a92685f0717cfbe658e431fe41b431a03517e84259e258e7a0e4dd5fde8a2ba"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "937ab5684e47a75ebe60d7462706d52a42c6c8bfab8e80ee09cd8b007c0b2237",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/rojnice/rage-gray-v2/variants/generated-v2/rojnice-rats-scurry-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "aa306428306325e7d514a5132499b1085defb04cd5e004136747590e8125c522"
+    }
+  ]
+}

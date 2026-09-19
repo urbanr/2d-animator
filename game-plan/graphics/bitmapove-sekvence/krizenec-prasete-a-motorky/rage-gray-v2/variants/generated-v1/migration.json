@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:52:20.116188+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "041b7c4f50439caebd98f5655bee09618c790332a593ee84b6341f094272dca5",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "8d872188033286e84217788505545daffe098814cf664d0c716b4febed592744"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "bba9c90a17e6dc36937b34fdc5407618d3649ff4b67461df7290158d8a3daeb2",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "272c4502090e8e28e01deb6ecc315fe43f7c3ad9779b75d6a2eca2817c229123"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8b8ae2653be98e2815e4b3ebfb696cf997e07c61841467ac7d0f2c2667027ff7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c25613848990b7ba28a69568d7f902908bf9d9c96445cefcf0719b3160c9df85"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "fd760776896a92c53946076afc2f668f640aef0847537a1468718389945b776d",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "3a79dc85f21b0f3116a88e8c3c79692d31002b6dfd66765a8d72464a1261709a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b93cfe2363ab4ce054e2ba1e44df4c732f27a7c2e0fb97f9dd9b53fd49786c5b",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9d452b2a80e7a72e907454f83201c984e0d4d2d102883a1d8f428362f945fca1"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "7652b86a94bac8d357528e5b355bc55a5fe398e0123548368743181d33bbedb9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "923cbf0dee860f7e7c26fe52dad62fd0d54bedb0b348c19a9a51aaedef9616f9"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ac5e260f5b91c5cd531c8077420851838f9f2f3077fd5615d9716e47ef542799",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "fae21e84ac095f3d66e483f3df2fd4811723bd6a95870a925be0096c6a34f2b7"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "13164a050611beb4f1ad24cc2e3d5053a162a71b500f2a8346954364104efc7c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/variants/generated-v1/krizenec-charge-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "aab41d52f9cda89fb855d800a0a5c4572a702599147408f097670e3bc4c68da5"
+    }
+  ]
+}

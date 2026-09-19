@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:42:41.729185+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "62c0855c22a378a4a5d5c3f93c3ebdd698c26adcc796dbbf09f985e60d94bf5c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "053d3f25f8394f6ee446cd5b51d4fbeb4d5f8cc1e5c35d65a9947dbae7c9bb34"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d1f81afc9e405428dc52dc8e127af313847fac6d3c825f319df62c92ed533925",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "387c66b9dd3957a90776d8df9388b06ab1103af6fadab5fdb9c3eb41cb1d5f73"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2b7149c4c152889076cfdad6827dca3afc881cf6175527b01538eafaf5d8f24a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b9d17bd5e784787d873fa6984633060e1b922480537d295dc943302c730b9d86"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "76cf35dbd287843e2462b9a86d697328f470d4f5e18c1d8d26e103fda5a0bf1f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "a01788260948293465ee31a6e914f9dd273ea3d17ab44597b37c5f7611c181b0"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a6b6b6062ce361b493e8fbc60b71cdcf380ddea68a8fc722845bfb2ba2dae7eb",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "5c2b84d748a3746fa59b768b1e519cc304b6ed456ee982ccdb1c47c9acdae0b4"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4b18c6aa0f873a387fa581167cb44b3ae19cabe33ba6e4623e7731ffb3e63e71",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "7b10f43fd68089f85cdba5e14340f5781469387b50b9e0ace74a454df1d5096b"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "f19e28d95b8007e684292014b595bdf012572021aa81769981467d0d1cdd2bfa",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "74da7cbcb99e9b9f89f8272a7d365eb60916db0dfb6e9608342def8970802715"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/frames/hejno-holubu-fly-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a71dd357f96041e84182f808cc9bf69fc2413db2e415cc83151f86b42a28560e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/hejno-holubu/rage-gray-v2/variants/generated-v1/hejno-holubu-fly-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b80744fbcbf55d462768bda4871eb0f82570ad1e0da301c49ea8627afdcc31bd"
+    }
+  ]
+}

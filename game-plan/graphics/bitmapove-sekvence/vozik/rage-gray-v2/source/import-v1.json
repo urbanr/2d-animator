@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "vozik",
+  "display_name": "Vozík",
+  "imported_at": "2026-09-14T18:39:17.512528+00:00",
+  "source": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "e972bc7ac3f57780f90cf61d9b136471042fee2da8cc76b8c6db0c20fa20911e",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-00.png",
+      "removed_background_pixels": 111747,
+      "sha256": "751f8b7c9cad27cac94163ad48f2b7082b933f08aeeb1535b49de9732cb8c74a"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-01.png",
+      "removed_background_pixels": 113005,
+      "sha256": "b327df7480a7e1a967660424c5ea8bd1bbcf6eb4cb5e5681fa8ebcafa5f808c1"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-02.png",
+      "removed_background_pixels": 115775,
+      "sha256": "3256f433d3f35976b16fe1f29fb92c1c0ce3b9e4da3b2c2a72e1a04dd9ebf3cc"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-03.png",
+      "removed_background_pixels": 112407,
+      "sha256": "2f2a7b5f113d779bb971f63bc685e2294e1f979d9bf2d86802b5f806845413e8"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-04.png",
+      "removed_background_pixels": 111106,
+      "sha256": "24075c07dd583e0bb24e773e476c51b3768e29a9aadac8936b57e00d8a1913c1"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-05.png",
+      "removed_background_pixels": 113771,
+      "sha256": "15962d22a8d74c66d8b3e06e3f60537687e51bfa32e6a58dc3a37a3917dacb96"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-06.png",
+      "removed_background_pixels": 111661,
+      "sha256": "546dd4652191c222a0ea5c5a161a4348bbe38a59371b1c45abb99a6aa9b009d8"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-07.png",
+      "removed_background_pixels": 112632,
+      "sha256": "b26c84bf357933043cf021891066b76fdccd0ae6ec12e55ea7036c95aed1119f"
+    }
+  ]
+}

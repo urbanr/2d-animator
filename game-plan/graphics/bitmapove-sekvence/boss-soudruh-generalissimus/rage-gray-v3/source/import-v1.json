@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "character": "boss-soudruh-generalissimus",
+  "display_name": "Soudruh Generalissimus",
+  "imported_at": "2026-09-14T20:22:05.258833+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/source/sheet-v1.png",
+  "source_sha256": "4a41f19e20d52a279aa8c0736789c536028658ef155a8705aac978b30a40fc83",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "minimum_safe_margin": 16,
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-00.png",
+      "removed_background_pixels": 131124,
+      "visible_bounds": [
+        57,
+        100,
+        328,
+        452
+      ],
+      "safe_margins": {
+        "left": 57,
+        "right": 55,
+        "top": 100,
+        "bottom": 27
+      },
+      "sha256": "32862201fc2d6c474b008fde39ff3eb1f210a6893d188a8861d997fbce342aa4"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-01.png",
+      "removed_background_pixels": 132364,
+      "visible_bounds": [
+        58,
+        101,
+        329,
+        452
+      ],
+      "safe_margins": {
+        "left": 58,
+        "right": 54,
+        "top": 101,
+        "bottom": 27
+      },
+      "sha256": "c8015b3a0017fc86db7bdf263325eb0a4da7462c17cfa44911c78214ad19dc92"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-02.png",
+      "removed_background_pixels": 133917,
+      "visible_bounds": [
+        58,
+        101,
+        328,
+        453
+      ],
+      "safe_margins": {
+        "left": 58,
+        "right": 55,
+        "top": 101,
+        "bottom": 26
+      },
+      "sha256": "2222eaa7a1b11feef6741977499cf66d2dc94be73f2f6005b046d0f24035eb55"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-03.png",
+      "removed_background_pixels": 131455,
+      "visible_bounds": [
+        44,
+        99,
+        328,
+        454
+      ],
+      "safe_margins": {
+        "left": 44,
+        "right": 55,
+        "top": 99,
+        "bottom": 25
+      },
+      "sha256": "f94731968f030b89f43cfdc9bdcd60d85feeb7f8452d883744e98b6e66c059e1"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-04.png",
+      "removed_background_pixels": 131003,
+      "visible_bounds": [
+        56,
+        73,
+        329,
+        425
+      ],
+      "safe_margins": {
+        "left": 56,
+        "right": 54,
+        "top": 73,
+        "bottom": 54
+      },
+      "sha256": "a5dc81448f56df6f84c42de0053d826fb740870ec1f909620271c1c5ea9c37a9"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-05.png",
+      "removed_background_pixels": 131040,
+      "visible_bounds": [
+        54,
+        73,
+        329,
+        425
+      ],
+      "safe_margins": {
+        "left": 54,
+        "right": 54,
+        "top": 73,
+        "bottom": 54
+      },
+      "sha256": "3a3fe9d4eb82becf8fea67f3eda48a023baced48e5971ba0f6845f44fd768085"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-06.png",
+      "removed_background_pixels": 133827,
+      "visible_bounds": [
+        56,
+        73,
+        326,
+        425
+      ],
+      "safe_margins": {
+        "left": 56,
+        "right": 57,
+        "top": 73,
+        "bottom": 54
+      },
+      "sha256": "74ee918b3735cb78dbb83d534a0a7b46aaa16394f5d0fdf4c7233a5d4cedf5e4"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v3/frames/boss-soudruh-walk-07.png",
+      "removed_background_pixels": 131493,
+      "visible_bounds": [
+        47,
+        72,
+        328,
+        426
+      ],
+      "safe_margins": {
+        "left": 47,
+        "right": 55,
+        "top": 72,
+        "bottom": 53
+      },
+      "sha256": "592aae904321d95957f03e9111589704e2c593288481499582cca0bc0d82b460"
+    }
+  ]
+}

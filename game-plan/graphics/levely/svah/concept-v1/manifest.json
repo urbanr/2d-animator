@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "svah",
+  "display_name": "Svah",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:11:41.528815+00:00",
+  "source": "graphics/levely/svah/concept-v1/source.png",
+  "source_sha256": "9bac3b3ce8bcbe7dfe5392b1c78bceebf62009f948f9ac1c8bc62a9a2025ab05",
+  "background_master": "graphics/levely/svah/concept-v1/background-master.png",
+  "background_sha256": "0051f18fbf204d31d76fde17990a726dbdc4f46ab159405fd673684ee9a587ec",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Sklon terénu přibližně 20 stupňů a boční tah."
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "stitonos",
+  "display_name": "Štítonoš",
+  "imported_at": "2026-09-14T18:31:48.694938+00:00",
+  "source": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "b5e3b4d9b50627cbd50bcb2dc996acb6c6eab4505494445f403693bfe494f917",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-00.png",
+      "removed_background_pixels": 83951,
+      "sha256": "3392e9addaf06b4f37dfcf4a9a4eea1a5f2f8c3392c4c235041f145d55901160"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-01.png",
+      "removed_background_pixels": 86993,
+      "sha256": "98144e823eb1c5a913ba9a022b13903f6820d079b4a35e38cc0fcff40529c8ea"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-02.png",
+      "removed_background_pixels": 85371,
+      "sha256": "4a2e78e566a8a6b9fdd9147be8fc6decc77bbd6811b0ca39bf23e7c8c01d40b7"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-03.png",
+      "removed_background_pixels": 87945,
+      "sha256": "59aeb2bf2a8edf096883760b877d0e67aa12fd760c9b53956cdd78d186c06ad4"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-04.png",
+      "removed_background_pixels": 85245,
+      "sha256": "4e5ad89253fa1a5e781f23f757491e94b5333c2d88df428dccd955b2e34b6a14"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-05.png",
+      "removed_background_pixels": 89533,
+      "sha256": "04db7fc93e47a5899ad7513ce278d5404c254bbd963860fbd86228be255b56ba"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-06.png",
+      "removed_background_pixels": 91301,
+      "sha256": "427bcca6491c1a6a3bf0ab2cff2935cc5ad8a9981c1c9a518d8e0bf956cade2e"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-07.png",
+      "removed_background_pixels": 87816,
+      "sha256": "07c2b06b830ffbe9072983bc580ac7f763af4b4125cc43edf73b19b561c10d09"
+    }
+  ]
+}

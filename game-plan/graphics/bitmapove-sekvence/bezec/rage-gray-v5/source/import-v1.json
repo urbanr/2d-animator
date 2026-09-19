@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "character": "bezec",
+  "display_name": "Běžec",
+  "imported_at": "2026-09-14T21:12:37.920598+00:00",
+  "source": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/source/sheet-v1.png",
+  "source_sha256": "e8a34b5039da2a8d5f1aad145ea18a6ce127b07476a62451735b0092f4f0d641",
+  "sheet_size": [
+    2508,
+    1254
+  ],
+  "cell_size": [
+    627,
+    627
+  ],
+  "frame_size": [
+    627,
+    627
+  ],
+  "shared_frame_crop": [
+    0,
+    0,
+    627,
+    627
+  ],
+  "assembly": "two-2x2-sheets-no-resampling",
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "minimum_safe_margin": 1,
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-00.png",
+      "removed_background_pixels": 294626,
+      "visible_bounds": [
+        100,
+        41,
+        614,
+        538
+      ],
+      "safe_margins": {
+        "left": 100,
+        "right": 12,
+        "top": 41,
+        "bottom": 88
+      },
+      "sha256": "95ff82f7d2a7a429c38f49bedc863e76e43db2c5fbd46fc9ebcf13674a50b719"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-01.png",
+      "removed_background_pixels": 305203,
+      "visible_bounds": [
+        134,
+        40,
+        495,
+        547
+      ],
+      "safe_margins": {
+        "left": 134,
+        "right": 131,
+        "top": 40,
+        "bottom": 79
+      },
+      "sha256": "52fee7a477fc5194df071c0cdd7045c6d4db5868323a66418a913286131c2390"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-02.png",
+      "removed_background_pixels": 300076,
+      "visible_bounds": [
+        74,
+        27,
+        578,
+        537
+      ],
+      "safe_margins": {
+        "left": 74,
+        "right": 48,
+        "top": 27,
+        "bottom": 89
+      },
+      "sha256": "2df31a61f3912e969aa146464c19c264364c6c35fe12481ebdbd2440de87f1de"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-03.png",
+      "removed_background_pixels": 294294,
+      "visible_bounds": [
+        80,
+        28,
+        571,
+        540
+      ],
+      "safe_margins": {
+        "left": 80,
+        "right": 55,
+        "top": 28,
+        "bottom": 86
+      },
+      "sha256": "03b2a4fb7b6d8768a26f0fc7418fa33285aaa04e25eddc020121a6e41ead352f"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-04.png",
+      "removed_background_pixels": 290917,
+      "visible_bounds": [
+        52,
+        41,
+        586,
+        501
+      ],
+      "safe_margins": {
+        "left": 52,
+        "right": 40,
+        "top": 41,
+        "bottom": 125
+      },
+      "sha256": "739b44b3e769f37369f1b58469c1dc261fe9291f814970fb0ee9f71e4c69f8b6"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-05.png",
+      "removed_background_pixels": 294324,
+      "visible_bounds": [
+        127,
+        39,
+        549,
+        556
+      ],
+      "safe_margins": {
+        "left": 127,
+        "right": 77,
+        "top": 39,
+        "bottom": 70
+      },
+      "sha256": "b0405f5b024423ab241f9e481c6c071084b295d625cca2856b2f61e286bbd999"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-06.png",
+      "removed_background_pixels": 298102,
+      "visible_bounds": [
+        145,
+        26,
+        600,
+        544
+      ],
+      "safe_margins": {
+        "left": 145,
+        "right": 26,
+        "top": 26,
+        "bottom": 82
+      },
+      "sha256": "764163156d2d26fbe15551bd2952c869970134baa25a3e631289212c80f8df04"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/bezec/rage-gray-v5/frames/bezec-run-07.png",
+      "removed_background_pixels": 296187,
+      "visible_bounds": [
+        96,
+        24,
+        552,
+        476
+      ],
+      "safe_margins": {
+        "left": 96,
+        "right": 74,
+        "top": 24,
+        "bottom": 150
+      },
+      "sha256": "e00462366e658eae1bcc553c1941b69267612a0d3681955511db9c9ea6e0d40d"
+    }
+  ]
+}

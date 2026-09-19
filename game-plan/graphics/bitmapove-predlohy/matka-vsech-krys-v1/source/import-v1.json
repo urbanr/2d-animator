@@ -1,0 +1,767 @@
+{
+  "schema_version": 2,
+  "id": "matka-vsech-krys-v1",
+  "name": "Matka všech krys · vzpřímený boss",
+  "rig": "pose-rig-v1",
+  "facing": "left",
+  "status": "approved-parts-initial-anchors",
+  "reference_image": "source/character-reference.png",
+  "reference_label": "Schválený celkový návrh · Matka všech krys na zadních",
+  "source": "source/parts-atlas.png",
+  "source_sha256": "e7abc2d24365e64dc779d7d815f678dca5a957c8b926d495b2f330ee2e625f0f",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "background": "original-alpha-preserved",
+  "resampled": false,
+  "layers": [
+    "tail",
+    "backpack",
+    "farUpperArm",
+    "farForearm",
+    "farThigh",
+    "farShin",
+    "farFoot",
+    "nearThigh",
+    "nearShin",
+    "nearFoot",
+    "pelvis",
+    "torso",
+    "neck",
+    "head",
+    "nearUpperArm",
+    "nearForearm",
+    "ratA",
+    "ratB",
+    "ratC"
+  ],
+  "parts": {
+    "head": {
+      "label": "Hlava s korunou",
+      "file": "parts/head.png",
+      "size": [
+        255,
+        295
+      ],
+      "source_cell": [
+        0,
+        0,
+        277,
+        328
+      ],
+      "source_rect": [
+        5,
+        31,
+        255,
+        295
+      ],
+      "sha256": "1e261301766a8616e92742250d23fac22315eaed1908cce44a41fb83d261ef03",
+      "start": [
+        198.9,
+        221.25
+      ],
+      "end": [
+        127.5,
+        103.25
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 2,
+      "bone": "head",
+      "enabled": true,
+      "opacity": 1
+    },
+    "neck": {
+      "label": "Krk",
+      "file": "parts/neck.png",
+      "size": [
+        171,
+        221
+      ],
+      "source_cell": [
+        277,
+        0,
+        203,
+        328
+      ],
+      "source_rect": [
+        295,
+        74,
+        171,
+        221
+      ],
+      "sha256": "e67eaf9b623c059950e75f99951ceb6ce3bc94386da601533515f540908a4468",
+      "start": [
+        85.5,
+        33.15
+      ],
+      "end": [
+        85.5,
+        187.85
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "neck",
+      "enabled": true,
+      "opacity": 1
+    },
+    "torso": {
+      "label": "Trup",
+      "file": "parts/torso.png",
+      "size": [
+        259,
+        292
+      ],
+      "source_cell": [
+        480,
+        0,
+        285,
+        328
+      ],
+      "source_rect": [
+        494,
+        31,
+        259,
+        292
+      ],
+      "sha256": "f67fa79c1f2b89ecfd67c611113c3eea6f679401acd5ef19523473a5e653b882",
+      "start": [
+        129.5,
+        43.8
+      ],
+      "end": [
+        129.5,
+        248.2
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "torso",
+      "enabled": true,
+      "opacity": 1
+    },
+    "pelvis": {
+      "label": "Pánev",
+      "file": "parts/pelvis.png",
+      "size": [
+        206,
+        200
+      ],
+      "source_cell": [
+        765,
+        0,
+        245,
+        328
+      ],
+      "source_rect": [
+        778,
+        104,
+        206,
+        200
+      ],
+      "sha256": "f03cc1887b4ad9e3be762f4a8f08fe9988e6e535db12ceda4ce35581f51c129c",
+      "start": [
+        103.0,
+        -300.0
+      ],
+      "end": [
+        103.0,
+        120.0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "pelvis",
+      "enabled": true,
+      "opacity": 1
+    },
+    "backpack": {
+      "label": "Nádrž",
+      "file": "parts/backpack.png",
+      "size": [
+        173,
+        264
+      ],
+      "source_cell": [
+        1010,
+        0,
+        244,
+        328
+      ],
+      "source_rect": [
+        1037,
+        41,
+        173,
+        264
+      ],
+      "sha256": "6b6679994cad8364013eb1a30fdd3ce433514c4d1ec458b6b2b61c6a4043f982",
+      "start": [
+        86.5,
+        39.6
+      ],
+      "end": [
+        86.5,
+        224.4
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "backpack",
+      "enabled": true,
+      "opacity": 1
+    },
+    "nearUpperArm": {
+      "label": "Bližší nadloktí",
+      "file": "parts/nearUpperArm.png",
+      "size": [
+        178,
+        273
+      ],
+      "source_cell": [
+        0,
+        328,
+        235,
+        309
+      ],
+      "source_rect": [
+        41,
+        342,
+        178,
+        273
+      ],
+      "sha256": "f5be603a26f2f148260f27c0c078cf4cdbf00d0a4a73a88895ef514c2fe3a046",
+      "start": [
+        89.0,
+        40.949999999999996
+      ],
+      "end": [
+        89.0,
+        232.04999999999998
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "nearUpperArm",
+      "enabled": true,
+      "opacity": 1
+    },
+    "nearForearm": {
+      "label": "Bližší předloktí s drápy",
+      "file": "parts/nearForearm.png",
+      "size": [
+        230,
+        260
+      ],
+      "source_cell": [
+        235,
+        328,
+        265,
+        309
+      ],
+      "source_rect": [
+        255,
+        356,
+        230,
+        260
+      ],
+      "sha256": "801ee3b40708bf89d87ae9c731ade216a8fea008a2b1ca562bbace6c1e5fb497",
+      "start": [
+        174.8,
+        41.6
+      ],
+      "end": [
+        64.4,
+        182.0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "nearForearm",
+      "enabled": true,
+      "opacity": 1
+    },
+    "farUpperArm": {
+      "label": "Vzdálenější nadloktí",
+      "file": "parts/farUpperArm.png",
+      "size": [
+        174,
+        274
+      ],
+      "source_cell": [
+        500,
+        328,
+        220,
+        309
+      ],
+      "source_rect": [
+        523,
+        342,
+        174,
+        274
+      ],
+      "sha256": "e3b0d5112749dc000906a50f4f1acadde1a26fe023f76063133759c001125581",
+      "start": [
+        87.0,
+        41.1
+      ],
+      "end": [
+        87.0,
+        232.9
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "farUpperArm",
+      "enabled": true,
+      "opacity": 1
+    },
+    "farForearm": {
+      "label": "Vzdálenější předloktí s drápy",
+      "file": "parts/farForearm.png",
+      "size": [
+        244,
+        255
+      ],
+      "source_cell": [
+        720,
+        328,
+        285,
+        309
+      ],
+      "source_rect": [
+        744,
+        354,
+        244,
+        255
+      ],
+      "sha256": "90a6b06bb53b59881bb3c6ac603d1440ff2425e56b9c26dc07d3ffe93fdc444a",
+      "start": [
+        185.44,
+        40.800000000000004
+      ],
+      "end": [
+        68.32000000000001,
+        178.5
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "farForearm",
+      "enabled": true,
+      "opacity": 1
+    },
+    "tail": {
+      "label": "Ocas",
+      "file": "parts/tail.png",
+      "size": [
+        208,
+        303
+      ],
+      "source_cell": [
+        1005,
+        328,
+        249,
+        309
+      ],
+      "source_rect": [
+        1025,
+        329,
+        208,
+        303
+      ],
+      "sha256": "0a7655d23df0c5eac8d0b31f078fc1b4242c09b028a5945ca3a0165d3085487d",
+      "start": [
+        31.2,
+        30.3
+      ],
+      "end": [
+        135.20000000000002,
+        151.5
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "pelvis",
+      "enabled": false,
+      "opacity": 1,
+      "fixed_length": 60
+    },
+    "nearThigh": {
+      "label": "Bližší stehno",
+      "file": "parts/nearThigh.png",
+      "size": [
+        186,
+        279
+      ],
+      "source_cell": [
+        0,
+        637,
+        270,
+        308
+      ],
+      "source_rect": [
+        41,
+        643,
+        186,
+        279
+      ],
+      "sha256": "319bd761b9e47dcf358dae0090fd18daf8129fb36e7c3f387a54d63144c5269b",
+      "start": [
+        93.0,
+        41.85
+      ],
+      "end": [
+        93.0,
+        237.15
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "nearThigh",
+      "enabled": true,
+      "opacity": 1
+    },
+    "nearShin": {
+      "label": "Bližší holeň",
+      "file": "parts/nearShin.png",
+      "size": [
+        134,
+        274
+      ],
+      "source_cell": [
+        270,
+        637,
+        230,
+        308
+      ],
+      "source_rect": [
+        323,
+        643,
+        134,
+        274
+      ],
+      "sha256": "20accfd9bdc9614e6957821e93d2ad2a097dba67f499c51a24c1e7ad44a8ed21",
+      "start": [
+        67.0,
+        41.1
+      ],
+      "end": [
+        67.0,
+        232.9
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "nearShin",
+      "enabled": true,
+      "opacity": 1
+    },
+    "farThigh": {
+      "label": "Vzdálenější stehno",
+      "file": "parts/farThigh.png",
+      "size": [
+        189,
+        275
+      ],
+      "source_cell": [
+        500,
+        637,
+        260,
+        308
+      ],
+      "source_rect": [
+        530,
+        644,
+        189,
+        275
+      ],
+      "sha256": "3b294a3c4581979f76e974882ebefc0d7a5a4c1547c5140a68050eecc43f5ae1",
+      "start": [
+        94.5,
+        41.25
+      ],
+      "end": [
+        94.5,
+        233.75
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "farThigh",
+      "enabled": true,
+      "opacity": 1
+    },
+    "farShin": {
+      "label": "Vzdálenější holeň",
+      "file": "parts/farShin.png",
+      "size": [
+        134,
+        272
+      ],
+      "source_cell": [
+        760,
+        637,
+        240,
+        308
+      ],
+      "source_rect": [
+        800,
+        650,
+        134,
+        272
+      ],
+      "sha256": "dfe86a8e987ef9678fb5ea9ca1ca47fa240ab9bf0ef303e97aa8bdfd8a4b60e7",
+      "start": [
+        67.0,
+        40.8
+      ],
+      "end": [
+        67.0,
+        231.2
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "farShin",
+      "enabled": true,
+      "opacity": 1
+    },
+    "nearFoot": {
+      "label": "Bližší chodidlo",
+      "file": "parts/nearFoot.png",
+      "size": [
+        220,
+        182
+      ],
+      "source_cell": [
+        0,
+        945,
+        245,
+        309
+      ],
+      "source_rect": [
+        10,
+        980,
+        220,
+        182
+      ],
+      "sha256": "9d69c5eda27b51af0fcea274c66cb25fbf246f81f62b29dd739157f1b8054251",
+      "start": [
+        176.0,
+        45.5
+      ],
+      "end": [
+        48.4,
+        127.39999999999999
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "nearFoot",
+      "enabled": true,
+      "opacity": 1
+    },
+    "farFoot": {
+      "label": "Vzdálenější chodidlo",
+      "file": "parts/farFoot.png",
+      "size": [
+        216,
+        186
+      ],
+      "source_cell": [
+        245,
+        945,
+        250,
+        309
+      ],
+      "source_rect": [
+        268,
+        978,
+        216,
+        186
+      ],
+      "sha256": "3e8ba7160bc098f56b2c3addae8116e453ef8e6a5def1fae6e6ada95f7e180a9",
+      "start": [
+        172.8,
+        46.5
+      ],
+      "end": [
+        47.52,
+        130.2
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "farFoot",
+      "enabled": true,
+      "opacity": 1
+    },
+    "ratA": {
+      "label": "Malá krysa A",
+      "file": "parts/ratA.png",
+      "size": [
+        247,
+        165
+      ],
+      "source_cell": [
+        495,
+        945,
+        263,
+        309
+      ],
+      "source_rect": [
+        508,
+        1005,
+        247,
+        165
+      ],
+      "sha256": "4969d6960f66700f8e4e7b4faa873a399d36cdc870197bd1e6ca5e1677e9d49b",
+      "start": [
+        123.5,
+        82.5
+      ],
+      "end": [
+        123.5,
+        148.5
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "torso",
+      "enabled": false,
+      "opacity": 1,
+      "fixed_length": 22
+    },
+    "ratB": {
+      "label": "Malá krysa B",
+      "file": "parts/ratB.png",
+      "size": [
+        227,
+        189
+      ],
+      "source_cell": [
+        758,
+        945,
+        242,
+        309
+      ],
+      "source_rect": [
+        761,
+        987,
+        227,
+        189
+      ],
+      "sha256": "4e8f3035ca881bce6a56bb05a843bf192f2c69882236603514e9a1a3211e083b",
+      "start": [
+        113.5,
+        94.5
+      ],
+      "end": [
+        113.5,
+        170.1
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "torso",
+      "enabled": false,
+      "opacity": 1,
+      "fixed_length": 22
+    },
+    "ratC": {
+      "label": "Malá krysa C",
+      "file": "parts/ratC.png",
+      "size": [
+        231,
+        180
+      ],
+      "source_cell": [
+        1000,
+        945,
+        254,
+        309
+      ],
+      "source_rect": [
+        1013,
+        994,
+        231,
+        180
+      ],
+      "sha256": "a2ad46578c21d3c968eb204bcda01c71029f01516918742f1abfae803b63d65b",
+      "start": [
+        115.5,
+        90.0
+      ],
+      "end": [
+        115.5,
+        162.0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "bone": "torso",
+      "enabled": false,
+      "opacity": 1,
+      "fixed_length": 22
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "prehrada",
+  "display_name": "Přehrada",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:17:27.579535+00:00",
+  "source": "graphics/levely/prehrada/concept-v1/source.png",
+  "source_sha256": "8338c93663d3e9756f65d83e1587662dc4e05eb149e2cf97b5d1190437f17f03",
+  "background_master": "graphics/levely/prehrada/concept-v1/background-master.png",
+  "background_sha256": "1ced5108b0032c0d68c1b6eb5644f8d30d0792dbad7a0ed094e39ac6d9efe046",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Hráz s vlastními HP; protržení smete obě strany."
+}

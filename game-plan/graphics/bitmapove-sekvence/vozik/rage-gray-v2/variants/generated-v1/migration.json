@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:39:19.355466+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "751f8b7c9cad27cac94163ad48f2b7082b933f08aeeb1535b49de9732cb8c74a",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "58c29e9f42dee337540097113ea55b02b574e3677238c1f468bdd5ffb3bf08e6"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b327df7480a7e1a967660424c5ea8bd1bbcf6eb4cb5e5681fa8ebcafa5f808c1",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "516a341a2afd0d5bdebb0c60d20c51bd2cf13168b43fdc7158f59611c119036a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3256f433d3f35976b16fe1f29fb92c1c0ce3b9e4da3b2c2a72e1a04dd9ebf3cc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "3d15584e02a708740429f94f1ec157b6909a7a0b786a5412e13ded4b9faa35a2"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "2f2a7b5f113d779bb971f63bc685e2294e1f979d9bf2d86802b5f806845413e8",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e61ebffe6b871c399786ccd9b85147e48d82bb93b3b6a415b5e7e0a86d16e800"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "24075c07dd583e0bb24e773e476c51b3768e29a9aadac8936b57e00d8a1913c1",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c8a4e5e1a994c66794ea2a45e33d78eae8cfe2a5254372b8e91f49a25d99ada8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "15962d22a8d74c66d8b3e06e3f60537687e51bfa32e6a58dc3a37a3917dacb96",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "011f7156cea1788cf82c7119dd0e881f99a3f8a87326cdc0e2102c9d089674dc"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "546dd4652191c222a0ea5c5a161a4348bbe38a59371b1c45abb99a6aa9b009d8",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "38e82fdf42547d1a2c1cf7b82e0486771ef8c0d8c9186f2b3ad2d50339414628"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/frames/vozik-roll-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b26c84bf357933043cf021891066b76fdccd0ae6ec12e55ea7036c95aed1119f",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vozik/rage-gray-v2/variants/generated-v1/vozik-roll-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "27ed698e81347c210f272583d262ac239e6fa206f346e1f4dfad5dcb7ec4f36b"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "krizenec-prasete-a-motorky",
+  "display_name": "Kříženec prasete a motorky",
+  "imported_at": "2026-09-14T18:52:18.286629+00:00",
+  "source": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "9bd8898d9ca06de29313cda71f78348a0d6a6836801ae9fa6e99cd0bfa94edee",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-00.png",
+      "removed_background_pixels": 114028,
+      "sha256": "041b7c4f50439caebd98f5655bee09618c790332a593ee84b6341f094272dca5"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-01.png",
+      "removed_background_pixels": 112692,
+      "sha256": "bba9c90a17e6dc36937b34fdc5407618d3649ff4b67461df7290158d8a3daeb2"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-02.png",
+      "removed_background_pixels": 111134,
+      "sha256": "8b8ae2653be98e2815e4b3ebfb696cf997e07c61841467ac7d0f2c2667027ff7"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-03.png",
+      "removed_background_pixels": 114503,
+      "sha256": "fd760776896a92c53946076afc2f668f640aef0847537a1468718389945b776d"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-04.png",
+      "removed_background_pixels": 110772,
+      "sha256": "b93cfe2363ab4ce054e2ba1e44df4c732f27a7c2e0fb97f9dd9b53fd49786c5b"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-05.png",
+      "removed_background_pixels": 111284,
+      "sha256": "7652b86a94bac8d357528e5b355bc55a5fe398e0123548368743181d33bbedb9"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-06.png",
+      "removed_background_pixels": 114816,
+      "sha256": "ac5e260f5b91c5cd531c8077420851838f9f2f3077fd5615d9716e47ef542799"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/krizenec-prasete-a-motorky/rage-gray-v2/frames/krizenec-charge-07.png",
+      "removed_background_pixels": 112301,
+      "sha256": "13164a050611beb4f1ad24cc2e3d5053a162a71b500f2a8346954364104efc7c"
+    }
+  ]
+}

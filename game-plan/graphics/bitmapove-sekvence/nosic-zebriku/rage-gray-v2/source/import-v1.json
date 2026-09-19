@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "nosic-zebriku",
+  "display_name": "Nosič žebříku",
+  "imported_at": "2026-09-14T18:42:35.627006+00:00",
+  "source": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "887da97d69a0c63f8e59492f9ddb11e334a0b29a508ca0897ebde6a9318db801",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-00.png",
+      "removed_background_pixels": 110351,
+      "sha256": "a2fb6a5ac65ee8b1334927362d61b2dd0910376cccc2b468d964f2523a7f39d7"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-01.png",
+      "removed_background_pixels": 110154,
+      "sha256": "9791e2348b8ced1be4790a98cfc869c143b5be5dd3d51730be667daf125411f5"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-02.png",
+      "removed_background_pixels": 111187,
+      "sha256": "1d4f71f1fbd33fc9d7114a57f62c4985cd832340cef8807315fcb5e293bff5c9"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-03.png",
+      "removed_background_pixels": 111050,
+      "sha256": "bed4548c71d2d83cdd98f33b2e9400094c896263d97d8f2f24bcc415c34e6ea0"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-04.png",
+      "removed_background_pixels": 114605,
+      "sha256": "b3305d3a4ee6ec32ebad71250a6ed24580cf710885e682f4c8fa2e9cb1cff274"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-05.png",
+      "removed_background_pixels": 114142,
+      "sha256": "16b88a78bdd3ecfe029fd436c3090b26e9538d1db1107a4c7159a15806df0743"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-06.png",
+      "removed_background_pixels": 115132,
+      "sha256": "8b550c46cf66dd1080e44c9591896bbc10326ad138dc37d01517ed53b645f287"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/nosic-zebriku/rage-gray-v2/frames/nosic-zebriku-walk-07.png",
+      "removed_background_pixels": 113246,
+      "sha256": "020e89fd23c98874834ec6dcb5db2104579f65dc007e69791e743013a31c38b4"
+    }
+  ]
+}

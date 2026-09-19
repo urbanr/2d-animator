@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-babicka-s-valeckem",
+  "display_name": "Babička s válečkem",
+  "imported_at": "2026-09-14T18:58:51.699658+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "6d69c433dd43ce3903a912e187320bfb80af6aba8e686087ffc83c5330f165b3",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-00.png",
+      "removed_background_pixels": 83194,
+      "sha256": "a5ec07ffc700f1dbc28eac14cd3ac8e52dec71aa01a6c1a3ce7a532ff9bd4644"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-01.png",
+      "removed_background_pixels": 87163,
+      "sha256": "9ad2e154157846f670aad1d097c288c1299508975aacc60be90d6aad9e7fe20a"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-02.png",
+      "removed_background_pixels": 86802,
+      "sha256": "cc0677d676550351c881e8c648618d9f1145ed824036aa5f2548c7a4988d11e6"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-03.png",
+      "removed_background_pixels": 83632,
+      "sha256": "d9a5940dca4633c8533b4ca5456f796e8088d2bdf8f7d92534753429b1660beb"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-04.png",
+      "removed_background_pixels": 81927,
+      "sha256": "98c4a7f1db29d9ba9e109d3b764388e94029c37c1be7686bd19f4cb45ce4b30f"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-05.png",
+      "removed_background_pixels": 88676,
+      "sha256": "c85c3fa3d5511ca9df827c8d74a1a9a38077ed3a95b9eef5790ce62b92cfbcb4"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-06.png",
+      "removed_background_pixels": 87928,
+      "sha256": "a32bef54d6100799892bc8eacba14113fed7a04fabc1cec4dbdf3f94ce09cfef"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-babicka-s-valeckem/rage-gray-v2/frames/boss-babicka-march-07.png",
+      "removed_background_pixels": 84184,
+      "sha256": "886d8d9477e4609d0ce7249b9824964d456136510175270bd6c856af07cac096"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "algorithm": "dark-dpid-photopea-outline-v1",
+  "generated_at": "2026-09-14T11:00:33.648000+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.6
+  },
+  "files": [
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ea2d0c1d89832cb91560f27aa3e10cc274525f2e977d4644b7044d696392e764",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "baab28fc41fec9ee3e7f53f93eee60976d11963e76a025dd47dda8fe68a64397"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b96a42a833943f0545ca0f4fa3796fcad6224f1df7db6150fe601cc641394d5c",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "6687726f9248f210b78d519d0dcfd4b7a7f971d9a6773a8aee4882ae42b0a7dc"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "815d920769324350a36f6a1f27771b053716555f44798b7fc011cdf15648cbb2",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "81cc14737f1f00aa41313201ea728d71a2bf6a84fea3f840f7eddfd3614059c1"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3e39046efd508487b0f4663903489e70d31c1eb8f57541fdade9401997efd13f",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "013ed2a0cb6a8280076ac098471255db791fed9f2e1ac760748ac2fdb619fc50"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ce9318351e9b120754058190803da36f7737dee0f9381eec1567702640eab4f4",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "68dba86b52ed9b3bdf5b5edbedbfbfbd37748dd8eea6691cda11b884084333a5"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "60cb370184e6a326da2d0ffcb2fcaab13f9eda78286130a15089dd9657c021d4",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "bd06cea7764e1a5a4e08f9d79b0cc7ef2dcc791941fe6d3fe217b5c3faa98996"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "ea5a102263654c65be6a243509673f15a77e03183095c0fb12c775bee53f4cb2",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "714d53ba22ed076a18210e7b8f7cddc45c34832d63f72dbfbea1d398c3e3bee4"
+    },
+    {
+      "source": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames/cernobylak-scuttle-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a7c625555c19a70fbf3ea554e27fa35c8c65a39cad86cb7aee3097551f09be7e",
+      "output": "graphics/bitmapove-sekvence/cernobylak/rage-gray-v2/frames-game@3x-photopea-b30-c40-d100-outline60/cernobylak-scuttle-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "7b43a460691c19d207df877fa0bfcb735a1758d37731154ecc09b7275c510879"
+    }
+  ]
+}

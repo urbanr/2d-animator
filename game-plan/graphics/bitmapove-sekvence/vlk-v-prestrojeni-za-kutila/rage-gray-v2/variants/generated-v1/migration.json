@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:55:28.775794+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "446836af43eb14a62052d71f56f770a0d15f73e084e0b69bd351433adefca2cf",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "3c276029f6ad7c4c9d76dfffbef86dcc4f67f685af6a1cefa3becb4d35a799fe"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "beec8f82b4db975b09af714b2de2a40b255304fc383511b83fb4c9dd314f9fce",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "16bedb91711ebe7eb427dc832f48ee1b18b6d5eca0115f6bcedc54af73f356a9"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "fb09126af5cae60e2b37c3af8f9e5eb5b3128500ada58a03d2daea98f0b04d9c",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "f9ecd82726ee1e4a46aa2eee62a44bcd6368053798187137a52ae1481aca383f"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "b3b4f6ae0513f15a9bb44c5e3fc7e6d0c06e674da9cad45d39f3c19198dd8fdf",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "9975f28bb9a4495f6227498808dfee9832d38a85fc4e8699c0f023bd8a4f2ef4"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "13d937a2085c3dc92533f894143096f9effc8ff6dc11ecec945cfa5653a544ba",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "345cdba8ae091dc6bbfc3ccff05e25cb32dc099426152f70e52145e2a7f7849c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "eeccf7d05a846babb2cc78856e276ef8120bedad094dce26b4de72674331adc6",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "12689361cbd30a87f2fdde8df64efd1b129240f163b649dc65b6fcd628b76121"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d358e95cafc0114b90061e7a70b448cea4a31be23b090792405260af2666d371",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e8bcfe8ba5f560835284bce1d117d2a0891fa1ac069d33abc3d3e4f89a4344ef"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/frames/vlk-kutil-sneak-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "28c85c98adae8b624cac735293a36bf424662a11c3f93fcbe0153b59ede19026",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/vlk-v-prestrojeni-za-kutila/rage-gray-v2/variants/generated-v1/vlk-kutil-sneak-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "d050fdd0c1c0c4ef86abca3841680cfebca12145d9db1f2194c159ffd3010a36"
+    }
+  ]
+}

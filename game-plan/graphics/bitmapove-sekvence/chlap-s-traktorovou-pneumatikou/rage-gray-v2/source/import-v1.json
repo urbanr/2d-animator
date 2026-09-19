@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "chlap-s-traktorovou-pneumatikou",
+  "display_name": "Chlap s traktorovou pneumatikou",
+  "imported_at": "2026-09-14T18:45:56.657709+00:00",
+  "source": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "64d3a9405968b58784b6094eabac5c64d94513a1339b49a38c1893a1ccfbb2a1",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-00.png",
+      "removed_background_pixels": 82724,
+      "sha256": "6393ca91fb2a06ad8335051da2dfff3e21eeff2897f2b7b0a686f8c8cfabedb4"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-01.png",
+      "removed_background_pixels": 86189,
+      "sha256": "7b9af8296b862161b4523cee0894ad0f0431a4958e4b1e8cce5f316a98b249d9"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-02.png",
+      "removed_background_pixels": 85782,
+      "sha256": "7001545b7b9e61257c67606312b318b64851c0385078be9b954d0936e443f664"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-03.png",
+      "removed_background_pixels": 86377,
+      "sha256": "d84dbbb81de7d824caa3c1788decd3061633c9b4561417d65e271172ad93e99d"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-04.png",
+      "removed_background_pixels": 88517,
+      "sha256": "4eca02510fa71304c5a4d114d5504156beecef84d10fc7ce3818820624ec2a74"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-05.png",
+      "removed_background_pixels": 90285,
+      "sha256": "6b129e79f2f92355c2a6603136276303f664fdf4fc9cfb579e5293bb8598c12c"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-06.png",
+      "removed_background_pixels": 89402,
+      "sha256": "08011724cf05e8437af774c44eaddec98d070472f2be984f2295c4c9b7c1b338"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/chlap-s-traktorovou-pneumatikou/rage-gray-v2/frames/pneumatika-march-07.png",
+      "removed_background_pixels": 83107,
+      "sha256": "655a4c594d6c0e96008dd706ebe507d56ea5f0e3cd7584e540d0bea6a0672e70"
+    }
+  ]
+}

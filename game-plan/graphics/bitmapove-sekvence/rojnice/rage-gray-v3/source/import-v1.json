@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "rojnice",
+  "display_name": "Rojnice (30 krys)",
+  "imported_at": "2026-09-14T18:55:31.206077+00:00",
+  "source": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/source/sheet-v1.png",
+  "source_sha256": "e821a8fe6c26e2bbe18b0d8fa4a56f27bc202b6b32ded46898ceb7dff97f12d7",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-00.png",
+      "removed_background_pixels": 119222,
+      "sha256": "4934645e139ec5f70de3d3d97d2d29714de3b8bef261f5d7058fd7966f91f40a"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-01.png",
+      "removed_background_pixels": 115604,
+      "sha256": "ebc9b8959fa3f46708b4a4ead9886b7eeb91997a7947201aab4908a6952b5e27"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-02.png",
+      "removed_background_pixels": 118145,
+      "sha256": "2f07f343fffcb77e8e79670b0a098018889a707f40688b7cee4f7cf63e7978f1"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-03.png",
+      "removed_background_pixels": 117118,
+      "sha256": "f236f1925fe418eb94f1f439ad568744f7b5022340690486cda4150f05924ee2"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-04.png",
+      "removed_background_pixels": 117987,
+      "sha256": "b9b910605ed895c78105e7286b6cad8af198124bfb1f7c72d91d6fccc54b0930"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-05.png",
+      "removed_background_pixels": 118113,
+      "sha256": "e71a83c37065faafaa16b1ab757c57395e191a64a78073872a6c62caec6d5a4f"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-06.png",
+      "removed_background_pixels": 120760,
+      "sha256": "98ff57b958c970b285b7228438cae9e1439026d69b0c8004ec5c82e6b4ca0d96"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/rojnice/rage-gray-v3/frames/rojnice-rats-scurry-07.png",
+      "removed_background_pixels": 118861,
+      "sha256": "937ab5684e47a75ebe60d7462706d52a42c6c8bfab8e80ee09cd8b007c0b2237"
+    }
+  ]
+}

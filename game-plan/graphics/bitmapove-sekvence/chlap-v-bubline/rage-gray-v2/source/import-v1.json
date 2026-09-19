@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "chlap-v-bubline",
+  "display_name": "Chlap v bublině",
+  "imported_at": "2026-09-14T18:49:23.544210+00:00",
+  "source": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "381eda6a01757fc5c0d4c5f5d96487ecc1765376ba83c412eed34622573985fe",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-00.png",
+      "removed_background_pixels": 77880,
+      "sha256": "14a436625f798232cb38082840d06996cdd30b2e2385f25a50421a3648724554"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-01.png",
+      "removed_background_pixels": 78006,
+      "sha256": "3d4b73b9d11fb6d32eb2b051c3ab4cad6c78e700fb435da7b7bc484ba12a7901"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-02.png",
+      "removed_background_pixels": 78018,
+      "sha256": "d06286771af93cfc28129f8fafd56d6cdb518066d091d186916ce9c92143709e"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-03.png",
+      "removed_background_pixels": 77977,
+      "sha256": "3a5e14e7ed31afccdcaddf9b34fbe077ae4d7c3f7f70ab8a23a374a93d20f427"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-04.png",
+      "removed_background_pixels": 77690,
+      "sha256": "79e6e39262f13608d5e8d3ed5e24b8e9ff131eb34ad2260dea63ad644bcce258"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-05.png",
+      "removed_background_pixels": 77763,
+      "sha256": "c30c0b4f6c474e0aa3655028cc6491989e386d516437f729fb12c5bbaaed7658"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-06.png",
+      "removed_background_pixels": 77762,
+      "sha256": "05d8995fe9273ba850d8fa1ff2c44deb550362268c208e28030266ed039460c8"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-07.png",
+      "removed_background_pixels": 78754,
+      "sha256": "a153f014b9ac70ed21ca5561dd4268f2991fbdb2916537b010696d8bcc7542a4"
+    }
+  ]
+}

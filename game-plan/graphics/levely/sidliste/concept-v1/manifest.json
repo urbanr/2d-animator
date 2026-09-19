@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "sidliste",
+  "display_name": "Sídliště",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:22:24.743341+00:00",
+  "source": "graphics/levely/sidliste/concept-v1/source.png",
+  "source_sha256": "7b94ec981220a7472dc2cb1a64297913532a4b50579f9de0246718c595a60b52",
+  "background_master": "graphics/levely/sidliste/concept-v1/background-master.png",
+  "background_sha256": "984b397e4a454b3cd75f6375a177c67b0fe3ace33107489d8457b5db1c10542f",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Fasádní kotvy, tři balkony, kanál a reakce sousedů."
+}

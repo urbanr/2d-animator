@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "hrbitov",
+  "display_name": "Hřbitov",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:17:31.945198+00:00",
+  "source": "graphics/levely/hrbitov/concept-v1/source.png",
+  "source_sha256": "4e832e8a3391d71aba4850eb05d3ee1c2fe4e1b291d3890f4dbbe5315b303126",
+  "background_master": "graphics/levely/hrbitov/concept-v1/background-master.png",
+  "background_sha256": "b8103350a5fdaa723e45eadf16a7d8ec8ce9d3fb08cba1c19291354df34853bf",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Noční mapa; nespálení nepřátelé se znovu zvedají."
+}

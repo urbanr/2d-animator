@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "level": "prehrada",
+  "display_name": "Přehrada",
+  "variant": "composition-v2",
+  "title": "Přehrada zepředu — v2",
+  "description": "Přímý pohled na hráz, vodorovná cesta po její koruně zprava doleva.",
+  "status": "alternative",
+  "generated_at": "2026-09-15T09:04:02.130660+00:00",
+  "source": "graphics/levely/prehrada/composition-v2/source.png",
+  "source_sha256": "487b9cae65a760ad8d2c2c63b64d4495b35cf049e6fd455c57fbb8e1563edd40",
+  "background_master": "graphics/levely/prehrada/composition-v2/background-master.png",
+  "background_sha256": "8a78650361f44e7634a690f424a5adc1eb115c9afbc447f3f9a5474edc004661",
+  "source_size": [
+    1852,
+    849
+  ],
+  "master_size": [
+    1852,
+    849
+  ],
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "width": 1852,
+    "height": 849
+  },
+  "resampled": false,
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Hráz s vlastními HP; protržení smete obě strany.",
+  "prompt": "graphics/levely/prehrada/composition-v2/prompt.txt",
+  "generation_mode": "built-in image_gen"
+}

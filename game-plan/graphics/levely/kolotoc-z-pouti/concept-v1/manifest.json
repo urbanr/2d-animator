@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "kolotoc-z-pouti",
+  "display_name": "Kolotoč z pouti",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:17:29.036116+00:00",
+  "source": "graphics/levely/kolotoc-z-pouti/concept-v1/source.png",
+  "source_sha256": "ef4ec6151c79366d984d923d8e80500b318e1d4429e556292e803900d47b2693",
+  "background_master": "graphics/levely/kolotoc-z-pouti/concept-v1/background-master.png",
+  "background_sha256": "cac5cc2b8cdd10dc1610cbf577299605a054fd2944f062c1eece814920118eb7",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Rotující plošina, střídání vstupů a odstředivá síla."
+}

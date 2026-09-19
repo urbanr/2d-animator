@@ -1,0 +1,29 @@
+{
+  "frames": 8,
+  "width": 384,
+  "height": 480,
+  "fps": 8,
+  "largeWheelAngles": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "smallWheelAngles": [
+    0,
+    135,
+    270,
+    45,
+    180,
+    315,
+    90,
+    225
+  ],
+  "boot": "shared pixels from frame 0",
+  "lightingOverlays": false,
+  "background": "transparent alpha, black ink contour"
+}

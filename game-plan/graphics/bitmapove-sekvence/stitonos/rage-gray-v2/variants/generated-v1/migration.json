@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:32:02.385692+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3392e9addaf06b4f37dfcf4a9a4eea1a5f2f8c3392c4c235041f145d55901160",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "d750ed7e20b86446d7b97c87bff0714993475882511dbc47f6ae3e70e0202d3d"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "98144e823eb1c5a913ba9a022b13903f6820d079b4a35e38cc0fcff40529c8ea",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b87ec9407d73fad4d5e6d2c4759dde33cd62a5f15337e718d9834031a16c36c3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4a2e78e566a8a6b9fdd9147be8fc6decc77bbd6811b0ca39bf23e7c8c01d40b7",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "afd2e49a859bcb78d3a3208b348c76a8c01fd8145509efed074fed82e34acaec"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "59aeb2bf2a8edf096883760b877d0e67aa12fd760c9b53956cdd78d186c06ad4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "42081eb40f551416bac27746f29f1b11950cbf681284b2092c55e1e7028738b3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "4e5ad89253fa1a5e781f23f757491e94b5333c2d88df428dccd955b2e34b6a14",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "bbb673cb6d5ea907218cd79493dcea49fe952782cfacc66b1e98397a30095801"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "04db7fc93e47a5899ad7513ce278d5404c254bbd963860fbd86228be255b56ba",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e4fb6a289c40e3c5d317c102a688844470b4930a7796f95a4d3a5dd017758ca5"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "427bcca6491c1a6a3bf0ab2cff2935cc5ad8a9981c1c9a518d8e0bf956cade2e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "a0feb27b586682cc212ee8bcc1ed566a8466152cab8ab932c6365b70b3c1ff87"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/frames/stitonos-march-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "07c2b06b830ffbe9072983bc580ac7f763af4b4125cc43edf73b19b561c10d09",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/stitonos/rage-gray-v2/variants/generated-v1/stitonos-march-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "b052de0e6e824e8f431720eb24438fe28cbe140f0a7ae8f4c1e75eeec8d1e743"
+    }
+  ]
+}

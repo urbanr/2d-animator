@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "zamrzly-rybnik",
+  "display_name": "Zamrzlý rybník",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:14:33.147630+00:00",
+  "source": "graphics/levely/zamrzly-rybnik/concept-v1/source.png",
+  "source_sha256": "6872a06f6ec19f2429d6a95ba39f1f09508386675b08008a04a5b50cab8f3ab9",
+  "background_master": "graphics/levely/zamrzly-rybnik/concept-v1/background-master.png",
+  "background_sha256": "541a003e7bf9439a071def60cb78945f3670b6a01f7598013fc74135c9ddccac",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Kluzký led, čtyři kotvicí díry a tání ohněm."
+}

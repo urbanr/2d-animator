@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T19:06:06.586346+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "8d52fa4542d03792796497677f6b52db7684a5018a49114cc80bd71aec6c55a6",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-00.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "c7e118381916876284742b1c97ad2ca57147870c5939651c7810d50bccafa2df"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "97e544f9afbb91c8757085e59e609d68adb292f1f078cf21b6d0a2be1a824fbc",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-01.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "6c9194125cd7e1380f404f2701cf234a7a00885edf82afde9837a7b05bb1ff03"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "716d206827493700b6d923a43f2b17edc8de866d6b2670d55a489952d6644640",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-02.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "93cb1ccf30e8bdc95688188f856f7fe2b0b241e9e3715cef4d16e9cb3507bfd2"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "6f56ac60846d98db9404551be0b5abd7946c1e2f459e4f001046670256ce530e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-03.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "348b963649cbd9556beeecae1e48a8b5960023a3cef7d69961dbcfc179e9f84c"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "7dfaa6c771c645fd39cb39e9dc99ff8679eb4647377c52cf004c18fa507e8f80",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-04.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "b3112132f3106c003d538718350dd3a0d228a093a12e4b3ec8358b3c1154152d"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "54939c8c005e180d13ea9a371036ddfe7d7d1fd78f97da09cac6b60aea9e6913",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-05.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "d7a9b4777ca35b5d283e086681d342a2765ebd01ef7cf5f7fb538f4bc0147988"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "328af91ebba888bf1ca440c57ba8b6b7c0cb3f6de76a6e020b38f643d2e9e7bd",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-06.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "bdce985011b47b3bc3f0a96b4f6627fe5332dfcc95a577c9f3e478064beb2588"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d6b6116a60e2c93343fdaf4c5efa2c890dcad05e2cf9e2a794f1ef0ec7bd0185",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/variants/generated-v1/boss-profesor-walk-07.png",
+      "canvas_size": [
+        288,
+        360
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          288,
+          360
+        ],
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "output_sha256": "e0ee4de6a70e132fd1d843c658c4eaa91e6a4b2cd01642438f7b440b35e7fc66"
+    }
+  ]
+}

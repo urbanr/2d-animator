@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "level": "strecha-panelaku",
+  "display_name": "Střecha paneláku",
+  "status": "alternative",
+  "generated_at": "2026-09-14T19:14:31.711423+00:00",
+  "source": "graphics/levely/strecha-panelaku/concept-v1/source.png",
+  "source_sha256": "37774c22cc316f123adac7a8c190f22d6d4916321fc2497dd5e8ba868fcd8c90",
+  "background_master": "graphics/levely/strecha-panelaku/concept-v1/background-master.png",
+  "background_sha256": "a7b6ac9b8afa9a0452729ed8124b7066af72068d4ae43c0cac87ad8afa853884",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "master_size": [
+    1536,
+    704
+  ],
+  "crop": {
+    "x": 0,
+    "y": 160,
+    "width": 1536,
+    "height": 704
+  },
+  "layer_plan": {
+    "far": "sky, horizon and distant silhouettes; parallax 0.1x",
+    "middle": "near scenery and map identity; parallax 0.3x",
+    "main": "terrain and gameplay mechanics; rebuilt from level data with physics"
+  },
+  "mechanic": "Vítr, lezení po fasádě a pády ze střechy."
+}

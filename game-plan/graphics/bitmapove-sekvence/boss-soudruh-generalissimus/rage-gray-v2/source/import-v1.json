@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-soudruh-generalissimus",
+  "display_name": "Soudruh Generalissimus",
+  "imported_at": "2026-09-14T19:05:49.346547+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "dc442336c71edb9b0d23620b083add02dab4273e017a0e265f898961d60f0769",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-00.png",
+      "removed_background_pixels": 94445,
+      "sha256": "3254c36ae1fb85385f28343630a0af11ec0f36717fdde111722749ff0a9bd8cf"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-01.png",
+      "removed_background_pixels": 92670,
+      "sha256": "6628e0bb04d30003f8f6fec5043f7fd85cc0a31a43f9a93f1be7e12bc4cbca2a"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-02.png",
+      "removed_background_pixels": 94871,
+      "sha256": "86c1882ba913044b6ef27d9c57c1ab3c8270a514743803ca5c824f5a38f6d6d1"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-03.png",
+      "removed_background_pixels": 93432,
+      "sha256": "066156800765614702d7361801bbb0ac37852659cab350d88668bee2cacb024c"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-04.png",
+      "removed_background_pixels": 95002,
+      "sha256": "7d1e9b11e5c8214e72b138bb1440e0c3475f32530ad238861a39e2dac500ba69"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-05.png",
+      "removed_background_pixels": 96542,
+      "sha256": "4096ff9de584871610697bb40668808c240ca39b48aeb5270a8ab31ed28c7864"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-06.png",
+      "removed_background_pixels": 94527,
+      "sha256": "2a02945a59c569b48c6359e605e8112e61bdd5963feb124e2bd0f1fdc7f700c9"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-soudruh-generalissimus/rage-gray-v2/frames/boss-soudruh-march-07.png",
+      "removed_background_pixels": 94362,
+      "sha256": "c5c2357db3757c78bce2443f7332570f432f93bbd66b2fc1c1b9eea5343b4d72"
+    }
+  ]
+}

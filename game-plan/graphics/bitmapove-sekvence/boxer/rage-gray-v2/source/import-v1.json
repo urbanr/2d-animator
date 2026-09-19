@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boxer",
+  "display_name": "Boxer",
+  "imported_at": "2026-09-14T18:31:46.398794+00:00",
+  "source": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "1b69ef2f761f5ada629d8089c3a2783755a0b16eb905368f3a4f6476d1d8a481",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-00.png",
+      "removed_background_pixels": 93319,
+      "sha256": "14839b5361e496f324735957939355e3419b77bb130ea28d6c175edf2817f6f6"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-01.png",
+      "removed_background_pixels": 94015,
+      "sha256": "1df2c817f0f48f3c1e3d4316ec2062af811df13fba3277070e6aa4645f384049"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-02.png",
+      "removed_background_pixels": 96135,
+      "sha256": "e2feefa141c1b4f215e65e77ac67bc1ed0c2dddc27ed4ba1182ca80b76da136d"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-03.png",
+      "removed_background_pixels": 94859,
+      "sha256": "b2201545de1d7092ff4eec8d6c96686aa3e6f1e60b693f191d4720999b6105b3"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-04.png",
+      "removed_background_pixels": 93746,
+      "sha256": "b4e87af3fd8f7e18d311a339921748d3ce4665683ab67d4a4a6263e1b84b137b"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-05.png",
+      "removed_background_pixels": 95582,
+      "sha256": "07dfef7ab5516f7606d855ec87528f72be00514d3a1a37770db9ea7c42557dea"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-06.png",
+      "removed_background_pixels": 96186,
+      "sha256": "03419fbf92bea119358c6f2df56b17363747afc03c2e9a8e1e5617c95b0ad054"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boxer/rage-gray-v2/frames/boxer-shuffle-07.png",
+      "removed_background_pixels": 94860,
+      "sha256": "daf26bc5bf773a698b7ac3859a9e2fbcc0ff837c4c07dccf0715ed8094e4ab8d"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-traktor",
+  "display_name": "Traktor",
+  "imported_at": "2026-09-14T18:59:01.805914+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "aa75ff888ad819e9a0cc2f78b5334448786ced5695bcf82b394bf4794f664ec5",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-00.png",
+      "removed_background_pixels": 99453,
+      "sha256": "cb65e9f3f36538cf48525c80d1c2fab54cb29fefda1b07498a3af5d151d13fb8"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-01.png",
+      "removed_background_pixels": 100617,
+      "sha256": "78ddb0a863c78d1bf3e89b7a4c618963671f1c8e0cd8927ca8891bbaadfb9ac2"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-02.png",
+      "removed_background_pixels": 101542,
+      "sha256": "b2345c98b65c2f35b0e4817db4d6b041b2800e3cef327cb2dc22b896dc313e98"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-03.png",
+      "removed_background_pixels": 100463,
+      "sha256": "a4f25b077effc0b588bf712a790b9c7ed68a9ce5e472df364b28d34d35b57810"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-04.png",
+      "removed_background_pixels": 99960,
+      "sha256": "9928c1b7a46671104c039c55c846dde61b64d2c1350702fe3d55ef31460ae8cd"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-05.png",
+      "removed_background_pixels": 99257,
+      "sha256": "a4cefd3d0b87294c304e1f8621ff2b25217a49b8e10b6425a1ada6ad05ea51f0"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-06.png",
+      "removed_background_pixels": 99440,
+      "sha256": "16acac8121f53ecf590b71cefd589ac77b0594cd5a7b26c8f9ae9af7f3837c84"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-traktor/rage-gray-v2/frames/boss-traktor-drive-07.png",
+      "removed_background_pixels": 98968,
+      "sha256": "62bfa8915a0af1d522f37a298da39098dbe23ac7f95b49b872798a0f904d1815"
+    }
+  ]
+}

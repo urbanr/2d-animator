@@ -1,0 +1,128 @@
+{
+  "column_cuts": [
+    0,
+    396,
+    793,
+    1189,
+    1586
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "placements": [
+    {
+      "frame": 1,
+      "source_rect": [
+        0,
+        0,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 2,
+      "source_rect": [
+        396,
+        0,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 3,
+      "source_rect": [
+        793,
+        0,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 4,
+      "source_rect": [
+        1189,
+        0,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 5,
+      "source_rect": [
+        0,
+        496,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 6,
+      "source_rect": [
+        396,
+        496,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    },
+    {
+      "frame": 7,
+      "source_rect": [
+        793,
+        496,
+        396,
+        496
+      ],
+      "destination_in_cell": [
+        58,
+        8
+      ]
+    },
+    {
+      "frame": 8,
+      "source_rect": [
+        1189,
+        496,
+        397,
+        496
+      ],
+      "destination_in_cell": [
+        57,
+        8
+      ]
+    }
+  ],
+  "resampled": false,
+  "alignment": "nominal grid; no per-frame bounds fitting",
+  "source": "game-plan/graphics/bitmapove-sekvence/bezec/pose-walk-v1/references/generated-sheet.png",
+  "source_sha256": "26abef454d94cfeed02f9f59e97b4c4e4b09b58da0ef45c91d8f12261bf7a338",
+  "source_size": [
+    1586,
+    992
+  ],
+  "output_sha256": "50459a9c665a5da030a2c7bb132b12c3aa666f4562251662e45977b3deb99276"
+}

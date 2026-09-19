@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-15T09:04:06.021998+00:00",
+  "summary": {
+    "regular_characters": {
+      "generated": 33,
+      "total": 33
+    },
+    "static_bosses": {
+      "generated": 12,
+      "total": 12
+    },
+    "procedural_bosses": {
+      "not_needed": 1,
+      "total": 1
+    },
+    "levels": {
+      "generated": 14,
+      "total": 14
+    }
+  },
+  "regular_characters": [
+    {
+      "id": "loudac",
+      "name": "Loudač",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "bezec",
+      "name": "Běžec",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "alternating-run-v3",
+        "generated-v1",
+        "phased-run-v2",
+        "wide-loop-v4"
+      ]
+    },
+    {
+      "id": "boxer",
+      "name": "Boxer",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "stitonos",
+      "name": "Štítonoš",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "lezec",
+      "name": "Lezec",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "hazec",
+      "name": "Házeč",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "puskar",
+      "name": "Puškař",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "sebevrah-s-bombou",
+      "name": "Sebevrah s bombou",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "zlodej",
+      "name": "Zloděj",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "vozik",
+      "name": "Vozík",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1",
+        "generated-v2"
+      ]
+    },
+    {
+      "id": "rojnice",
+      "name": "Rojnice (30 krys)",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1",
+        "generated-v2"
+      ]
+    },
+    {
+      "id": "saman",
+      "name": "Šaman",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "duchodce-s-holi",
+      "name": "Důchodce s holí",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "kopac",
+      "name": "Kopáč",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "production-v1-test"
+      ]
+    },
+    {
+      "id": "cernobylak",
+      "name": "Černobylák",
+      "generated": true,
+      "selected_variant": "production-v1",
+      "review": "production",
+      "variants": [
+        "production-v1"
+      ]
+    },
+    {
+      "id": "nosic-zebriku",
+      "name": "Nosič žebříku",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "hejno-holubu",
+      "name": "Hejno holubů",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "knez-zkazy",
+      "name": "Kněz zkázy",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "chlap-s-traktorovou-pneumatikou",
+      "name": "Chlap s traktorovou pneumatikou",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "prodavac",
+      "name": "Prodavač",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "ozrala",
+      "name": "Ožrala",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "fotograf",
+      "name": "Fotograf",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "spekoun",
+      "name": "Špekoun",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "sekta-zrcadel",
+      "name": "Sekta zrcadel",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "babka-dealerka",
+      "name": "Babka dealerka",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "chlap-v-bubline",
+      "name": "Chlap v bublině",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "snehulak-z-popela",
+      "name": "Sněhulák z popela",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "krizenec-prasete-a-motorky",
+      "name": "Kříženec prasete a motorky",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "zubar",
+      "name": "Zubař",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "chlap-s-mikrovlnkou",
+      "name": "Chlap s mikrovlnkou",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "kolona-duchodcu-na-vozikach",
+      "name": "Kolona důchodců na vozících",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "ex",
+      "name": "Ex",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "vlk-v-prestrojeni-za-kutila",
+      "name": "Vlk v přestrojení za Kutila",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    }
+  ],
+  "bosses": [
+    {
+      "id": "boss-babicka-s-valeckem",
+      "name": "Babička s válečkem",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-traktor",
+      "name": "Traktor",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-kolos-z-lednicek",
+      "name": "Kolos z ledniček",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-byvaly-starosta",
+      "name": "Bývalý starosta",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "prerostly-kanec",
+      "name": "Přerostlý kanec",
+      "generated": true,
+      "review": "existing-candidate",
+      "frames": 8
+    },
+    {
+      "id": "boss-tchyne",
+      "name": "Tchyně",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-zeppelin-z-matraci",
+      "name": "Zeppelin z matrací",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-dvojcata",
+      "name": "Dvojčata",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "procedural-previous-run",
+      "name": "Ty z minulého běhu",
+      "generated": false,
+      "review": "not-needed",
+      "reason": "Vzniká za běhu jako kopie skutečné pevnosti z předchozí prohry."
+    },
+    {
+      "id": "boss-matka-vsech-krys",
+      "name": "Matka všech krys",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    },
+    {
+      "id": "boss-retez",
+      "name": "Řetěz",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1",
+        "generated-v2"
+      ]
+    },
+    {
+      "id": "boss-soudruh-generalissimus",
+      "name": "Soudruh Generalissimus",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1",
+        "phased-walk-v2"
+      ]
+    },
+    {
+      "id": "boss-profesor-relativita",
+      "name": "Profesor Relativita",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "generated-v1"
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "id": "rovina-u-dalnice",
+      "name": "Rovina u dálnice",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "svah",
+      "name": "Svah",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "most-pres-propast",
+      "name": "Most přes propast",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "skladka",
+      "name": "Skládka",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "strecha-panelaku",
+      "name": "Střecha paneláku",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "composition-v2",
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "zamrzly-rybnik",
+      "name": "Zamrzlý rybník",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "vrakoviste-aut",
+      "name": "Vrakoviště aut",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "tunel-metra",
+      "name": "Tunel metra",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "prehrada",
+      "name": "Přehrada",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "composition-v2",
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "kolotoc-z-pouti",
+      "name": "Kolotoč z pouti",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "telocvicna",
+      "name": "Tělocvična",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "hrbitov",
+      "name": "Hřbitov",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "composition-v2",
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "benzinka",
+      "name": "Benzinka",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "concept-v1"
+      ]
+    },
+    {
+      "id": "sidliste",
+      "name": "Sídliště",
+      "generated": true,
+      "selected_variant": null,
+      "review": "needs-review",
+      "variants": [
+        "composition-v2",
+        "concept-v1"
+      ]
+    }
+  ],
+  "extra_existing_character": {
+    "id": "chuchvalec",
+    "generated": true,
+    "review": "existing-art"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:49:25.503663+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "14a436625f798232cb38082840d06996cdd30b2e2385f25a50421a3648724554",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "7c954e0e44fcfcd63a91138f4d0ecd76c3246ea5e048e811c6916c0ad5d9a0aa"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3d4b73b9d11fb6d32eb2b051c3ab4cad6c78e700fb435da7b7bc484ba12a7901",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "cb9f970f96874a5ee6996a4da2b2f7c257e7f5900212747ce73206c1dd80a335"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d06286771af93cfc28129f8fafd56d6cdb518066d091d186916ce9c92143709e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "907adcd7d6bb9803927581f05eec9ef15d31870c35c12ba5f61eebbf11d76a64"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "3a5e14e7ed31afccdcaddf9b34fbe077ae4d7c3f7f70ab8a23a374a93d20f427",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "6de1d1369ef6bb1f252561410140c5f61ee5baa71ae8671e23a6e3742bace181"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "79e6e39262f13608d5e8d3ed5e24b8e9ff131eb34ad2260dea63ad644bcce258",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "276520f8e40776cc26ba9c20da150c27eb9e0aa1a6bdfbd549ddd90fb9b62f08"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "c30c0b4f6c474e0aa3655028cc6491989e386d516437f729fb12c5bbaaed7658",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "0a5baf193b8c839e857efe8c6217d76c0a70b0f32c8f104e28c826ce0260fe1a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "05d8995fe9273ba850d8fa1ff2c44deb550362268c208e28030266ed039460c8",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "611150fb9cfeaf62dc225906064678235a5236bbe18380fb1c1699fd7fb879bf"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/frames/chlap-v-bubline-roll-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "a153f014b9ac70ed21ca5561dd4268f2991fbdb2916537b010696d8bcc7542a4",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/chlap-v-bubline/rage-gray-v2/variants/generated-v1/chlap-v-bubline-roll-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "baeacc882232cfe1f40c5f83a3825d154bdcdd5d33f3651de055970c47d99ed8"
+    }
+  ]
+}

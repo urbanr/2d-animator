@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "profile": "enemy-production-v1",
+  "algorithm": "dark-dpid-photopea-ink-v1",
+  "generated_at": "2026-09-14T18:35:49.629624+00:00",
+  "parameters": {
+    "dark_strength": 0.72,
+    "lambda": 0.6,
+    "dark_threshold_linear": 0.01,
+    "detail_floor": 0.03,
+    "color_space": "linear-sRGB",
+    "alpha": "area-averaged premultiplied RGBA",
+    "transparent_pixel_rgb": [
+      80,
+      80,
+      80
+    ],
+    "fit": "contain",
+    "anchor": "bottom-center",
+    "photopea_brightness_srgb": 30,
+    "photopea_contrast": 1.4,
+    "photopea_darken_opacity": 1.0,
+    "outer_edge_strength": 0.45,
+    "ink_blackness_strength": 0.25,
+    "ink_blackness_threshold_srgb": 128
+  },
+  "files": [
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-00.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "d29c8e3bed804ec136c8ef743494af6b7b36cadd9e9d7b9ce680b75e908f1f59",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-00.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "bc34dd6b671bf3fd603c3a6f2014367fe6d97c01b7778525f01c7e860f4f2d05"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-01.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "98266a73a5ec21b01f591b600cebb3830a74b2f2b9e590c9aa06c63604254a17",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-01.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "c1be4bf2423d31faab02f269cebf46acf5661e7e0a764599afcf649488078439"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-02.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "254dd80b6451f7bd5adc393d8ab2c2f7f0adc4407798ad5183e85317c3e77205",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-02.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "a62d3b613bc3a71edb56b7ddee69837c1df44c7c929095887bd55a3456b58dae"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-03.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "38122bd7001b0b9c6e79781b60771005f1fd27a8834ce743e373faa485f20c41",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-03.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "de491b3acfcd6d18d385df4643fc1cfed199c31d644fcf414d13576b333681b3"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-04.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "148424d8dc0beb6fa9b6581cadcaf390c961c9f73fde06c7505a8084285cccd9",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-04.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "060aa78e7ab92c2f24fe51ad30cd82d731f823a182bf0d2c6b2b161af2a0e96a"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-05.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "9f924214a6be6c0018c875afe222b2d4af5edea02929e9428a8bea864138ea99",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-05.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "e1c5078c533d815cd9c88fc0b2853a79c28b26dd09c5e6b7b4be4c7b1c3acee8"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-06.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "90ebc6e120182d21bc7c80d4567e025d7fa07b62d996e0176f3707bc6814767e",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-06.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "692f6b1592e4fb719ad171c021b033420671599daddfdd9f9e9d37a57a59f3e4"
+    },
+    {
+      "source": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/frames/lezec-scramble-07.png",
+      "source_size": [
+        384,
+        480
+      ],
+      "source_sha256": "db6e2d91cdbbde36bda37b08ff2896913a6f8d0294bdc6e2a79d09876d6fe217",
+      "output": "/Users/urbanradovan/dev/src/ai/ai-prdel-sveta/game-plan/graphics/bitmapove-sekvence/lezec/rage-gray-v2/variants/generated-v1/lezec-scramble-07.png",
+      "canvas_size": [
+        96,
+        96
+      ],
+      "placement": {
+        "fit": "contain",
+        "anchor": "bottom-center",
+        "fitted_size": [
+          77,
+          96
+        ],
+        "offset": [
+          10,
+          0
+        ]
+      },
+      "output_sha256": "5fe0efd0c42fea7ec1b899accce69e69d586673b0e4da392ea3a0ec9fbbf8ad3"
+    }
+  ]
+}

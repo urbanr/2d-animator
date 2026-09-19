@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "character": "boss-profesor-relativita",
+  "display_name": "Profesor Relativita",
+  "imported_at": "2026-09-14T19:05:58.859702+00:00",
+  "source": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/source/sheet-v1.png",
+  "source_sha256": "0f49c3b8dcd128507b7805302263f727a5f1fbac66298b9befd00bc80ccb45b8",
+  "sheet_size": [
+    1536,
+    1024
+  ],
+  "cell_size": [
+    384,
+    512
+  ],
+  "frame_size": [
+    384,
+    480
+  ],
+  "background_removal": "boundary-connected-neutral-gray-v1",
+  "files": [
+    {
+      "index": 0,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-00.png",
+      "removed_background_pixels": 69343,
+      "sha256": "8d52fa4542d03792796497677f6b52db7684a5018a49114cc80bd71aec6c55a6"
+    },
+    {
+      "index": 1,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-01.png",
+      "removed_background_pixels": 69968,
+      "sha256": "97e544f9afbb91c8757085e59e609d68adb292f1f078cf21b6d0a2be1a824fbc"
+    },
+    {
+      "index": 2,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-02.png",
+      "removed_background_pixels": 79429,
+      "sha256": "716d206827493700b6d923a43f2b17edc8de866d6b2670d55a489952d6644640"
+    },
+    {
+      "index": 3,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-03.png",
+      "removed_background_pixels": 75075,
+      "sha256": "6f56ac60846d98db9404551be0b5abd7946c1e2f459e4f001046670256ce530e"
+    },
+    {
+      "index": 4,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-04.png",
+      "removed_background_pixels": 74935,
+      "sha256": "7dfaa6c771c645fd39cb39e9dc99ff8679eb4647377c52cf004c18fa507e8f80"
+    },
+    {
+      "index": 5,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-05.png",
+      "removed_background_pixels": 75708,
+      "sha256": "54939c8c005e180d13ea9a371036ddfe7d7d1fd78f97da09cac6b60aea9e6913"
+    },
+    {
+      "index": 6,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-06.png",
+      "removed_background_pixels": 70906,
+      "sha256": "328af91ebba888bf1ca440c57ba8b6b7c0cb3f6de76a6e020b38f643d2e9e7bd"
+    },
+    {
+      "index": 7,
+      "file": "graphics/bitmapove-sekvence/boss-profesor-relativita/rage-gray-v2/frames/boss-profesor-walk-07.png",
+      "removed_background_pixels": 75193,
+      "sha256": "d6b6116a60e2c93343fdaf4c5efa2c890dcad05e2cf9e2a794f1ef0ec7bd0185"
+    }
+  ]
+}
