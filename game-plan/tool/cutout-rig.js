@@ -37,17 +37,19 @@
   }
   function fadeFor(part,end='start'){
     const length=part.start&&part.end?Math.hypot(part.end[0]-part.start[0],part.end[1]-part.start[1]):100;
-    const f={strength:0,radius:Math.max(1,Math.min(Math.min(...(part.size||[100,100]))*.5,length*.45)),shape:'ellipse',onset:.15,direction:'outward',offset:[0,0],angle:0,...part.joint_fade?.[end]};
+    const f={strength:0,radius:Math.max(1,Math.min(Math.min(...(part.size||[100,100]))*.5,length*.45)),shape:'ellipse',onset:.15,outset:0,direction:'outward',offset:[0,0],angle:0,...part.joint_fade?.[end]};
     return {...f,radius2:f.radius2??f.radius};
   }
   function validateFade(value){
     const obj=v=>v&&typeof v==='object'&&!Array.isArray(v);
     if(!obj(value)||Object.keys(value).some(k=>!['start','end'].includes(k)))throw Error('Neplatný přechod spoje.');
-    for(const v of Object.values(value))if(!obj(v)||Object.keys(v).some(k=>!['strength','radius','radius2','shape','onset','direction','offset','angle'].includes(k))||
+    for(const v of Object.values(value))if(!obj(v)||Object.keys(v).some(k=>!['strength','radius','radius2','shape','onset','outset','direction','offset','angle'].includes(k))||
       !Number.isFinite(v.strength)||v.strength<0||v.strength>1||!Number.isFinite(v.radius)||v.radius<1||v.radius>2000||!['outward','inward'].includes(v.direction)||
       (v.radius2!==undefined&&(!Number.isFinite(v.radius2)||v.radius2<1||v.radius2>2000))||
       (v.shape!==undefined&&!['ellipse','rectangle'].includes(v.shape))||
       (v.onset!==undefined&&(!Number.isFinite(v.onset)||v.onset<0||v.onset>.95))||
+      (v.outset!==undefined&&(!Number.isFinite(v.outset)||v.outset<0||v.outset>.95))||
+      ((v.onset||0)+(v.outset||0)>.9+1e-9)||
       (v.angle!==undefined&&(!Number.isFinite(v.angle)||Math.abs(v.angle)>180))||
       (v.offset!==undefined&&(!Array.isArray(v.offset)||v.offset.length!==2||v.offset.some(n=>!Number.isFinite(n)||Math.abs(n)>2000))))throw Error('Neplatný přechod spoje.');
     return value;
@@ -72,10 +74,14 @@
       // elliptical radii always receive equal alpha. Rectangle fades in
       // straight bands; R2 only bounds its width.
       const distance=f.shape==='rectangle'?depth:Math.hypot(depth,side);
-      if(along>1e-9||depth>1||side>1||(f.shape!=='rectangle'&&distance>1))continue;
-      // Náběh chooses the untouched core. From there the effect is exactly
-      // proportional to the remaining normalized distance up to the boundary.
-      const t=clamp((distance-f.onset)/(1-f.onset),0,1);
+      const outside=depth>1||(f.shape!=='rectangle'&&distance>1);
+      // Doběh je volitelný. Když je nulový, plná průhlednost vzniká teprve na
+      // samé hranici a za ní je díl netknutý - to je původní chování, na kterém
+      // stojí hotová grafika. Jakmile ho autor nastaví, vznikne plato: od něj
+      // dál je díl úplně na zvolené síle, a to i za hranicí R1.
+      if(along>1e-9||side>1||(outside&&!f.outset))continue;
+      const span=Math.max(1e-6,1-f.outset-f.onset);
+      const t=outside?1:clamp((distance-f.onset)/span,0,1);
       alpha*=1-f.strength*t;
     }
     return alpha;
@@ -109,7 +115,7 @@
     if(edit.fade_mix)for(const end of ['start','end']){
       const base=fadeFor(part,end),endpoint=v=>({...base,...v,radius2:v?.radius2??v?.radius??base.radius2});
       const a=endpoint(edit.fade_mix.a?.[end]),b=endpoint(edit.fade_mix.b?.[end]),t=edit.fade_mix.t;
-      joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),radius2:(a.radius2??a.radius)+t*((b.radius2??b.radius)-(a.radius2??a.radius)),onset:a.onset+t*(b.onset-a.onset),shape:t<.5?a.shape:b.shape,direction:t<.5?a.direction:b.direction,
+      joint_fade[end]={strength:a.strength+t*(b.strength-a.strength),radius:a.radius+t*(b.radius-a.radius),radius2:(a.radius2??a.radius)+t*((b.radius2??b.radius)-(a.radius2??a.radius)),onset:a.onset+t*(b.onset-a.onset),outset:(a.outset||0)+t*((b.outset||0)-(a.outset||0)),shape:t<.5?a.shape:b.shape,direction:t<.5?a.direction:b.direction,
         offset:[0,1].map(i=>(a.offset?.[i]||0)+t*((b.offset?.[i]||0)-(a.offset?.[i]||0))),angle:wrap((a.angle||0)+t*wrap((b.angle||0)-(a.angle||0)))};
     }
     return {...part,warp,joint_fade:canFade(key)?joint_fade:{},pivot_offset:[0,1].map(i=>(part.pivot_offset?.[i]||0)+(edit.pivot_offset?.[i]||0)),offset:offset.map((v,i)=>v+(edit.offset?.[i]||0)),rotation:(part.rotation||0)+(edit.rotation||0),

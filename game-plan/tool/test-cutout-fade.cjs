@@ -72,3 +72,30 @@ assert.ok(low.pixels[(0*10+5)*4+3]>20&&low.pixels[(0*10+5)*4+3]<50,'Game resolut
 const disabled={...part,joint_fade:{start:{...part.joint_fade.start,strength:0}}};
 assert.equal(C.fadedImage(img,disabled,()=>{throw Error('Unnecessary surface');}),img);
 console.log('PASS: edge-centered semicircle alpha, direction, ends, scope, reset, cyclic interpolation, immutable sources and both texture resolutions.');
+
+// --- Doběh: druhý zlom, od kterého je zprůhlednění naplno ---------------------
+// Díl 100×160, přechod uchycený nahoře a mířící ven z dílu (k záporným y).
+const span=(outset,extra={})=>({...part,joint_fade:{start:{strength:1,radius:40,direction:'outward',onset:.15,...(outset?{outset}:{}),...extra}}});
+
+// Bez doběhu zůstává původní chování, na kterém stojí hotová grafika.
+assert.equal(C.fadeAlpha(span(0),50,0),0,'Bez doběhu se plné průhlednosti dosáhne až na hranici');
+assert.equal(C.fadeAlpha(span(0),50,-1),1,'Bez doběhu je díl za hranicí zase plný');
+
+// S doběhem 25 % končí přechod v 75 % hloubky, tedy 30 px od uchycení (y = 10).
+const faded=span(.25);
+assert.equal(C.fadeAlpha(faded,50,40),1,'Uchycení zůstává plné i s doběhem');
+assert.ok(C.fadeAlpha(faded,50,20)>0&&C.fadeAlpha(faded,50,20)<1,'Mezi náběhem a doběhem je plynulý přechod');
+assert.equal(C.fadeAlpha(faded,50,10),0,'V místě doběhu je zprůhlednění už naplno');
+assert.equal(C.fadeAlpha(faded,50,5),0,'Za doběhem plato pokračuje');
+assert.equal(C.fadeAlpha(faded,50,-5),0,'Plato platí i za hranicí R1, takže konec dílu zmizí');
+assert.equal(C.fadeAlpha(faded,50,80),1,'Druhá polovina dílu zůstává nedotčená');
+
+// Doběh musí respektovat sílu: při 60 % se plato drží na 0.4, ne na nule.
+const partial=span(.25,{strength:.6});
+assert.ok(Math.abs(C.fadeAlpha(partial,50,5)-.4)<1e-9,'Plato drží zvolenou sílu, ne vždy nulu');
+
+// Prolínání mezi snímky musí doběh přenést, jinak by v půlce animace zmizel.
+const mixed=C.partFor({parts:{head:span(.4)},layers:['head']},'head',
+  {part_edits:{head:{fade_mix:{a:span(.2).joint_fade,b:span(.4).joint_fade,t:.5}}}});
+assert.ok(Math.abs(mixed.joint_fade.start.outset-.3)<1e-9,'Doběh se mezi snímky interpoluje');
+console.log('PASS: doběh přechodu — plato, zpětná kompatibilita, síla i prolínání snímků.');

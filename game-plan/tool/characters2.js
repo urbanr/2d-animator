@@ -3,7 +3,7 @@
   const R=window.PoseRig,C=window.CutoutRig,E=window.CutoutEditor,M=window.MotionPreview,$=id=>document.getElementById(id),copy=v=>JSON.parse(JSON.stringify(v));
   const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).filter(k=>v[k]!==undefined).sort().map(k=>[k,canonical(v[k])])):v;
   const animationState=value=>canonical(Object.fromEntries(['frames','fps','move_speed_pt_s','rig_lengths','joint_limits','frame_edits','extra_bones','skin_id','bitmap','skeleton_id'].filter(key=>value[key]!==undefined).map(key=>[key,value[key]])));
-  const numericIds=['bodyX','bodyY','fps','moveSpeed','spread','fadeOnset','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'];
+  const numericIds=['bodyX','bodyY','fps','moveSpeed','spread','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'];
   let skinURL=new URL('../graphics/bitmapove-predlohy/bezec-zombie-v1/skin.json',location.href),skinCatalog,gameCatalog;
   const stage=$('stage'),ctx=stage.getContext('2d'),mini=$('mini'),images={},hitMasks={};
   const gameImages={},gameMasks={},pixelFrame=document.createElement('canvas');
@@ -89,12 +89,14 @@
   }
   function syncFade(){
     const key=$('layerOrder').value,allowed=C.canFade(key)&&Boolean(skin.parts[key]);
-    for(const id of ['fadeStrength','fadeOnset','fadeRadius','fadeRadius2','fadeShape','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
+    for(const id of ['fadeStrength','fadeOnset','fadeOutset','fadeRadius','fadeRadius2','fadeShape','fadeDirection','fadeEnd','fadeX','fadeY','fadeAngle'])$(id).disabled=!allowed;
     $('fadePart').textContent=skin.parts[key]?.label||'';
     if(!allowed)return;
     const f=C.fadeFor(C.partFor(skin,key,C.sample(clip,phase,$('smooth').checked)),$('fadeEnd').value||'start');
-    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeOnset:Math.round(f.onset*100),fadeRadius:Math.round(f.radius),fadeRadius2:Math.round(f.radius2),fadeShape:f.shape,fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(['fadeShape','fadeDirection'].includes(id)||document.activeElement!==$(id))$(id).value=value;
+    for(const [id,value] of Object.entries({fadeStrength:Math.round(f.strength*100),fadeOnset:Math.round(f.onset*100),fadeOutset:Math.round((f.outset||0)*100),fadeRadius:Math.round(f.radius),fadeRadius2:Math.round(f.radius2),fadeShape:f.shape,fadeDirection:f.direction,fadeX:f.offset[0],fadeY:f.offset[1],fadeAngle:f.angle}))if(['fadeShape','fadeDirection'].includes(id)||document.activeElement!==$(id))$(id).value=value;
     $('fadeValue').textContent=Math.round(f.strength*100)+' %';
+    $('fadeOnsetValue').textContent=Math.round(f.onset*100)+' %';
+    $('fadeOutsetValue').textContent=Math.round((f.outset||0)*100)+' %';
   }
   function changeFade(values,record=true){
     const key=$('layerOrder').value;if(!C.canFade(key))return;
@@ -106,7 +108,20 @@
   $('fadeStrength').oninput=()=>{changeFade({strength:R.clamp(Number($('fadeStrength').value)/100,0,1)},!fadeSliding);fadeSliding=true;};
   $('fadeStrength').onchange=()=>{changeFade({strength:R.clamp(Number($('fadeStrength').value)/100,0,1)},!fadeSliding);fadeSliding=false;};
   $('fadeStrength').onpointercancel=()=>{fadeSliding=false;};
-  $('fadeOnset').onchange=()=>changeFade({onset:R.clamp((Number($('fadeOnset').value)||0)/100,0,.95)});
+  // Náběh a doběh sdílejí jednu dráhu, takže se nesmějí potkat ani přejet.
+  // Posouvaný jezdec se zarazí 10 % před tím druhým; druhý zůstává, kde byl.
+  const FADE_GAP=10;
+  const fadeSpan=id=>{
+    const other=id==='fadeOnset'?'fadeOutset':'fadeOnset';
+    const kept=Number($(other).value)||0;
+    const value=Math.min(Number($(id).value)||0,100-FADE_GAP-kept);
+    $(id).value=value;
+    return {[id==='fadeOnset'?'onset':'outset']:R.clamp(value/100,0,.95)};
+  };
+  for(const id of ['fadeOnset','fadeOutset']){
+    $(id).oninput=()=>{const change=fadeSpan(id);changeFade(change,!fadeSliding);fadeSliding=true;};
+    $(id).onchange=()=>{const change=fadeSpan(id);changeFade(change,!fadeSliding);fadeSliding=false;};
+  }
   $('fadeRadius').onchange=()=>{const v=Number($('fadeRadius').value);if(Number.isFinite(v))changeFade({radius:R.clamp(v,1,2000)});};
   $('fadeShape').onchange=()=>changeFade({shape:$('fadeShape').value});
   $('fadeDirection').onchange=()=>changeFade({direction:$('fadeDirection').value});

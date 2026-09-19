@@ -53,13 +53,16 @@ assert.match(html,/#fadePanel \.fade-geometry input\[type=number\],#fadePanel \.
 assert.ok(!html.includes('fade-shape-row'));
 assert.match(html,/#fadePanel \.fade-primary\{display:grid;grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.25fr\) minmax\(0,1\.15fr\)/);
 assert.match(html,/<div class="row fade-primary"><label>Konec[\s\S]*?id="fadeDirection"[\s\S]*?Zprůhlednění[\s\S]*?id="fadeStrength"[\s\S]*?<\/div>\s*<div class="row fade-geometry"><label>Tvar/);
-assert.match(html,/<div class="row fade-geometry">[\s\S]*?id="fadeShape"[\s\S]*?id="fadeOnset"[\s\S]*?id="fadeRadius"[\s\S]*?id="fadeRadius2"[\s\S]*?<\/div>/);
+assert.match(html,/<div class="row fade-geometry">[\s\S]*?id="fadeShape"[\s\S]*?id="fadeOnset"[\s\S]*?id="fadeOutset"[\s\S]*?id="fadeRadius"[\s\S]*?id="fadeRadius2"[\s\S]*?<\/div>/);
 assert.match(html,/id="fadeShape"[^>]*>[\s\S]*?<option value="ellipse">Elipsa<\/option>[\s\S]*?<option value="rectangle">Obdélník<\/option>/);
-assert.match(html,/id="fadeOnset"[^>]*type="number"[^>]*min="0"[^>]*max="95"[^>]*step="1"[^>]*value="15"/);
+assert.match(html,/id="fadeOnset"[^>]*type="range"[^>]*min="0"[^>]*max="90"[^>]*step="1"[^>]*value="15"/);
+assert.match(html,/id="fadeOutset"[^>]*type="range"[^>]*min="0"[^>]*max="90"[^>]*step="1"[^>]*value="0"/,
+  'Doběh je druhý jezdec na stejné dráze jako náběh');
 assert.match(html,/id="bodyX"[^>]*type="number"[^>]*min="-200"[^>]*max="200"[^>]*step="1"[^>]*title="Mínus = doleva, plus = doprava; Option = krok 10"/);
 assert.match(html,/id="bodyY"[^>]*type="number"[^>]*min="-100"[^>]*max="100"[^>]*step="1"[^>]*title="Jen celá čísla; Option = krok 10"/);
 assert.doesNotMatch(html,/id="(?:left|right|up|down)"/);
-assert.match(js,/const numericIds=\['bodyX','bodyY','fps','moveSpeed','spread','fadeOnset','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'\]/);
+assert.match(js,/const numericIds=\['bodyX','bodyY','fps','moveSpeed','spread','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'\]/,
+  'Náběh a doběh jsou jezdce, šipky na nich obsluhuje prohlížeč');
 assert.match(html,/\.help\.help-open \.help-text\{display:block\}/);assert.doesNotMatch(html,/\.help:hover \.help-text/);
 assert.match(html,/#stageWrap\{width:100%/);assert.match(html,/#stage\{max-width:none;max-height:none;width:100%;height:auto/);
 assert.match(html,/class="row compact-row"[\s\S]*?id="renderMode"[\s\S]*?id="bodyX"[\s\S]*?id="bodyY"[\s\S]*?id="side"/);

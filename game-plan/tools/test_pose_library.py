@@ -2,7 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from pose_library import LIMITS, save_pose, validate_frame
+from pose_library import LIMITS, save_pose, validate_frame, validate_joint_fade
 
 
 class PoseTests(unittest.TestCase):
@@ -180,3 +180,30 @@ class PoseTests(unittest.TestCase):
 
 
 if __name__ == '__main__': unittest.main()
+
+
+class JointFadeSpanTests(unittest.TestCase):
+    """Náběh a doběh sdílejí jednu dráhu a musí mezi sebou nechat 10 %."""
+
+    BASE = {'strength': 1, 'radius': 60, 'direction': 'inward'}
+
+    def test_outset_is_optional_and_defaults_to_old_behaviour(self):
+        out = validate_joint_fade({'start': dict(self.BASE)})
+        self.assertNotIn('outset', out['start'])
+
+    def test_outset_is_kept_and_bounded(self):
+        out = validate_joint_fade({'start': {**self.BASE, 'onset': .15, 'outset': .25}})
+        self.assertEqual(out['start']['outset'], .25)
+        # bounded() hodnoty neořezává, mimo rozsah je odmítá - stejně jako u náběhu.
+        with self.assertRaises(ValueError):
+            validate_joint_fade({'start': {**self.BASE, 'outset': 9}})
+
+    def test_handles_may_not_meet_or_cross(self):
+        with self.assertRaises(ValueError):
+            validate_joint_fade({'start': {**self.BASE, 'onset': .49, 'outset': .50}})
+        with self.assertRaises(ValueError):
+            validate_joint_fade({'start': {**self.BASE, 'onset': .5, 'outset': .45}})
+
+    def test_exactly_ten_percent_apart_is_allowed(self):
+        out = validate_joint_fade({'start': {**self.BASE, 'onset': .45, 'outset': .45}})
+        self.assertEqual((out['start']['onset'], out['start']['outset']), (.45, .45))

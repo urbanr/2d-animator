@@ -28,7 +28,7 @@ ids.push('editScope','editTarget','editTool','editTools','scopeNote','redo','res
 ids.push('headerTarget','headerScope','headerTool');
 ids.push('targetSkeleton','targetBitmap','toolMove','toolRotate','toolSize');
 ids.push('stageResize');
-ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeOnset','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
+ids.push('partsTools','partsGrip','partsBody','partsCollapse','fadeOnset','fadeOutset','fadeOnsetValue','fadeOutsetValue','fadeRadius2','skeletonSelect','saveSkeleton','updateSkeleton','deleteSkeleton');
 ids.push('skeletonCount','updateFinishedAnimation','saveFinishedAnimation','deleteFinishedAnimation');
 ids.push('skeletonDirtyStar','animationDirtyStar');
 ids.push('fadeStrength','fadeRadius','fadeShape','fadeDirection','fadeEnd','fadeClear','fadePreset','fadePart','fadeValue');
@@ -93,7 +93,7 @@ const context=vm.createContext({URL:url,Blob,Image,setTimeout:()=>{},confirm:q=>
  assert.equal(elements.skeletonSelect.children.length,Object.keys(store.clips).length+1);assert.match(elements.skeletonCount.textContent,/2 kosterních animací/);
  assert.equal(elements.clip.children.length,Object.keys(store.finished_animations).length+1);assert.equal(elements.clip.value,'');
  assert.equal(elements.zoomLabel.textContent,'69 %');
- const numericIds=['bodyX','bodyY','fps','moveSpeed','spread','fadeOnset','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'];
+ const numericIds=['bodyX','bodyY','fps','moveSpeed','spread','fadeRadius','fadeRadius2','fadeX','fadeY','fadeAngle'];
  assert.ok(numericIds.every(id=>typeof elements[id].onmousedown==='function'&&typeof elements[id].onkeydown==='function'));
  const startX=Number(elements.bodyX.value);elements.bodyX.onkeydown({altKey:true,key:'ArrowUp',preventDefault(){},stopPropagation(){}});assert.equal(Number(elements.bodyX.value),startX+10);elements.undo.onclick();
  const startRadius=Number(elements.fadeRadius.value);elements.fadeRadius.onmousedown({altKey:true,button:0,clientX:510,clientY:1,preventDefault(){},stopPropagation(){}});assert.equal(Number(elements.fadeRadius.value),startRadius+10);elements.undo.onclick();

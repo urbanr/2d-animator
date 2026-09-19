@@ -57,6 +57,20 @@ Velké PNG a další obrazové podklady byly už před rozdělením lokální ne
 - Nová animace má výchozích 8 snímků. Obsahuje 1 až 256 póz, tempo, rychlost vpřed, délky kostí, limity kloubů, přidané větve a kosterní výjimky snímků.
 - Stejný seznam `clips` ukazuje editor Koster i sekce Kostry v Animátoru. Bitmapová předloha se sem neukládá.
 
+### Průhlednost spoje (`joint_fade`)
+
+- Je u bitmapového dílu, zvlášť pro konec `start` a `end`.
+- `onset` (náběh) a `outset` (doběh) jsou zlomové body přechodu, oba jako podíl
+  hloubky `radius`. Náběh se měří od uchycení, doběh od protější hranice.
+  Mezi přechodem je vždy aspoň 10 %, takže `onset + outset <= 0.9`; validace
+  to odmítá na obou stranách, v `pose_library.validate_joint_fade` i v
+  `cutout-rig.validateFade`.
+- Od doběhu dál platí `strength` naplno a **platí i za hranicí `radius`**, takže
+  konec dílu zmizí úplně. Bez doběhu (`outset` chybí nebo je 0) se plné síly
+  dosáhne teprve na samé hranici a za ní je díl nedotčený — to je původní
+  chování, na kterém stojí všechna dosud schválená grafika, proto je výchozí.
+- `outset` je volitelný. Starší záznamy ho nemají a vykreslí se stejně jako dřív.
+
 ### Hotová animace (`finished_animation`)
 
 - Je v bance `graphics/animace/`, kolekce `finished_animations`.

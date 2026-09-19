@@ -102,7 +102,7 @@ def validate_joint_fade(value):
         raise ValueError('Neplatný přechod spoje.')
     out = {}
     for end, fade in value.items():
-        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'radius2', 'shape', 'onset', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
+        if not isinstance(fade, dict) or not {'strength', 'radius', 'direction'} <= set(fade) or set(fade)-{'strength', 'radius', 'radius2', 'shape', 'onset', 'outset', 'direction', 'offset', 'angle'} or fade['direction'] not in ('outward', 'inward'):
             raise ValueError('Neplatný přechod spoje.')
         out[end] = {'strength': bounded(fade['strength'], 0, 1),
                     'radius': bounded(fade['radius'], 1, 2000), 'direction': fade['direction']}
@@ -114,6 +114,12 @@ def validate_joint_fade(value):
             out[end]['shape'] = fade['shape']
         if 'onset' in fade:
             out[end]['onset'] = bounded(fade['onset'], 0, .95)
+        if 'outset' in fade:
+            out[end]['outset'] = bounded(fade['outset'], 0, .95)
+        # Nabeh a dobeh se nesmi potkat ani prejet - mezi nimi zustava 10 %,
+        # jinak by prechod zdegeneroval na skok.
+        if out[end].get('onset', 0) + out[end].get('outset', 0) > .9 + 1e-9:
+            raise ValueError('Náběh a doběh přechodu musí dělit aspoň 10 %.')
         if 'angle' in fade:
             out[end]['angle'] = bounded(fade['angle'], -180, 180)
         if 'offset' in fade:
